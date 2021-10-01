@@ -33,12 +33,25 @@ Navigate to mock-api/swagger-editor folder and run the following commands from a
 
   ![image](https://user-images.githubusercontent.com/53683786/135634979-38a09b30-3c7c-483c-bddd-658e5788d64e.png)
   
+  **Obs.:** The default port is **8080**, it can be changed in the docker-compose.yml file, located in the swagger-editor folder.
+  
 Now, you can modify and customize your APIs contracts using the Swagger Editor on the left. This will result in changes to the swagger page on the right.
 
 You can also Save, import and export swagger files using the File menu, located in the header of the page. You can convert this code to other standards in the Edit menu.
 
 By clicking on the Generate Server tab, it is possible to generate sample backend applications based on the code on the editor. This is a very useful tool, there are many technologies available and the generated code will reflect the specifications of your swagger.yml code. Like the Generate Server tab, it is possible to auto generate code through the Generate Client tab, the difference is that here, the focus is frontend technologies.
  
+ ### Swagger Mock Api
  
+ Navigate to mock-api/swagger-mock-api folder and run the following commands from a terminal:
+
+- 1: `docker compose build` (this command just need to be used in your first run)
+
+- 2: `docker compose up`
+
+- 3: Your mock sever is running. Its routes are the ones described in the swagger.yml file located inside this folder. Using your brownser or an API testing tool like [Postman](https://www.postman.com/), it is possible to make requests to this server. It will always generate responses describided in the swagger.yml file with random values. Perfect for testing!
+  ![image](https://user-images.githubusercontent.com/53683786/135637802-3178df0b-d5d6-44c7-b01e-22cfdb41e921.png)
+  
+   **Obs.:** The default port is **8001**, it can be changed in the docker-compose.yml file, located in the swagger-mock-api folder.
 
 
