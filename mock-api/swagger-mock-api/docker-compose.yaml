@@ -1,0 +1,15 @@
+version: "3.7"
+# Services
+services: 
+  api:
+    build: .
+    container_name: mocki
+    hostname: mocki
+    ports:
+      - "8001:8000"
+    volumes:
+      - .:/data/
+    networks:
+      default:
+          aliases:
+              - mocki
