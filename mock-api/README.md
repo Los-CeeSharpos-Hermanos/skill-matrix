@@ -40,6 +40,8 @@ Now, you can modify and customize your APIs contracts using the Swagger Editor o
 You can also Save, import and export swagger files using the File menu, located in the header of the page. You can convert this code to other standards in the Edit menu.
 
 By clicking on the Generate Server tab, it is possible to generate sample backend applications based on the code on the editor. This is a very useful tool, there are many technologies available and the generated code will reflect the specifications of your swagger.yml code. Like the Generate Server tab, it is possible to auto generate code through the Generate Client tab, the difference is that here, the focus is frontend technologies.
+
+More about Swagger Editor: https://hub.docker.com/r/swaggerapi/swagger-editor/
  
  ### Swagger Mock Api
  
@@ -53,5 +55,7 @@ By clicking on the Generate Server tab, it is possible to generate sample back
   ![image](https://user-images.githubusercontent.com/53683786/135637802-3178df0b-d5d6-44c7-b01e-22cfdb41e921.png)
   
    **Obs.:** The default port is **8001**, it can be changed in the docker-compose.yml file, located in the swagger-mock-api folder.
+   
+   More about Swagger Mock API: https://hub.docker.com/r/palo/swagger-api-mock/
 
 
