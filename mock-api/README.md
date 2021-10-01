@@ -58,6 +58,24 @@ More about Swagger Editor: https://hub.docker.com/r/swaggerapi/swagger-editor/
    
    More about Swagger Mock API: https://hub.docker.com/r/palo/swagger-api-mock/
    
+   ##### IMPORTANT: Enabling docker resources file sharing
+
+To properly use the Swagger Mock API, you should enable Resources File Sharing on Docker. The following guide will show how to do it this:
+
+- 1: On Docker Desktop click on the Cog icon to go to settings
+
+    ![image](https://user-images.githubusercontent.com/53683786/135643959-82069d46-7c8d-4d9b-a710-72981e2c2701.png)
+    
+- 2: On the side menu, click on resources:
+
+    ![image](https://user-images.githubusercontent.com/53683786/135644104-54b63bb5-dec6-49d2-afdc-45a05f805f83.png)
+
+- 3: On Resources sub menu, click on File Sharing:
+    
+    ![image](https://user-images.githubusercontent.com/53683786/135644437-bd710231-18fc-4d47-8d1d-e6d753ad9837.png)
+
+- 4: ### **Click on the plus blue icon and add the folder with the swagger.yml file (typically on mock-api\swagger-mock-api). If you preffer, you can select a parent folder, that way docker can access any file in this folder and its children.**
+   
 ### Tip
 
 If you are usind **Docker Desktop**, after you have run the container for the first time (`docker compose up`), by using the start command, it is possible to start it directly in this application. If a container is running it will appears in green, stopped containers icons are grey. You can also stop and delete containers here.
