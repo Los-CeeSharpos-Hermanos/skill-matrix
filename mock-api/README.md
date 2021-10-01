@@ -2,13 +2,15 @@
 
 The Swagger editor can be used to help the creation of _contracts_ (our JSON responses from the backend). 
 
-The Mock API can be used to help with Contract First approach during development. It is able to host a fake server, so the frontend can use it as a base to build its features
+The Mock API can be used to help with Contract First approach during development. It is able to host a fake server, so the frontend can use it as a base to build its features.
 
-## Usage
+**That way, it is possible to combine these two apps to build and test applications following the Contract First approach. It can be easily done by editing you Swagger File with the editor, exporting its swagger.yml file and use this code in the Swagger Mock API.**
 
-### Pre-requisite
+## 🚀 Usage
 
-- #### Docker and Docker Compose
+### ✔ Pre-requisite
+
+- ####  Docker and Docker Compose
   
   > Docker is an open platform for developing, shipping, and running applications. Docker enables you to separate your applications from your infrastructure so you can deliver software quickly. With Docker, you can manage your infrastructure in the same ways you manage your applications. By taking advantage of Docker’s methodologies for shipping, testing, and deploying code quickly, you can significantly reduce the delay between writing code and running it in production.
   
@@ -21,7 +23,9 @@ It is advised to follow the Docker documentation to install it:
 - [Ubuntu](https://docs.docker.com/engine/install/ubuntu/) 
 - [Mac](https://docs.docker.com/desktop/mac/install/)
 
-### Swagger Editor
+---
+
+### 📑 Swagger Editor
 
 Navigate to mock-api/swagger-editor folder and run the following commands from a terminal:
 
@@ -42,8 +46,10 @@ You can also Save, import and export swagger files using the File menu, locate
 By clicking on the Generate Server tab, it is possible to generate sample backend applications based on the code on the editor. This is a very useful tool, there are many technologies available and the generated code will reflect the specifications of your swagger.yml code. Like the Generate Server tab, it is possible to auto generate code through the Generate Client tab, the difference is that here, the focus is frontend technologies.
 
 More about Swagger Editor: https://hub.docker.com/r/swaggerapi/swagger-editor/
+
+---
  
- ### Swagger Mock Api
+ ### 🔮 Swagger Mock Api
  
  Navigate to mock-api/swagger-mock-api folder and run the following commands from a terminal:
 
@@ -58,7 +64,9 @@ More about Swagger Editor: https://hub.docker.com/r/swaggerapi/swagger-editor/
    
    More about Swagger Mock API: https://hub.docker.com/r/palo/swagger-api-mock/
    
-   ##### IMPORTANT: Enabling docker resources file sharing
+---
+   
+## ⚠ IMPORTANT: Enabling docker resources file sharing
 
 To properly use the Swagger Mock API, you should enable Resources File Sharing on Docker. The following guide will show how to do it this:
 
@@ -76,7 +84,7 @@ To properly use the Swagger Mock API, you should enable Resources File Sharing o
 
 - 4: ### **Click on the plus blue icon and add the folder with the swagger.yml file (typically on mock-api\swagger-mock-api). If you preffer, you can select a parent folder, that way docker can access any file in this folder and its children.**
    
-### Tip
+## ⁉ Tip
 
 If you are usind **Docker Desktop**, after you have run the container for the first time (`docker compose up`), by using the start command, it is possible to start it directly in this application. If a container is running it will appears in green, stopped containers icons are grey. You can also stop and delete containers here.
 
