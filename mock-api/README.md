@@ -57,5 +57,11 @@ More about Swagger Editor: https://hub.docker.com/r/swaggerapi/swagger-editor/
    **Obs.:** The default port is **8001**, it can be changed in the docker-compose.yml file, located in the swagger-mock-api folder.
    
    More about Swagger Mock API: https://hub.docker.com/r/palo/swagger-api-mock/
+   
+### Tip
+
+If you are usind **Docker Desktop**, after you have run the container for the first time (`docker compose up`), by using the start command, it is possible to start it directly in this application. If a container is running it will appears in green, stopped containers icons are grey. You can also stop and delete containers here.
+
+![image](https://user-images.githubusercontent.com/53683786/135640533-e0eb8cda-ee35-4890-959b-37615209322f.png)
 
 
