@@ -1,0 +1,14 @@
+version: '3.7'
+# Services
+services:
+  editor:
+    build: .
+    container_name: eddi
+    hostname: eddi
+    ports:
+      - "8080:8080"
+    networks:
+      default:
+          aliases:
+              - eddi
+    

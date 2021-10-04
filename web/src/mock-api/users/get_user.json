@@ -1,0 +1,26 @@
+{
+    "personId": 1,
+    "surName": "Schmidt",
+    "firstName": "Marten",
+    "email": "marten@web.de",
+    "department": "name_department",
+    "phone_number": "000000000",
+    "job_title": "Developer",
+    "location": "Leipdresden",
+    "team": [],
+    "skill_rating": [
+        {
+            "rating": "C1",
+            "skill": "C-Sharp"
+        }
+    ],
+    "language_rating": [
+        {
+            "rating": "C1",
+            "skill": "German"
+        }
+    ],
+    "admin": true,
+    "status": "hidden",
+    "imageUrl": "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png"
+}
