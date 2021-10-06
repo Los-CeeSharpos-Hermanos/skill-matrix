@@ -27,7 +27,7 @@ schemes:
 - "https"
 - "http"
 paths:
-  /user:
+  /users:
     get:
       tags:
       - "user"
@@ -35,17 +35,40 @@ paths:
       description: "Returns a list of users"
       operationId: "getUsers"
       produces:
-      - "application/xml"
       - "application/json"
+      parameters:
+      - in: "query"
+        name: "userName"
+        type: "string"
+        description: "The name of the user"
+      - in: "query"
+        name: "userDepartment"
+        type: "string"
+        description: "The department of the user"
+      - in: "query"
+        name: "userTelephone"
+        type: "string"
+        description: "The telephone of the user"
+      - in: "query"
+        name: "userEmail"
+        type: "string"
+        description: "The email of the user"
+      - in: "query"
+        name: "userTeam"
+        type: "string"
+        description: "The Team of the user"
+      - in: "body"
+        name: "skillLanguage"
+        description: "Search language and skills"
+        schema:
+            $ref: "#/definitions/SearchUserBySkills"
       responses:
-        "200":
+        "201":
           description: "successful operation"
           schema:
             type: array
             items:
-              $ref: "#/definitions/GetUsers"
-      security:
-      - api_key: []
+              $ref: "#/definitions/GenericUser"
     post:
       tags:
       - "user"
@@ -53,7 +76,6 @@ paths:
       description: "This can only be done by the logged in user."
       operationId: "createUser"
       produces:
-      - "application/xml"
       - "application/json"
       parameters:
       - in: "body"
@@ -61,117 +83,30 @@ paths:
         description: "Created user object"
         required: true
         schema:
-          $ref: "#/definitions/User"
+          $ref: "#/definitions/NewUser"
       responses:
-        default:
+        201:
           description: "successful operation"
-  /user/createWithArray:
-    post:
-      tags:
-      - "user"
-      summary: "Creates list of users with given input array"
-      description: ""
-      operationId: "createUsersWithArrayInput"
-      produces:
-      - "application/xml"
-      - "application/json"
-      parameters:
-      - in: "body"
-        name: "body"
-        description: "List of user object"
-        required: true
-        schema:
-          type: "array"
-          items:
-            $ref: "#/definitions/User"
-      responses:
-        default:
-          description: "successful operation"
-  /user/createWithList:
-    post:
-      tags:
-      - "user"
-      summary: "Creates list of users with given input array"
-      description: ""
-      operationId: "createUsersWithListInput"
-      produces:
-      - "application/xml"
-      - "application/json"
-      parameters:
-      - in: "body"
-        name: "body"
-        description: "List of user object"
-        required: true
-        schema:
-          type: "array"
-          items:
-            $ref: "#/definitions/User"
-      responses:
-        default:
-          description: "successful operation"
-  /user/login:
+        400:
+          description: "Invalid userid supplied"
+        404:
+          description: "User not found"
+        500:
+          description: Error
+          schema: 
+            type: object
+            example: { message: Could not add User}
+  /users/{userid}:
     get:
       tags:
       - "user"
-      summary: "Logs user into the system"
+      summary: "Get user by user id"
       description: ""
-      operationId: "loginUser"
+      operationId: "getUserById"
       produces:
-      - "application/xml"
       - "application/json"
       parameters:
-      - name: "username"
-        in: "query"
-        description: "The user name for login"
-        required: true
-        type: "string"
-      - name: "password"
-        in: "query"
-        description: "The password for login in clear text"
-        required: true
-        type: "string"
-      responses:
-        "200":
-          description: "successful operation"
-          schema:
-            type: "string"
-          headers:
-            X-Rate-Limit:
-              type: "integer"
-              format: "int32"
-              description: "calls per hour allowed by the user"
-            X-Expires-After:
-              type: "string"
-              format: "date-time"
-              description: "date in UTC when token expires"
-        "400":
-          description: "Invalid username/password supplied"
-  /user/logout:
-    get:
-      tags:
-      - "user"
-      summary: "Logs out current logged in user session"
-      description: ""
-      operationId: "logoutUser"
-      produces:
-      - "application/xml"
-      - "application/json"
-      parameters: []
-      responses:
-        default:
-          description: "successful operation"
-  /user/{username}:
-    get:
-      tags:
-      - "user"
-      summary: "Get user by user name"
-      description: ""
-      operationId: "getUserByName"
-      produces:
-      - "application/xml"
-      - "application/json"
-      parameters:
-      - name: "username"
+      - name: "userid"
         in: "path"
         description: "The name that needs to be fetched. Use user1 for testing. "
         required: true
@@ -180,25 +115,64 @@ paths:
         "200":
           description: "successful operation"
           schema:
-            $ref: "#/definitions/User"
+            $ref: "#/definitions/GenericUser"
         "400":
           description: "Invalid username supplied"
         "404":
           description: "User not found"
-
-securityDefinitions:
-  petstore_auth:
-    type: "oauth2"
-    authorizationUrl: "http://petstore.swagger.io/oauth/dialog"
-    flow: "implicit"
-    scopes:
-      write:pets: "modify pets in your account"
-      read:pets: "read your pets"
-  api_key:
-    type: "apiKey"
-    name: "api_key"
-    in: "header"
-    
+    put:
+      tags:
+      - "user"
+      summary: "Update user by user id"
+      description: ""
+      operationId: "updateUserById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "userid"
+        in: "path"
+        description: "The name that needs to be fetched. Use user1 for testing. "
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "User object"
+        required: true
+        schema:
+          $ref: "#/definitions/NewUser"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/GenericUser"
+        "400":
+          description: "Invalid userid supplied"
+        "404":
+          description: "User not found"
+    delete:
+      tags:
+      - "user"
+      summary: "Delete user by user id"
+      description: ""
+      operationId: "deleteUserById"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "userid"
+        in: "path"
+        description: "The id that needs to be deleted."
+        required: true
+        type: "string"
+      responses:
+        "201":
+          description: "successful operation"
+          schema: 
+            $ref: "#/definitions/SuccessDeleteUserMessage"
+        "400":
+          description: "Invalid userid supplied"
+        "404":
+          description: "User not found"
 definitions:
   User:
     type: "object"
@@ -273,6 +247,30 @@ definitions:
          $ref: "#/definitions/Rating"
     xml:
       name: "Skill"
+      
+  SearchUserBySkill:
+    type: "object"
+    properties:
+      skillName:
+        type: "string"
+      skillRating:
+         $ref: "#/definitions/RatingNames"
+    xml:
+      name: "Skill"
+          
+  SearchUserBySkills:
+    type: "object"
+    properties:
+      skills:
+        type: "array"
+        items:
+          $ref: "#/definitions/SearchUserBySkill"
+      languages:
+        type: "array"
+        items:
+          $ref: "#/definitions/SearchUserByLanguages"
+    xml:
+      name: "Skill"
           
   Language:
     type: "object"
@@ -286,6 +284,16 @@ definitions:
          $ref: "#/definitions/Rating"
     xml:
       name: "Language"
+
+  SearchUserByLanguages:
+    type: "object"
+    properties:
+      languageName:
+        type: "string"
+      languageRating:
+         $ref: "#/definitions/RatingNames"
+    xml:
+      name: "Language"
       
   Rating:
     type: "object"
@@ -297,13 +305,17 @@ definitions:
           min: 1
           max: 3
       ratingName:
-        type: "string"
-        enum:
-          - "Begginer"
-          - "Intermediate"
-          - "Advanced"
-        xml:
-          name: "Rating"
+         $ref: "#/definitions/RatingNames"
+    xml:
+      name: "Rating"
+  
+  RatingNames:
+    type: "string"
+    enum:
+      - "Begginer"
+      - "Intermediate"
+      - "Advanced"
+
           
   Department:
     type: "object"
@@ -360,17 +372,20 @@ definitions:
         type: string
         x-chance-type: guid
       skillName:
-        type: string
-        enum:
-          - "C#"
-          - "Javascript"
-          - "Java"
-          - "Fortran"
-          - "HTML"
+         $ref: "#/definitions/ExampleSkillNames"
       skillRating:
          $ref: "#/definitions/Rating"
     xml:
       name: "GenericSkill"
+  
+  ExampleSkillNames:
+    type: string
+    enum:
+      - "C#"
+      - "Javascript"
+      - "Java"
+      - "Fortran"
+      - "HTML"
   
   GenericTeam: 
     type: "object"
@@ -413,7 +428,7 @@ definitions:
     xml:
       name: "GenericDeparment"
 
-  GetUsers:
+  GenericUser:
    properties:
       id:
         type: string
@@ -463,5 +478,58 @@ definitions:
           wrapped: true
         items:
           $ref: "#/definitions/GenericLanguage"
+  
+  SuccessDeleteUserMessage:
+      type: object
+      x-chance-type: fixed
+      x-type-value:
+        message: "User deleted successfully"
+          
+  
+  NewUser:
+    type: "object"
+    properties:
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      email:
+        type: "string"
+      phone:
+        type: "string"
+      department:
+        $ref: "#/definitions/Department"
+      team:
+        $ref: "#/definitions/Team"
+      isPublic:
+        type: "boolean"
+      isAdmin:
+        type: "boolean"
+      skills:
+        type: "array"
+        xml:
+          name: "skill"
+          wrapped: true
+        items:
+          $ref: "#/definitions/Skill"
+      languages:
+        type: "array"
+        xml:
+          name: "language"
+          wrapped: true
+        items:
+          $ref: "#/definitions/Language"
+      password:
+        type: "string"
+    xml:
+      name: "User"
+    required:
+      - firstName
+      - lastName
+      - email
+      - phone
+      - department
+
+
 
     
