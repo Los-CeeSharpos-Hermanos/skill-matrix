@@ -12,28 +12,31 @@ import { RouterModule } from '@angular/router';
 import { LanguagelistComponent } from './admin/languages/languagelist.component';
 import { WelcomeComponent } from './welcome.component';
 import { AddLanguageComponent } from './admin/languages/add-language.component';
+import { CommonModule } from '@angular/common';
+
 
 @NgModule({
   declarations: [
     AppComponent,
+    WelcomeComponent,
     AdminNavbarComponent,
     LanguagesComponent,
     LanguagelistComponent,
     AddLanguageComponent,
-    WelcomeComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialsModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: 'editLanguages', component: LanguagesComponent },
-      { path: 'editLanguagesList', component: LanguagelistComponent},
-      { path: 'addLanguage', component: AddLanguageComponent},
-      { path: 'welcome', component: WelcomeComponent},
-      { path: 'admin', component: AdminNavbarComponent},
+      { path: 'skillmatrix/editLanguages', component: LanguagesComponent },
+      { path: 'skillmatrix/editLanguagesList', component: LanguagelistComponent},
+      { path: 'skillmatrix/addLanguage', component: AddLanguageComponent},
+      { path: 'skillmatrix/welcome', component: WelcomeComponent},
+      { path: 'skillmatrix/admin', component: AdminNavbarComponent},
       { path: '', redirectTo: 'welcome', pathMatch: 'full'},
       { path: '**', redirectTo: 'welcome', pathMatch: 'full'}
     ])

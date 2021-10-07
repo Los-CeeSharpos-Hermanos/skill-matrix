@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LanguagelistComponent implements OnInit {
 
+  languages: string[] = [
+    "german", "english", "spanish", "french" 
+  ]; //get list of languages from database here
+
   constructor() { }
 
   ngOnInit(): void {
