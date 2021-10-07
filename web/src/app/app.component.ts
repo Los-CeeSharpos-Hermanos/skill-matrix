@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
 import { Location } from '@angular/common';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +12,7 @@ export class AppComponent {
   }
   back = 'abc';
   backClicked(): void {
-    if(this._location.path().includes("/skillmatrix/"))
+    if (this._location.path().includes("/skillmatrix/"))
       this._location.back();
   }
 

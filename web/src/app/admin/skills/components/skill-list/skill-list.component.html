@@ -1,0 +1,24 @@
+<div class="container">
+    <h1>{{pageTitle}}</h1>
+
+    <div *ngIf="skills && skills.length">
+
+        <mat-list role="list" *ngFor="let skill of skills">
+            <mat-card>
+                <div class='row'>
+                    <div class='col-9'>
+                        <mat-card-title>{{skill.skillName}}</mat-card-title>
+                        <mat-card-subtitle>{{skill.skillCategory}}</mat-card-subtitle>
+                    </div>
+                    <div class='col-1'>
+                        <button mat-flat-button color="primary">EDIT</button>
+                    </div>
+                    <div class='col-1'>
+                        <button mat-stroked-button color="warn">DELETE</button>
+                    </div>
+                </div>
+            </mat-card>
+        </mat-list>
+    </div>
+
+</div>
