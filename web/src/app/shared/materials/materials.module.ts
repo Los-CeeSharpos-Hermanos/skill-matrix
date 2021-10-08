@@ -73,7 +73,7 @@ import { MatTreeModule } from '@angular/material/tree';
     MatTooltipModule,
     MatPaginatorModule,
     MatSortModule,
-    MatTableModule,
+    MatTableModule
   ]
 })
 export class MaterialsModule { }

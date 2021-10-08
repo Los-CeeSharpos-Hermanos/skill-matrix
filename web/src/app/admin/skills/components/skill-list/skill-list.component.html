@@ -1,24 +1,47 @@
-<div class="container">
-    <h1>{{pageTitle}}</h1>
+<h1>{{pageTitle}}</h1>
+<div class='container'>
+    <mat-form-field appearance="standard">
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+    </mat-form-field>
 
-    <div *ngIf="skills && skills.length">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-        <mat-list role="list" *ngFor="let skill of skills">
-            <mat-card>
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let skill"> {{skill.skillName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="category">
+            <th mat-header-cell *matHeaderCellDef> Category </th>
+            <td mat-cell *matCellDef="let skill"> {{skill.skillCategory}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> </th>
+            <td mat-cell *matCellDef="let skill">
                 <div class='row'>
-                    <div class='col-9'>
-                        <mat-card-title>{{skill.skillName}}</mat-card-title>
-                        <mat-card-subtitle>{{skill.skillCategory}}</mat-card-subtitle>
+                    <div class='col-8'></div>
+                    <div class='col-1'>
+                        <button mat-icon-button color="primary" aria-label="Example icon button with a home icon">
+                            <mat-icon>edit</mat-icon>
+                        </button>
                     </div>
                     <div class='col-1'>
-                        <button mat-flat-button color="primary">EDIT</button>
+                        <button mat-icon-button color="warn" aria-label="Example icon button with a home icon">
+                            <mat-icon>clear</mat-icon>
+                        </button>
                     </div>
-                    <div class='col-1'>
-                        <button mat-stroked-button color="warn">DELETE</button>
-                    </div>
-                </div>
-            </mat-card>
-        </mat-list>
-    </div>
 
+                </div>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+    </table>
 </div>

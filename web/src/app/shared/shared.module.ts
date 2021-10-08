@@ -14,8 +14,8 @@ import { MaterialsModule } from './materials/materials.module';
   ],
   exports: [
     CommonModule,
-    ToolbarComponent,
-    MaterialsModule
+    MaterialsModule,
+    ToolbarComponent
   ],
   imports: [
     CommonModule,
