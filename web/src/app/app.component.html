@@ -1,11 +1,19 @@
 <section>
-  <div class="example-label">Basic</div>
-  <div class="example-button-row">
-    <button mat-button>Basic</button>
-    <button mat-button color="primary">Primary</button>
-    <button mat-button color="accent">Accent</button>
-    <button mat-button color="warn">Warn</button>
-    <button mat-button disabled>Disabled</button>
-    <a mat-button href="https://www.google.com/" target="_blank">Link</a>
-  </div>
+  <nav>
+    <h1>{{title}}</h1>
+    <ul>
+      <li><a class='nav-link' routerLink='/skillmatrix/welcome'>Home</a></li>
+      <li><a class='nav-link' routerLink='/skillmatrix/welcome'>Member List</a></li>
+      <li><a class='nav-link' routerLink='/skillmatrix/welcome'>Your Profile</a></li>
+      <li><a class='nav-link' routerLink='/skillmatrix/admin'>Admin (will not be visible for everyone)</a></li> <!--only visible with admin account-->
+    </ul>
+  </nav>
 </section>
+
+<router-outlet></router-outlet>
+
+<form>
+  <div>
+      <button mat-fab color="warn" (click)='backClicked()'>back</button>
+  </div>
+</form>
