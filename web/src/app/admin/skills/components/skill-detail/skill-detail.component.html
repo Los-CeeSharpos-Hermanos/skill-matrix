@@ -1,1 +1,28 @@
-<p>skill-detail works!</p>
+<div class='container'>
+    <h1>Skill Detail</h1>
+    <div class="d-flex justify-content-center">
+        <form [formGroup]="skillForm">
+            <mat-card>
+                <div class='row d-flex justify-content-center'>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Input</mat-label>
+                        <input formControlName="skillName" matInput>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Select</mat-label>
+                        <mat-select formControlName="skillCategory">
+                            <mat-option value="one">Soft Skill</mat-option>
+                            <mat-option value="two">Technical Skill</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <div class="d-flex justify-content-center">
+                        <button mat-raised-button color="primary">Submit</button>
+                    </div>
+                </div>
+
+            </mat-card>
+        </form>
+    </div>
+</div>

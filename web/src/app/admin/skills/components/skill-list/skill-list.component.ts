@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { RoutingService } from 'src/app/shared/services/routing.service';
 import { SkillService } from '../../services/skill.service';
 import { Skill } from '../../skill';
 
@@ -33,7 +34,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class SkillListComponent implements OnInit {
 
-  constructor(private skillService: SkillService) { }
+  constructor(private skillService: SkillService, private routingService: RoutingService) { }
 
   displayedColumns: string[] = ['name', 'category', 'action'];
 
@@ -44,6 +45,21 @@ export class SkillListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadSkills();
+  }
+
+  deleteSkill(id: string) {
+    this.skillService.deleteSkill(id).subscribe({
+
+      error: err => { this.errorMessage = err; console.log(err); }
+    });
+  }
+
+  goToAddSkill() {
+    this.routingService.goTo('skillmatrix/skills/0/edit');
+  }
+
+  goToEditSkill(skillId: string) {
+    this.routingService.goTo(`skillmatrix/skills/${skillId}/edit`);
   }
 
   private loadSkills() {

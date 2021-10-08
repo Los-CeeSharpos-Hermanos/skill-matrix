@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { SkillService } from '../../services/skill.service';
@@ -12,6 +12,7 @@ import { Skill } from '../../skill';
 })
 export class SkillEditComponent implements OnInit {
   constructor(
+    private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private skillService: SkillService) { }
@@ -21,7 +22,11 @@ export class SkillEditComponent implements OnInit {
   errorMessage: string;
   pageTitle: string;
   skill: Skill;
-  skillForm: FormGroup;
+
+  skillForm = this.fb.group({
+    skillName: ['', Validators.required],
+    skillCategory: ['', Validators.required],
+  });
 
 
   ngOnInit(): void {
@@ -59,5 +64,4 @@ export class SkillEditComponent implements OnInit {
       skillCategory: this.skill.skillName
     });
   }
-
 }

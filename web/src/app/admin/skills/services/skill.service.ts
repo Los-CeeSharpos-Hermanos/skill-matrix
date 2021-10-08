@@ -31,6 +31,19 @@ export class SkillService {
       );
   }
 
+  deleteSkill(id: string): Observable<Skill> {
+    if (id == "0") {
+      console.log("invalid id");
+    }
+
+    const url = `${this.skillsUrl}/${id}`;
+    return this.http.delete<Skill>(url)
+      .pipe(
+        tap(data => console.log('deleteSkill: ' + JSON.stringify(data))),
+        catchError(this.handleError)
+      );
+  }
+
   private handleError(err: any): Observable<never> {
     let errorMessage: string;
     if (err.error instanceof ErrorEvent) {
