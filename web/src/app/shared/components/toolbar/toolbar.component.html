@@ -1,0 +1,40 @@
+<p>
+  <mat-toolbar>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-11">
+          <div class='adminOnly'>
+            <button mat-button color="primary" aria-label="Example icon button with a home icon">
+              Skills
+            </button>
+            <button mat-button color="primary" aria-label="Example icon button with a home icon"
+              (click)="goTo('skillmatrix/languages')">
+              Languages
+            </button>
+            <button mat-button color="primary" aria-label="Example icon button with a home icon">
+              Categories
+            </button>
+          </div>
+        </div>
+        <div class="col-1">
+          <button mat-button color="primary">Home</button>
+          <button mat-icon-button color="primary" aria-label="Example icon button with a home icon">
+            <mat-icon>account_circle</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </mat-toolbar>
+</p>
+
+<!-- <section>
+  <nav>
+    <h1>{{title}}</h1>
+    <ul>
+      <li><a class='nav-link' routerLink='/skillmatrix/welcome'>Home</a></li>
+      <li><a class='nav-link' routerLink='/skillmatrix/welcome'>Member List</a></li>
+      <li><a class='nav-link' routerLink='/skillmatrix/welcome'>Your Profile</a></li>
+      <li><a class='nav-link' routerLink='/skillmatrix/admin'>Admin (will not be visible for everyone)</a></li>
+    </ul>
+  </nav>
+</section> -->
