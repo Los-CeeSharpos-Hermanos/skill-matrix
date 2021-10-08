@@ -13,6 +13,8 @@ import { LanguagelistComponent } from './admin/languages/languagelist.component'
 import { WelcomeComponent } from './welcome.component';
 import { AddLanguageComponent } from './admin/languages/add-language.component';
 import { CommonModule } from '@angular/common';
+import { ToolbarComponent } from './shared/components/toolbar/toolbar.component';
+import { ExpandableTableComponent } from './expandable-table/expandable-table.component';
 
 
 @NgModule({
@@ -23,6 +25,8 @@ import { CommonModule } from '@angular/common';
     LanguagesComponent,
     LanguagelistComponent,
     AddLanguageComponent,
+    ToolbarComponent,
+    ExpandableTableComponent,
   ],
   imports: [
     CommonModule,
