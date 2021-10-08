@@ -1,38 +1,37 @@
-<div>
-    <h1>Languages</h1>
-</div>
-<div>
-    <table *ngIf='languages.length'>
-        <thead>
-            <tr>
-                <th>
-                    
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor='let language of languages'>
-                <td>
-                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-                        {{language}}
-                    </button>
-                    <mat-menu #menu="matMenu">
-                        <button mat-menu-item>
-                          <span>edit</span>
-                        </button>
-                        <button mat-menu-item>
-                          <span>delete</span>
-                        </button>
-                    </mat-menu>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-<p></p>
-<form>
-    <div>
-        <button mat-fab color="warn" (click)="goTo('skillmatrix/language/add')">+</button>
-        <p>Add Language</p>
+<h1>Languages</h1>
+
+<p>
+    <mat-toolbar>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-11">
+            Add Language 
+            <button mat-fab color="warn" (click)="goTo('skillmatrix/language/add')">+</button>
+          </div>
+        </div>
+      </div>
+    </mat-toolbar>
+</p>
+
+<mat-selection-list #languageSelected [multiple]="false">
+    <mat-list-option *ngFor="let language of languages" [value]="language">
+        {{language.languageName}}
+    </mat-list-option>
+</mat-selection-list>
+
+<div class="row">
+    <div class="col-11">
+        <div *ngIf="languageSelected.selectedOptions.selected[0]?.value.languageName">
+            {{languageSelected.selectedOptions.selected[0]?.value.languageName}} selected! What do you want to do?
+            <button mat-raised-button color="primary">edit</button>
+            <button mat-raised-button color="warn">delete</button>
+        </div>
     </div>
-</form>
+</div>
+
+
+
+
+
+
+  
