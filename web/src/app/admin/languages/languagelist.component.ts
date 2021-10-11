@@ -70,7 +70,8 @@ export class LanguagelistComponent implements OnInit {
     if(confirm('Are you sure you want to delete this language?')) {
       this.languages = this.languages.filter(language => language.name !== languageToDelete);
       this.filteredLanguages = this.performFilter("");
-      this.pageSlice = this.filteredLanguages.slice(0, this.filteredLanguages.length);
+      this.pageSlice = this.filteredLanguages.slice(0, 10);
+      alert('Language was deleted!');
     }
     
     
