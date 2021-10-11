@@ -1,7 +1,7 @@
 <div class='container'>
     <h1>Skill Detail</h1>
     <div class="d-flex justify-content-center">
-        <form [formGroup]="skillForm">
+        <form [formGroup]="skillForm" (ngSubmit)="saveSkill()">
             <mat-card>
                 <div class='row d-flex justify-content-center'>
                     <mat-form-field appearance="fill">
@@ -19,7 +19,7 @@
                     </mat-form-field>
 
                     <div class="d-flex justify-content-center">
-                        <button mat-raised-button color="primary">Submit</button>
+                        <button mat-raised-button color="primary">Save</button>
                     </div>
                 </div>
 

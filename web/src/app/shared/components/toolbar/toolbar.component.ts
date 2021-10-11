@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RoutingService } from '../../services/routing.service';
+import { RoutingService } from '../../services/routing/routing.service';
 
 @Component({
   selector: 'app-toolbar',

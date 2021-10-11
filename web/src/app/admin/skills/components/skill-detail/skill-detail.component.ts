@@ -34,7 +34,7 @@ export class SkillDetailComponent implements OnInit {
       params => {
         const id = params.get('id')!;
 
-        this.getSkill(id.toString());
+        this.getSkill(id);
       });
   }
 
@@ -53,7 +53,7 @@ export class SkillDetailComponent implements OnInit {
 
     this.skill = skill;
 
-    if (this.skill.id === "0") {
+    if (this.skill.id === 0) {
       this.pageTitle = 'Add Skill';
     } else {
       this.pageTitle = `Edit Skill: ${this.skill.skillName}`;

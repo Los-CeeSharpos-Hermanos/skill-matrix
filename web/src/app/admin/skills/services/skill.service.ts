@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
@@ -8,12 +8,13 @@ import { Skill } from '../skill';
   providedIn: 'root'
 })
 export class SkillService {
-  private skillsUrl = 'api/skills';
+  private baseUrl = 'api/skills';
+  headers = new HttpHeaders({ 'Content-type': 'application/json' });
 
   constructor(private http: HttpClient) { }
 
   listSkills(): Observable<Skill[]> {
-    const url = `${this.skillsUrl}`;
+    const url = `${this.baseUrl}`;
     console.log(url);
     return this.http.get<Skill[]>(url);
   }
@@ -23,11 +24,21 @@ export class SkillService {
       return of(this.initializeSkill());
     }
 
-    const url = `${this.skillsUrl}/${id}`;
+    const url = `${this.baseUrl}/${id}`;
     return this.http.get<Skill>(url)
       .pipe(
         catchError(this.handleError)
       );
+  }
+
+  createSkill(skill: Skill) {
+    const url = `${this.baseUrl}/${skill.id}}`;
+    return this.http.post<Skill>(url, skill, { headers: this.headers });
+  }
+
+  updateSkill(skill: Skill): Observable<Skill> {
+    const url = `${this.baseUrl}/${skill.id}}`;
+    return this.http.put<Skill>(url, skill, { headers: this.headers });
   }
 
   deleteSkill(id: string): Observable<Skill> {
@@ -35,7 +46,7 @@ export class SkillService {
       console.log("invalid id");
     }
 
-    const url = `${this.skillsUrl}/${id}`;
+    const url = `${this.baseUrl}/${id}`;
     return this.http.delete<Skill>(url)
       .pipe(
         tap(data => console.log('deleteSkill: ' + JSON.stringify(data))),
@@ -56,7 +67,7 @@ export class SkillService {
 
   private initializeSkill(): Skill {
     return {
-      id: "0",
+      id: 0,
       skillCategory: null,
       skillName: null
     };
