@@ -36,13 +36,14 @@
                     <div class='row'>
                         <div class='col-8'></div>
                         <div class='col-1'>
-                            <button mat-icon-button color="primary" aria-label="Go To edit screen"
+                            <button mat-icon-button color="primary" aria-label="Go to edit screen"
                                 (click)="goToEditSkill(skill.id)">
                                 <mat-icon>edit</mat-icon>
                             </button>
                         </div>
                         <div class='col-1'>
-                            <button mat-icon-button color="warn" aria-label="Example icon button with a home icon">
+                            <button mat-icon-button color="warn" aria-label="Delete Skill"
+                                (click)="deleteSkill(skill.id)">
                                 <mat-icon>clear</mat-icon>
                             </button>
                         </div>

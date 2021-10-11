@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { Skill } from '../skill';
 
 @Injectable({
@@ -41,17 +41,13 @@ export class SkillService {
     return this.http.put<Skill>(url, skill, { headers: this.headers });
   }
 
-  deleteSkill(id: string): Observable<Skill> {
-    if (id == "0") {
+  deleteSkill(id: number): Observable<{}> {
+    if (id === 0) {
       console.log("invalid id");
     }
 
     const url = `${this.baseUrl}/${id}`;
-    return this.http.delete<Skill>(url)
-      .pipe(
-        tap(data => console.log('deleteSkill: ' + JSON.stringify(data))),
-        catchError(this.handleError)
-      );
+    return this.http.delete<Skill>(url, { headers: this.headers });
   }
 
   private handleError(err: any): Observable<never> {

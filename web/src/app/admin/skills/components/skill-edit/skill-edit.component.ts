@@ -123,6 +123,21 @@ export class SkillEditComponent implements OnInit {
     }
   }
 
+  deleteSkill(): void {
+    if (this.skill.id === 0) {
+      this.onSaveComplete();
+    } else {
+      if (confirm(`Àre you sure you want to delete the skill: ${this.skill.skillName}`)) {
+        this.skillService.deleteSkill(this.skill.id)
+          .subscribe({
+            next: () => this.onSaveComplete(),
+            error: err => { this.errorMessage = err; console.log(this.errorMessage); }
+          });
+
+      }
+    }
+  }
+
   onSaveComplete() {
     this.skillForm.reset();
     this.routingService.goTo('/skillmatrix/skills');
