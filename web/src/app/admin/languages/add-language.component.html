@@ -1,10 +1,23 @@
-<form>
-    <mat-form-field appearance="standard">
-        <p>Language Designation</p>
-        <input matInput placeholder="For Example English">
-    </mat-form-field>
-    <div>
-        <button mat-fab color="warn" (click)="clickAdd()">+</button>
-        <p>Add Language</p>
-    </div>
-</form>
+<div class="container" style="background-color: rgb(240, 240, 240);">
+    <form #form="ngForm">
+<!--INPUTFIELD-->
+        <mat-form-field class="form-group" appearance="standard">
+            <p>Language Name</p>
+            <input matInput id="name" name="name" class="form-control" ngModel placeholder="For Example German">
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+            <p>Language Name (native)</p>
+            <input matInput id="native" name="native" class="form-control" ngModel placeholder="For Example Deutsch">
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+            <p>Language Code</p>
+            <input matInput id="code" name="code" class="form-control" ngModel placeholder="For Example de">
+        </mat-form-field>
+<!--SENDBUTTON-->
+        <button mat-fab color="warn" (click)="clickAdd(form.value.name, form.value.native, form.value.code)">+</button>
+<!--CANCELBUTTON-->
+        <div class="container-fluid" style="text-align: right;">
+            <button mat-button color="primary" (click)="goTo('skillmatrix/languages')">Cancel</button>
+        </div>
+    </form>
+</div>

@@ -7,6 +7,7 @@ import { ILanguage } from './language';
 @Injectable({
   providedIn: 'root'
 })
+
 export class LanguageService {
 
   private languageUrl = 'mock-api/languages/languages.json';
@@ -14,7 +15,7 @@ export class LanguageService {
   constructor(private http: HttpClient) { }
 
   getLanguages(): Observable<ILanguage[]> {
-    return this.http.get<ILanguage[]>(this.languageUrl).pipe(tap(data => console.log('All', JSON.stringify(data))), catchError(this.handleError));
+    return this.http.get<ILanguage[]>(this.languageUrl).pipe(tap(data => console.log('All')), catchError(this.handleError));
   }
 
   private handleError(err: HttpErrorResponse) {
@@ -31,5 +32,5 @@ export class LanguageService {
     }
     console.error(errorMessage);
     return throwError(errorMessage);
-}
+  }
 }

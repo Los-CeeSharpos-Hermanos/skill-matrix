@@ -1,3 +1,5 @@
 export interface ILanguage {
-    languageName: string;
+    code: string;
+    name: string;
+    nativeName: string;
 }
