@@ -1,5 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { LanguageModule } from './admin/languages/language.module';
@@ -24,7 +25,9 @@ import { SharedModule } from './shared/shared.module';
     LanguageModule,
     SkillModule
   ],
-  providers: [],
+  providers: [
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500 } }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

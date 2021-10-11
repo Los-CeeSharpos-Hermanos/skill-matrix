@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RoutingService } from '../../services/routing/routing.service';
+import { RoutingService } from '../../services/routing.service';
 
 @Component({
   selector: 'app-go-back-button',

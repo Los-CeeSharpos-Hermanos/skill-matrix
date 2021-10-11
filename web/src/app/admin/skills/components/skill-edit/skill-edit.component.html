@@ -2,7 +2,7 @@
     <h1>Skill Detail</h1>
     <div class='row'>
         <div class="d-flex justify-content-center">
-            <form [formGroup]="skillForm" (ngSubmit)="saveSkill()">
+            <form [formGroup]="skillForm">
                 <mat-card>
                     <div class='row d-flex justify-content-center'>
                         <mat-form-field appearance="fill">
@@ -22,12 +22,12 @@
 
                         <div class="row justify-content-md-center">
                             <div class="col-sm-6 d-flex justify-content-center">
-                                <button mat-raised-button color="primary">Save</button>
+                                <button mat-raised-button color="primary" (click)="saveSkill()">Save</button>
                                 <button mat-raised-button color="warn" (click)="deleteSkill()">Delete</button>
                             </div>
                         </div>
-
                     </div>
+
                     <app-go-back-button></app-go-back-button>
                 </mat-card>
             </form>

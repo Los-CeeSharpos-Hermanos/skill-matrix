@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { RoutingService } from 'src/app/shared/services/routing/routing.service';
+import { RoutingService } from 'src/app/shared/services/routing.service';
 import { SkillService } from './services/skill.service';
 import { Skill } from './skill';
 

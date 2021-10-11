@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { RoutingService } from 'src/app/shared/services/routing/routing.service';
+import { RoutingService } from 'src/app/shared/services/routing.service';
+import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
 import { SkillService } from '../../services/skill.service';
 import { Skill } from '../../skill';
 
@@ -26,7 +27,8 @@ export class SkillEditComponent implements OnInit {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private routingService: RoutingService,
-    private skillService: SkillService) { }
+    private skillService: SkillService,
+    private snackBarService: SnackBarService) { }
 
   private sub: Subscription;
 
@@ -102,7 +104,7 @@ export class SkillEditComponent implements OnInit {
           this.skillService.createSkill(s)
             .subscribe({
               next: () => this.onSaveComplete(),
-              error: err => this.errorMessage = err
+              error: err => this.onSaveFail(err)
             });
 
         } else {
@@ -111,7 +113,7 @@ export class SkillEditComponent implements OnInit {
           this.skillService.updateSkill(s)
             .subscribe({
               next: () => this.onSaveComplete(),
-              error: err => { this.errorMessage = err; console.log(this.errorMessage); }
+              error: err => this.onSaveFail(err)
             });
         }
       } else {
@@ -130,17 +132,27 @@ export class SkillEditComponent implements OnInit {
       if (confirm(`Àre you sure you want to delete the skill: ${this.skill.skillName}`)) {
         this.skillService.deleteSkill(this.skill.id)
           .subscribe({
-            next: () => this.onSaveComplete(),
-            error: err => { this.errorMessage = err; console.log(this.errorMessage); }
+            next: () => this.onSaveComplete("Skill deleted successfully!"),
+            error: err => this.onSaveFail(err)
           });
 
       }
     }
   }
-  onSaveComplete() {
+
+  onSaveComplete(message: string = "Skill saved successfully!") {
     this.skillForm.reset();
+    this.snackBarService.success(message);
     this.routingService.goTo('/skillmatrix/skills');
   }
+
+  onSaveFail(err: any, message: string = "An error has occured!") {
+
+    this.errorMessage = err; console.log(this.errorMessage);
+    this.snackBarService.warn(message);
+  }
+
+
 }
 
 
