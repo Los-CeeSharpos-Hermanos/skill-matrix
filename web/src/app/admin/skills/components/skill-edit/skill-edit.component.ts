@@ -138,6 +138,10 @@ export class SkillEditComponent implements OnInit {
     }
   }
 
+  goBack(): void {
+    this.routingService.goBack();
+  }
+
   onSaveComplete() {
     this.skillForm.reset();
     this.routingService.goTo('/skillmatrix/skills');

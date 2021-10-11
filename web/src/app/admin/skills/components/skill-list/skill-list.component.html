@@ -34,14 +34,14 @@
                 <th mat-header-cell *matHeaderCellDef> </th>
                 <td mat-cell *matCellDef="let skill">
                     <div class='row'>
-                        <div class='col-8'></div>
-                        <div class='col-1'>
+                        <div class='col-sm-8'></div>
+                        <div class='col-sm-1'>
                             <button mat-icon-button color="primary" aria-label="Go to edit screen"
                                 (click)="goToEditSkill(skill.id)">
                                 <mat-icon>edit</mat-icon>
                             </button>
                         </div>
-                        <div class='col-1'>
+                        <div class='col-sm-1'>
                             <button mat-icon-button color="warn" aria-label="Delete Skill"
                                 (click)="deleteSkill(skill.id)">
                                 <mat-icon>clear</mat-icon>
