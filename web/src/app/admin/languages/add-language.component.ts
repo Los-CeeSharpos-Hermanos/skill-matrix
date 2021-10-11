@@ -28,7 +28,12 @@ export class AddLanguageComponent implements OnInit {
     if(!this.isThere) {
       if(name!="" && nativeName!="" && code!="") {
         this.languages.push({name, nativeName, code});
+        confirm('New Language added');
+      } else {
+        confirm('Please fill every field')
       }
+    } else {
+      confirm('Some Properties of your language already exist!');
     }
     for(let language of this.languages) {
       console.log(language.name);

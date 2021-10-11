@@ -67,9 +67,13 @@ export class LanguagelistComponent implements OnInit {
   //DELETE and EDIT button
 
   onDeleteClick(languageToDelete: string) {
-    this.languages = this.languages.filter(language => language.name !== languageToDelete);
-    this.filteredLanguages = this.performFilter("");
-    this.pageSlice = this.filteredLanguages.slice(0, this.filteredLanguages.length);
+    if(confirm('Are you sure you want to delete this language?')) {
+      this.languages = this.languages.filter(language => language.name !== languageToDelete);
+      this.filteredLanguages = this.performFilter("");
+      this.pageSlice = this.filteredLanguages.slice(0, this.filteredLanguages.length);
+    }
+    
+    
   }
 
 }
