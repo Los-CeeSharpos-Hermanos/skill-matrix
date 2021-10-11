@@ -1,32 +1,29 @@
-<p>
-  <mat-toolbar>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-11">
-          <div class='adminOnly'>
-            <button mat-button color="primary" aria-label="Example icon button with a home icon"
-              (click)="goTo('skillmatrix/skills')">
-              Skills
-            </button>
-            <button mat-button color="primary" aria-label="Example icon button with a home icon"
-              (click)="goTo('skillmatrix/languages')">
-              Languages
-            </button>
-            <button mat-button color="primary" aria-label="Example icon button with a home icon">
-              Categories
-            </button>
-          </div>
-        </div>
-        <div class="col-1">
-          <button mat-button color="primary">Home</button>
-          <button mat-icon-button color="primary" aria-label="Example icon button with a home icon">
-            <mat-icon>account_circle</mat-icon>
-          </button>
-        </div>
+<mat-toolbar color="primary" class="mat-elevation-z8 mat-elevation-z8 toolbar">
+  <mat-toolbar-row>
+    <div class="col-11">
+      <div class='adminOnly'>
+        <button mat-button color="basic" aria-label="Example icon button with a home icon"
+          (click)="goTo('skillmatrix/skills')">
+          Skills
+        </button>
+        <button mat-button color="basic" aria-label="Example icon button with a home icon"
+          (click)="goTo('skillmatrix/languages')">
+          Languages
+        </button>
+        <button mat-button color="basic" aria-label="Example icon button with a home icon">
+          Categories
+        </button>
       </div>
     </div>
-  </mat-toolbar>
-</p>
+    <div class="col-1">
+      <button mat-button color="basic">Home</button>
+      <button mat-icon-button color="basic" aria-label="Example icon button with a home icon">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+
 
 <!-- <section>
   <nav>
