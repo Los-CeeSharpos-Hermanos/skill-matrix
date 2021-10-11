@@ -1,14 +1,29 @@
-<!-- <div class='container'>
+<div class='container'>
+    <h1>Skill Detail</h1>
     <div class="d-flex justify-content-center">
-        <form formGroupName="skillForm">
+        <form [formGroup]="skillForm">
             <mat-card>
-                <mat-form-field appearance="fill">
-                    <mat-label>Skill Name</mat-label>
-                    <input matInput placeholder="Ex. C#" formControlName="skillName" required>
-                    <mat-error *ngIf="skillForm.controls">{{getErrorMessage()}}</mat-error>
-                </mat-form-field>
-            </mat-card>
+                <div class='row d-flex justify-content-center'>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Skill Name</mat-label>
+                        <input formControlName="skillName" matInput>
+                    </mat-form-field>
 
+                    <mat-form-field appearance="fill">
+                        <mat-label>Category</mat-label>
+                        <mat-select placeholder="Category" formControlName="skillCategory">
+                            <mat-option *ngFor="let category of skillCategories" [value]="category.skillCategoryName">
+                                {{category.skillCategoryName}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <div class="d-flex justify-content-center">
+                        <button mat-raised-button color="primary">Submit</button>
+                    </div>
+                </div>
+
+            </mat-card>
         </form>
     </div>
-</div> -->
+</div>

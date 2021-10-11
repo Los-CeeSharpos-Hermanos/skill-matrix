@@ -5,6 +5,16 @@ import { Subscription } from 'rxjs';
 import { SkillService } from '../../services/skill.service';
 import { Skill } from '../../skill';
 
+interface SkillCategory {
+  id: number,
+  skillCategoryName: string;
+}
+
+const fakeSkillCategories: SkillCategory[] = [
+  { id: 1, skillCategoryName: "Technical Skill" },
+  { id: 2, skillCategoryName: "Soft Skill" }
+];
+
 @Component({
   selector: 'app-skill-edit',
   templateUrl: './skill-edit.component.html',
@@ -22,6 +32,7 @@ export class SkillEditComponent implements OnInit {
   errorMessage: string;
   pageTitle: string;
   skill: Skill;
+  skillCategories: SkillCategory[];
 
   skillForm = this.fb.group({
     skillName: ['', Validators.required],
@@ -33,9 +44,14 @@ export class SkillEditComponent implements OnInit {
     this.sub = this.route.paramMap.subscribe(
       params => {
         const id = params.get('id')!;
-
+        this.getSkillCategories();
         this.getSkill(id.toString());
+
       });
+  }
+
+  getSkillCategories() {
+    this.skillCategories = fakeSkillCategories;
   }
 
   getSkill(id: string): void {
@@ -61,7 +77,7 @@ export class SkillEditComponent implements OnInit {
 
     this.skillForm.patchValue({
       skillName: this.skill.skillName,
-      skillCategory: this.skill.skillName
+      skillCategory: this.skill.skillCategory
     });
   }
 }

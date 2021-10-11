@@ -26,7 +26,6 @@ export class SkillService {
     const url = `${this.skillsUrl}/${id}`;
     return this.http.get<Skill>(url)
       .pipe(
-        tap(data => console.log('getSkill: ' + JSON.stringify(data))),
         catchError(this.handleError)
       );
   }
