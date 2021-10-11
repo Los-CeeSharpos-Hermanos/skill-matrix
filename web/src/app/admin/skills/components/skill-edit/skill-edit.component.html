@@ -1,34 +1,43 @@
 <div class='container'>
     <h1>Skill Detail</h1>
-    <div class="d-flex justify-content-center">
-        <form [formGroup]="skillForm" (ngSubmit)="saveSkill()">
-            <mat-card>
-                <div class='row d-flex justify-content-center'>
-                    <mat-form-field appearance="fill">
-                        <mat-label>Skill Name</mat-label>
-                        <input formControlName="skillName" matInput>
-                    </mat-form-field>
+    <div class='row'>
+        <div class="d-flex justify-content-center">
+            <form [formGroup]="skillForm" (ngSubmit)="saveSkill()">
+                <mat-card>
+                    <div class='row d-flex justify-content-center'>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Skill Name</mat-label>
+                            <input formControlName="skillName" matInput>
+                        </mat-form-field>
 
-                    <mat-form-field appearance="fill">
-                        <mat-label>Category</mat-label>
-                        <mat-select placeholder="Category" formControlName="skillCategory">
-                            <mat-option *ngFor="let category of skillCategories" [value]="category.skillCategoryName">
-                                {{category.skillCategoryName}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Category</mat-label>
+                            <mat-select placeholder="Category" formControlName="skillCategory">
+                                <mat-option *ngFor="let category of skillCategories"
+                                    [value]="category.skillCategoryName">
+                                    {{category.skillCategoryName}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
 
-                    <div class="row justify-content-md-center">
-                        <div class="col-sm-6 d-flex justify-content-center">
-                            <button mat-raised-button color="primary">Save</button>
-                            <button mat-raised-button color="warn" (click)="deleteSkill()">Delete</button>
-                            <button mat-raised-button color="primary" (click)="goBack()">back</button>
+                        <div class="row justify-content-md-center">
+                            <div class="col-sm-6 d-flex justify-content-center">
+                                <button mat-raised-button color="primary">Save</button>
+                                <button mat-raised-button color="warn" (click)="deleteSkill()">Delete</button>
+                            </div>
                         </div>
+
                     </div>
 
-                </div>
+                    <button class="back-btn" mat-fab color="accent" aria-label="Example icon button with a delete icon"
+                        (click)="goBack()">
+                        <mat-icon>arrow_back</mat-icon>
+                    </button>
+                </mat-card>
+            </form>
+        </div>
 
-            </mat-card>
-        </form>
+
+
     </div>
 </div>

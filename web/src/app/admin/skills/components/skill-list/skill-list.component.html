@@ -3,13 +3,13 @@
 
     <div class='container'>
         <div class='row align-middle'>
-            <div class='col-1'>
+            <div class='col-sm-1'>
                 <button mat-fab color="primary" aria-label="Example icon button with a delete icon"
                     (click)="goToAddSkill()">
                     <mat-icon>add</mat-icon>
                 </button>
             </div>
-            <div class='col-11'>
+            <div class='col-md'>
                 <mat-form-field appearance="standard">
                     <mat-label>Skill</mat-label>
                     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. C#" #input>
