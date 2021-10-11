@@ -16,7 +16,7 @@ export class SkillData implements InMemoryDbService {
             },
             {
                 id: 3,
-                skillName: "Javascript",
+                skillName: "JavaScript",
                 skillCategory: "Technical Skill"
             },
             {
