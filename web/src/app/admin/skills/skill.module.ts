@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { SkillEditComponent } from './components/skill-edit/skill-edit.component';
 import { SkillListComponent } from './skill-list.component';
-import { SkillData } from './skill-data';
 
 
 @NgModule({
@@ -16,7 +14,6 @@ import { SkillData } from './skill-data';
   imports: [
     SharedModule,
     FormsModule,
-    InMemoryWebApiModule.forRoot(SkillData),
     RouterModule.forChild([
       { path: 'skillmatrix/skills', component: SkillListComponent },
       { path: 'skillmatrix/skills/:id', component: SkillEditComponent },

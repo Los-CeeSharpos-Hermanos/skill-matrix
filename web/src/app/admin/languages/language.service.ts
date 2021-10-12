@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { catchError, tap} from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { ILanguage } from './language';
 
 @Injectable({
@@ -10,7 +10,7 @@ import { ILanguage } from './language';
 
 export class LanguageService {
 
-  private languageUrl = 'mock-api/languages/languages.json';
+  private languageUrl = 'api/languages';
 
   constructor(private http: HttpClient) { }
 
@@ -23,12 +23,12 @@ export class LanguageService {
     // instead of just logging it to the console
     let errorMessage = '';
     if (err.error instanceof ErrorEvent) {
-        // A client-side or network error occured. Handle it accordingly.
-        errorMessage = `An error occured: ${err.error.message}`;
+      // A client-side or network error occured. Handle it accordingly.
+      errorMessage = `An error occured: ${err.error.message}`;
     } else {
-        // The backend returned an unsuccessful response code.
-        // The response body may contain clues as to what went wrong,
-        errorMessage = `Server returned code: ${err.status}, error message is: ${err.message}`;
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong,
+      errorMessage = `Server returned code: ${err.status}, error message is: ${err.message}`;
     }
     console.error(errorMessage);
     return throwError(errorMessage);
