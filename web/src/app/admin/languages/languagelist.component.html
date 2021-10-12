@@ -1,6 +1,8 @@
-<h1>Languages</h1>
-
-<p>
+<!--HEAD-->
+<div class="container" style="background-color: rgb(240, 240, 240);">
+  <h1>Languages</h1>
+<!--ADD LANGUAGE-->
+  <p>
     <mat-toolbar>
       <div class="container-fluid">
         <div class="row">
@@ -11,24 +13,35 @@
         </div>
       </div>
     </mat-toolbar>
-</p>
-
-<mat-selection-list #languageSelected [multiple]="false">
-    <mat-list-option *ngFor="let language of languages" [value]="language">
-        {{language.languageName}}
-    </mat-list-option>
-</mat-selection-list>
-
-<div class="row">
-    <div class="col-11">
-        <div *ngIf="languageSelected.selectedOptions.selected[0]?.value.languageName">
-            {{languageSelected.selectedOptions.selected[0]?.value.languageName}} selected! What do you want to do?
-            <button mat-raised-button color="primary">edit</button>
-            <button mat-raised-button color="warn">delete</button>
-        </div>
+  </p>
+<!--SEARCHBAR-->
+  <div>
+    <input type='text' [(ngModel)]='listFilter' placeholder="search"/>
+    <h4>Filtered by: {{listFilter}}</h4>
+  </div>
+<!--OPTIONS_BY_SELECTION-->
+  <div class="container"style="background-color: white"> 
+    <div *ngIf="languageSelected.selectedOptions.selected[0]?.value.name" style="background-color: rgba(255, 0, 0, 0.493); display: flex; justify-content: center; align-items: center;">
+      {{languageSelected.selectedOptions.selected[0]?.value.name}} selected! What do you want to do?
+      <button mat-flat-button color="primary" style="margin-left: 20px; margin-right: 5px;">edit</button>
+      <button mat-flat-button color="warn" (click)="onDeleteClick(languageSelected.selectedOptions.selected[0]?.value.name)">delete</button>
     </div>
+  </div>
+<!--PAGINATOR-->
+  <mat-paginator [length]="this.filteredLanguages.length"
+    [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    (page)="onPageChange($event)"
+    aria-label="Select page">
+  </mat-paginator>
+<!--SEARCHRESULT-->
+  <mat-selection-list #languageSelected [multiple]="false">
+    <mat-list-option *ngFor="let language of pageSlice" [value]="language">
+      {{language.name}} ({{language.nativeName}})
+      
+    </mat-list-option>
+  </mat-selection-list>
 </div>
-
 
 
 
