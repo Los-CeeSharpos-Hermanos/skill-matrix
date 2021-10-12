@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { RoutingService } from '../../services/routing.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -8,12 +8,14 @@ import { Router } from '@angular/router';
 })
 export class ToolbarComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private routingService: RoutingService) { }
 
   ngOnInit(): void {
   }
+
   goTo(path: string) {
-    this.router.navigate([path]);
+    this.routingService.goTo(path);
   }
+
   title = 'Skill-Matrix by Andrei-Nicolae Ene, Conrado Goncalves, Marten Maiburg and Nico Wisotzki';
 }

@@ -173,6 +173,102 @@ paths:
           description: "Invalid userid supplied"
         "404":
           description: "User not found"
+  /skills:
+    get:
+      tags:
+      - "skill"
+      summary: "List Skill"
+      description: "Returns a list of userskills"
+      operationId: "getSkills"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/GenericSkill"
+    post:
+      tags:
+      - "skill"
+      summary: "Create skill"
+      description: "This can only be done by the logged in user."
+      operationId: "createSkill"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Created user skill"
+        required: true
+        schema:
+          $ref: "#/definitions/Skill"
+      responses:
+        "201":
+          description: "successful operation"
+
+          
+  /skills/{skillid}:
+    get:
+      tags:
+      - "skill"
+      summary: "Get a Skill"
+      description: "Returns a Skill"
+      operationId: "getSkill"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "skillid"
+        in: "path"
+        description: "The id that needs to be fetched."
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+              $ref: "#/definitions/GenericSkill"
+    put:
+      tags:
+      - "skill"
+      summary: "update a skill"
+      description: "a skill can be modified"
+      operationId: "updateSkill"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "skillid"
+        in: "path"
+        description: "The id that needs to be fetched."
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Created user skill"
+        required: true
+        schema:
+          $ref: "#/definitions/PostSkill"
+      responses:
+        default:
+          description: "successful operation"
+    delete:
+      tags:
+      - "skill"
+      summary: "delete a skill"
+      description: "a skill can be deleted"
+      operationId: "deleteSkill"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "skillid"
+        description: "skill id"
+        required: true
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
 definitions:
   User:
     type: "object"
@@ -245,6 +341,19 @@ definitions:
         type: "string"
       skillRating:
          $ref: "#/definitions/Rating"
+    xml:
+      name: "Skill"
+      
+  PostSkill:
+    type: "object"
+    properties:
+      skillName:
+        type: "string"
+      skillCategory:
+        type: "string"
+        enum:
+          - "Soft Skills"
+          - "Technical Skills"
     xml:
       name: "Skill"
       
@@ -373,10 +482,20 @@ definitions:
         x-chance-type: guid
       skillName:
          $ref: "#/definitions/ExampleSkillNames"
-      skillRating:
-         $ref: "#/definitions/Rating"
+      skillCategory:
+         $ref: "#/definitions/SkillLanguageCategory"
     xml:
       name: "GenericSkill"
+
+  GenericUserSkill:
+    allOf: 
+        - $ref: "#/definitions/GenericSkill"
+        - type: object
+          properties:
+            skillRating:
+              $ref: "#/definitions/RatingNames"
+    xml:
+      name: "GenericUserSkill"
   
   ExampleSkillNames:
     type: string
@@ -470,7 +589,7 @@ definitions:
           name: "skill"
           wrapped: true
         items:
-          $ref: "#/definitions/GenericSkill"
+          $ref: "#/definitions/GenericUserSkill"
       languages:
         type: "array"
         xml:
@@ -530,6 +649,9 @@ definitions:
       - phone
       - department
 
+  SkillLanguageCategory:
+      type: "string"
+      enum:
+        - "Soft Skills"
+        - "Technical Skills"
 
-
-    
