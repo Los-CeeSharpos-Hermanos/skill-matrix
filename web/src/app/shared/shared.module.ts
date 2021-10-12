@@ -25,6 +25,7 @@ import { AddButtonComponent } from './components/add-button/add-button.component
     SubmenuComponent,
     GoBackButtonComponent,
     ReactiveFormsModule,
+    AddButtonComponent
   ],
   imports: [
     CommonModule,

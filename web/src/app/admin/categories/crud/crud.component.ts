@@ -24,6 +24,10 @@ const ELEMENT_DATA: Categories[] = [
 })
 
 export class CRUDComponent implements OnInit {
+
+  there = "skillmatrix/categories/add";
+
+
   displayedColumns: string[] = ['name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 

@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { RoutingService } from '../../services/routing.service';
 
 @Component({
   selector: 'app-add-button',
   templateUrl: './add-button.component.html',
   styleUrls: ['./add-button.component.scss']
 })
-export class AddButtonComponent implements OnInit {
+export class AddButtonComponent {
 
-  constructor() { }
+  @Input() goToPath = '';
 
-  ngOnInit(): void {
+  constructor(private routingService: RoutingService) {  }
+
+  goTo(): void {
+   this.routingService.goTo(this.goToPath);
   }
-
 }
