@@ -7,12 +7,14 @@ import { GoBackButtonComponent } from './components/go-back-button/go-back-butto
 import { SubmenuComponent } from './components/submenu/submenu.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { MaterialsModule } from './materials/materials.module';
+import { AddButtonComponent } from './components/add-button/add-button.component';
 
 
 
 @NgModule({
   declarations: [
     ToolbarComponent,
+    AddButtonComponent,
     SubmenuComponent,
     GoBackButtonComponent
   ],
@@ -23,6 +25,7 @@ import { MaterialsModule } from './materials/materials.module';
     SubmenuComponent,
     GoBackButtonComponent,
     ReactiveFormsModule,
+    AddButtonComponent
   ],
   imports: [
     CommonModule,
