@@ -38,6 +38,7 @@
   <mat-selection-list #languageSelected [multiple]="false">
     <mat-list-option *ngFor="let language of pageSlice" [value]="language">
       {{language.name}} ({{language.nativeName}})
+      
     </mat-list-option>
   </mat-selection-list>
 </div>
