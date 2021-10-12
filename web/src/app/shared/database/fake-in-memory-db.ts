@@ -4,6 +4,8 @@ import { skills } from "./skills/skills-data";
 
 
 export class SkillMatrixMockDb implements InMemoryDbService {
+    static apiBase: 'api';
+
     createDb() {
         return { skills, languages };
     }

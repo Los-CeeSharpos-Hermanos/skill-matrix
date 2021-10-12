@@ -33,7 +33,7 @@ import { MaterialsModule } from './materials/materials.module';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    InMemoryWebApiModule.forRoot(SkillMatrixMockDb, { apiBase: 'api' })
+    InMemoryWebApiModule.forRoot(SkillMatrixMockDb, { apiBase: SkillMatrixMockDb.apiBase })
   ]
 })
 export class SharedModule { }
