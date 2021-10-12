@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ToolbarComponent } from './toolbar.component';
 
+import { SubmenuComponent } from './submenu.component';
 
-describe('ToolbarComponent', () => {
-  let component: ToolbarComponent;
-  let fixture: ComponentFixture<ToolbarComponent>;
+describe('SubmenuComponent', () => {
+  let component: SubmenuComponent;
+  let fixture: ComponentFixture<SubmenuComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ToolbarComponent]
+      declarations: [ SubmenuComponent ]
     })
-      .compileComponents();
+    .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ToolbarComponent);
+    fixture = TestBed.createComponent(SubmenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
