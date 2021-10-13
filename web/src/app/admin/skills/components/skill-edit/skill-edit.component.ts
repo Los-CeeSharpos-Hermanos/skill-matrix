@@ -73,9 +73,9 @@ export class SkillEditComponent implements OnInit {
     this.skill = skill;
 
     if (this.skill.id === 0) {
-      this.pageTitle = 'Add Skill';
+      this.pageTitle = 'Add a new Skill';
     } else {
-      this.pageTitle = `Edit Skill: ${this.skill.skillName}`;
+      this.pageTitle = `Editing Skill: ${this.skill.skillName}`;
     }
 
     this.skillForm.patchValue({
