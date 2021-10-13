@@ -19,12 +19,12 @@ export class LanguageService {
     return this.http.get<ILanguage[]>(this.languageUrl).pipe(tap(data => console.log('All')), catchError(this.handleError));
   }
 
-  deleteLanguage(name: string): Observable<{}> {
-    if (name === "") {
+  deleteLanguage(id: number): Observable<{}> {
+    if (id === 0) {
       console.log("invalid language");
     }
 
-    const url = `${this.languageUrl}/${1}`;
+    const url = `${this.languageUrl}/${id}`;
     console.log(url);
     console.log(this.headers)
     return this.http.delete<ILanguage>(url, { headers: this.headers });

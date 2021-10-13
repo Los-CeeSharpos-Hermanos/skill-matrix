@@ -4,7 +4,7 @@
 
     <div class="row align-middle">
       <div class="col-sm-1">
-        <button mat-fab color="primary" (click)="goTo('skillmatrix/language/add', 'default')"><mat-icon>add</mat-icon></button>
+        <button mat-fab color="primary" (click)="goTo('skillmatrix/language/add', 0)"><mat-icon>add</mat-icon></button>
       </div>
       <div class="col-md">
         <mat-form-field appearance="standard">
@@ -34,10 +34,10 @@
           <div class='row '>
             <div class='col-sm-8 d-flex justify-content-end'>
               <button mat-icon-button color="primary" aria-label="Go to edit screen"
-                (click)="goTo('skillmatrix/language/add', language.name)">
+                (click)="goTo('skillmatrix/language/add', language.id)">
                   <mat-icon>edit</mat-icon>
               </button>
-              <button mat-icon-button color="warn" aria-label="Delete Skill" (click)="onDeleteClick(language.name)">
+              <button mat-icon-button color="warn" aria-label="Delete Skill" (click)="onDeleteClick(language.id)">
                 <mat-icon>clear</mat-icon>
               </button>
             </div>

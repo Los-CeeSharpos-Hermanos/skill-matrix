@@ -19,7 +19,7 @@ export class LanguagelistComponent implements OnInit {
   sub!: Subscription;
   
   languages: ILanguage[] = [];
-  languageToEdit: string;
+  languageToEdit: number;
   dataSource: MatTableDataSource<ILanguage>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -36,13 +36,13 @@ export class LanguagelistComponent implements OnInit {
     return this.languages.filter((language: ILanguage) => language.name.toLocaleLowerCase().includes(filterBy));
   }
 
-  goTo(path: string, languageName: string) {
-    this.data.changeLanguage(languageName);
+  goTo(path: string, languageId: number) {
+    this.data.changeLanguage(languageId);
     this.router.navigate([path]);
   }
 
-  onDeleteClick(languageToDelete: string) {
-    if (languageToDelete === "") {
+  onDeleteClick(languageToDelete: number) {
+    if (languageToDelete === 0) {
       alert("Invalid id");
     } else {
       console.log(languageToDelete);

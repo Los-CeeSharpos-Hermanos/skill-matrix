@@ -17,15 +17,15 @@ export class AddLanguageComponent implements OnInit {
   sub!: Subscription;
   languages: ILanguage[] = [];
   isThere: Boolean = false;
-  languageToEdit: string;
+  languageToEdit: number;
   pageTitle: string;
-  language: ILanguage = {code: "code", name: "name", nativeName: "nativeName"};
+  language: ILanguage = {id: 0, code: "code", name: "name", nativeName: "nativeName"};
 
   constructor(private router: Router, private languageService: LanguageService, private data: EditLangugaeService) { }
 
-  clickAdd(name: string, nativeName: string, code: string, type: string): void {
+  clickAdd(id: number, name: string, nativeName: string, code: string, type: number): void {
     //prototype method
-    if(type == "default") {
+    if(type == 0) {
       this.isThere = false;
       for(let language of this.languages) {
         if(language.name == name || language.nativeName == nativeName || language.code == code) {
@@ -34,7 +34,7 @@ export class AddLanguageComponent implements OnInit {
       }
       if(!this.isThere) {
         if(name!="" && nativeName!="" && code!="") {
-          this.languages.push({name, nativeName, code});
+          this.languages.push({id, name, nativeName, code});
           alert('New Language added');
         } else {
           alert('Please fill every field')
@@ -44,7 +44,7 @@ export class AddLanguageComponent implements OnInit {
       }
     } else {
       for(let language of this.languages) {
-        if(language.name == this.languageToEdit) {
+        if(language.id == this.languageToEdit) {
           if(name!="" && nativeName!="" && code!="") {
             language.name = name;
             language.nativeName = nativeName;
@@ -64,13 +64,13 @@ export class AddLanguageComponent implements OnInit {
       next: languages => {
         this.languages = languages;
         console.log(this.languages);
-        if(this.languageToEdit == "default") {
+        if(this.languageToEdit == 0) {
           this.pageTitle = "Add a new Langugae";
           console.log(this.languages)
         } else {
           this.pageTitle = "Edit the Language " + this.languageToEdit;
           for(let language of this.languages) {
-            if(language.name == this.languageToEdit) {
+            if(language.id == this.languageToEdit) {
               this.language.name = language.name;
               this.language.nativeName = language.nativeName;
               this.language.code = language.code;
