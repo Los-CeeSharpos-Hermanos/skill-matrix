@@ -7,7 +7,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-11"> 
-            <button mat-fab color="primary" (click)="goTo('skillmatrix/language/add')"><mat-icon>add</mat-icon></button>
+            <button mat-fab color="primary" (click)="goTo('skillmatrix/language/add', 'default')"><mat-icon>add</mat-icon></button>
             Add Language
           </div>
         </div>
@@ -34,7 +34,7 @@
           {{language.name}} ({{language.nativeName}})
         </div>
         <div class="col-sm-1">
-          <button mat-icon-button color="primary" aria-label="Go to edit screen" (click)="goTo('skillmatrix/language/add')">
+          <button mat-icon-button color="primary" aria-label="Go to edit screen" (click)="goTo('skillmatrix/language/add', language.name)">
             <mat-icon>edit</mat-icon>
           </button>
           <button mat-icon-button color="warn" aria-label="Delete Language" (click)="onDeleteClick(language.name)">
