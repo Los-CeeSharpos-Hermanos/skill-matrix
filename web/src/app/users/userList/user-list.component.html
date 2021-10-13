@@ -1,0 +1,16 @@
+<app-submenu pageTitle="Users"></app-submenu>
+
+<div class="container">
+
+<button mat-fab color primary (click)="goTo('skillmatrix/members/addUser')"><mat-icon>add</mat-icon></button>
+
+
+<mat-selection-list #usersSelected [multiple]="false">
+  <mat-list-option *ngFor="let user of filteredUsers" [value]="user">
+    <img src="{{user.imageUrl}}" alt="" width="25"> | {{user.firstName}} {{user.surName}} | {{user.skill}} | {{user.email}} | {{user.team}} | {{user.language}}
+  </mat-list-option>
+</mat-selection-list>
+</div>
+
+
+

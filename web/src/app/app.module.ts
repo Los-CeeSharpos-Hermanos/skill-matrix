@@ -10,6 +10,7 @@ import { SkillModule } from './admin/skills/skill.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
+import { UserModule } from './users/user.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { SharedModule } from './shared/shared.module';
     SharedModule,
     LanguageModule,
     CategoriesModule,
-    SkillModule
+    SkillModule,
+    UserModule
   ],
   providers: [
     { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500 } }

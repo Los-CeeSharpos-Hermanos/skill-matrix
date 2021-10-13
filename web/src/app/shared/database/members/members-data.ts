@@ -1,0 +1,104 @@
+import { IUser } from "src/app/users/user";
+
+
+export const users: IUser[] = [
+  {
+      personId: 1,
+      surName: "Schmidt",
+      firstName: "Marten",
+      email: "marten@web.de",
+      department: "Sales",
+      team: "A",
+      skill: "C# JS",
+      language: "german",
+      imageUrl: "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png"
+  },
+  {
+      personId: 2,
+      surName: "Meier",
+      firstName: "Bernd",
+      email: "Bernd@web.de",
+      department: "Coding",
+      team: "B",
+      skill: "Python",
+      language: "english",
+      imageUrl: "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png"
+  },
+  {
+      personId: 3,
+      surName: "Seehofer",
+      firstName: "Lutz",
+      email: "lutz@web.de",
+      department: "Finance",
+      team: "F",
+      skill: "Exel",
+      language: "french",
+      imageUrl: "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png"
+  },
+  {
+      personId: 4,
+      surName: "Motz",
+      firstName: "Fritz",
+      email: "motz@web.de",
+      department: "Marketing",
+      team: "C",
+      skill: "Photoshop Illustrator",
+      language: "hindi",
+      imageUrl: "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png"
+  },
+  {
+      personId: 5,
+      surName: "Petry",
+      firstName: "Frauke",
+      email: "perty@web.de",
+      department: "CEO",
+      team: "V",
+      skill: "Corrdinating",
+      language: "danish",
+      imageUrl: "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png"
+  },
+  {
+      personId: 6,
+      surName: "Rauschenbach",
+      firstName: "Peter",
+      email: "peter@web.de",
+      department: "Development",
+      team: "G",
+      skill: "Java C# C C++ BASIC HTML CSS Angular",
+      language: "spanish",
+      imageUrl: "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png"
+  },
+  {
+      personId: 7,
+      surName: "Ramsauer",
+      firstName: "Hans",
+      email: "Hans@web.de",
+      department: "Development",
+      team: "B",
+      skill: "C#",
+      language: "spanish",
+      imageUrl: "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png"
+  },
+  {
+      personId: 8,
+      surName: "Fritzl",
+      firstName: "Joseph",
+      email: "fritzl@web.de",
+      department: "Public Relations",
+      team: "D",
+      skill: "Scrum Master",
+      language: "italian",
+      imageUrl: "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png"
+  },
+  {
+      personId: 9,
+      surName: "Janßen",
+      firstName: "Stefan",
+      email: "Stefan@web.de",
+      department: "Facility",
+      team: "C",
+      skill: "Facility Managemnent",
+      language: "ungarian",
+      imageUrl: "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png"
+  }
+]
