@@ -29,10 +29,9 @@ export class LanguagelistComponent implements OnInit {
   set listFilter(value:string) {
     this._listFilter = value;
     this.filteredLanguages = this.performFilter(value);
-    if(value != "")
-      {
-        this.pageSlice = this.filteredLanguages.slice(0, this.filteredLanguages.length);
-      } else this.pageSlice = this.filteredLanguages.slice(0, this.filteredLanguages.length); 
+    if(value != "") {
+      this.pageSlice = this.filteredLanguages.slice(0, this.filteredLanguages.length);
+    } else this.pageSlice = this.filteredLanguages.slice(0, this.filteredLanguages.length); 
   }
 
   constructor(private router: Router, private languageService: LanguageService, private data: EditLangugaeService) { }
@@ -82,8 +81,5 @@ export class LanguagelistComponent implements OnInit {
       this.pageSlice = this.filteredLanguages.slice(0, 10);
       alert('Language was deleted!');
     }
-    
-    
   }
-
 }

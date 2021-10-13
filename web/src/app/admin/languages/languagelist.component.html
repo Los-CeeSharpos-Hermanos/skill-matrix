@@ -1,23 +1,17 @@
 <app-submenu pageTitle="Languages List"></app-submenu>
 <!--HEAD-->
 <div class="container" style="background-color: white;">
-<!--ADD LANGUAGE-->
-  <p>
-    <mat-toolbar style="background-color: white;">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-11"> 
-            <button mat-fab color="primary" (click)="goTo('skillmatrix/language/add', 'default')"><mat-icon>add</mat-icon></button>
-            Add Language
-          </div>
-        </div>
+  <div class="container">
+    <div class="row align-middle">
+      <div class="col-sm-1">
+        <button mat-fab color="primary" (click)="goTo('skillmatrix/language/add', 'default')"><mat-icon>add</mat-icon></button>
       </div>
-    </mat-toolbar>
-  </p>
-<!--SEARCHBAR-->
-  <div>
-    <input type='text' [(ngModel)]='listFilter' placeholder="search"/>
-    <h4>Filtered by: {{listFilter}}</h4>
+      <div class="col-md">
+        <mat-form-field appearance="standard">
+          <input matInput type='text' [(ngModel)]='listFilter' placeholder="search"/>
+        </mat-form-field>
+      </div>
+    </div>
   </div>
 <!--PAGINATOR-->
   <mat-paginator [length]="this.filteredLanguages.length"

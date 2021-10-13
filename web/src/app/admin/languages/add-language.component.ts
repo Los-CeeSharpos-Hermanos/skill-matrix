@@ -42,14 +42,6 @@ export class AddLanguageComponent implements OnInit {
       } else {
         alert('Some Properties of your language already exist!');
       }
-  
-      //test output -- can be removed later
-      for(let language of this.languages) {
-        console.log(language.name);
-      }
-      //get notification from server
-      //if saved show confirmation message
-      //if existing show error
     } else {
       for(let language of this.languages) {
         if(language.name == this.languageToEdit) {
@@ -61,12 +53,7 @@ export class AddLanguageComponent implements OnInit {
           } else {
             alert('Please fill every field')
           }
-    
         }
-      }
-      //test output -- can be removed later
-      for(let language of this.languages) {
-        console.log(language.name);
       }
     }
   } 
