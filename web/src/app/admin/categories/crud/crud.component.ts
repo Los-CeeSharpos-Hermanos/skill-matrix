@@ -4,17 +4,18 @@ import { Router } from '@angular/router';
 
 export interface Categories {
   name: string;
+  number: number;
   //position: number;
   //weight: number;
 }
 
 const ELEMENT_DATA: Categories[] = [
-  {name: 'Frontend'},
-  {name: 'Backend'},
-  {name: 'Databases'},
-  {name: 'Sports'},
-  {name: 'Soft Skills'},
-  {name: 'Hobbies'}
+  {name: 'Frontend', number: 5},
+  {name: 'Backend', number: 3},
+  {name: 'Databases', number: 15},
+  {name: 'Sports', number: 8},
+  {name: 'Soft Skills', number: 7},
+  {name: 'Hobbies', number: 12}
 ];
 
 @Component({
@@ -28,7 +29,7 @@ export class CRUDComponent implements OnInit {
   there = "skillmatrix/categories/add";
 
 
-  displayedColumns: string[] = ['name', 'weight', 'symbol'];
+  displayedColumns: string[] = ['name', 'number', 'buttons'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   applyFilter(event: Event) {

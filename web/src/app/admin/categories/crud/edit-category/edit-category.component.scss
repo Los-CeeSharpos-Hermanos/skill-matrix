@@ -1,12 +1,19 @@
+button {
+  margin: 10px;
+}
+
+/* Structure */
 table {
+  width: 80%;
+  margin: auto;
+}
+
+.mainContainer {
+  width: 80%;
+  margin: auto;
+}
+
+.searchField {
   width: 100%;
 }
 
-.mat-form-field {
-  font-size: 14px;
-  width: 100%;
-}
-
-td, th {
-  width: 25%;
-}
