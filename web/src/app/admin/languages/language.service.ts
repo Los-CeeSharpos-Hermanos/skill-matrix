@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
@@ -10,12 +10,24 @@ import { ILanguage } from './language';
 
 export class LanguageService {
 
+  headers = new HttpHeaders({ 'Content-type': 'application/json' });
   private languageUrl = 'api/languages';
 
   constructor(private http: HttpClient) { }
 
   getLanguages(): Observable<ILanguage[]> {
     return this.http.get<ILanguage[]>(this.languageUrl).pipe(tap(data => console.log('All')), catchError(this.handleError));
+  }
+
+  deleteLanguage(name: string): Observable<{}> {
+    if (name === "") {
+      console.log("invalid language");
+    }
+
+    const url = `${this.languageUrl}/${1}`;
+    console.log(url);
+    console.log(this.headers)
+    return this.http.delete<ILanguage>(url, { headers: this.headers });
   }
 
   private handleError(err: HttpErrorResponse) {
