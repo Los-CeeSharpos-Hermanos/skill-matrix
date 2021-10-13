@@ -1,37 +1,45 @@
-import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { IUser } from '../user';
+import {Component, OnInit} from '@angular/core';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 import { UserService } from '../user.service';
-import { Router } from '@angular/router';
+import { IUser } from '../user';
 
-
+/**
+ * @title Table with expandable rows
+ */
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.scss']
+  styleUrls: ['./user-list.component.scss'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class UserListComponent implements OnInit {
-
-  errorMessage: string = '';
-  sub!: Subscription;
-  users: IUser[] = [];
-  filteredUsers: IUser[] = [];
-
-
-  constructor(private router: Router, private userService:UserService) {}
+  dataSource:IUser[];
+  columnsToDisplay = ['surName', 'firstName', 'skill', 'department'];
+  expandedElement: IUser | null;
+  users: IUser[];
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    console.log('user array delivered');
-    this.sub = this.userService.getUsers().subscribe({
-      next: users => {
-        this.users = users;
-        this.filteredUsers = this.users;
-      },
-      error: err => this.errorMessage = err
-    });
+    //We want to load our users data here
+    this.loadUsers();
   }
 
-  goTo(path: string) {
-    this.router.navigate([path]);
+
+private loadUsers() {
+  this.userService.getUsers().subscribe({
+    next: users => {
+      this.users = users;
+      this.dataSource =users
+    } ,
+    error: err =>console.log(err)
+  })
   }
 }
+
+

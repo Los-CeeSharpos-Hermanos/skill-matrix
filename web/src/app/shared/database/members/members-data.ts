@@ -3,7 +3,7 @@ import { IUser } from "src/app/users/user";
 
 export const users: IUser[] = [
   {
-      personId: 1,
+      id: 1,
       surName: "Schmidt",
       firstName: "Marten",
       email: "marten@web.de",
@@ -14,7 +14,7 @@ export const users: IUser[] = [
       imageUrl: "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png"
   },
   {
-      personId: 2,
+      id: 2,
       surName: "Meier",
       firstName: "Bernd",
       email: "Bernd@web.de",
@@ -25,7 +25,7 @@ export const users: IUser[] = [
       imageUrl: "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png"
   },
   {
-      personId: 3,
+      id: 3,
       surName: "Seehofer",
       firstName: "Lutz",
       email: "lutz@web.de",
@@ -36,7 +36,7 @@ export const users: IUser[] = [
       imageUrl: "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png"
   },
   {
-      personId: 4,
+      id: 4,
       surName: "Motz",
       firstName: "Fritz",
       email: "motz@web.de",
@@ -47,7 +47,7 @@ export const users: IUser[] = [
       imageUrl: "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png"
   },
   {
-      personId: 5,
+      id: 5,
       surName: "Petry",
       firstName: "Frauke",
       email: "perty@web.de",
@@ -58,7 +58,7 @@ export const users: IUser[] = [
       imageUrl: "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png"
   },
   {
-      personId: 6,
+      id: 6,
       surName: "Rauschenbach",
       firstName: "Peter",
       email: "peter@web.de",
@@ -69,7 +69,7 @@ export const users: IUser[] = [
       imageUrl: "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png"
   },
   {
-      personId: 7,
+      id: 7,
       surName: "Ramsauer",
       firstName: "Hans",
       email: "Hans@web.de",
@@ -80,7 +80,7 @@ export const users: IUser[] = [
       imageUrl: "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png"
   },
   {
-      personId: 8,
+      id: 8,
       surName: "Fritzl",
       firstName: "Joseph",
       email: "fritzl@web.de",
@@ -91,7 +91,7 @@ export const users: IUser[] = [
       imageUrl: "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png"
   },
   {
-      personId: 9,
+      id: 9,
       surName: "Janßen",
       firstName: "Stefan",
       email: "Stefan@web.de",

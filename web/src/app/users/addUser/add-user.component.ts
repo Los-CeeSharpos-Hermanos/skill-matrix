@@ -18,7 +18,7 @@ export class AddUserComponent implements OnInit {
 
   clickAdd( surName: string,firstName: string, email: string, department: string, team: string, skill: string, language: string, imageUrl: string): void
   {
-    let personId : number = 0;
+    let id : number = 0;
     this.isThere = false;
     for(let user of this.users) {
       if(user.firstName == firstName && user.surName == surName) {
@@ -27,7 +27,7 @@ export class AddUserComponent implements OnInit {
     }
     if(!this.isThere) {
       if(firstName!="" && surName!="") {
-        this.users.push({ personId , surName, firstName, email, department, team, skill, language, imageUrl });
+        this.users.push({ id , surName, firstName, email, department, team, skill, language, imageUrl });
         alert('New Language added');
       } else {
         alert('Please fill every field')
