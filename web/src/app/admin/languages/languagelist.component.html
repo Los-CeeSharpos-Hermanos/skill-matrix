@@ -1,14 +1,14 @@
+<app-submenu pageTitle="Languages List"></app-submenu>
 <!--HEAD-->
-<div class="container" style="background-color: rgb(240, 240, 240);">
-  <h1>Languages</h1>
+<div class="container" style="background-color: white;">
 <!--ADD LANGUAGE-->
   <p>
-    <mat-toolbar>
+    <mat-toolbar style="background-color: white;">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-11">
-            Add Language 
-            <button mat-fab color="warn" (click)="goTo('skillmatrix/language/add')">+</button>
+          <div class="col-11"> 
+            <button mat-fab color="primary" (click)="goTo('skillmatrix/language/add', 'default')"><mat-icon>add</mat-icon></button>
+            Add Language
           </div>
         </div>
       </div>
@@ -18,14 +18,6 @@
   <div>
     <input type='text' [(ngModel)]='listFilter' placeholder="search"/>
     <h4>Filtered by: {{listFilter}}</h4>
-  </div>
-<!--OPTIONS_BY_SELECTION-->
-  <div class="container"style="background-color: white"> 
-    <div *ngIf="languageSelected.selectedOptions.selected[0]?.value.name" style="background-color: rgba(255, 0, 0, 0.493); display: flex; justify-content: center; align-items: center;">
-      {{languageSelected.selectedOptions.selected[0]?.value.name}} selected! What do you want to do?
-      <button mat-flat-button color="primary" style="margin-left: 20px; margin-right: 5px;">edit</button>
-      <button mat-flat-button color="warn" (click)="onDeleteClick(languageSelected.selectedOptions.selected[0]?.value.name)">delete</button>
-    </div>
   </div>
 <!--PAGINATOR-->
   <mat-paginator [length]="this.filteredLanguages.length"
@@ -37,8 +29,20 @@
 <!--SEARCHRESULT-->
   <mat-selection-list #languageSelected [multiple]="false">
     <mat-list-option *ngFor="let language of pageSlice" [value]="language">
-      {{language.name}} ({{language.nativeName}})
-      
+      <div class="row">
+        <div class="col-11">
+          {{language.name}} ({{language.nativeName}})
+        </div>
+        <div class="col-sm-1">
+          <button mat-icon-button color="primary" aria-label="Go to edit screen" (click)="goTo('skillmatrix/language/add', language.name)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" aria-label="Delete Language" (click)="onDeleteClick(language.name)">
+            <mat-icon>clear</mat-icon>
+          </button>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
     </mat-list-option>
   </mat-selection-list>
 </div>

@@ -1,23 +1,26 @@
-<div class="container" style="background-color: rgb(240, 240, 240);">
+<app-submenu [pageTitle]=pageTitle></app-submenu>
+<div class="container" style="background-color: white;">
     <form #form="ngForm">
 <!--INPUTFIELD-->
-        <mat-form-field class="form-group" appearance="standard">
-            <p>Language Name</p>
-            <input matInput id="name" name="name" class="form-control" ngModel placeholder="For Example German">
-        </mat-form-field>
-        <mat-form-field appearance="standard">
-            <p>Language Name (native)</p>
-            <input matInput id="native" name="native" class="form-control" ngModel placeholder="For Example Deutsch">
-        </mat-form-field>
-        <mat-form-field appearance="standard">
-            <p>Language Code</p>
-            <input matInput id="code" name="code" class="form-control" ngModel placeholder="For Example de">
-        </mat-form-field>
-<!--SENDBUTTON-->
-        <button mat-fab color="warn" (click)="clickAdd(form.value.name, form.value.native, form.value.code)">+</button>
+        <mat-card>
+            <div class='row d-flex justify-content-center'>
+                <mat-form-field class="form-group" appearance="standard">
+                    <p>Language Name</p>
+                    <input matInput id="name" name="name" class="form-control" ngModel placeholder="{{language.name}}">
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <p>Language Name (native)</p>
+                    <input matInput id="native" name="native" class="form-control" ngModel placeholder="{{language.nativeName}}">
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <p>Language Code</p>
+                    <input matInput id="code" name="code" class="form-control" ngModel placeholder="{{language.code}}">
+                </mat-form-field>
+            </div> 
+        </mat-card>
 <!--CANCELBUTTON-->
-        <div class="container-fluid" style="text-align: right;">
-            <button mat-button color="primary" (click)="goTo('skillmatrix/languages')">Cancel</button>
-        </div>
+        <app-go-back-button></app-go-back-button>
+<!--SENDBUTTON-->
+        <button mat-fab color="primary" (click)="clickAdd(form.value.name, form.value.native, form.value.code, languageToEdit)"><mat-icon>add</mat-icon></button>
     </form>
 </div>

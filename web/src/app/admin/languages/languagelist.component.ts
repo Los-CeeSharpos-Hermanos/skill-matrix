@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { ILanguage } from './language';
 import { LanguageService } from './language.service';
 import { PageEvent } from '@angular/material/paginator';
+import { EditLangugaeService } from './edit-langugae.service';
 
 @Component({
   selector: 'app-languagelist',
@@ -16,6 +17,7 @@ export class LanguagelistComponent implements OnInit {
   sub!: Subscription;
   languages: ILanguage[] = [];
   filteredLanguages: ILanguage[] = [];
+  languageToEdit:string;
 
   public pageSlice: ILanguage[] = [];
 
@@ -33,9 +35,10 @@ export class LanguagelistComponent implements OnInit {
       } else this.pageSlice = this.filteredLanguages.slice(0, this.filteredLanguages.length); 
   }
 
-  constructor(private router: Router, private languageService: LanguageService) { }
+  constructor(private router: Router, private languageService: LanguageService, private data: EditLangugaeService) { }
 
   ngOnInit(): void {
+    this.data.currentLanguage.subscribe(language => this.languageToEdit = language);
     this.sub = this.languageService.getLanguages().subscribe({
       next: languages => {
         this.languages = languages;
@@ -51,7 +54,13 @@ export class LanguagelistComponent implements OnInit {
     return this.languages.filter((language: ILanguage) => language.name.toLocaleLowerCase().includes(filterBy));
   }
 
-  goTo(path: string) {
+  goTo(path: string, languageName: string) {
+    this.data.changeLanguage(languageName);
+    this.router.navigate([path]);
+  }
+
+  goToEdit(path: string, languageName: string) {
+    this.data.changeLanguage(languageName);
     this.router.navigate([path]);
   }
 

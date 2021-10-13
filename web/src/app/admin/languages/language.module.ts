@@ -6,11 +6,13 @@ import { AddLanguageComponent } from './add-language.component';
 import { LanguagelistComponent } from './languagelist.component';
 import { LanguagesComponent } from './languages.component';
 
+
 @NgModule({
   declarations: [
     LanguagesComponent,
     LanguagelistComponent,
-    AddLanguageComponent],
+    AddLanguageComponent,
+  ],
   imports: [
     RouterModule.forChild([
       { path: 'skillmatrix/languages/:id', component: LanguagesComponent },
