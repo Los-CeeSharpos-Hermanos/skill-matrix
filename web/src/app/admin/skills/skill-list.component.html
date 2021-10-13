@@ -1,59 +1,60 @@
 <app-submenu [pageTitle]=pageTitle></app-submenu>
 <div class='container'>
-    <div class='container'>
-        <div class='row align-middle'>
-            <div class='col-sm-1'>
-                <button mat-fab color="primary" aria-label="Example icon button with a delete icon"
-                    (click)="goToAddSkill()">
-                    <mat-icon>add</mat-icon>
-                </button>
-            </div>
-            <div class='col-md'>
-                <mat-form-field appearance="standard">
-                    <mat-label>Skill</mat-label>
-                    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. C#" #input>
-                </mat-form-field>
-            </div>
+    <div class='row align-middle'>
+        <div class='col-sm-1'>
+            <button mat-fab color="primary" aria-label="Example icon button with a delete icon"
+                (click)="goToAddSkill()">
+                <mat-icon>add</mat-icon>
+            </button>
         </div>
-
-
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-            <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef> Name </th>
-                <td mat-cell *matCellDef="let skill"> {{skill.skillName}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="category">
-                <th mat-header-cell *matHeaderCellDef> Category </th>
-                <td mat-cell *matCellDef="let skill"> {{skill.skillCategory}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="action">
-                <th mat-header-cell *matHeaderCellDef> </th>
-                <td mat-cell *matCellDef="let skill">
-                    <div class='row '>
-                        <div class='col-sm-8 d-flex justify-content-end'>
-                            <button mat-icon-button color="primary" aria-label="Go to edit screen"
-                                (click)="goToEditSkill(skill.id)">
-                                <mat-icon>edit</mat-icon>
-                            </button>
-                            <button mat-icon-button color="warn" aria-label="Delete Skill"
-                                (click)="deleteSkill(skill.id)">
-                                <mat-icon>clear</mat-icon>
-                            </button>
-                        </div>
-
-                    </div>
-                </td>
-            </ng-container>
-
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-            <tr class="mat-row" *matNoDataRow>
-                <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-            </tr>
-        </table>
+        <div class='col-md'>
+            <mat-form-field appearance="standard">
+                <mat-label>Skill</mat-label>
+                <input matInput (keyup)="applyFilter($event)" placeholder="Ex. C#" #input>
+            </mat-form-field>
+        </div>
     </div>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+        aria-label="Select page of periodic elements">
+    </mat-paginator>
+
+    <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="skillName">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let skill"> {{skill.skillName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="skillCategory">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> Category </th>
+            <td mat-cell *matCellDef="let skill"> {{skill.skillCategory}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> </th>
+            <td mat-cell *matCellDef="let skill">
+                <div class='row '>
+                    <div class='col-sm-8 d-flex justify-content-end'>
+                        <button mat-icon-button color="primary" aria-label="Go to edit screen"
+                            (click)="goToEditSkill(skill.id)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-icon-button color="warn" aria-label="Delete Skill" (click)="deleteSkill(skill.id)">
+                            <mat-icon>clear</mat-icon>
+                        </button>
+                    </div>
+
+                </div>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+    </table>
+
 </div>

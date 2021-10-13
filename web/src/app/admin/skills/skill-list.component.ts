@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { RoutingService } from 'src/app/shared/services/routing.service';
 import { SkillService } from './services/skill.service';
@@ -11,9 +13,12 @@ import { Skill } from './skill';
 })
 export class SkillListComponent implements OnInit {
 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: false }) sort: MatSort;
+
   constructor(private skillService: SkillService, private routingService: RoutingService) { }
 
-  displayedColumns: string[] = ['name', 'category', 'action'];
+  displayedColumns: string[] = ['skillName', 'skillCategory', 'action'];
 
   pageTitle = "Skills List";
   errorMessage = '';
@@ -48,18 +53,25 @@ export class SkillListComponent implements OnInit {
     this.routingService.goTo(`skillmatrix/skills/${id}/edit`);
   }
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
   private loadSkills() {
     this.skillService.listSkills().subscribe({
       next: skills => {
         this.skills = skills;
-        this.dataSource = new MatTableDataSource(skills);
+
+        this.setupDataSource();
       },
       error: err => { this.errorMessage = err; console.log(err); }
     });
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  private setupDataSource() {
+    this.dataSource = new MatTableDataSource(this.skills);
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 }
