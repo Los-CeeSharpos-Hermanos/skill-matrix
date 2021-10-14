@@ -1,0 +1,36 @@
+/* Structure */
+table {
+    width: 100%;
+  }
+  
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.container {
+  margin-top: 80px;
+}
+
+.mat-column-skillCategory, .mat-column-skillName {
+  padding-right: 25px;
+  word-wrap: break-word;
+  white-space: unset;
+  flex: 0 0 30%;
+  width: 30%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.mat-column-action {
+  white-space: unset;
+  flex: 0 0 30%;
+  width: 30%;
+}
