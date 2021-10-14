@@ -23,10 +23,7 @@ export class LanguageService {
     if (id === 0) {
       console.log("invalid language");
     }
-
     const url = `${this.languageUrl}/${id}`;
-    console.log(url);
-    console.log(this.headers)
     return this.http.delete<ILanguage>(url, { headers: this.headers });
   }
 

@@ -28,49 +28,41 @@ export class AddLanguageComponent implements OnInit {
   clickAdd(id: number, name: string, nativeName: string, code: string, type: number): void {
     this.language = {id: (id+1), code: code, name: name, nativeName: nativeName}
     //add
-    if(type == 0) {
-      this.isThere = false;
-      for(let language of this.languages) {
-        if(language.name == name || language.nativeName == nativeName || language.code == code) {
-          this.isThere = true; break;
-        }
+    this.isThere = false;
+    for(let language of this.languages) {
+      if(language.name == name || language.nativeName == nativeName || language.code == code) {
+        this.isThere = true; break;
       }
-      if(!this.isThere) {
+    }
+    if(!this.isThere) {
+      if(type == 0) {
         if(this.language.name!="" && this.language.nativeName!="" && this.language.code!="") {
           this.languageService.createLanguage(this.language)
-            .subscribe({
-              next: () => this.onSaveComplete(),
-              error: err => { this.errorMessage = err; console.log(this.errorMessage); }
-            });
-          alert('New Language added');
+          .subscribe({
+          next: () => this.onSaveComplete(),
+          error: err => { this.errorMessage = err; console.log(this.errorMessage); }
+          });
         } else {
-          alert('Please fill every field')
+          this.snackBarService.warn('Please fill every field');
         }
-      } else {
-        alert('Some Properties of your language already exist!');
-      }
     //edit
-    } else {
-      for(let language of this.languages) {
-        if(language.id == this.languageToEdit) {
-          if(name!="" && nativeName!="" && code!="") {
-            language.name = name;
-            language.nativeName = nativeName;
-            language.code = code;
-
-            this.languageService.updateLanguage(language)
-            .subscribe({
-            next: () => this.onSaveComplete(),
-            error: err => this.errorMessage = err
-      });
-
-            alert('Language changed');
-          } else {
-            alert('Please fill every field')
+      } else {
+        for(let language of this.languages) {
+          if(language.id == this.languageToEdit) {
+            if(name!="" && nativeName!="" && code!="") {
+              language= {id: language.id, name: name, nativeName: nativeName, code: code};
+              this.languageService.updateLanguage(language)
+              .subscribe({
+              next: () => this.onSaveComplete(),
+              error: err => this.errorMessage = err
+              });
+            } else {
+              this.snackBarService.warn('Please fill every field');
+              }
           }
         }
       }
-    }
+    } else {this.snackBarService.warn('Some Properties of your language already exist!')}
   } 
 
   ngOnInit(): void {
@@ -78,10 +70,8 @@ export class AddLanguageComponent implements OnInit {
     this.sub = this.languageService.getLanguages().subscribe({
       next: languages => {
         this.languages = languages;
-        console.log(this.languages);
         if(this.languageToEdit == 0) {
           this.pageTitle = "Add a new Langugae";
-          console.log(this.languages)
         } else {
           for(let language of this.languages) {
             if(language.id == this.languageToEdit) {
@@ -91,7 +81,6 @@ export class AddLanguageComponent implements OnInit {
             }
           }
           this.pageTitle = "Edit the Language " + this.language.name;
-          console.log(this.languages.length);
         }
       },
       error: err => this.errorMessage = err
@@ -102,7 +91,7 @@ export class AddLanguageComponent implements OnInit {
     this.router.navigate([path]);
   }
 
-  onSaveComplete(message: string = "Skill saved successfully!") {
+  onSaveComplete(message: string = "Language saved successfully!") {
     this.snackBarService.success(message);
     this.goTo('/skillmatrix/languages');
   }

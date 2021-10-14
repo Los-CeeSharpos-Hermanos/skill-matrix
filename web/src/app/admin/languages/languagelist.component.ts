@@ -7,6 +7,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { EditLangugaeService } from './edit-langugae.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
+import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
 
 @Component({
   selector: 'app-languagelist',
@@ -25,7 +26,7 @@ export class LanguagelistComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
 
-  constructor(private router: Router, private languageService: LanguageService, private data: EditLangugaeService) { }
+  constructor(private router: Router, private languageService: LanguageService, private data: EditLangugaeService, private snackBarService: SnackBarService) { }
 
   ngOnInit(): void {
     this.loadLanguages();
@@ -43,16 +44,15 @@ export class LanguagelistComponent implements OnInit {
 
   onDeleteClick(languageToDelete: number) {
     if (languageToDelete === 0) {
-      alert("Invalid id");
+      this.snackBarService.warn("Invalid id");
     } else {
-      console.log(languageToDelete);
       if (confirm(`Are you sure you want to delete this language?`)) {
-        console.log("confirmed");
         this.languageService.deleteLanguage(languageToDelete)
           .subscribe({
             next: () => this.loadLanguages(),
             error: err => { this.errorMessage = err; console.log(this.errorMessage); }
           });
+        this.snackBarService.success("Language successful deleted");
       }
     }
   }
