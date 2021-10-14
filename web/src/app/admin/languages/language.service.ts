@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { ILanguage } from './language';
 
@@ -35,6 +35,27 @@ export class LanguageService {
   updateLanguage(language: ILanguage): Observable<ILanguage> {
     const url = `${this.languageUrl}/${language.id}}`;
     return this.http.put<ILanguage>(url, language, { headers: this.headers });
+  }
+
+  getLanguage(id: string): Observable<ILanguage> {
+    if (id == "0") {
+      return of(this.initializeLanguage());
+    }
+
+    const url = `${this.languageUrl}/${id}`;
+    return this.http.get<ILanguage>(url)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  private initializeLanguage(): ILanguage {
+    return {
+      id: 0,
+      code: null,
+      name: null,
+      nativeName: null
+    };
   }
 
   private handleError(err: HttpErrorResponse) {

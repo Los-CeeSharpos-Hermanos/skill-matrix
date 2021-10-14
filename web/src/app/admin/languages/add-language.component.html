@@ -1,26 +1,26 @@
 <app-submenu [pageTitle]=pageTitle></app-submenu>
 <div class="container">
-    <form #form="ngForm">
+    <form [formGroup]="languageForm">
 <!--INPUTFIELD-->
         <mat-card>
             <div class='row d-flex justify-content-center'>
-                <mat-form-field class="form-group" appearance="standard">
+                <mat-form-field class="form-group" appearance="fill">
                     <p>Language Name</p>
-                    <input matInput id="name" name="name" class="form-control" ngModel placeholder="{{language.name}}">
+                    <input formControlName="name" matInput>
                 </mat-form-field>
-                <mat-form-field appearance="standard">
+                <mat-form-field appearance="fill">
                     <p>Language Name (native)</p>
-                    <input matInput id="native" name="native" class="form-control" ngModel placeholder="{{language.nativeName}}">
+                    <input formControlName="nativeName" matInput>
                 </mat-form-field>
-                <mat-form-field appearance="standard">
+                <mat-form-field appearance="fill">
                     <p>Language Code</p>
-                    <input matInput id="code" name="code" class="form-control" ngModel placeholder="{{language.code}}">
+                    <input formControlName="code" matInput>
                 </mat-form-field>
             </div> 
         </mat-card>
 <!--CANCELBUTTON-->
         <app-go-back-button></app-go-back-button>
 <!--SENDBUTTON-->
-        <button mat-fab color="primary" (click)="clickAdd(languages.length, form.value.name, form.value.native, form.value.code, languageToEdit)"><mat-icon>add</mat-icon></button>
+        <button mat-fab color="primary" (click)="saveLanguage()"><mat-icon>add</mat-icon></button>
     </form>
 </div>

@@ -1,6 +1,6 @@
 export interface ILanguage {
     id: number;
-    code: string;
-    name: string;
-    nativeName: string;
+    code: string | null;
+    name: string | null;
+    nativeName: string| null;
 }

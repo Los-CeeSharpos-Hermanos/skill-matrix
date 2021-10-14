@@ -71,7 +71,6 @@ export class SkillEditComponent implements OnInit {
     }
 
     this.skill = skill;
-
     if (this.skill.id === 0) {
       this.pageTitle = 'Add a new Skill';
     } else {
@@ -98,7 +97,8 @@ export class SkillEditComponent implements OnInit {
 
       if (this.skillForm.dirty) {
         const s = { ...this.skill, ...this.skillForm.value };
-
+        console.log(s);
+        console.log(this.skillForm.value);
         if (s.id == 0) {
 
           this.skillService.createSkill(s)

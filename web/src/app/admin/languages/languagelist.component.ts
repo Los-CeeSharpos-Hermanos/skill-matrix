@@ -8,6 +8,7 @@ import { EditLangugaeService } from './edit-langugae.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
+import { RoutingService } from 'src/app/shared/services/routing.service';
 
 @Component({
   selector: 'app-languagelist',
@@ -26,20 +27,19 @@ export class LanguagelistComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
 
-  constructor(private router: Router, private languageService: LanguageService, private data: EditLangugaeService, private snackBarService: SnackBarService) { }
+  constructor(private routingService: RoutingService, private router: Router, private languageService: LanguageService, private data: EditLangugaeService, private snackBarService: SnackBarService) { }
 
   ngOnInit(): void {
     this.loadLanguages();
   }
 
-  performFilter(filterBy: string): ILanguage[] {
-    filterBy = filterBy.toLocaleLowerCase();
-    return this.languages.filter((language: ILanguage) => language.name.toLocaleLowerCase().includes(filterBy));
-  }
-
   goTo(path: string, languageId: number) {
     this.data.changeLanguage(languageId);
     this.router.navigate([path]);
+  }
+
+  goToAdd(id: number) {
+    this.routingService.goTo(`skillmatrix/languages/${id}/add`)
   }
 
   onDeleteClick(languageToDelete: number) {

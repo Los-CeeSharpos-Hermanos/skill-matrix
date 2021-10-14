@@ -17,7 +17,7 @@ import { LanguagesComponent } from './languages.component';
     RouterModule.forChild([
       { path: 'skillmatrix/languages/:id', component: LanguagesComponent },
       { path: 'skillmatrix/languages', component: LanguagelistComponent },
-      { path: 'skillmatrix/language/add', component: AddLanguageComponent },
+      { path: 'skillmatrix/languages/:id/add', component: AddLanguageComponent },
     ]),
     SharedModule,
     FormsModule
