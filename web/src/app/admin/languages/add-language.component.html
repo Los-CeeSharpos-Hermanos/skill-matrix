@@ -1,5 +1,5 @@
 <app-submenu [pageTitle]=pageTitle></app-submenu>
-<div class="container" style="background-color: white;">
+<div class="container">
     <form #form="ngForm">
 <!--INPUTFIELD-->
         <mat-card>
@@ -21,6 +21,6 @@
 <!--CANCELBUTTON-->
         <app-go-back-button></app-go-back-button>
 <!--SENDBUTTON-->
-        <button mat-fab color="primary" (click)="clickAdd(100, form.value.name, form.value.native, form.value.code, languageToEdit)"><mat-icon>add</mat-icon></button>
+        <button mat-fab color="primary" (click)="clickAdd(languages.length, form.value.name, form.value.native, form.value.code, languageToEdit)"><mat-icon>add</mat-icon></button>
     </form>
 </div>

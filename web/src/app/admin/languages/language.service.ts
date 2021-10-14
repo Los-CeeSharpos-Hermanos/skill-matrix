@@ -30,6 +30,16 @@ export class LanguageService {
     return this.http.delete<ILanguage>(url, { headers: this.headers });
   }
 
+  createLanguage(language: ILanguage) {
+    const url = `${this.languageUrl}/${language.id}}`;
+    return this.http.post<ILanguage>(url, language, { headers: this.headers });
+  }
+
+  updateLanguage(language: ILanguage): Observable<ILanguage> {
+    const url = `${this.languageUrl}/${language.id}}`;
+    return this.http.put<ILanguage>(url, language, { headers: this.headers });
+  }
+
   private handleError(err: HttpErrorResponse) {
     // in a real world app, we may send the server to some remote logging infrastructure
     // instead of just logging it to the console
