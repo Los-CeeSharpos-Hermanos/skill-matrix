@@ -84,8 +84,6 @@ export class AddLanguageComponent implements OnInit {
 
       if (this.languageForm.dirty) {
         const l = { ...this.language, ...this.languageForm.value };
-        console.log(l);
-        console.log(this.languageForm.value);
         if (l.id == 0) {
 
           this.languageService.createLanguage(l)
