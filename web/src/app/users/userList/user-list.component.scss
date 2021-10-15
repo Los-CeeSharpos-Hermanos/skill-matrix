@@ -7,11 +7,11 @@ tr.example-detail-row {
 }
 
 tr.example-element-row:not(.example-expanded-row):hover {
-  background: whitesmoke;
+  background: rgb(75, 74, 74);
 }
 
 tr.example-element-row:not(.example-expanded-row):active {
-  background: #efefef;
+  background: #777777;
 }
 
 .example-element-row td {

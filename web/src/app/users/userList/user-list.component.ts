@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { UserService } from '../user.service';
 import { IUser } from '../user';
+import { Router } from '@angular/router';
+
 
 /**
  * @title Table with expandable rows
@@ -23,7 +25,8 @@ export class UserListComponent implements OnInit {
   columnsToDisplay = ['surName', 'firstName', 'skill', 'department'];
   expandedElement: IUser | null;
   users: IUser[];
-  constructor(private userService: UserService) { }
+
+  constructor(private router: Router, private userService:UserService) {}
 
   ngOnInit(): void {
     //We want to load our users data here
@@ -40,6 +43,9 @@ private loadUsers() {
     error: err =>console.log(err)
   })
   }
-}
+  goTo(path: string) {
+    this.router.navigate([path]);
 
+}
+}
 

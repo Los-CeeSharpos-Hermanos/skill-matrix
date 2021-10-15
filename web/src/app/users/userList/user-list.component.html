@@ -1,6 +1,7 @@
 
 <div class="container">
 
+  <button mat-fab color primary (click)="goTo('skillmatrix/members/addUser')"><mat-icon>add</mat-icon></button>
 
 
   <table mat-table
@@ -22,10 +23,13 @@
 
           <img src="{{user.imageUrl}}" width=75> </div>
         </div>
+
         <div class="example-element-description">
-          {{user.email}}
-          <span class="example-element-description-attribution"> -- Details </span>
-          <div class="example-element-position"> {{user.language}} </div>
+          {{user.firstName}} {{ user.surName}}
+          <br>
+          <div class="example-element-position"> languages: {{user.language}} </div>
+          <br>
+          <div class="example-element-position"> email{{user.email}} </div>
 
         </div>
       </div>
