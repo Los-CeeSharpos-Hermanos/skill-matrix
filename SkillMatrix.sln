@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillMatrix", "SkillMatrix\SkillMatrix.csproj", "{93C29593-E368-498D-BFA4-C695E3FB6D39}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkillMatrix.Application", "SkillMatrix\SkillMatrix.Application.csproj", "{93C29593-E368-498D-BFA4-C695E3FB6D39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillMatrix.Domain", "SkillMatrix.Domain\SkillMatrix.Domain.csproj", "{86F407D2-F67A-4AA4-A577-194F32CBAC0B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillMatrix.DataAccess", "SkillMatrix.DataAccess\SkillMatrix.DataAccess.csproj", "{B2ABC2D7-A3C8-4388-975A-02D42F436E6E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillMatrix.Test", "SkillMatrix.Test\SkillMatrix.Test.csproj", "{21B6A00E-F3E1-4FA6-A503-D0C482F1AEF1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{93C29593-E368-498D-BFA4-C695E3FB6D39}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93C29593-E368-498D-BFA4-C695E3FB6D39}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93C29593-E368-498D-BFA4-C695E3FB6D39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86F407D2-F67A-4AA4-A577-194F32CBAC0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86F407D2-F67A-4AA4-A577-194F32CBAC0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86F407D2-F67A-4AA4-A577-194F32CBAC0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86F407D2-F67A-4AA4-A577-194F32CBAC0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2ABC2D7-A3C8-4388-975A-02D42F436E6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2ABC2D7-A3C8-4388-975A-02D42F436E6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2ABC2D7-A3C8-4388-975A-02D42F436E6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2ABC2D7-A3C8-4388-975A-02D42F436E6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21B6A00E-F3E1-4FA6-A503-D0C482F1AEF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21B6A00E-F3E1-4FA6-A503-D0C482F1AEF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21B6A00E-F3E1-4FA6-A503-D0C482F1AEF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21B6A00E-F3E1-4FA6-A503-D0C482F1AEF1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

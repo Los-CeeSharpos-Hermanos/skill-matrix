@@ -1,6 +1,6 @@
 using System;
 
-namespace SkillMatrix
+namespace SkillMatrix.Application
 {
     public class WeatherForecast
     {
