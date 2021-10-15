@@ -1,12 +1,22 @@
+button {
+  margin: 10px;
+}
+
+/* Structure */
 table {
-  width: 100%;
+  width: 80%;
+  margin: auto;
 }
 
-.mat-form-field {
-  font-size: 14px;
-  width: 100%;
+.searchField {
+  width: 80%;
+  margin:auto;
+  padding-left: 250px;
 }
 
-td, th {
-  width: 25%;
+.nameField {
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
 }
+
