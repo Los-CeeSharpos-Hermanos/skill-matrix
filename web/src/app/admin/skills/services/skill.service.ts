@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Skill } from '../skill';
+import { AddSkill, Skill } from '../skill';
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +14,7 @@ export class SkillService {
   constructor(private http: HttpClient) { }
 
   listSkills(): Observable<Skill[]> {
-    const url = `${this.baseUrl}`;
-    console.log(url);
-    return this.http.get<Skill[]>(url);
+    return this.http.get<Skill[]>(this.baseUrl);
   }
 
   getSkill(id: string): Observable<Skill> {
@@ -31,9 +29,9 @@ export class SkillService {
       );
   }
 
-  createSkill(skill: Skill) {
-    const url = `${this.baseUrl}/${skill.id}}`;
-    return this.http.post<Skill>(url, skill, { headers: this.headers });
+  createSkill(skill: AddSkill) {
+    skill.id = undefined;
+    return this.http.post<Skill>(this.baseUrl, skill, { headers: this.headers });
   }
 
   updateSkill(skill: Skill): Observable<Skill> {
