@@ -71,11 +71,10 @@ export class SkillEditComponent implements OnInit {
     }
 
     this.skill = skill;
-
     if (this.skill.id === 0) {
-      this.pageTitle = 'Add Skill';
+      this.pageTitle = 'Add a new Skill';
     } else {
-      this.pageTitle = `Edit Skill: ${this.skill.skillName}`;
+      this.pageTitle = `Editing Skill: ${this.skill.skillName}`;
     }
 
     this.skillForm.patchValue({
@@ -98,7 +97,6 @@ export class SkillEditComponent implements OnInit {
 
       if (this.skillForm.dirty) {
         const s = { ...this.skill, ...this.skillForm.value };
-
         if (s.id == 0) {
 
           this.skillService.createSkill(s)

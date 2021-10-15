@@ -1,7 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 //@import "@angular/material/prebuilt-themes/deeppurple-amber.css";
 
+<<<<<<< HEAD
 @import '~@angular/material/theming'; //wow ... such wow
+=======
+@import '~@angular/material/theming';
+>>>>>>> main
 @include mat-core();
 
 $candy-app-primary: mat-palette($mat-deep-purple);
@@ -16,4 +20,5 @@ $candy-app-theme: mat-dark-theme(
 html, body { height: 100%; background-color:#343434}
 
 body {  margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
 
