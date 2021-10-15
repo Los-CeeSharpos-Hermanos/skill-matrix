@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ILanguage } from './language';
-import { LanguageService } from './language.service';
+import { ILanguage } from '../../language';
+import { LanguageService } from '../../services/language.service';
 import { MatPaginator } from '@angular/material/paginator';
-import { EditLangugaeService } from './edit-langugae.service';
+import { EditLangugaeService } from '../../services/edit-langugae.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
