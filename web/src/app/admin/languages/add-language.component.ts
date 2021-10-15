@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ILanguage } from './language';
 import { LanguageService } from './language.service';
 import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
-import { EditLangugaeService } from './edit-langugae.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
+import { FormBuilder, Validators } from '@angular/forms';
+import { RoutingService } from 'src/app/shared/services/routing.service';
 
 
 @Component({
@@ -13,89 +15,108 @@ import { EditLangugaeService } from './edit-langugae.service';
 })
 
 export class AddLanguageComponent implements OnInit {
-  errorMessage: string = '';
-  sub!: Subscription;
-  languages: ILanguage[] = [];
-  isThere: Boolean = false;
-  languageToEdit: string;
+  constructor(
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private routingService: RoutingService,
+    private languageService: LanguageService,
+    private snackBarService: SnackBarService) { }
+
+  private sub: Subscription;
+
+  errorMessage: string;
   pageTitle: string;
-  language: ILanguage = {code: "code", name: "name", nativeName: "nativeName"};
+  language: ILanguage;
 
-  constructor(private router: Router, private languageService: LanguageService, private data: EditLangugaeService) { }
+  languageForm = this.fb.group({
+    name: ['', Validators.required],
+    nativeName: ['', Validators.required],
+    code: ['', Validators.required],
+  });
 
-  clickAdd(name: string, nativeName: string, code: string, type: string): void {
-    //prototype method
-    if(type == "default") {
-      this.isThere = false;
-      for(let language of this.languages) {
-        if(language.name == name || language.nativeName == nativeName || language.code == code) {
-          this.isThere = true; break;
-        }
-      }
-      if(!this.isThere) {
-        if(name!="" && nativeName!="" && code!="") {
-          this.languages.push({name, nativeName, code});
-          alert('New Language added');
-        } else {
-          alert('Please fill every field')
-        }
-      } else {
-        alert('Some Properties of your language already exist!');
-      }
-  
-      //test output -- can be removed later
-      for(let language of this.languages) {
-        console.log(language.name);
-      }
-      //get notification from server
-      //if saved show confirmation message
-      //if existing show error
-    } else {
-      for(let language of this.languages) {
-        if(language.name == this.languageToEdit) {
-          if(name!="" && nativeName!="" && code!="") {
-            language.name = name;
-            language.nativeName = nativeName;
-            language.code = code;
-            alert('Language changed');
-          } else {
-            alert('Please fill every field')
-          }
-    
-        }
-      }
-      //test output -- can be removed later
-      for(let language of this.languages) {
-        console.log(language.name);
-      }
-    }
-  } 
 
   ngOnInit(): void {
-    this.data.currentLanguage.subscribe(language => this.languageToEdit = language);
-    this.sub = this.languageService.getLanguages().subscribe({
-      next: languages => {
-        this.languages = languages;
-        console.log(this.languages);
-        if(this.languageToEdit == "default") {
-          this.pageTitle = "Add a new Langugae";
-          console.log(this.languages)
-        } else {
-          this.pageTitle = "Edit the Language " + this.languageToEdit;
-          for(let language of this.languages) {
-            if(language.name == this.languageToEdit) {
-              this.language.name = language.name;
-              this.language.nativeName = language.nativeName;
-              this.language.code = language.code;
-            }
-          }
-        }
-      },
-      error: err => this.errorMessage = err
+    this.sub = this.route.paramMap.subscribe(
+      params => {
+        const id = params.get('id')!;
+        this.getLanguage(id);
+      });
+  }
+
+  getLanguage(id: string): void {
+    this.languageService.getLanguage(id)
+      .subscribe({
+        next: (language: ILanguage) => this.displayLanguage(language),
+        error: err => this.errorMessage = err
+      });
+  }
+
+  displayLanguage(language: ILanguage): void {
+    if (this.languageForm) {
+      this.languageForm.reset();
+    }
+
+    this.language = language;
+    if (this.language.id === 0) {
+      this.pageTitle = 'Add a new Language';
+    } else {
+      this.pageTitle = `Editing Language: ${this.language.name}`;
+    }
+
+    this.languageForm.patchValue({
+      name: this.language.name,
+      nativeName: this.language.nativeName,
+      code: this.language.code
     });
   }
 
-  goTo(path: string) {
-    this.router.navigate([path]);
+
+  editLanguage(language: ILanguage): void {
+    this.languageService.updateLanguage(language)
+      .subscribe({
+        next: () => this.onSaveComplete(),
+        error: err => this.errorMessage = err
+      });
+  }
+
+  saveLanguage(): void {
+    if (this.languageForm.valid) {
+
+      if (this.languageForm.dirty) {
+        const l = { ...this.language, ...this.languageForm.value };
+        if (l.id == 0) {
+
+          this.languageService.createLanguage(l)
+            .subscribe({
+              next: () => this.onSaveComplete(),
+              error: err => this.onSaveFail(err)
+            });
+
+        } else {
+          this.languageService.updateLanguage(l)
+            .subscribe({
+              next: () => this.onSaveComplete(),
+              error: err => this.onSaveFail(err)
+            });
+        }
+      } else {
+        this.onSaveComplete();
+      }
+    } else {
+      this.errorMessage = "Please correct validation errors";
+      console.log(this.errorMessage);
+    }
+  }
+
+  onSaveComplete(message: string = "Language saved!") {
+    this.languageForm.reset();
+    this.snackBarService.success(message);
+    this.routingService.goTo('/skillmatrix/languages');
+  }
+
+  onSaveFail(err: any, message: string = "An error has occured!") {
+
+    this.errorMessage = err; console.log(this.errorMessage);
+    this.snackBarService.warn(message);
   }
 }
