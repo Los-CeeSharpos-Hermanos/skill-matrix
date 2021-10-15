@@ -6,12 +6,12 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class EditLangugaeService {
 
-  private languageSource = new BehaviorSubject<string>("default language");
+  private languageSource = new BehaviorSubject<number>(0);
   currentLanguage = this.languageSource.asObservable();
 
   constructor() { }
 
-  changeLanguage(language: string) {
-    this.languageSource.next(language);
+  changeLanguage(languageId: number) {
+    this.languageSource.next(languageId);
   }
 }
