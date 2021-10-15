@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProfileModule } from './profile/profile.module';
 import { SharedModule } from './shared/shared.module';
+import { UserModule } from './users/user.module';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { SharedModule } from './shared/shared.module';
     LanguageModule,
     CategoriesModule,
     SkillModule,
+    UserModule,
     ProfileModule
   ],
   providers: [
