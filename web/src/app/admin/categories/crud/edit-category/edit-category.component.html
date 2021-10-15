@@ -1,12 +1,12 @@
-<div class="mainContainer">
-  <div class="searchField">
+
+  <div class="nameField">
     <mat-form-field appearance="fill">
       <mat-label>Enter the new name</mat-label>
       <input matInput placeholder="Musical Instrument Skills" required>
     </mat-form-field>
   </div>
 
-  <mat-form-field appearance="standard">
+  <mat-form-field appearance="standard" class="searchField">
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
   </mat-form-field>
@@ -46,4 +46,3 @@
   <button mat-raised-button color="primary" (click)="goTo('skillmatrix/categories')">Confirm Edit</button>
   <button mat-raised-button color="warn" (click)="goTo('skillmatrix/categories')">Discard</button>
 
-</div>

@@ -8,12 +8,15 @@ table {
   margin: auto;
 }
 
-.mainContainer {
+.searchField {
   width: 80%;
-  margin: auto;
+  margin:auto;
+  padding-left: 250px;
 }
 
-.searchField {
-  width: 100%;
+.nameField {
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
 }
 
