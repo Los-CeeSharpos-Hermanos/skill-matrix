@@ -35,7 +35,6 @@ namespace SkillMatrix.Application
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                UpdateData
             }
             else
             {
