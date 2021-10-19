@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using SkillMatrix.Domain.Skill;
+using SkillMatrix.Domain.Languages;
 
 namespace SkillMatrix.DataAccess
 {
@@ -8,6 +9,7 @@ namespace SkillMatrix.DataAccess
     {
         public DbSet<Skill> Skills { get; set; }
         public DbSet<SkillCategory> SkillCategories { get; set; }
+        public DbSet<Language> Languages { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
