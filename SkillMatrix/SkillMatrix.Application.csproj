@@ -24,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SkillMatrix.DataAccess\SkillMatrix.DataAccess.csproj" />
     <ProjectReference Include="..\SkillMatrix.Domain\SkillMatrix.Domain.csproj" />
   </ItemGroup>
 
