@@ -1,26 +1,23 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using SkillMatrix.Domain.Skill;
-
-using SkillMatrix.Domain.Users;
-
+using SkillMatrix.Domain.Skills;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SkillMatrix.DataAccess.Skills
+namespace SkillMatrix.DataAccess.Configurations.Skills
 {
-    public class SkillConfiguration : IEntityTypeConfiguration<Skill>
+    class SkillCategoryConfiguration : IEntityTypeConfiguration<SkillCategory>
     {
-        public void Configure(EntityTypeBuilder<Skill> builder)
+
+        public void Configure(EntityTypeBuilder<SkillCategory> builder)
         {
             builder.Property(p => p.CreatedAt).HasDefaultValueSql("GETDATE()").ValueGeneratedOnAdd();
             builder.Property(p => p.UpdatedAt).HasDefaultValueSql("GETDATE()").ValueGeneratedOnUpdate();
 
-            builder.HasOne(p => p.SkillCategory);
-            builder.HasMany(p => p.Users);
+            builder.HasMany(p => p.Skills).WithOne(p => p.SkillCategory);
 
         }
     }

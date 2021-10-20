@@ -16,7 +16,7 @@ namespace SkillMatrix.DataAccess.Configurations
             builder.Property(p => p.CreatedAt).HasDefaultValueSql("GETDATE()").ValueGeneratedOnAdd();
             builder.Property(p => p.UpdatedAt).HasDefaultValueSql("GETDATE()").ValueGeneratedOnUpdate();
 
-            builder.HasMany(p => p.Skills);
+            builder.HasMany(p => p.Skills).WithMany(s => s.Users);
             builder.HasMany(p => p.Languages);
             builder.HasOne(p => p.Department);
             builder.HasOne(p => p.Team);
