@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SkillMatrix.Domain.Skill;
+
 using SkillMatrix.Domain.Users;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +21,7 @@ namespace SkillMatrix.DataAccess.Skills
 
             builder.HasOne(p => p.SkillCategory);
             builder.HasMany(p => p.Users);
+
         }
     }
 }

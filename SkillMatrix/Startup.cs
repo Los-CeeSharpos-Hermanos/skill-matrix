@@ -21,6 +21,9 @@ namespace SkillMatrix.Application
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<ApplicationDBContext>();
+
+
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -34,6 +37,8 @@ namespace SkillMatrix.Application
         {
             if (env.IsDevelopment())
             {
+                UpdateDatabase(app);
+
                 app.UseDeveloperExceptionPage();
             }
             else
@@ -73,5 +78,10 @@ namespace SkillMatrix.Application
             });
         }
 
+        private static void UpdateDatabase(IApplicationBuilder app)
+        {
+            var dbContext = app.ApplicationServices.GetRequiredService<ApplicationDBContext>();
+            dbContext.UpdateDatabase();
+        }
     }
 }

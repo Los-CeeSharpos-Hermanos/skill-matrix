@@ -19,6 +19,7 @@ namespace SkillMatrix.DataAccess.Migrations
                 .HasAnnotation("ProductVersion", "5.0.11")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+
             modelBuilder.Entity("LanguageUser", b =>
                 {
                     b.Property<long>("LanguagesId")
@@ -115,6 +116,7 @@ namespace SkillMatrix.DataAccess.Migrations
 
                     b.ToTable("SkillCategories");
                 });
+
 
             modelBuilder.Entity("SkillMatrix.Domain.Users.Department", b =>
                 {
@@ -245,6 +247,7 @@ namespace SkillMatrix.DataAccess.Migrations
                         .IsRequired();
                 });
 
+
             modelBuilder.Entity("SkillMatrix.Domain.Skill.Skill", b =>
                 {
                     b.HasOne("SkillMatrix.Domain.Skill.SkillCategory", "SkillCategory")
@@ -253,6 +256,7 @@ namespace SkillMatrix.DataAccess.Migrations
 
                     b.Navigation("SkillCategory");
                 });
+
 
             modelBuilder.Entity("SkillMatrix.Domain.Users.Team", b =>
                 {
@@ -298,6 +302,7 @@ namespace SkillMatrix.DataAccess.Migrations
                 {
                     b.Navigation("Users");
                 });
+
 #pragma warning restore 612, 618
         }
     }

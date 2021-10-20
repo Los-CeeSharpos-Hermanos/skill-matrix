@@ -1,8 +1,10 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using SkillMatrix.Domain.Skill;
+
 using SkillMatrix.Domain.Languages;
 using SkillMatrix.Domain.Users;
+
 
 namespace SkillMatrix.DataAccess
 {
@@ -10,8 +12,10 @@ namespace SkillMatrix.DataAccess
     {
         public DbSet<Skill> Skills { get; set; }
         public DbSet<SkillCategory> SkillCategories { get; set; }
+
         public DbSet<Language> Languages { get; set; }
         public DbSet<User> Users { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -31,6 +35,13 @@ namespace SkillMatrix.DataAccess
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDBContext).Assembly);
+
+        }
+
+        public void UpdateDatabase()        
+        {
+            Database.Migrate();
+
         }
 
     }
