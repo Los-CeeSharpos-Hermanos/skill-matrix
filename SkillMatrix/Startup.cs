@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using SkillMatrix.Application.Mappers;
 using SkillMatrix.Application.Services;
 using SkillMatrix.DataAccess;
@@ -33,14 +34,16 @@ namespace SkillMatrix.Application
 
             services.AddScoped<ISkillService, SkillService>();
 
-
-
-
             services.AddControllersWithViews();
 
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
+            });
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Skill Matrix API", Version = "v1" });
             });
         }
 
@@ -72,6 +75,13 @@ namespace SkillMatrix.Application
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
+            });
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("v1/swagger.json", "Skill Matrix API V1");
             });
 
             app.UseSpa(spa =>

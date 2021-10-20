@@ -17,7 +17,7 @@ namespace SkillMatrix.DataAccess.Repositories.Skills
 
         public IEnumerable<Skill> GetAllSkills()
         {
-            return _db.Skills.AsNoTracking().Where(p => p.SkillId > 0);
+            return _db.Skills.Where(p => p.SkillId > 0);
         }
     }
 }
