@@ -22,6 +22,7 @@ namespace SkillMatrix.Application
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<ApplicationDBContext>();
+
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -35,6 +36,8 @@ namespace SkillMatrix.Application
         {
             if (env.IsDevelopment())
             {
+                UpdateDatabase(app);
+
                 app.UseDeveloperExceptionPage();
             }
             else
@@ -72,6 +75,12 @@ namespace SkillMatrix.Application
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
+        }
+
+        private static void UpdateDatabase(IApplicationBuilder app)
+        {
+            var dbContext = app.ApplicationServices.GetRequiredService<ApplicationDBContext>();
+            dbContext.UpdateDatabase();
         }
     }
 }
