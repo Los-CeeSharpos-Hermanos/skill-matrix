@@ -3,22 +3,23 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SkillMatrix.DataAccess;
 
 namespace SkillMatrix.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20211020061815_InitialTablesForAll")]
+    partial class InitialTablesForAll
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.11")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
 
             modelBuilder.Entity("LanguageUser", b =>
                 {
@@ -116,7 +117,6 @@ namespace SkillMatrix.DataAccess.Migrations
 
                     b.ToTable("SkillCategories");
                 });
-
 
             modelBuilder.Entity("SkillMatrix.Domain.Users.Department", b =>
                 {
@@ -247,7 +247,6 @@ namespace SkillMatrix.DataAccess.Migrations
                         .IsRequired();
                 });
 
-
             modelBuilder.Entity("SkillMatrix.Domain.Skill.Skill", b =>
                 {
                     b.HasOne("SkillMatrix.Domain.Skill.SkillCategory", "SkillCategory")
@@ -256,7 +255,6 @@ namespace SkillMatrix.DataAccess.Migrations
 
                     b.Navigation("SkillCategory");
                 });
-
 
             modelBuilder.Entity("SkillMatrix.Domain.Users.Team", b =>
                 {
@@ -302,7 +300,6 @@ namespace SkillMatrix.DataAccess.Migrations
                 {
                     b.Navigation("Users");
                 });
-
 #pragma warning restore 612, 618
         }
     }

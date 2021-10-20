@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ILanguage } from './language';
-import { LanguageService } from './language.service';
+import { ILanguage } from '../../language';
+import { LanguageService } from '../../services/language.service';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SnackBarService } from 'src/app/shared/services/snack-bar.service';

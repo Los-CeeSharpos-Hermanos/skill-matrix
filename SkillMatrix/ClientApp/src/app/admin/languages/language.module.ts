@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { AddLanguageComponent } from './add-language.component';
-import { LanguagelistComponent } from './languagelist.component';
-import { LanguagesComponent } from './languages.component';
+import { AddLanguageComponent } from './components/editLanguage/add-language.component';
+import { LanguagelistComponent } from './components/languagelist/languagelist.component';
+import { LanguagesComponent } from './components/languages/languages.component';
 
 
 @NgModule({
