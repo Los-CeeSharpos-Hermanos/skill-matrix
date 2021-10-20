@@ -2,19 +2,20 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { environment } from '../../../../environments/environment';
 import { AddSkill, Skill } from '../skill';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SkillService {
-  private baseUrl = 'https://localhost:44311/api/Skills';
+  private baseUrl = 'api/skills';
   headers = new HttpHeaders({ 'Content-type': 'application/json' });
 
   constructor(private http: HttpClient) { }
 
   listSkills(): Observable<Skill[]> {
-    return this.http.get<Skill[]>(this.baseUrl);
+    return this.http.get<Skill[]>(`${environment.apiEndpoint}/${this.baseUrl}`);
   }
 
   getSkill(id: string): Observable<Skill> {
