@@ -29,5 +29,9 @@ namespace SkillMatrix.DataAccess
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDBContext).Assembly);
         }
 
+        public void UpdateDatabase()        
+        {
+            Database.Migrate();
+        }
     }
 }
