@@ -12,13 +12,13 @@ namespace SkillMatrix.Domain.Users
         public long Id { get; set; }
         public string SurName { get; set; }
         public string FirstName { get; set; }
-        public string email { get; set; }
+        public string Email { get; set; }
         public string ImageUrl { get; set; }
 
         public virtual ICollection<Skill.Skill> Skills { get; set; }
         public virtual ICollection<Languages.Language> Languages { get; set; }
-        //public virtual Department Department { get; set; }
-        //public virtual Team Team { get; set; }
+        public virtual Department Department { get; set; }
+        public virtual Team Team { get; set; }
 
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }

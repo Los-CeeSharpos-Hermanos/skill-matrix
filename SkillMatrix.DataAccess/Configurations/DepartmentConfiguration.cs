@@ -9,17 +9,14 @@ using System.Threading.Tasks;
 
 namespace SkillMatrix.DataAccess.Configurations
 {
-    public class UserConfiguration : IEntityTypeConfiguration<User>
+    public class DepartmentConfiguration : IEntityTypeConfiguration<Department>
     {
-        public void Configure(EntityTypeBuilder<User> builder)
+        public void Configure(EntityTypeBuilder<Department> builder)
         {
             builder.Property(p => p.CreatedAt).HasDefaultValueSql("GETDATE()").ValueGeneratedOnAdd();
             builder.Property(p => p.UpdatedAt).HasDefaultValueSql("GETDATE()").ValueGeneratedOnUpdate();
 
-            builder.HasMany(p => p.Skills);
-            builder.HasMany(p => p.Languages);
-            builder.HasOne(p => p.Department);
-            builder.HasOne(p => p.Team);
+            builder.HasMany(p => p.Users);
         }
     }
 }
