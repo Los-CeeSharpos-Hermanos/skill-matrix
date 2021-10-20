@@ -1,11 +1,10 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using SkillMatrix.Domain.Skills;
 
 using SkillMatrix.Domain.Languages;
 using SkillMatrix.Domain.Users;
 using SkillMatrix.DataAccess.Seeds;
-
+using SkillMatrix.Domain.Skills.Models;
 
 namespace SkillMatrix.DataAccess
 {
@@ -29,8 +28,8 @@ namespace SkillMatrix.DataAccess
                 .UseSqlServer(connectionStringBuilder.ConnectionString)
                 .UseLazyLoadingProxies();
 
-        }      
-        
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDBContext).Assembly);
@@ -38,7 +37,7 @@ namespace SkillMatrix.DataAccess
             modelBuilder.InsertSeeds();
         }
 
-        public void UpdateDatabase()        
+        public void UpdateDatabase()
         {
             Database.Migrate();
         }

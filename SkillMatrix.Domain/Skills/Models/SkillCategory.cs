@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SkillMatrix.Domain.Skills
+namespace SkillMatrix.Domain.Skills.Models
 {
     public class SkillCategory
     {

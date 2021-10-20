@@ -1,22 +1,32 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
+using SkillMatrix.Application.DTOs;
+using SkillMatrix.Application.Services;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace SkillMatrix.Application.Controllers.Skills
 {
+
+
     [Route("api/[controller]")]
     [ApiController]
     public class SkillsController : ControllerBase
     {
+
+        private readonly ISkillService _skillService;
+
+        public SkillsController(ISkillService skillService)
+        {
+            _skillService = skillService;
+        }
+
+
         // GET: api/<SkillsController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<GetSkillDTO> Get()
         {
-            return new string[] { "value1", "value2" };
+            return _skillService.GetAllSkills();
         }
 
         // GET api/<SkillsController>/5

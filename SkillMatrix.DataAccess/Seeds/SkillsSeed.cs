@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SkillMatrix.Domain.Skills;
+using SkillMatrix.Domain.Skills.Models;
 
 namespace SkillMatrix.DataAccess.Seeds
 {

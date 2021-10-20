@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using SkillMatrix.Domain.Skills;
+using SkillMatrix.Domain.Skills.Models;
 
 namespace SkillMatrix.DataAccess.Skills
 {

@@ -1,11 +1,7 @@
 ﻿using SkillMatrix.Domain.Languages;
-using SkillMatrix.Domain.Skills;
+using SkillMatrix.Domain.Skills.Models;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SkillMatrix.Domain.Users
 {
