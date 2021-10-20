@@ -2,8 +2,7 @@
 using SkillMatrix.Application.DTOs;
 using SkillMatrix.Application.Services;
 using System.Collections.Generic;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using System.Threading.Tasks;
 
 namespace SkillMatrix.Application.Controllers.Skills
 {
@@ -24,9 +23,9 @@ namespace SkillMatrix.Application.Controllers.Skills
 
         // GET: api/<SkillsController>
         [HttpGet]
-        public IEnumerable<GetSkillDTO> Get()
+        public async Task<IEnumerable<GetSkillDTO>> Get()
         {
-            return _skillService.GetAllSkills();
+            return await _skillService.GetAllSkills();
         }
 
         // GET api/<SkillsController>/5

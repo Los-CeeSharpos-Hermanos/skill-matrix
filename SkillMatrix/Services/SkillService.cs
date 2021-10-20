@@ -10,7 +10,7 @@ namespace SkillMatrix.Application.Services
 {
     public interface ISkillService
     {
-        List<GetSkillDTO> GetAllSkills();
+        Task<List<GetSkillDTO>> GetAllSkills();
     }
 
     public class SkillService : ISkillService
@@ -24,11 +24,11 @@ namespace SkillMatrix.Application.Services
             _mapper = mapper;
         }
 
-        public List<GetSkillDTO> GetAllSkills()
+        public async Task<List<GetSkillDTO>> GetAllSkills()
         {
-            return _mapper.Map<List<GetSkillDTO>>(_skillRepository.GetAllSkills()
-                .ToList()
-                .OrderBy(skill => skill.SkillId));
+            var skills = await _skillRepository.GetAllSkillsAsync();
+
+            return _mapper.Map<List<GetSkillDTO>>(skills);
         }
 
     }

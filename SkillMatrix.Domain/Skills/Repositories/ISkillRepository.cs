@@ -9,6 +9,6 @@ namespace SkillMatrix.Domain.Skills.Repositories
 {
     public interface ISkillRepository
     {
-        IEnumerable<Skill> GetAllSkills();
+        Task<List<Skill>> GetAllSkillsAsync();
     }
 }

@@ -8,7 +8,7 @@ import { AddSkill, Skill } from '../skill';
   providedIn: 'root'
 })
 export class SkillService {
-  private baseUrl = 'api/skills';
+  private baseUrl = 'https://localhost:44311/api/Skills';
   headers = new HttpHeaders({ 'Content-type': 'application/json' });
 
   constructor(private http: HttpClient) { }

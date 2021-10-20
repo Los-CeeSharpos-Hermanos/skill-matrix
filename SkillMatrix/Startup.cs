@@ -27,7 +27,7 @@ namespace SkillMatrix.Application
         {
             services.AddTransient<ApplicationDBContext>();
 
-            services.AddAutoMapper(typeof(AutoMapperConfig));
+            services.AddAutoMapper(typeof(ApplicationMapperProfile));
 
 
             services.AddScoped<ISkillRepository, SkillRepository>();

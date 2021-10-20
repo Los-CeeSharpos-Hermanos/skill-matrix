@@ -3,6 +3,7 @@ using SkillMatrix.Domain.Skills.Models;
 using SkillMatrix.Domain.Skills.Repositories;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace SkillMatrix.DataAccess.Repositories.Skills
 {
@@ -15,9 +16,11 @@ namespace SkillMatrix.DataAccess.Repositories.Skills
             _db = db;
         }
 
-        public IEnumerable<Skill> GetAllSkills()
+        public async Task<List<Skill>> GetAllSkillsAsync()
         {
-            return _db.Skills.Where(p => p.SkillId > 0);
+            return await _db.Skills.Where(p => p.SkillId > 0)
+                                   .OrderBy(s => s.SkillId)
+                                   .ToListAsync();
         }
     }
 }
