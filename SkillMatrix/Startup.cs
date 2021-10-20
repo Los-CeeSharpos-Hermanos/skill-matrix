@@ -36,8 +36,7 @@ namespace SkillMatrix.Application
         {
             if (env.IsDevelopment())
             {
-                var dbContext = app.ApplicationServices.GetRequiredService<ApplicationDBContext>();
-                dbContext.UpdateDatabase();
+                UpdateDatabase(app);
 
                 app.UseDeveloperExceptionPage();
             }
@@ -76,6 +75,12 @@ namespace SkillMatrix.Application
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
+        }
+
+        private static void UpdateDatabase(IApplicationBuilder app)
+        {
+            var dbContext = app.ApplicationServices.GetRequiredService<ApplicationDBContext>();
+            dbContext.UpdateDatabase();
         }
     }
 }
