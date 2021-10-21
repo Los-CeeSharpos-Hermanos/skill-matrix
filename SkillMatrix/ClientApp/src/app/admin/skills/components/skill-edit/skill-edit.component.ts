@@ -6,16 +6,7 @@ import { RoutingService } from 'src/app/shared/services/routing.service';
 import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
 import { SkillService } from '../../services/skill.service';
 import { Skill } from '../../skill';
-
-interface SkillCategory {
-  id: number,
-  skillCategoryName: string;
-}
-
-const fakeSkillCategories: SkillCategory[] = [
-  { id: 1, skillCategoryName: "Technical Skill" },
-  { id: 2, skillCategoryName: "Soft Skill" }
-];
+import { ISkillCategoryDropdown } from '../../skillCategory';
 
 @Component({
   selector: 'app-skill-edit',
@@ -35,7 +26,7 @@ export class SkillEditComponent implements OnInit {
   errorMessage: string;
   pageTitle: string;
   skill: Skill;
-  skillCategories: SkillCategory[];
+  skillCategories: ISkillCategoryDropdown[];
 
   skillForm = this.fb.group({
     skillName: ['', Validators.required],
@@ -48,13 +39,23 @@ export class SkillEditComponent implements OnInit {
       params => {
         const id = params.get('id')!;
         this.getSkillCategories();
+        console.log(JSON.stringify(this.skillCategories));
         this.getSkill(id);
 
       });
   }
 
   getSkillCategories() {
-    this.skillCategories = fakeSkillCategories;
+    this.skillService.listSkillCategories()
+      .subscribe({
+        next: (skillCategories: ISkillCategoryDropdown[]) => {
+           console.log(skillCategories); 
+           this.skillCategories = skillCategories; },
+        error: err => {
+          this.errorMessage = err;
+          console.log(err);
+        }
+      });
   }
 
   getSkill(id: string): void {

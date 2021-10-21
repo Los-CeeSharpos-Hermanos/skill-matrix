@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SkillMatrix.Application.DTOs
+namespace SkillMatrix.Application.DTOs.Skills
 {
     public class GetSkillDTO
     {

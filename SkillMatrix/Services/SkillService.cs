@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using SkillMatrix.Application.DTOs;
+using SkillMatrix.Application.DTOs.Skills;
 using SkillMatrix.Domain.Skills.Repositories;
 using System;
 using System.Collections.Generic;

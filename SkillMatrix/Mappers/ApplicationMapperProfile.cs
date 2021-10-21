@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using SkillMatrix.Application.DTOs;
+using SkillMatrix.Application.DTOs.Skills;
 using SkillMatrix.Domain.Skills.Models;
 
 namespace SkillMatrix.Application.Mappers
@@ -14,7 +14,7 @@ namespace SkillMatrix.Application.Mappers
         public ApplicationMapperProfile()
         {
             MapSkills();
-
+            MapSkillCategories();
         }
 
         private void MapSkills()
@@ -25,8 +25,13 @@ namespace SkillMatrix.Application.Mappers
                 map => map.MapFrom(source => source.SkillId))
                 .ForMember(
                 d => d.SkillCategory,
-                map => map.MapFrom(source => source.SkillCategory.Name))
+                map => map.MapFrom(source => source.SkillCategory.SkillCategoryName))
                 .ReverseMap();
+        }
+
+        private void MapSkillCategories()
+        {
+            CreateMap<SkillCategory, SkillCategoryDropdownDTO>();
         }
     }
 }

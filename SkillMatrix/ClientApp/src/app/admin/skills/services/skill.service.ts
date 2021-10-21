@@ -4,18 +4,29 @@ import { Observable, of, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from '../../../../environments/environment';
 import { AddSkill, Skill } from '../skill';
+import { ISkillCategoryDropdown } from '../skillCategory';
+
+const baseUrl = 'api/skills';
+
+const skillCategoryBaseUrl = 'api/SkillCategories';
+const skillCategoryDropdownPath = 'dropdown-skill-categories';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SkillService {
-  private baseUrl = 'api/skills';
+
   headers = new HttpHeaders({ 'Content-type': 'application/json' });
 
   constructor(private http: HttpClient) { }
 
   listSkills(): Observable<Skill[]> {
-    return this.http.get<Skill[]>(`${environment.apiEndpoint}/${this.baseUrl}`);
+    console.log(`${environment.apiEndpoint}/${baseUrl}`);
+    return this.http.get<Skill[]>(`${environment.apiEndpoint}/${baseUrl}`);
+  }
+
+  listSkillCategories(): Observable<ISkillCategoryDropdown[]> {
+    return this.http.get<ISkillCategoryDropdown[]>(`${environment.apiEndpoint}/${skillCategoryBaseUrl}/${skillCategoryDropdownPath}`);
   }
 
   getSkill(id: string): Observable<Skill> {
@@ -23,7 +34,7 @@ export class SkillService {
       return of(this.initializeSkill());
     }
 
-    const url = `${environment.apiEndpoint}/${this.baseUrl}/${id}`;
+    const url = `${environment.apiEndpoint}/${baseUrl}/${id}`;
     return this.http.get<Skill>(url)
       .pipe(
         catchError(this.handleError)
@@ -32,11 +43,11 @@ export class SkillService {
 
   createSkill(skill: AddSkill) {
     skill.id = undefined;
-    return this.http.post<Skill>(this.baseUrl, skill, { headers: this.headers });
+    return this.http.post<Skill>(baseUrl, skill, { headers: this.headers });
   }
 
   updateSkill(skill: Skill): Observable<Skill> {
-    const url = `${this.baseUrl}/${skill.id}}`;
+    const url = `${baseUrl}/${skill.id}}`;
     return this.http.put<Skill>(url, skill, { headers: this.headers });
   }
 
@@ -45,7 +56,7 @@ export class SkillService {
       console.log("invalid id");
     }
 
-    const url = `${this.baseUrl}/${id}`;
+    const url = `${baseUrl}/${id}`;
     return this.http.delete<Skill>(url, { headers: this.headers });
   }
 

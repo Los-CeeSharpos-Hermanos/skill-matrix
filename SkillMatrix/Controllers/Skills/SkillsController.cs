@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SkillMatrix.Application.DTOs;
+using SkillMatrix.Application.DTOs.Skills;
 using SkillMatrix.Application.Services;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -19,7 +19,6 @@ namespace SkillMatrix.Application.Controllers.Skills
         {
             _skillService = skillService;
         }
-
 
         // GET: api/<SkillsController>
         [HttpGet]

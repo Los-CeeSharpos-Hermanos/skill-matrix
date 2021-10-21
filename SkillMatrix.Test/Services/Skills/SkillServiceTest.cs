@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
 using NSubstitute;
-using SkillMatrix.Application.DTOs;
+using SkillMatrix.Application.DTOs.Skills;
 using SkillMatrix.Application.Mappers;
 using SkillMatrix.Application.Services;
 using SkillMatrix.Domain.Skills.Models;
 using SkillMatrix.Domain.Skills.Repositories;
+using SkillMatrix.Test.Services.Skills;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +33,7 @@ namespace SkillMatrix.Test.Services
         public async void ShouldReturnSkills()
         {
             //Arrange
-            var expectedSkills = GetFakeSkills();
+            var expectedSkills = SkillFakes.GetFakeSkills();
             _skillRepository.GetAllSkillsAsync().Returns(Task.FromResult(expectedSkills));
 
             var skillService = new SkillService(_skillRepository, _mapper);
@@ -51,7 +52,7 @@ namespace SkillMatrix.Test.Services
         {
             //Arrange
             var id = 1;
-            var expectedSkill = GetFakeSkills().Where(x => x.SkillId == id).Single();
+            var expectedSkill = SkillFakes.GetFakeSkills().Where(x => x.SkillId == id).Single();
             _skillRepository.GetSkillByIdAsync(id).Returns(Task.FromResult(expectedSkill));
 
             var skillService = new SkillService(_skillRepository, _mapper);
@@ -64,52 +65,5 @@ namespace SkillMatrix.Test.Services
             Assert.Equal(expectedSkill.SkillId, skill.Id);
         }
 
-        public List<Skill> GetFakeSkills()
-        {
-            return new List<Skill>
-            {
-                new Skill
-                {
-                   SkillId = 1,
-                   SkillName = "C#",
-                   SkillCategoryId = 1,
-                   SkillCategory = GetFakeSkillCategories().Where(c => c.SkillCategoryId == 1).SingleOrDefault(),
-                },
-                new Skill
-                {
-                   SkillId = 2,
-                   SkillName = "Team Play",
-                   SkillCategoryId = 2,
-                   SkillCategory = GetFakeSkillCategories().Where(c => c.SkillCategoryId == 2).SingleOrDefault(),
-                },
-                new Skill
-                {
-                   SkillId = 3,
-                   SkillName = "Java",
-                   SkillCategoryId = 3,
-                   SkillCategory = GetFakeSkillCategories().Where(c => c.SkillCategoryId == 3).SingleOrDefault(),
-                }
-            };
-        }
-
-        public List<SkillCategory> GetFakeSkillCategories()
-        {
-            return new List<SkillCategory>
-            {
-                new SkillCategory
-                {
-
-                   SkillCategoryId = 1,
-                   Name = "Technical Skills",
-                   CreatedAt = DateTime.Now
-                },                new SkillCategory
-                {
-
-                   SkillCategoryId = 2,
-                   Name = "Soft Skills",
-                   CreatedAt = DateTime.Now
-                }
-            };
-        }
     }
 }

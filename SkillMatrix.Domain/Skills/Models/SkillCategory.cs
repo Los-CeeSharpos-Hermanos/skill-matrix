@@ -6,7 +6,7 @@ namespace SkillMatrix.Domain.Skills.Models
     public class SkillCategory
     {
         public long SkillCategoryId { get; set; }
-        public string Name { get; set; }
+        public string SkillCategoryName { get; set; }
         public virtual IEnumerable<Skill> Skills { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }

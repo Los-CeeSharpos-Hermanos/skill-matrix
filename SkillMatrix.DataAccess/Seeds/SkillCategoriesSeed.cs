@@ -9,10 +9,10 @@ namespace SkillMatrix.DataAccess.Seeds
         {
             modelBuilder.Entity<SkillCategory>()
                 .HasData(
-                   new SkillCategory { SkillCategoryId = 1, Name = "Technical Skills" },
-                   new SkillCategory { SkillCategoryId = 2, Name = "Soft Skills" },
-                   new SkillCategory { SkillCategoryId = 3, Name = "SWOValue" },
-                   new SkillCategory { SkillCategoryId = 4, Name = "Sport" }
+                   new SkillCategory { SkillCategoryId = 1, SkillCategoryName = "Technical Skills" },
+                   new SkillCategory { SkillCategoryId = 2, SkillCategoryName = "Soft Skills" },
+                   new SkillCategory { SkillCategoryId = 3, SkillCategoryName = "SWOValue" },
+                   new SkillCategory { SkillCategoryId = 4, SkillCategoryName = "Sport" }
             );
         }
     }
