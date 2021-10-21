@@ -3,6 +3,7 @@ using NSubstitute;
 using SkillMatrix.Application.DTOs.Skills;
 using SkillMatrix.Application.Mappers;
 using SkillMatrix.Application.Services;
+using SkillMatrix.DataAccess;
 using SkillMatrix.Domain.Skills.Models;
 using SkillMatrix.Domain.Skills.Repositories;
 using SkillMatrix.Test.Services.Skills;
@@ -26,7 +27,6 @@ namespace SkillMatrix.Test.Services
         {
             _skillRepository = Substitute.For<ISkillRepository>();
             _mapper = TestStartupHelper.CreateApplicationMapper();
-
         }
 
         [Fact]
@@ -36,7 +36,7 @@ namespace SkillMatrix.Test.Services
             var expectedSkills = SkillFakes.GetFakeSkills();
             _skillRepository.GetAllSkillsAsync().Returns(Task.FromResult(expectedSkills));
 
-            var skillService = new SkillService(_skillRepository, _mapper);
+            var skillService = new SkillService(_mapper, _skillRepository);
 
             //Act
             var skills = await skillService.GetAllSkillsAsync();
@@ -55,7 +55,7 @@ namespace SkillMatrix.Test.Services
             var expectedSkill = SkillFakes.GetFakeSkills().Where(x => x.SkillId == id).Single();
             _skillRepository.GetSkillByIdAsync(id).Returns(Task.FromResult(expectedSkill));
 
-            var skillService = new SkillService(_skillRepository, _mapper);
+            var skillService = new SkillService(_mapper, _skillRepository);
 
             //Act
             var skill = await skillService.GetSkillByIdAsync(id);

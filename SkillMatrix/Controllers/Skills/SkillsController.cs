@@ -36,8 +36,9 @@ namespace SkillMatrix.Application.Controllers.Skills
 
         // POST api/<SkillsController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task Post([FromBody] FormSkillDTO skill)
         {
+            await _skillService.AddSkillAsync(skill);
         }
 
         // PUT api/<SkillsController>/5

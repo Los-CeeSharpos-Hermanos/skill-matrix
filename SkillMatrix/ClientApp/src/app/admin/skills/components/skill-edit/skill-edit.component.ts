@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { RoutingService } from 'src/app/shared/services/routing.service';
 import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
 import { SkillService } from '../../services/skill.service';
-import { Skill } from '../../skill';
+import { AddSkill, Skill } from '../../skill';
 import { ISkillCategoryDropdown } from '../../skillCategory';
 
 @Component({
@@ -49,8 +49,8 @@ export class SkillEditComponent implements OnInit {
     this.skillService.listSkillCategories()
       .subscribe({
         next: (skillCategories: ISkillCategoryDropdown[]) => {
-           console.log(skillCategories); 
-           this.skillCategories = skillCategories; },
+          this.skillCategories = skillCategories;
+        },
         error: err => {
           this.errorMessage = err;
           console.log(err);
@@ -97,10 +97,15 @@ export class SkillEditComponent implements OnInit {
     if (this.skillForm.valid) {
 
       if (this.skillForm.dirty) {
-        const s = { ...this.skill, ...this.skillForm.value };
-        if (s.id == 0) {
+        let skillCategory = this.skillForm.value;
+        console.log(JSON.stringify(skillCategory));
+        const editSkill = { ...this.skill, ...this.skillForm.value };
+        if (editSkill.id == 0) {
 
-          this.skillService.createSkill(s)
+          this.skillService.createSkill({
+            skillName: editSkill.skillName,
+            skillCategoryId: editSkill.skillCategory.skillCategoryId
+          } as AddSkill)
             .subscribe({
               next: () => this.onSaveComplete(),
               error: err => this.onSaveFail(err)
@@ -109,7 +114,7 @@ export class SkillEditComponent implements OnInit {
         } else {
           console.log(" updateSkill");
 
-          this.skillService.updateSkill(s)
+          this.skillService.updateSkill(editSkill)
             .subscribe({
               next: () => this.onSaveComplete(),
               error: err => this.onSaveFail(err)

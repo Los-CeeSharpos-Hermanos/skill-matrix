@@ -27,6 +27,8 @@ namespace SkillMatrix.Application.Mappers
                 d => d.SkillCategory,
                 map => map.MapFrom(source => source.SkillCategory.SkillCategoryName))
                 .ReverseMap();
+
+            CreateMap<FormSkillDTO, Skill>().ReverseMap();
         }
 
         private void MapSkillCategories()

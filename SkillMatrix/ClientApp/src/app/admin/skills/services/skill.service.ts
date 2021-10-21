@@ -7,6 +7,7 @@ import { AddSkill, Skill } from '../skill';
 import { ISkillCategoryDropdown } from '../skillCategory';
 
 const baseUrl = 'api/skills';
+const baseUri = `${environment.apiEndpoint}/${baseUrl}`;
 
 const skillCategoryBaseUrl = 'api/SkillCategories';
 const skillCategoryDropdownPath = 'dropdown-skill-categories';
@@ -22,7 +23,7 @@ export class SkillService {
 
   listSkills(): Observable<Skill[]> {
     console.log(`${environment.apiEndpoint}/${baseUrl}`);
-    return this.http.get<Skill[]>(`${environment.apiEndpoint}/${baseUrl}`);
+    return this.http.get<Skill[]>(`${baseUri}`);
   }
 
   listSkillCategories(): Observable<ISkillCategoryDropdown[]> {
@@ -43,7 +44,7 @@ export class SkillService {
 
   createSkill(skill: AddSkill) {
     skill.id = undefined;
-    return this.http.post<Skill>(baseUrl, skill, { headers: this.headers });
+    return this.http.post<Skill>(baseUri, skill, { headers: this.headers });
   }
 
   updateSkill(skill: Skill): Observable<Skill> {

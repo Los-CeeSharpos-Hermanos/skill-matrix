@@ -25,7 +25,7 @@ namespace SkillMatrix.Application
 
         public void ConfigureServices(IServiceCollection services)
         {
-          
+
 
             services.AddTransient<ApplicationDBContext>();
 
@@ -37,6 +37,7 @@ namespace SkillMatrix.Application
 
             services.AddScoped<ISkillCategoryService, SkillCategoryService>();
             services.AddScoped<ISkillCategoryRepository, SkillCategoryRepository>();
+
 
             services.AddControllersWithViews();
 

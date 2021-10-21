@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using SkillMatrix.Application.DTOs.Skills;
+using SkillMatrix.DataAccess;
+using SkillMatrix.Domain.Skills.Models;
 using SkillMatrix.Domain.Skills.Repositories;
 using System;
 using System.Collections.Generic;
@@ -12,6 +14,7 @@ namespace SkillMatrix.Application.Services
     {
         Task<List<GetSkillDTO>> GetAllSkillsAsync();
         Task<GetSkillDTO> GetSkillByIdAsync(long id);
+        Task<int> AddSkillAsync(FormSkillDTO skill);
     }
 
     public class SkillService : ISkillService
@@ -19,17 +22,25 @@ namespace SkillMatrix.Application.Services
         private readonly ISkillRepository _skillRepository;
         private readonly IMapper _mapper;
 
-        public SkillService(ISkillRepository skillRepository, IMapper mapper)
+
+        public SkillService(IMapper mapper, ISkillRepository unitOfWork)
         {
-            _skillRepository = skillRepository;
             _mapper = mapper;
+            _skillRepository = unitOfWork;
+        }
+
+        public async Task<int> AddSkillAsync(FormSkillDTO skill)
+        {
+            var mappedSkill = _mapper.Map<FormSkillDTO, Skill>(skill);
+
+            return await _skillRepository.AddSkillAsync(mappedSkill);
         }
 
         public async Task<List<GetSkillDTO>> GetAllSkillsAsync()
         {
             var skills = await _skillRepository.GetAllSkillsAsync();
 
-            return _mapper.Map<List<GetSkillDTO>>(skills);
+            return _mapper.Map<List<Skill>, List<GetSkillDTO>>(skills);
         }
 
         public async Task<GetSkillDTO> GetSkillByIdAsync(long id)
@@ -38,5 +49,6 @@ namespace SkillMatrix.Application.Services
 
             return _mapper.Map<GetSkillDTO>(skill);
         }
+
     }
 }

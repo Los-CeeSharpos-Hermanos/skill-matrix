@@ -6,4 +6,5 @@ export interface Skill {
 
 export interface AddSkill extends Omit<Skill, "id"> {
     id: undefined;
+    skillCategoryId: number | null;
 }
