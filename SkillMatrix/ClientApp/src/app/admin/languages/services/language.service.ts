@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { ILanguage } from '../language';
 
 @Injectable({
@@ -16,7 +17,7 @@ export class LanguageService {
   constructor(private http: HttpClient) { }
 
   getLanguages(): Observable<ILanguage[]> {
-    return this.http.get<ILanguage[]>(this.languageUrl).pipe(tap(data => console.log('All')), catchError(this.handleError));
+    return this.http.get<ILanguage[]>(`${environment.apiEndpoint}/${this.languageUrl}`);
   }
 
   deleteLanguage(id: number): Observable<{}> {

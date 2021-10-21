@@ -1,7 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
-using SkillMatrix.Domain.Languages;
+using SkillMatrix.Domain.Languages.Models;
 using SkillMatrix.Domain.Users;
 using SkillMatrix.DataAccess.Seeds;
 using SkillMatrix.Domain.Skills.Models;

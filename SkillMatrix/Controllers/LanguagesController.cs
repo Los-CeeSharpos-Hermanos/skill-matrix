@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SkillMatrix.Application.DTOs;
 using SkillMatrix.Application.Services;
+using SkillMatrix.Domain.Languages.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,43 +15,46 @@ namespace SkillMatrix.Application.Controllers
     [ApiController]
     public class LanguagesController : ControllerBase
     {
-        private readonly LanguageLogic languageLogic;
+        private readonly ILanguageService _languageService;
 
-        public LanguagesController(LanguageLogic languageLogic)
+        public LanguagesController(ILanguageService languageService)
         {
-            this.languageLogic = languageLogic;
+            _languageService = languageService;
         }
 
         // GET: api/<LanguagesController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IEnumerable<LanguageDTO>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return await _languageService.GetLanguages();
         }
 
         // GET api/<LanguagesController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<LanguageDTO> GetLanguage(long id)
         {
-            return "value";
+            return await _languageService.GetLanguage(id);
         }
 
         // POST api/<LanguagesController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task PostLanguage([FromBody] Language language)
         {
+            await _languageService.PostLanguage(language);
         }
 
         // PUT api/<LanguagesController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task PutLanguage(long id, [FromBody] Language language)
         {
+            await _languageService.PutLanguage(id, language);
         }
 
         // DELETE api/<LanguagesController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task DeleteLanguage(long id)
         {
+            await _languageService.DeleteLanguage(id);
         }
     }
 }

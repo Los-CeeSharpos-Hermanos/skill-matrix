@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using SkillMatrix.Application.DTOs;
+using SkillMatrix.Domain.Languages.Models;
 using SkillMatrix.Domain.Skills.Models;
 
 namespace SkillMatrix.Application.Mappers
@@ -14,6 +15,7 @@ namespace SkillMatrix.Application.Mappers
         public ApplicationMapperProfile()
         {
             MapSkills();
+            MapLanguages();
 
         }
 
@@ -26,6 +28,15 @@ namespace SkillMatrix.Application.Mappers
                 .ForMember(
                 d => d.SkillCategory,
                 map => map.MapFrom(source => source.SkillCategory.Name))
+                .ReverseMap();
+        }
+
+        private void MapLanguages()
+        {
+            CreateMap<Language, LanguageDTO>()
+                .ForMember(
+                destination => destination.Id,
+                map => map.MapFrom(source => source.Id))
                 .ReverseMap();
         }
     }

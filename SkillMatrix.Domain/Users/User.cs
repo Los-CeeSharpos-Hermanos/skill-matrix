@@ -1,4 +1,4 @@
-﻿using SkillMatrix.Domain.Languages;
+﻿using SkillMatrix.Domain.Languages.Models;
 using SkillMatrix.Domain.Skills.Models;
 using System;
 using System.Collections.Generic;
