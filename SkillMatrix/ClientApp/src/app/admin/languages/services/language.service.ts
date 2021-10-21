@@ -29,7 +29,7 @@ export class LanguageService {
   }
 
   createLanguage(language: ILanguage) {
-    const url = `${this.languageUrl}/${language.id}}`;
+    const url = `${environment.apiEndpoint}/${this.languageUrl}/${language.id}}`;
     return this.http.post<ILanguage>(url, language, { headers: this.headers });
   }
 
