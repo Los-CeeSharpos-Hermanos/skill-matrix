@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SkillMatrix.DataAccess;
 
 namespace SkillMatrix.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20211020102329_SkillsSeed")]
+    partial class SkillsSeed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -65,7 +67,7 @@ namespace SkillMatrix.DataAccess.Migrations
                     b.ToTable("Languages");
                 });
 
-            modelBuilder.Entity("SkillMatrix.Domain.Skills.Models.Skill", b =>
+            modelBuilder.Entity("SkillMatrix.Domain.Skills.Skill", b =>
                 {
                     b.Property<long>("SkillId")
                         .ValueGeneratedOnAdd()
@@ -77,11 +79,11 @@ namespace SkillMatrix.DataAccess.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETDATE()");
 
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<long>("SkillCategoryId")
                         .HasColumnType("bigint");
-
-                    b.Property<string>("SkillName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnUpdate()
@@ -99,61 +101,61 @@ namespace SkillMatrix.DataAccess.Migrations
                         {
                             SkillId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C#",
                             SkillCategoryId = 1L,
-                            SkillName = "C#",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             SkillId = 2L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Java",
                             SkillCategoryId = 1L,
-                            SkillName = "Java",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             SkillId = 3L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "JavaScript",
                             SkillCategoryId = 1L,
-                            SkillName = "JavaScript",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             SkillId = 4L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Python",
                             SkillCategoryId = 1L,
-                            SkillName = "Python",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             SkillId = 5L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Team Play",
                             SkillCategoryId = 2L,
-                            SkillName = "Team Play",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             SkillId = 6L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Speed",
                             SkillCategoryId = 3L,
-                            SkillName = "Speed",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             SkillId = 7L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Soccer",
                             SkillCategoryId = 4L,
-                            SkillName = "Soccer",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
-            modelBuilder.Entity("SkillMatrix.Domain.Skills.Models.SkillCategory", b =>
+            modelBuilder.Entity("SkillMatrix.Domain.Skills.SkillCategory", b =>
                 {
                     b.Property<long>("SkillCategoryId")
                         .ValueGeneratedOnAdd()
@@ -337,9 +339,9 @@ namespace SkillMatrix.DataAccess.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("SkillMatrix.Domain.Skills.Models.Skill", b =>
+            modelBuilder.Entity("SkillMatrix.Domain.Skills.Skill", b =>
                 {
-                    b.HasOne("SkillMatrix.Domain.Skills.Models.SkillCategory", "SkillCategory")
+                    b.HasOne("SkillMatrix.Domain.Skills.SkillCategory", "SkillCategory")
                         .WithMany("Skills")
                         .HasForeignKey("SkillCategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -374,7 +376,7 @@ namespace SkillMatrix.DataAccess.Migrations
 
             modelBuilder.Entity("SkillUser", b =>
                 {
-                    b.HasOne("SkillMatrix.Domain.Skills.Models.Skill", null)
+                    b.HasOne("SkillMatrix.Domain.Skills.Skill", null)
                         .WithMany()
                         .HasForeignKey("SkillsSkillId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -387,7 +389,7 @@ namespace SkillMatrix.DataAccess.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("SkillMatrix.Domain.Skills.Models.SkillCategory", b =>
+            modelBuilder.Entity("SkillMatrix.Domain.Skills.SkillCategory", b =>
                 {
                     b.Navigation("Skills");
                 });
