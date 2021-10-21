@@ -5,11 +5,8 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-<<<<<<< HEAD
-=======
 using Microsoft.OpenApi.Models;
 using SkillMatrix.Application.Mappers;
->>>>>>> main
 using SkillMatrix.Application.Services;
 using SkillMatrix.DataAccess;
 using SkillMatrix.DataAccess.Repositories.Skills;

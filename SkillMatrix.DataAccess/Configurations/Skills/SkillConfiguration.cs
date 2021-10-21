@@ -10,13 +10,6 @@ namespace SkillMatrix.DataAccess.Skills
         {
             builder.Property(p => p.CreatedAt).HasDefaultValueSql("GETDATE()").ValueGeneratedOnAdd();
             builder.Property(p => p.UpdatedAt).HasDefaultValueSql("GETDATE()").ValueGeneratedOnUpdate();
-<<<<<<< HEAD:SkillMatrix.DataAccess/Configurations/SkillConfiguration.cs
-
-            builder.HasOne(p => p.SkillCategory);
-          
-
-=======
->>>>>>> main:SkillMatrix.DataAccess/Configurations/Skills/SkillConfiguration.cs
         }
     }
 }
