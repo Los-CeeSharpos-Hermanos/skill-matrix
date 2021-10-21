@@ -13,7 +13,6 @@ namespace SkillMatrix.Domain.Users
 
         public virtual ICollection<User> Users { get; set; }
         public virtual Department Department { get; set; }
-        //public virtual User TeamLead { get; set; }???
 
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SkillMatrix.Application.Services;
 using SkillMatrix.DataAccess;
 
 namespace SkillMatrix.Application
@@ -22,6 +23,7 @@ namespace SkillMatrix.Application
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<ApplicationDBContext>();
+            services.AddTransient<LanguageLogic>();
 
 
             services.AddControllersWithViews();

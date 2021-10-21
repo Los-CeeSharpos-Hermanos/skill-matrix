@@ -20,7 +20,7 @@ namespace SkillMatrix.DataAccess.Skills
             builder.Property(p => p.UpdatedAt).HasDefaultValueSql("GETDATE()").ValueGeneratedOnUpdate();
 
             builder.HasOne(p => p.SkillCategory);
-            builder.HasMany(p => p.Users);
+          
 
         }
     }

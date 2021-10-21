@@ -18,7 +18,6 @@ namespace SkillMatrix.DataAccess.Configurations
 
             builder.HasMany(p => p.Users);
             builder.HasOne(p => p.Department);
-            //builder.HasOne(p => p.User);
         }
     }
 }

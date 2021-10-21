@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SkillMatrix.Domain.Languages;
+
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -16,7 +18,7 @@ namespace SkillMatrix.Domain.Users
         public string ImageUrl { get; set; }
 
         public virtual ICollection<Skill.Skill> Skills { get; set; }
-        public virtual ICollection<Languages.Language> Languages { get; set; }
+        public virtual ICollection<Language> Languages { get; set; }
         public virtual Department Department { get; set; }
         public virtual Team Team { get; set; }
 
