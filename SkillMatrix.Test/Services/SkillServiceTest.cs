@@ -38,12 +38,30 @@ namespace SkillMatrix.Test.Services
             var skillService = new SkillService(_skillRepository, _mapper);
 
             //Act
-            var skills = await skillService.GetAllSkills();
+            var skills = await skillService.GetAllSkillsAsync();
 
             //Assert
             Assert.NotEmpty(skills);
             Assert.Equal(expectedSkills.Count, skills.Count);
             Assert.All(skills, result => Assert.IsType<GetSkillDTO>(result));
+        }
+
+        [Fact]
+        public async void ShouldReturnSkillTheSkillWithId()
+        {
+            //Arrange
+            var id = 1;
+            var expectedSkill = GetFakeSkills().Where(x => x.SkillId == id).Single();
+            _skillRepository.GetSkillByIdAsync(id).Returns(Task.FromResult(expectedSkill));
+
+            var skillService = new SkillService(_skillRepository, _mapper);
+
+            //Act
+            var skill = await skillService.GetSkillByIdAsync(id);
+
+            //Assert
+            Assert.IsType<GetSkillDTO>(skill);
+            Assert.Equal(expectedSkill.SkillId, skill.Id);
         }
 
         public List<Skill> GetFakeSkills()

@@ -23,7 +23,7 @@ export class SkillService {
       return of(this.initializeSkill());
     }
 
-    const url = `${this.baseUrl}/${id}`;
+    const url = `${environment.apiEndpoint}/${this.baseUrl}/${id}`;
     return this.http.get<Skill>(url)
       .pipe(
         catchError(this.handleError)

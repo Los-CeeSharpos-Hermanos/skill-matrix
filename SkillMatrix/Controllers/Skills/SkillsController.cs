@@ -25,14 +25,14 @@ namespace SkillMatrix.Application.Controllers.Skills
         [HttpGet]
         public async Task<IEnumerable<GetSkillDTO>> Get()
         {
-            return await _skillService.GetAllSkills();
+            return await _skillService.GetAllSkillsAsync();
         }
 
         // GET api/<SkillsController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<GetSkillDTO> Get(long id)
         {
-            return "value";
+            return await _skillService.GetSkillByIdAsync(id);
         }
 
         // POST api/<SkillsController>

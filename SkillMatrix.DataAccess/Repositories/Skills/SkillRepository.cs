@@ -22,5 +22,10 @@ namespace SkillMatrix.DataAccess.Repositories.Skills
                                    .OrderBy(s => s.SkillId)
                                    .ToListAsync();
         }
+
+        public async Task<Skill> GetSkillByIdAsync(long id)
+        {
+            return await _db.Skills.Where(p => p.SkillId == id).SingleOrDefaultAsync();
+        }
     }
 }

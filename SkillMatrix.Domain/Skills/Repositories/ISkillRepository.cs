@@ -10,5 +10,6 @@ namespace SkillMatrix.Domain.Skills.Repositories
     public interface ISkillRepository
     {
         Task<List<Skill>> GetAllSkillsAsync();
+        Task<Skill> GetSkillByIdAsync(long id);
     }
 }
