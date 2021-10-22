@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,14 +24,16 @@ namespace SkillMatrix.Application
 
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddTransient<ApplicationDBContext>();
 
             services.AddAutoMapper(typeof(ApplicationMapperProfile));
 
-
             services.AddScoped<ISkillRepository, SkillRepository>();
-
             services.AddScoped<ISkillService, SkillService>();
+
+            services.AddScoped<ISkillCategoryService, SkillCategoryService>();
+            services.AddScoped<ISkillCategoryRepository, SkillCategoryRepository>();
 
             services.AddControllersWithViews();
 
@@ -54,6 +55,11 @@ namespace SkillMatrix.Application
                 UpdateDatabase(app);
 
                 app.UseDeveloperExceptionPage();
+
+                app.UseCors(options => options.WithOrigins("https://localhost:44351", "http://localhost:4200")
+                                .AllowAnyHeader()
+                                .AllowAnyMethod()
+                                .AllowCredentials());
             }
             else
             {
@@ -62,6 +68,7 @@ namespace SkillMatrix.Application
             }
 
             app.UseHttpsRedirection();
+
             app.UseStaticFiles();
             if (!env.IsDevelopment())
             {

@@ -27,14 +27,14 @@ export class SkillListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadSkills();
+
   }
 
   deleteSkill(id: number): void {
     if (id === 0) {
       alert("Invalid id");
     } else {
-      console.log(id);
-      if (confirm(`Àre you sure you want to delete this skill?`)) {
+      if (confirm(`Are you sure you want to delete this skill?`)) {
         this.skillService.deleteSkill(id)
           .subscribe({
             next: () => this.loadSkills(),

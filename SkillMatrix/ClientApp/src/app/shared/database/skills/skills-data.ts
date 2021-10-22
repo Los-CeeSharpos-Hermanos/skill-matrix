@@ -4,31 +4,41 @@ export const skills: Skill[] = [
     {
         id: 1,
         skillName: "C#",
-        skillCategory: "Technical Skill"
+        skillCategoryName: "Technical Skill",
+        skillCategoryId: 1
+
     },
     {
         id: 2,
         skillName: "Java",
-        skillCategory: "Technical Skill"
+        skillCategoryName: "Technical Skill",
+        skillCategoryId: 1
+
     },
     {
         id: 3,
         skillName: "JavaScript",
-        skillCategory: "Technical Skill"
+        skillCategoryName: "Technical Skill",
+        skillCategoryId: 1
+
     },
     {
         id: 4,
         skillName: "Python",
-        skillCategory: "Technical Skill"
+        skillCategoryName: "Technical Skill",
+        skillCategoryId: 1
+
     },
     {
         id: 5,
         skillName: "Team Play",
-        skillCategory: "Soft Skill"
+        skillCategoryName: "Soft Skill",
+        skillCategoryId: 2
     },
     {
         id: 6,
         skillName: "Speed",
-        skillCategory: "Soft Skill"
+        skillCategoryName: "Soft Skill",
+        skillCategoryId: 2
     }
 ];

@@ -1,39 +1,38 @@
 <app-submenu [pageTitle]=pageTitle></app-submenu>
 <div class='container edit-skill'>
-    <div class='row'>
-        <div class="d-flex justify-content-center">
-            <form [formGroup]="skillForm">
-                <mat-card>
-                    <div class='row d-flex justify-content-center'>
-                        <mat-form-field appearance="fill">
-                            <mat-label>Skill Name</mat-label>
-                            <input formControlName="skillName" matInput>
-                        </mat-form-field>
+  <div class='row'>
+    <div class="d-flex justify-content-center">
+      <form [formGroup]="skillForm">
+        <mat-card>
+          <div class='row d-flex justify-content-center'>
+            <mat-form-field appearance="fill">
+              <mat-label>Skill Name</mat-label>
+              <input formControlName="skillName" matInput>
+            </mat-form-field>
 
-                        <mat-form-field appearance="fill">
-                            <mat-label>Category</mat-label>
-                            <mat-select placeholder="Category" formControlName="skillCategory">
-                                <mat-option *ngFor="let category of skillCategories"
-                                    [value]="category.skillCategoryName">
-                                    {{category.skillCategoryName}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Category</mat-label>
+              <mat-select placeholder="Category" formControlName="skillCategory">
+                <mat-option *ngFor="let category of skillCategories" [value]="category">
+                  {{category.skillCategoryName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
 
-                        <div class="row justify-content-md-center">
-                            <div class="col-sm-6 d-flex justify-content-center">
-                                <button mat-raised-button color="primary" (click)="saveSkill()">Save</button>
-                                <button mat-raised-button color="warn" (click)="deleteSkill()">Delete</button>
-                            </div>
-                        </div>
-                    </div>
+            <div class="row justify-content-md-center">
+              <div class="col-sm-6 d-flex justify-content-center">
+                <button mat-raised-button color="primary" (click)="saveSkill()">Save</button>
+                <button mat-raised-button color="warn" (click)="deleteSkill()">Delete</button>
+              </div>
+            </div>
+          </div>
 
-                    <app-go-back-button></app-go-back-button>
-                </mat-card>
-            </form>
-        </div>
-
-
-
+          <app-go-back-button></app-go-back-button>
+        </mat-card>
+      </form>
     </div>
+
+
+
+  </div>
 </div>
