@@ -43,9 +43,9 @@ namespace SkillMatrix.Application.Controllers
 
         // PUT api/<LanguagesController>/5
         [HttpPut("{id}")]
-        public async Task PutLanguageAsync(long id, [FromBody] Language language)
+        public async Task PutLanguageAsync([FromBody] Language language)
         {
-            await _languageService.PutLanguageAsync(id, language);
+            await _languageService.PutLanguageAsync(language);
         }
 
         // DELETE api/<LanguagesController>/5

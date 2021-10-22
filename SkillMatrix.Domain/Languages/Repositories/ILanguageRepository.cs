@@ -9,7 +9,7 @@ namespace SkillMatrix.Domain.Languages.Repositories
         Task<List<Language>> GetLanguagesAsync();
         Task<Language> GetLanguageAsync(long id);
         Task PostLanguageAsync(Language language);
-        Task PutLanguageAsync(long id, Language language);
+        Task PutLanguageAsync(Language language);
         Task DeleteLanguageAsync(long id);
     }
 }

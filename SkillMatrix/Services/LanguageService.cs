@@ -12,7 +12,7 @@ namespace SkillMatrix.Application.Services
         Task<List<LanguageDTO>> GetLanguagesAsync();
         Task<LanguageDTO> GetLanguageAsync(long id);
         Task PostLanguageAsync(Language language);
-        Task PutLanguageAsync(long id, Language language);
+        Task PutLanguageAsync(Language language);
         Task DeleteLanguageAsync(long id);
     }
 
@@ -48,9 +48,9 @@ namespace SkillMatrix.Application.Services
 
         }
 
-        public async Task PutLanguageAsync(long id, Language language)
+        public async Task PutLanguageAsync(Language language)
         {
-            await _languageRepository.PutLanguageAsync(id, language);
+            await _languageRepository.PutLanguageAsync(language);
         }
 
         public async Task DeleteLanguageAsync(long id)

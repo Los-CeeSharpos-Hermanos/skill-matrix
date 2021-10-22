@@ -23,7 +23,7 @@ namespace SkillMatrix.Application.Mappers
 
         private void MapSkills()
         {
-            CreateMap<Skill, GetSkillDTO>()
+            CreateMap<Skill, DTOs.Skills.GetSkillDTO>()
                 .ForMember(
                 destination => destination.Id,
                 map => map.MapFrom(source => source.SkillId))

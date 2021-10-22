@@ -29,12 +29,12 @@ export class LanguageService {
   }
 
   createLanguage(language: ILanguage) {
-    const url = `${environment.apiEndpoint}/${this.languageUrl}/${language.id}}`;
+    const url = `${environment.apiEndpoint}/${this.languageUrl}`;
     return this.http.post<ILanguage>(url, language, { headers: this.headers });
   }
 
   updateLanguage(language: ILanguage): Observable<ILanguage> {
-    const url = `${this.languageUrl}/${language.id}}`;
+    const url = `${environment.apiEndpoint}/${this.languageUrl}/${language.id}`;
     return this.http.put<ILanguage>(url, language, { headers: this.headers });
   }
 
@@ -43,7 +43,7 @@ export class LanguageService {
       return of(this.initializeLanguage());
     }
 
-    const url = `${this.languageUrl}/${id}`;
+    const url = `${environment.apiEndpoint}/${this.languageUrl}/${id}`;
     return this.http.get<ILanguage>(url)
       .pipe(
         catchError(this.handleError)
