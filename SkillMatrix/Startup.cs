@@ -26,14 +26,16 @@ namespace SkillMatrix.Application
 
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddTransient<ApplicationDBContext>();
 
             services.AddAutoMapper(typeof(ApplicationMapperProfile));
 
-
             services.AddScoped<ISkillRepository, SkillRepository>();
-
             services.AddScoped<ISkillService, SkillService>();
+
+            services.AddScoped<ISkillCategoryService, SkillCategoryService>();
+            services.AddScoped<ISkillCategoryRepository, SkillCategoryRepository>();
 
             services.AddScoped<ILanguageRepository, LanguageRepository>();
 
@@ -60,6 +62,11 @@ namespace SkillMatrix.Application
                 UpdateDatabase(app);
 
                 app.UseDeveloperExceptionPage();
+
+                app.UseCors(options => options.WithOrigins("https://localhost:44351", "http://localhost:4200")
+                                .AllowAnyHeader()
+                                .AllowAnyMethod()
+                                .AllowCredentials());
             }
             else
             {
@@ -68,6 +75,7 @@ namespace SkillMatrix.Application
             }
 
             app.UseHttpsRedirection();
+
             app.UseStaticFiles();
             if (!env.IsDevelopment())
             {

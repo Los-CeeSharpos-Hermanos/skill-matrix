@@ -26,6 +26,7 @@ export class SnackBarService {
     });
   }
 }
+
 function durantionInSeconds(duration: number): number {
   return duration * 1000;
 }
