@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using SkillMatrix.Application.DTOs;
+using SkillMatrix.Domain.Languages.Models;
 using SkillMatrix.Application.DTOs.Skills;
 using SkillMatrix.Domain.Skills.Models;
 
@@ -15,11 +17,13 @@ namespace SkillMatrix.Application.Mappers
         {
             MapSkills();
             MapSkillCategories();
+            MapLanguages();
+
         }
 
         private void MapSkills()
         {
-            CreateMap<Skill, GetSkillDTO>()
+            CreateMap<Skill, DTOs.Skills.GetSkillDTO>()
                 .ForMember(
                 destination => destination.Id,
                 map => map.MapFrom(source => source.SkillId))
@@ -37,6 +41,15 @@ namespace SkillMatrix.Application.Mappers
         private void MapSkillCategories()
         {
             CreateMap<SkillCategory, SkillCategoryDropdownDTO>();
+        }
+
+        private void MapLanguages()
+        {
+            CreateMap<Language, LanguageDTO>()
+                .ForMember(
+                destination => destination.Id,
+                map => map.MapFrom(source => source.Id))
+                .ReverseMap();
         }
     }
 }

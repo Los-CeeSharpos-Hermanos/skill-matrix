@@ -9,6 +9,8 @@ using SkillMatrix.Application.Mappers;
 using SkillMatrix.Application.Services;
 using SkillMatrix.DataAccess;
 using SkillMatrix.DataAccess.Repositories.Skills;
+using SkillMatrix.DataAccess.Repositories.Languages;
+using SkillMatrix.Domain.Languages.Repositories;
 using SkillMatrix.Domain.Skills.Repositories;
 
 namespace SkillMatrix.Application
@@ -34,6 +36,11 @@ namespace SkillMatrix.Application
 
             services.AddScoped<ISkillCategoryService, SkillCategoryService>();
             services.AddScoped<ISkillCategoryRepository, SkillCategoryRepository>();
+
+            services.AddScoped<ILanguageRepository, LanguageRepository>();
+
+            services.AddScoped<ILanguageService, LanguageService>();
+
 
             services.AddControllersWithViews();
 

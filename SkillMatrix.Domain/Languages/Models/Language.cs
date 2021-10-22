@@ -1,10 +1,8 @@
-﻿using System;
+﻿using SkillMatrix.Domain.Users;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SkillMatrix.Domain.Languages
+namespace SkillMatrix.Domain.Languages.Models
 {
     public class Language
     {
@@ -13,7 +11,7 @@ namespace SkillMatrix.Domain.Languages
         public string Name { get; set; }
         public string NativeName { get; set; }
 
-        public virtual ICollection<Users.User> Users { get; set; }
+        public virtual IEnumerable<User> Users { get; set; }
 
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }

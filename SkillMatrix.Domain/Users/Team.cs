@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SkillMatrix.Domain.Users
 {
@@ -13,7 +10,6 @@ namespace SkillMatrix.Domain.Users
 
         public virtual ICollection<User> Users { get; set; }
         public virtual Department Department { get; set; }
-        //public virtual User TeamLead { get; set; }???
 
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
