@@ -1,22 +1,19 @@
 ﻿using AutoMapper;
 using SkillMatrix.Application.DTOs;
-using SkillMatrix.DataAccess;
 using SkillMatrix.Domain.Languages.Models;
 using SkillMatrix.Domain.Languages.Repositories;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace SkillMatrix.Application.Services
 {
     public interface ILanguageService
     {
-        Task<List<LanguageDTO>> GetLanguages();
-        Task<LanguageDTO> GetLanguage(long id);
-        Task PostLanguage(Language language);
-        Task PutLanguage(long id, Language language);
-        Task DeleteLanguage(long id);
+        Task<List<LanguageDTO>> GetLanguagesAsync();
+        Task<LanguageDTO> GetLanguageAsync(long id);
+        Task PostLanguageAsync(Language language);
+        Task PutLanguageAsync(long id, Language language);
+        Task DeleteLanguageAsync(long id);
     }
 
 
@@ -31,32 +28,32 @@ namespace SkillMatrix.Application.Services
             _mapper = mapper;
         }
 
-        public async Task<List<LanguageDTO>> GetLanguages()
+        public async Task<List<LanguageDTO>> GetLanguagesAsync()
         {
             var languages = await _languageRepository.GetLanguagesAsync();
 
             return _mapper.Map<List<LanguageDTO>>(languages);
         }
 
-        public async Task<LanguageDTO> GetLanguage(long id)
+        public async Task<LanguageDTO> GetLanguageAsync(long id)
         {
             var language = await _languageRepository.GetLanguageAsync(id);
 
             return _mapper.Map<LanguageDTO>(language);
         }
 
-        public async Task PostLanguage(Language language)
+        public async Task PostLanguageAsync(Language language)
         {
             await _languageRepository.PostLanguageAsync(language);
 
         }
 
-        public async Task PutLanguage(long id, Language language)
+        public async Task PutLanguageAsync(long id, Language language)
         {
             await _languageRepository.PutLanguageAsync(id, language);
         }
 
-        public async Task DeleteLanguage(long id)
+        public async Task DeleteLanguageAsync(long id)
         {
             await _languageRepository.DeleteLanguageAsync(id);
         }

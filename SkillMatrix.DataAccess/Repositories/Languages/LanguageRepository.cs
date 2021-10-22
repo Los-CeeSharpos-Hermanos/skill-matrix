@@ -1,10 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SkillMatrix.Domain.Languages.Models;
 using SkillMatrix.Domain.Languages.Repositories;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SkillMatrix.DataAccess.Repositories.Languages

@@ -1,11 +1,5 @@
-﻿using DocumentFormat.OpenXml.Office2010.Excel;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SkillMatrix.Domain.Languages.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SkillMatrix.DataAccess.Seeds
 {

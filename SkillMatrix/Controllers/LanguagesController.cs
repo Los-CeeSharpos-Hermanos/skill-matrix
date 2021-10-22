@@ -2,9 +2,7 @@
 using SkillMatrix.Application.DTOs;
 using SkillMatrix.Application.Services;
 using SkillMatrix.Domain.Languages.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -24,37 +22,37 @@ namespace SkillMatrix.Application.Controllers
 
         // GET: api/<LanguagesController>
         [HttpGet]
-        public async Task<IEnumerable<LanguageDTO>> Get()
+        public async Task<IEnumerable<LanguageDTO>> GetAsync()
         {
-            return await _languageService.GetLanguages();
+            return await _languageService.GetLanguagesAsync();
         }
 
         // GET api/<LanguagesController>/5
         [HttpGet("{id}")]
         public async Task<LanguageDTO> GetLanguage(long id)
         {
-            return await _languageService.GetLanguage(id);
+            return await _languageService.GetLanguageAsync(id);
         }
 
         // POST api/<LanguagesController>
         [HttpPost]
-        public async Task PostLanguage([FromBody] Language language)
+        public async Task PostLanguageAsync([FromBody] Language language)
         {
-            await _languageService.PostLanguage(language);
+            await _languageService.PostLanguageAsync(language);
         }
 
         // PUT api/<LanguagesController>/5
         [HttpPut("{id}")]
-        public async Task PutLanguage(long id, [FromBody] Language language)
+        public async Task PutLanguageAsync(long id, [FromBody] Language language)
         {
-            await _languageService.PutLanguage(id, language);
+            await _languageService.PutLanguageAsync(id, language);
         }
 
         // DELETE api/<LanguagesController>/5
         [HttpDelete("{id}")]
-        public async Task DeleteLanguage(long id)
+        public async Task DeleteLanguageAsync(long id)
         {
-            await _languageService.DeleteLanguage(id);
+            await _languageService.DeleteLanguageAsync(id);
         }
     }
 }
