@@ -15,6 +15,9 @@ namespace SkillMatrix.Application.Services
         Task<List<GetSkillDTO>> GetAllSkillsAsync();
         Task<GetSkillDTO> GetSkillByIdAsync(long id);
         Task<int> AddSkillAsync(FormSkillDTO skill);
+        Task UpdateSkillAsync(long skillId, FormSkillDTO skill);
+        Task RemoveSkillAsync(long skillId);
+
     }
 
     public class SkillService : ISkillService
@@ -23,10 +26,10 @@ namespace SkillMatrix.Application.Services
         private readonly IMapper _mapper;
 
 
-        public SkillService(IMapper mapper, ISkillRepository unitOfWork)
+        public SkillService(IMapper mapper, ISkillRepository skillRepository)
         {
             _mapper = mapper;
-            _skillRepository = unitOfWork;
+            _skillRepository = skillRepository;
         }
 
         public async Task<int> AddSkillAsync(FormSkillDTO skill)
@@ -50,5 +53,21 @@ namespace SkillMatrix.Application.Services
             return _mapper.Map<GetSkillDTO>(skill);
         }
 
+        public async Task UpdateSkillAsync(long skillId, FormSkillDTO skill)
+        {
+            var updatedSkill = await _skillRepository.GetSkillByIdAsync(skillId);
+            updatedSkill.SkillName = skill.SkillName;
+            updatedSkill.SkillCategoryId = skill.SkillCategoryId;
+
+            _skillRepository.UpdateSkill(updatedSkill);
+
+        }
+
+        public async Task RemoveSkillAsync(long skillId)
+        {
+            var deletedSkill = await _skillRepository.GetSkillByIdAsync(skillId);
+
+            _skillRepository.DeleteSkill(deletedSkill);
+        }
     }
 }

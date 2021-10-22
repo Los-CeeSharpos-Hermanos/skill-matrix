@@ -22,7 +22,6 @@ export class SkillService {
   constructor(private http: HttpClient) { }
 
   listSkills(): Observable<Skill[]> {
-    console.log(`${environment.apiEndpoint}/${baseUrl}`);
     return this.http.get<Skill[]>(`${baseUri}`);
   }
 
@@ -43,12 +42,11 @@ export class SkillService {
   }
 
   createSkill(skill: AddSkill) {
-    skill.id = undefined;
     return this.http.post<Skill>(baseUri, skill, { headers: this.headers });
   }
 
-  updateSkill(skill: Skill): Observable<Skill> {
-    const url = `${baseUrl}/${skill.id}}`;
+  updateSkill(skill: AddSkill): Observable<Skill> {
+    const url = `${baseUri}/${skill.id}`;
     return this.http.put<Skill>(url, skill, { headers: this.headers });
   }
 
@@ -57,7 +55,7 @@ export class SkillService {
       console.log("invalid id");
     }
 
-    const url = `${baseUrl}/${id}`;
+    const url = `${baseUri}/${id}`;
     return this.http.delete<Skill>(url, { headers: this.headers });
   }
 
@@ -75,8 +73,9 @@ export class SkillService {
   private initializeSkill(): Skill {
     return {
       id: 0,
-      skillCategory: null,
-      skillName: null
+      skillCategoryName: null,
+      skillName: null,
+      skillCategoryId: null
     };
   }
 }

@@ -39,7 +39,6 @@ export class SkillEditComponent implements OnInit {
       params => {
         const id = params.get('id')!;
         this.getSkillCategories();
-        console.log(JSON.stringify(this.skillCategories));
         this.getSkill(id);
 
       });
@@ -80,41 +79,31 @@ export class SkillEditComponent implements OnInit {
 
     this.skillForm.patchValue({
       skillName: this.skill.skillName,
-      skillCategory: this.skill.skillCategory
+      skillCategory: this.GetSkillCategory(skill)
     });
   }
 
-
-  editSkill(skill: Skill): void {
-    this.skillService.updateSkill(skill)
-      .subscribe({
-        next: () => this.onSaveComplete(),
-        error: err => this.errorMessage = err
-      });
-  }
 
   saveSkill(): void {
     if (this.skillForm.valid) {
 
       if (this.skillForm.dirty) {
-        let skillCategory = this.skillForm.value;
-        console.log(JSON.stringify(skillCategory));
-        const editSkill = { ...this.skill, ...this.skillForm.value };
-        if (editSkill.id == 0) {
+        const { skillCategory, skillName } = this.skillForm.value;
 
-          this.skillService.createSkill({
-            skillName: editSkill.skillName,
-            skillCategoryId: editSkill.skillCategory.skillCategoryId
-          } as AddSkill)
+        const addSkill: AddSkill = {
+          id: this.skill.id,
+          skillName,
+          skillCategoryId: skillCategory.skillCategoryId,
+        };
+
+        if (addSkill.id == 0) {
+          this.skillService.createSkill(addSkill)
             .subscribe({
               next: () => this.onSaveComplete(),
               error: err => this.onSaveFail(err)
             });
-
         } else {
-          console.log(" updateSkill");
-
-          this.skillService.updateSkill(editSkill)
+          this.skillService.updateSkill(addSkill)
             .subscribe({
               next: () => this.onSaveComplete(),
               error: err => this.onSaveFail(err)
@@ -156,6 +145,9 @@ export class SkillEditComponent implements OnInit {
     this.snackBarService.warn(message);
   }
 
+  private GetSkillCategory(skill: Skill): any {
+    return this.skillCategories?.find(category => category.skillCategoryId == skill.skillCategoryId);
+  }
 
 }
 

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SkillMatrix.Domain;
 using SkillMatrix.Domain.Skills.Models;
 using SkillMatrix.Domain.Skills.Repositories;
 using System;
@@ -19,9 +20,9 @@ namespace SkillMatrix.DataAccess.Repositories.Skills
 
         public async Task<int> AddSkillAsync(Skill skill)
         {
-            await _db.Skills.AddAsync(new Skill { SkillName = "Teste", SkillCategoryId = 1 });
+            await _db.Skills.AddAsync(skill);
 
-            return await _db.SaveChangesAsync();
+            return await SaveChangesAsync();
         }
 
         public async Task<List<Skill>> GetAllSkillsAsync()
@@ -33,13 +34,54 @@ namespace SkillMatrix.DataAccess.Repositories.Skills
 
         public async Task<Skill> GetSkillByIdAsync(long id)
         {
-            return await _db.Skills.Where(p => p.SkillId == id).SingleOrDefaultAsync();
+            return await _db.Skills.FindAsync(id);
         }
 
-        private async Task<int> Save()
+        public void UpdateSkill(Skill skill)
         {
+            _db.Update(skill);
+            SaveChanges();
+        }
+
+
+        public void DeleteSkill(Skill skill)
+        {
+            _db.Remove(skill);
+            SaveChanges();
+        }
+
+        public int SaveChanges()
+        {
+            var entries = _db.ChangeTracker.Entries()
+         .Where(e => e.Entity is BaseEntity && (
+                 e.State == EntityState.Added
+                 || e.State == EntityState.Modified));
+
+            foreach (var entityEntry in entries)
+            {
+                ((BaseEntity)entityEntry.Entity).UpdatedAt = DateTime.Now;
+
+            }
+
+            return _db.SaveChanges();
+        }
+
+        public async Task<int> SaveChangesAsync()
+        {
+            var entries = _db.ChangeTracker.Entries()
+         .Where(e => e.Entity is BaseEntity && (
+                 e.State == EntityState.Added
+                 || e.State == EntityState.Modified));
+
+            foreach (var entityEntry in entries)
+            {
+                ((BaseEntity)entityEntry.Entity).UpdatedAt = DateTime.Now;
+
+            }
+
             return await _db.SaveChangesAsync();
         }
+
 
 
     }

@@ -9,6 +9,7 @@ namespace SkillMatrix.Application.DTOs.Skills
     {
         public long Id { get; set; }
         public string SkillName { get; set; }
-        public string SkillCategory { get; set; }
+        public string SkillCategoryName { get; set; }
+        public string SkillCategoryId { get; set; }
     }
 }

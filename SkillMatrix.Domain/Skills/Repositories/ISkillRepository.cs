@@ -12,5 +12,7 @@ namespace SkillMatrix.Domain.Skills.Repositories
         Task<List<Skill>> GetAllSkillsAsync();
         Task<Skill> GetSkillByIdAsync(long id);
         Task<int> AddSkillAsync(Skill skill);
+        void UpdateSkill(Skill skill);
+        void DeleteSkill(Skill skill);
     }
 }

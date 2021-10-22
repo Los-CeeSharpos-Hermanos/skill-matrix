@@ -34,7 +34,6 @@ export class SkillListComponent implements OnInit {
     if (id === 0) {
       alert("Invalid id");
     } else {
-      console.log(id);
       if (confirm(`Are you sure you want to delete this skill?`)) {
         this.skillService.deleteSkill(id)
           .subscribe({
