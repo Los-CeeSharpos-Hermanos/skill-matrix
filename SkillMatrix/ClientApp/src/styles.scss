@@ -10,8 +10,15 @@ $candy-app-theme: mat-dark-theme(
 
 @include angular-material-theme($candy-app-theme);
 
-html, body { height: 100%; background-color:#343434}
+html, body { height: 100%; background-color:#282C35}
 
-body {  margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {  margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
 
+.mat-card {
+  background-color: #4C516D;
+}
+
+.dyeableContainer {
+  background-color: #4C516D;
+}
 

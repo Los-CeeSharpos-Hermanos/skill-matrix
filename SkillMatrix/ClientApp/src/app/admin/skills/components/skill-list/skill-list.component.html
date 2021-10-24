@@ -15,10 +15,11 @@
         </div>
     </div>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements"
+    class="dyeableContainer">
     </mat-paginator>
 
-    <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
+    <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8 dyeableContainer">
 
         <ng-container matColumnDef="skillName">
             <th mat-header-cell mat-sort-header *matHeaderCellDef> Name </th>

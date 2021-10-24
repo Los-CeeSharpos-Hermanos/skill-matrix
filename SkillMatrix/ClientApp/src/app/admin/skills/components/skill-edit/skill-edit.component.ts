@@ -97,6 +97,7 @@ export class SkillEditComponent implements OnInit {
 
       if (this.skillForm.dirty) {
         const s = { ...this.skill, ...this.skillForm.value };
+
         if (s.id == 0) {
 
           this.skillService.createSkill(s)

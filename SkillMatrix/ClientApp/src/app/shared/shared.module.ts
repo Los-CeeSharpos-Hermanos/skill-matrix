@@ -10,6 +10,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { SkillMatrixMockDb } from './database/fake-in-memory-db';
 import { MaterialsModule } from './materials/materials.module';
 import { AddButtonComponent } from './components/add-button/add-button.component';
+import { RemoveButtonComponent } from './components/remove-button/remove-button.component';
 
 
 
@@ -18,7 +19,8 @@ import { AddButtonComponent } from './components/add-button/add-button.component
     ToolbarComponent,
     AddButtonComponent,
     SubmenuComponent,
-    GoBackButtonComponent
+    GoBackButtonComponent,
+    RemoveButtonComponent
   ],
   exports: [
     CommonModule,
@@ -27,7 +29,8 @@ import { AddButtonComponent } from './components/add-button/add-button.component
     SubmenuComponent,
     GoBackButtonComponent,
     ReactiveFormsModule,
-    AddButtonComponent
+    AddButtonComponent,
+    RemoveButtonComponent
   ],
   imports: [
     CommonModule,
