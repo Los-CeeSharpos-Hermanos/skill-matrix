@@ -1,11 +1,29 @@
-export interface IUser{
+export interface IUser {
   id: number;
   surName: string;
   firstName: string;
   email: string;
   department: string;
   team: string;
-  skill: string;
-  language: string;
+  skills: IUserSkill[];
+  languages: IUserLanguage[];
   imageUrl: string;
+}
+
+export interface IUserHability {
+  rating: Rating;
+}
+
+export interface IUserSkill extends IUserHability {
+  skill: string,
+}
+
+export interface IUserLanguage extends IUserHability {
+  language: string,
+}
+
+export enum Rating {
+  Begginer = 1,
+  Intermediate = 2,
+  Advanced = 3
 }

@@ -16,33 +16,32 @@ export class AddUserComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  clickAdd( surName: string,firstName: string, email: string, department: string, team: string, skill: string, language: string, imageUrl: string): void
-  {
-    let id : number = 0;
-    this.isThere = false;
-    for(let user of this.users) {
-      if(user.firstName == firstName && user.surName == surName) {
-        this.isThere = true; break;
-      }
-    }
-    if(!this.isThere) {
-      if(firstName!="" && surName!="") {
-        this.users.push({ id , surName, firstName, email, department, team, skill, language, imageUrl });
-        alert('New Language added');
-      } else {
-        alert('Please fill every field')
-      }
-    } else {
-      alert('Some Properties of your language already exist!');
-    }
-    for(let user of this.users) {
-      console.log(user.firstName);
-    }
-    //get notification from server
-    //if saved show confirmation message
-    //if existing show error
+  clickAdd(surName: string, firstName: string, email: string, department: string, team: string, skill: string, language: string, imageUrl: string): void {
+    // let id: number = 0;
+    // this.isThere = false;
+    // for (let user of this.users) {
+    //   if (user.firstName == firstName && user.surName == surName) {
+    //     this.isThere = true; break;
+    //   }
+    // }
+    // if (!this.isThere) {
+    //   if (firstName != "" && surName != "") {
+    //     this.users.push({ id, surName, firstName, email, department, team, skills, languages, imageUrl });
+    //     alert('New Language added');
+    //   } else {
+    //     alert('Please fill every field');
+    //   }
+    // } else {
+    //   alert('Some Properties of your language already exist!');
+    // }
+    // for (let user of this.users) {
+    //   console.log(user.firstName);
+    // }
+    // //get notification from server
+    // //if saved show confirmation message
+    // //if existing show error
   }
-  }
+}
 
 
 
