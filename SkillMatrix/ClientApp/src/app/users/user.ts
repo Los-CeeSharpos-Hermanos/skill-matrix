@@ -2,6 +2,7 @@ export interface IUser {
   id: number;
   surName: string;
   firstName: string;
+  telephone: string;
   email: string;
   department: string;
   team: string;

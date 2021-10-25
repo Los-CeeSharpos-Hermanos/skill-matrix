@@ -1,0 +1,23 @@
+ // chips colors
+ $green-chip:#339b4d	;
+ $yellow-chip:#a8a500;
+ $red-chip:#FF5252;
+ 
+  mat-chip {
+    &.intermediate {
+   background-color: $yellow-chip;
+  }
+    &.advanced {
+   background-color: $green-chip;
+  }
+ }
+ 
+ mat-chip-list {
+   display: flex;
+   float: left;
+   margin: 3px;
+ }
+ 
+ mat-chip {
+   font-size: 0.8em;
+ }

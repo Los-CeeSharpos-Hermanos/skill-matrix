@@ -7,6 +7,7 @@ export const users: IUser[] = [
         surName: "Schmidt",
         firstName: "Marten",
         email: "marten@web.de",
+        telephone: "4901512345678",
         department: "Sales",
         team: "A",
         skills: [

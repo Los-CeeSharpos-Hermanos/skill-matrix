@@ -6,44 +6,46 @@
       <th mat-header-cell *matHeaderCellDef> {{column.name}} </th>
       <td mat-cell *matCellDef="let element">
         <ng-container *ngIf="isChip(column.columnStyle); else elseBlock">
-
           <ng-container *ngIf="isSkills(column.id)">
-            <mat-chip-list aria-label="Skills" *ngFor="let item of  GetTopThreeSkills(element[column.id])">
-              <mat-chip [ngClass]="getRatingColor(item.rating)">{{item.skill}}</mat-chip>
-            </mat-chip-list>
+            <app-mat-rated-chips [items]="GetTopThreeSkills(element[column.id])" key="skill"></app-mat-rated-chips>
           </ng-container>
 
           <ng-container *ngIf="isLanguages(column.id)">
-            <mat-chip-list aria-label="Languages" *ngFor="let item of  GetTopThreeLanguages(element[column.id])">
-              <mat-chip [ngClass]="getRatingColor(item.rating)">{{item.language}}</mat-chip>
-            </mat-chip-list>
+            <app-mat-rated-chips [items]="GetTopThreeLanguages(element[column.id])" key="language">
+            </app-mat-rated-chips>
           </ng-container>
 
         </ng-container>
-
-
         <ng-template #elseBlock>{{element[column.id]}}</ng-template>
       </td>
     </ng-container>
 
     <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
     <ng-container matColumnDef="expandedDetail">
-      <td mat-cell *matCellDef="let user" [attr.colspan]="columnsToDisplay.length">
+      <td class="detail-card" mat-cell *matCellDef="let user" [attr.colspan]="columnsToDisplay.length">
         <div class="example-element-detail" [@detailExpand]="user == expandedElement ? 'expanded' : 'collapsed'">
-          <div class="example-element-diagram">
-            <div class="example-element-symbol">
+          <div class='row p-3 align-items-center'>
+            <div class='col-sm-1'>
               <img src="{{user.imageUrl}}" width=75>
             </div>
+            <div class='col-sm-2'>
+              <p>{{user.firstName}} {{ user.surName}} </p>
+              <i>{{user.department}}</i>
+              <div> Team: {{user.team}} </div>
+              <div> Telephone: {{user.telephone}} </div>
+              <div> email{{user.email}} </div>
+            </div>
+            <div class='col-sm-4'>
+              <p>Skills</p>
+              <app-mat-rated-chips [items]="user.skills" key="skill"></app-mat-rated-chips>
+            </div>
+            <div class='col-sm-4'>
+              <p>Languages</p>
+              <app-mat-rated-chips [items]="user.languages" key="language"></app-mat-rated-chips>
+            </div>
+
           </div>
 
-          <div class="example-element-description">
-            {{user.firstName}} {{ user.surName}}
-            <br>
-            <div class="example-element-position"> languages: {{user.language}} </div>
-            <br>
-            <div class="example-element-position"> email{{user.email}} </div>
-
-          </div>
         </div>
       </td>
     </ng-container>
