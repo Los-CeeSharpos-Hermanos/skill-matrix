@@ -1,5 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { RoutingService } from 'src/app/shared/services/routing.service';
 import { IUser, IUserHability, IUserLanguage, IUserSkill, Rating } from '../user';
@@ -19,6 +21,12 @@ import { ColumnStyle, IExpandableTableColumn } from './expandable-table-column';
   ],
 })
 export class UserListComponent implements OnInit {
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: false }) sort: MatSort;
+
+  constructor(private routingService: RoutingService, private userService: UserService) { }
+
   dataSource: MatTableDataSource<IUser>;
   columnsToDisplay: IExpandableTableColumn[] = [
     {
@@ -52,7 +60,6 @@ export class UserListComponent implements OnInit {
   expandedElement: IUser | null;
   users: IUser[];
 
-  constructor(private routingService: RoutingService, private userService: UserService) { }
 
   ngOnInit(): void {
     this.loadUsers();
@@ -107,7 +114,7 @@ export class UserListComponent implements OnInit {
     this.userService.getUsers().subscribe({
       next: users => {
         this.users = users;
-        this.dataSource = new MatTableDataSource(users);
+        this.setupDataSource();
       },
       error: err => console.log(err)
     });
@@ -120,6 +127,12 @@ export class UserListComponent implements OnInit {
     }
 
     return habilities.sort((a, b) => b.rating - a.rating).slice(0, listSize - 1);
+  }
+
+  private setupDataSource() {
+    this.dataSource = new MatTableDataSource(this.users);
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 
 }
