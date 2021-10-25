@@ -22,7 +22,7 @@ export class CRUDComponent implements OnInit {
   pageTitle: "Skill Categories";
   category: ICategory;
 
-  there = "skillmatrix/categories/add";
+  addCategory = "skillmatrix/categories/add";
 
   displayedColumns: string[] = ['name', 'buttons'];
 
@@ -55,7 +55,7 @@ export class CRUDComponent implements OnInit {
     this.categoryService.readCategories().subscribe({
       next: categories => {
         this.categories = categories;
-        console.log(categories)
+        
         this.dataSource = new MatTableDataSource(categories);
       },
       error: err => { this.errorMessage = err; console.log(err); }

@@ -29,28 +29,46 @@ export class EditCategoryComponent implements OnInit {
   category: ICategory;
   errorMessage: string;
   categoryForm = this.formBuilder.control('', Validators.required);
+  pageTitle: string;
 
   ngOnInit(): void {
     this.sub = this.route.paramMap.subscribe(
       params => {
         const id = params.get('id')!;
-        this.categoryService.readCategory(id);
+        this.displayCategory(id);
       });
   }
 
+  displayCategory(id: string)
+  {
+    this.categoryService.readCategory(id).subscribe({
+      next: (category: ICategory) => this.category = category,
+      error: err => this.errorMessage = err
+    });
+
+    // this.pageTitle = `Editing Category: ${this.category.name}`;
+
+    // this.categoryForm.patchValue({
+    //   categoryName: this.category.name
+    // })
+  }
+
   saveCategory(): void {
+
+
     if (this.categoryForm.valid) {
 
-      if (this.categoryForm.dirty) {
-        const editedCategory = { ...this.category, ...this.categoryForm.value };
-        {
-          this.categoryService.updateCategory(editedCategory)
+      if (this.categoryForm.dirty)
+      {
+        this.category.name = this.categoryForm.value;
+       
+          this.categoryService.updateCategory(this.category)
             .subscribe({
               next: () => this.onSaveComplete(),
               error: err => this.onSaveFail(err)
             });
-        }
-      } else {
+      }
+      else {
         this.onSaveComplete();
       }
     } else {
@@ -59,7 +77,7 @@ export class EditCategoryComponent implements OnInit {
     }
   }
 
-  onSaveComplete(message: string = "Category added!") {
+  onSaveComplete(message: string = "Category edited!") {
     this.categoryForm.reset();
     this.snackBarService.success(message);
     this.routingService.goTo('/skillmatrix/categories');

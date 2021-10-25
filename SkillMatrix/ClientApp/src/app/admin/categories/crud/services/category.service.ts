@@ -16,7 +16,7 @@ export class CategoryService {
   createCategory(category: ICategory)
   {
     const url = `${this.baseUrl}`;
-    category.id = undefined;
+    category.id = 0;
     return this.http.post<ICategory>(url, category, { headers: this.headers });
   }
 

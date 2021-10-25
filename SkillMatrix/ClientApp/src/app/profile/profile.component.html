@@ -1,129 +1,126 @@
 <app-submenu pageTitle="Your Profile"></app-submenu>
 
-<div class="row">
-  <div class="col-3 offset-3">
-    <mat-card>
-    <div class="row">
-      <img [src]="profilePic">
-      <input type="file" class="fileInput">
-    </div>
-  </mat-card>
+<div class="container">
+  <div class="row">
+     <div class="col-10 offset-1">
+       <div class="row">
 
-  <mat-card>
-    <div class="row">
-      <form [formGroup]="profileForm">
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Favorite Quote</mat-label>
-          <input matInput formControlName="favQuote" placeholder="Not all who wander...">
-        </mat-form-field>
-      </form>
-    </div>
-   </mat-card>
-  </div>
+         <div class="col-lg-6 col-sm-12">
+           <mat-card>
+           <div class="row">
+             <img [src]="profilePic" class="rounded-full img-fluid">
+             <input type="file" class="fileInput">
+           </div>
+         </mat-card>
 
-  <div class="col-3">
-    <mat-card>
-      <div class="row">
-        <form [formGroup]="profileForm">
-              <div class="row">
-                  <mat-form-field appearance="fill">
-                      <mat-label>First Name</mat-label>
-                      <input formControlName="firstname" matInput>
-                  </mat-form-field>
 
-                    <mat-form-field appearance="fill">
-                        <mat-label>Surname</mat-label>
-                        <input formControlName="surname" matInput>
-                    </mat-form-field>
+         </div>
 
-                    <mat-form-field appearance="fill">
-                      <mat-label>Job Title</mat-label>
-                      <input formControlName="jobTitle" matInput>
-                    </mat-form-field>
+         <div class="col-lg-6 col-sm-12">
+           <mat-card>
+             <div class="row">
+               <form [formGroup]="profileForm">
+                     <div class="row">
+                         <mat-form-field appearance="fill">
+                             <mat-label>First Name</mat-label>
+                             <input formControlName="firstname" matInput>
+                         </mat-form-field>
 
-                  <mat-form-field appearance="fill">
-                    <mat-label>Team</mat-label>
-                    <input formControlName="team" matInput>
-                  </mat-form-field>
+                           <mat-form-field appearance="fill">
+                               <mat-label>Surname</mat-label>
+                               <input formControlName="surname" matInput>
+                           </mat-form-field>
 
-                  <mat-form-field appearance="fill">
-                    <mat-label>Department</mat-label>
-                    <input formControlName="department" matInput>
-                  </mat-form-field>
+                           <mat-form-field appearance="fill">
+                             <mat-label>Job Title</mat-label>
+                             <input formControlName="jobTitle" matInput>
+                           </mat-form-field>
 
-                  <mat-form-field appearance="fill">
-                    <mat-label>Location</mat-label>
-                    <input formControlName="location" matInput>
-                  </mat-form-field>
+                         <mat-form-field appearance="fill">
+                           <mat-label>Team</mat-label>
+                           <input formControlName="team" matInput>
+                         </mat-form-field>
 
-                  <mat-form-field appearance="fill">
-                    <mat-label>Email</mat-label>
-                    <input formControlName="email" matInput>
-                  </mat-form-field>
+                         <mat-form-field appearance="fill">
+                           <mat-label>Department</mat-label>
+                           <input formControlName="department" matInput>
+                         </mat-form-field>
 
-                  <mat-form-field appearance="fill">
-                    <mat-label>Phone</mat-label>
-                    <input formControlName="phone" matInput>
-                  </mat-form-field>
+                         <mat-form-field appearance="fill">
+                           <mat-label>Location</mat-label>
+                           <input formControlName="location" matInput>
+                         </mat-form-field>
+
+                         <mat-form-field appearance="fill">
+                           <mat-label>Email</mat-label>
+                           <input formControlName="email" matInput>
+                         </mat-form-field>
+
+                         <mat-form-field appearance="fill">
+                           <mat-label>Phone</mat-label>
+                           <input formControlName="phone" matInput>
+                         </mat-form-field>
+
+                     </div>
+             </form>
+
+               </div>
+           </mat-card>
+         </div>
+
+         <div class="col 12">
+           <mat-card>
+
+             <form [formGroup]="profileForm">
+               <div class="row">
+                 <app-add-button class="col-2" (click)="addLanguage()"></app-add-button>
+                 <div class="col-10">
+                   <div formArrayName="languages" *ngFor="let language of languages.controls; let i=index">
+                     <div [formGroupName]="i" class="row">
+
+
+                       <mat-form-field appearance="fill" class="col-4">
+                         <mat-label attr.for="{{ 'languageId' + i}}">Language</mat-label>
+                         <input matInput formControlName="language"
+                         id="{{ 'languageId' + i}}">
+                       </mat-form-field>
+
+                       <mat-form-field appearance="fill" class="col-4">
+                         <mat-label attr.for="{{ 'proficiencyId' + i}}">Proficiency</mat-label>
+                         <input matInput formControlName="proficiency"
+                         id="{{ 'proficiencyId' + i}}">
+                       </mat-form-field>
+
+                       <div *ngIf="i > 0" class="col-2">
+                          <app-remove-button (click)="removeLanguage(i)"></app-remove-button>
+                       </div>
+
+                     </div>
+
+
+
+                   </div>
+
+               </div>
+
 
               </div>
-      </form>
 
-        </div>
-    </mat-card>
-  </div>
-
-  <div class="col-8 offset-2">
-    <mat-card>
-
-      <form [formGroup]="profileForm">
-        <div class="row">
-          <app-add-button class="col-2" (click)="addLanguage()"></app-add-button>
-          <div class="col-10">
-            <div formArrayName="languages" *ngFor="let language of languages.controls; let i=index">
-              <div [formGroupName]="i" class="row">
+             </form>
 
 
-                <mat-form-field appearance="fill" class="col-4">
-                  <mat-label attr.for="{{ 'languageId' + i}}">Language</mat-label>
-                  <input matInput formControlName="language"
-                  id="{{ 'languageId' + i}}">
-                </mat-form-field>
+           </mat-card>
 
-                <mat-form-field appearance="fill" class="col-4">
-                  <mat-label attr.for="{{ 'proficiencyId' + i}}">Proficiency</mat-label>
-                  <input matInput formControlName="proficiency"
-                  id="{{ 'proficiencyId' + i}}">
-                </mat-form-field>
+           <ul name="categoriesList" *ngFor="let category of categoriesList; let i=index">
+             <li id='i'>
+              <mat-card >
+                {{category + i}}
+              </mat-card>
+             </li>
+           </ul>
 
-                <div *ngIf="i > 0" class="col-2">
-                   <app-remove-button (click)="removeLanguage(i)"></app-remove-button>
-                </div>
-
-              </div>
-
-
-
-            </div>
-
-        </div>
-
-
+         </div>
        </div>
-
-      </form>
-
-
-    </mat-card>
-
-    <!-- <div name="categoriesList" *ngFor="let category in categoriesList">
-      <mat-card>
-        {{category}}
-      </mat-card>
-    </div> -->
-
-  </div>
-
-
-
+     </div>
+   </div>
 </div>

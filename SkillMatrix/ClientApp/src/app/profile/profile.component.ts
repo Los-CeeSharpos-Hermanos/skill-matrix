@@ -44,7 +44,7 @@ export class ProfileComponent implements OnInit {
     //1. Grab categories from backend/fakeapi
     //2. Turn them into an array of strings
 
-    this.categoriesList = ['Frontend', 'Backend', 'Databases', 'Cloud expertise']
+    this.categoriesList = ['Frontend', 'Backend', 'Databases', 'Cloud expertise'];
 
   }
 

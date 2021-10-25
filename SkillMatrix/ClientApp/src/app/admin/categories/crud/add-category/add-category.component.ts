@@ -35,7 +35,8 @@ export class AddCategoryComponent implements OnInit {
       if (this.categoryForm.dirty) {
         {
           const category = {
-            name : this.categoryForm.value
+            name : this.categoryForm.value,
+            id : null
           }
           this.categoryService.createCategory(category)
             .subscribe({

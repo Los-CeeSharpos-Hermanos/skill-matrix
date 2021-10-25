@@ -1,7 +1,7 @@
 <app-submenu pageTitle="Categories"></app-submenu>
 <div class="container">
 <div class="searchAddThing">
-  <app-add-button [goToPath]='there'></app-add-button>
+  <app-add-button (click)="goTo(addCategory)"></app-add-button>
 
 <mat-form-field appearance="standard" class="searchField">
   <mat-label>Filter</mat-label>
