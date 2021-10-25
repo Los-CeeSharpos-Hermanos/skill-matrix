@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SkillMatrix.Domain.Languages.Models
 {
-    public class Language
+    public class Language : BaseEntity
     {
         public long Id { get; set; }
         public string Code { get; set; }
@@ -12,8 +12,5 @@ namespace SkillMatrix.Domain.Languages.Models
         public string NativeName { get; set; }
 
         public virtual IEnumerable<User> Users { get; set; }
-
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
     }
 }

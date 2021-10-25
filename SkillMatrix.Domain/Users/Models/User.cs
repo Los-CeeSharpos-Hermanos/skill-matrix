@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace SkillMatrix.Domain.Users.Models
 {
-    public class User
+    public class User : BaseEntity
     {
         public long Id { get; set; }
         public string SurName { get; set; }
@@ -18,8 +18,5 @@ namespace SkillMatrix.Domain.Users.Models
 
         public virtual Department Department { get; set; }
         public virtual Team Team { get; set; }
-
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
     }
 }
