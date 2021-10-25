@@ -1,8 +1,4 @@
-<<<<<<< HEAD:SkillMatrix.Domain/Languages/Models/Language.cs
 ﻿using SkillMatrix.Domain.Users.Models;
-=======
-﻿using SkillMatrix.Domain.Users;
->>>>>>> main:SkillMatrix.Domain/Languages/Language.cs
 using System;
 using System.Collections.Generic;
 

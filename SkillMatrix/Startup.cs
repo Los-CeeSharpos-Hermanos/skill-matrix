@@ -40,7 +40,6 @@ namespace SkillMatrix.Application
             services.AddScoped<ISkillCategoryRepository, SkillCategoryRepository>();
 
             services.AddScoped<ILanguageRepository, LanguageRepository>();
-<<<<<<< HEAD
             services.AddScoped<ILanguageService, LanguageService>();
 
             services.AddScoped<IUserService, UserService>();
@@ -51,10 +50,6 @@ namespace SkillMatrix.Application
 
             services.AddScoped<IDepartmentService, DepartmentService>();
             services.AddScoped<IDepartmentRepository, DepartmentRepository>();
-=======
-
-            services.AddScoped<ILanguageService, LanguageService>();
->>>>>>> main
 
 
             services.AddControllersWithViews();

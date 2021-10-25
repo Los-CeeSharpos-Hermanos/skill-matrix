@@ -19,12 +19,9 @@ namespace SkillMatrix.Application.Mappers
             MapSkills();
             MapSkillCategories();
             MapLanguages();
-<<<<<<< HEAD
             MapUsers();
             MapDepartments();
             MapTeams();
-=======
->>>>>>> main
 
         }
 
@@ -58,7 +55,6 @@ namespace SkillMatrix.Application.Mappers
                 map => map.MapFrom(source => source.Id))
                 .ReverseMap();
         }
-<<<<<<< HEAD
 
         private void MapTeams()
         {
@@ -98,7 +94,5 @@ namespace SkillMatrix.Application.Mappers
                 map => map.MapFrom(source => source.Team.Id))*/
                 .ReverseMap();
         }
-=======
->>>>>>> main
     }
 }

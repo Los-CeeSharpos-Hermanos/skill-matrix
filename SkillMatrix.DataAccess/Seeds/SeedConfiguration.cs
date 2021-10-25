@@ -9,12 +9,9 @@ namespace SkillMatrix.DataAccess.Seeds
             modelBuilder.SeedSkillCategories();
             modelBuilder.SeedSkills();
             modelBuilder.SeedLanguages();
-<<<<<<< HEAD
             modelBuilder.SeedDepartments();
             modelBuilder.SeedTeams();
             modelBuilder.SeedUsers();
-=======
->>>>>>> main
         }
     }
 }

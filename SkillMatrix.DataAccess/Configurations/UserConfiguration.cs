@@ -1,10 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-<<<<<<< HEAD
 using SkillMatrix.Domain.Users.Models;
-=======
-using SkillMatrix.Domain.Users;
->>>>>>> main
 
 namespace SkillMatrix.DataAccess.Configurations
 {
