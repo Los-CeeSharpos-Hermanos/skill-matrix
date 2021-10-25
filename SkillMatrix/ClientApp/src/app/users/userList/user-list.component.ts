@@ -32,27 +32,27 @@ export class UserListComponent implements OnInit {
     {
       id: 'surName',
       name: 'Surname',
-      columnStyle: ColumnStyle.Text
+      columnStyle: ColumnStyle.SimpleText
     },
     {
       id: 'firstName',
       name: 'First Name',
-      columnStyle: ColumnStyle.Text
+      columnStyle: ColumnStyle.SimpleText
     },
     {
       id: 'skills',
       name: 'Skills',
-      columnStyle: ColumnStyle.Chips
+      columnStyle: ColumnStyle.JoinedArray
     },
     {
       id: 'languages',
       name: 'Languages',
-      columnStyle: ColumnStyle.Chips
+      columnStyle: ColumnStyle.JoinedArray
     },
     {
       id: 'department',
       name: 'Department',
-      columnStyle: ColumnStyle.Text
+      columnStyle: ColumnStyle.SimpleText
     },
   ];
 
@@ -74,8 +74,8 @@ export class UserListComponent implements OnInit {
     this.routingService.goTo('skillmatrix/users/0/edit');
   }
 
-  isChip(columnStyle: ColumnStyle): boolean {
-    return columnStyle == ColumnStyle.Chips;
+  isJoinedArray(columnStyle: ColumnStyle): boolean {
+    return columnStyle == ColumnStyle.JoinedArray;
   }
 
   isSkills(columnName: string): boolean {
@@ -86,12 +86,16 @@ export class UserListComponent implements OnInit {
     return columnName == 'languages';
   }
 
-  getTopThreeSkills(skills: IUserSkill[]): IUserSkill[] {
-    return this.getTopHabilities(skills, 3) as IUserSkill[];
+  getTopThreeSkills(skills: IUserSkill[]): string {
+    return joinWithCommaAndSpace(
+      this.getTopHabilities(skills, 3)
+        .map(item => item.skillName));
   }
 
-  getTopThreeLanguages(languages: IUserLanguage[]): IUserLanguage[] {
-    return this.getTopHabilities(languages, 3) as IUserLanguage[];
+  getTopThreeLanguages(languages: IUserLanguage[]): string {
+    return joinWithCommaAndSpace(
+      this.getTopHabilities(languages, 3)
+        .map(item => item.language));
   }
 
   getRatingColor(rating: Rating) {
@@ -137,3 +141,4 @@ export class UserListComponent implements OnInit {
 
 }
 
+const joinWithCommaAndSpace = (stringArray: string[]) => stringArray.join(', ');

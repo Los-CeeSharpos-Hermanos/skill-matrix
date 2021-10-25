@@ -17,21 +17,30 @@
   </mat-paginator>
 
   <table mat-table matSort [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
+
     <ng-container [matColumnDef]="column.id" *ngFor="let column of columnsToDisplay">
-      <th mat-header-cell mat-sort-header *matHeaderCellDef> {{column.name}} </th>
+
+      <ng-container *ngIf="isJoinedArray(column.columnStyle); else sortedHeader">
+        <th mat-header-cell *matHeaderCellDef> {{column.name}} </th>
+      </ng-container>
+
+      <ng-template #sortedHeader>
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> {{column.name}} </th>
+      </ng-template>
+
+
       <td mat-cell *matCellDef="let element">
-        <ng-container *ngIf="isChip(column.columnStyle); else elseBlock">
+        <ng-container *ngIf="isJoinedArray(column.columnStyle); else defaultColumn">
           <ng-container *ngIf="isSkills(column.id)">
-            <app-mat-rated-chips [items]="getTopThreeSkills(element[column.id])" key="skillName"></app-mat-rated-chips>
+            {{getTopThreeSkills(element[column.id])}}
           </ng-container>
 
           <ng-container *ngIf="isLanguages(column.id)">
-            <app-mat-rated-chips [items]="getTopThreeLanguages(element[column.id])" key="language">
-            </app-mat-rated-chips>
+            {{getTopThreeLanguages(element[column.id])}}
           </ng-container>
 
         </ng-container>
-        <ng-template #elseBlock>{{element[column.id]}}</ng-template>
+        <ng-template #defaultColumn>{{element[column.id]}}</ng-template>
       </td>
     </ng-container>
 

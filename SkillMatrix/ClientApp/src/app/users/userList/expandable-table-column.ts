@@ -1,7 +1,7 @@
 
 export enum ColumnStyle {
-    Chips,
-    Text
+    JoinedArray,
+    SimpleText
 }
 
 export interface IExpandableTableColumn {
