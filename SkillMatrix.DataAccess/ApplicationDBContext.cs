@@ -1,10 +1,11 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
-using SkillMatrix.Domain.Languages;
+using SkillMatrix.Domain.Languages.Models;
 using SkillMatrix.Domain.Users;
 using SkillMatrix.DataAccess.Seeds;
 using SkillMatrix.Domain.Skills.Models;
+using SkillMatrix.DataAccess.Skills;
 
 namespace SkillMatrix.DataAccess
 {
@@ -33,6 +34,7 @@ namespace SkillMatrix.DataAccess
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDBContext).Assembly);
+            modelBuilder.ApplyConfiguration(new SkillConfiguration());
 
             modelBuilder.InsertSeeds();
         }

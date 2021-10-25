@@ -4,14 +4,13 @@ using System.Collections.Generic;
 
 namespace SkillMatrix.Domain.Skills.Models
 {
-    public class Skill
+    public class Skill : BaseEntity
     {
         public long SkillId { get; set; }
         public string SkillName { get; set; }
         public long SkillCategoryId { get; set; }
         public virtual SkillCategory SkillCategory { get; set; }
         public virtual IEnumerable<User> Users { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
+
     }
 }

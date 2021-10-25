@@ -5,17 +5,8 @@ import { Subscription } from 'rxjs';
 import { RoutingService } from 'src/app/shared/services/routing.service';
 import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
 import { SkillService } from '../../services/skill.service';
-import { Skill } from '../../skill';
-
-interface SkillCategory {
-  id: number,
-  skillCategoryName: string;
-}
-
-const fakeSkillCategories: SkillCategory[] = [
-  { id: 1, skillCategoryName: "Technical Skill" },
-  { id: 2, skillCategoryName: "Soft Skill" }
-];
+import { AddSkill, Skill } from '../../skill';
+import { ISkillCategoryDropdown } from '../../skillCategory';
 
 @Component({
   selector: 'app-skill-edit',
@@ -35,7 +26,7 @@ export class SkillEditComponent implements OnInit {
   errorMessage: string;
   pageTitle: string;
   skill: Skill;
-  skillCategories: SkillCategory[];
+  skillCategories: ISkillCategoryDropdown[];
 
   skillForm = this.fb.group({
     skillName: ['', Validators.required],
@@ -54,7 +45,16 @@ export class SkillEditComponent implements OnInit {
   }
 
   getSkillCategories() {
-    this.skillCategories = fakeSkillCategories;
+    this.skillService.listSkillCategories()
+      .subscribe({
+        next: (skillCategories: ISkillCategoryDropdown[]) => {
+          this.skillCategories = skillCategories;
+        },
+        error: err => {
+          this.errorMessage = err;
+          console.log(err);
+        }
+      });
   }
 
   getSkill(id: string): void {
@@ -79,37 +79,31 @@ export class SkillEditComponent implements OnInit {
 
     this.skillForm.patchValue({
       skillName: this.skill.skillName,
-      skillCategory: this.skill.skillCategory
+      skillCategory: this.GetSkillCategory(skill)
     });
   }
 
-
-  editSkill(skill: Skill): void {
-    this.skillService.updateSkill(skill)
-      .subscribe({
-        next: () => this.onSaveComplete(),
-        error: err => this.errorMessage = err
-      });
-  }
 
   saveSkill(): void {
     if (this.skillForm.valid) {
 
       if (this.skillForm.dirty) {
-        const s = { ...this.skill, ...this.skillForm.value };
-        console.log("\t", s);
-        if (s.id == 0) {
+        const { skillCategory, skillName } = this.skillForm.value;
 
-          this.skillService.createSkill(s)
+        const addSkill: AddSkill = {
+          id: this.skill.id,
+          skillName,
+          skillCategoryId: skillCategory.skillCategoryId,
+        };
+
+        if (addSkill.id == 0) {
+          this.skillService.createSkill(addSkill)
             .subscribe({
               next: () => this.onSaveComplete(),
               error: err => this.onSaveFail(err)
             });
-
         } else {
-          console.log(" updateSkill");
-
-          this.skillService.updateSkill(s)
+          this.skillService.updateSkill(addSkill)
             .subscribe({
               next: () => this.onSaveComplete(),
               error: err => this.onSaveFail(err)
@@ -151,6 +145,9 @@ export class SkillEditComponent implements OnInit {
     this.snackBarService.warn(message);
   }
 
+  private GetSkillCategory(skill: Skill): any {
+    return this.skillCategories?.find(category => category.skillCategoryId == skill.skillCategoryId);
+  }
 
 }
 

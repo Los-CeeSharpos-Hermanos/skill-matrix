@@ -1,52 +1,15 @@
-﻿using AutoMapper;
-using NSubstitute;
-using SkillMatrix.Application.DTOs;
-using SkillMatrix.Application.Mappers;
-using SkillMatrix.Application.Services;
-using SkillMatrix.Domain.Skills.Models;
-using SkillMatrix.Domain.Skills.Repositories;
+﻿using SkillMatrix.Domain.Skills.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xunit;
 
-namespace SkillMatrix.Test.Services
+namespace SkillMatrix.Test.Services.Skills
 {
-
-    public class SkillServiceTest
+    public static class SkillFakes
     {
-        private readonly IMapper _mapper;
-
-        private readonly ISkillRepository _skillRepository;
-
-        public SkillServiceTest()
-        {
-            _skillRepository = Substitute.For<ISkillRepository>();
-            _mapper = TestStartupHelper.CreateApplicationMapper();
-
-        }
-
-        [Fact]
-        public async void ShouldReturnSkills()
-        {
-            //Arrange
-            var expectedSkills = GetFakeSkills();
-            _skillRepository.GetAllSkillsAsync().Returns(Task.FromResult(expectedSkills));
-
-            var skillService = new SkillService(_skillRepository, _mapper);
-
-            //Act
-            var skills = await skillService.GetAllSkills();
-
-            //Assert
-            Assert.NotEmpty(skills);
-            Assert.Equal(expectedSkills.Count, skills.Count);
-            Assert.All(skills, result => Assert.IsType<GetSkillDTO>(result));
-        }
-
-        public List<Skill> GetFakeSkills()
+        public static List<Skill> GetFakeSkills()
         {
             return new List<Skill>
             {
@@ -74,7 +37,7 @@ namespace SkillMatrix.Test.Services
             };
         }
 
-        public List<SkillCategory> GetFakeSkillCategories()
+        public static List<SkillCategory> GetFakeSkillCategories()
         {
             return new List<SkillCategory>
             {
@@ -82,13 +45,13 @@ namespace SkillMatrix.Test.Services
                 {
 
                    SkillCategoryId = 1,
-                   Name = "Technical Skills",
+                   SkillCategoryName = "Technical Skills",
                    CreatedAt = DateTime.Now
                 },                new SkillCategory
                 {
 
                    SkillCategoryId = 2,
-                   Name = "Soft Skills",
+                   SkillCategoryName = "Soft Skills",
                    CreatedAt = DateTime.Now
                 }
             };
