@@ -12,11 +12,131 @@ export const users: IUser[] = [
         team: "A",
         skills: [
             {
-                skill: 'C#',
+                skillName: 'C#',
+                skillCategory: 'Technical Skill',
                 rating: Rating.Begginer
             },
             {
-                skill: 'Js',
+                skillName: 'Js',
+                skillCategory: 'Technical Skill',
+                rating: Rating.Advanced
+            }
+        ],
+        languages: [
+            {
+                language: 'German',
+                rating: Rating.Advanced
+            },
+            {
+                language: 'English',
+                rating: Rating.Begginer
+            },
+            {
+                language: 'Portuguese',
+                rating: Rating.Intermediate
+            }
+        ],
+        imageUrl: "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png"
+    },
+    {
+        id: 3,
+        surName: "Schmidt",
+        firstName: "Marten",
+        email: "marten@web.de",
+        telephone: "4901512345678",
+        department: "Sales",
+        team: "A",
+        skills: [
+            {
+                skillName: 'C#',
+                skillCategory: 'Technical Skill',
+                rating: Rating.Begginer
+            },
+            {
+                skillName: 'Js',
+                skillCategory: 'Technical Skill',
+                rating: Rating.Advanced
+            },
+            {
+                skillName: 'C#',
+                skillCategory: 'Technical Skill',
+                rating: Rating.Begginer
+            },
+            {
+                skillName: 'Java',
+                skillCategory: 'Technical Skill',
+                rating: Rating.Advanced
+            },
+            {
+                skillName: 'Elixir',
+                skillCategory: 'Technical Skill',
+                rating: Rating.Intermediate
+            },
+            {
+                skillName: 'Js',
+                skillCategory: 'Technical Skill',
+                rating: Rating.Advanced
+            },
+            {
+                skillName: 'C#',
+                skillCategory: 'Technical Skill',
+                rating: Rating.Begginer
+            },
+            {
+                skillName: 'Js',
+                skillCategory: 'Technical Skill',
+                rating: Rating.Advanced
+            },
+            {
+                skillName: 'Phyton',
+                skillCategory: 'Technical Skill',
+                rating: Rating.Intermediate
+            },
+            {
+                skillName: 'Js',
+                skillCategory: 'Technical Skill',
+                rating: Rating.Advanced
+            },
+            {
+                skillName: 'C#',
+                skillCategory: 'Technical Skill',
+                rating: Rating.Begginer
+            },
+            {
+                skillName: 'Js',
+                skillCategory: 'Technical Skill',
+                rating: Rating.Advanced
+            },
+        ],
+        languages: [
+            {
+                language: 'German',
+                rating: Rating.Advanced
+            },
+            {
+                language: 'English',
+                rating: Rating.Begginer
+            }
+        ],
+        imageUrl: "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png"
+    },
+    {
+        id: 2,
+        surName: "Schmidt",
+        firstName: "Marten",
+        email: "marten@web.de",
+        telephone: "4901512345678",
+        department: "Sales",
+        team: "A",
+        skills: [
+            {
+                skillName: 'C#',
+                skillCategory: 'Technical Skill',
+                rating: Rating.Begginer
+            },
+            {
+                skillName: 'Js',
+                skillCategory: 'Technical Skill',
                 rating: Rating.Advanced
             }
         ],
@@ -39,7 +159,8 @@ export const users: IUser[] = [
     //     email: "Bernd@web.de",
     //     department: "Coding",
     //     team: "B",
-    //     skill: "Python",
+    //     skillName: "Python",
+    // skillCategory: 'Technical Skill',
     //     language: "english",
     //     imageUrl: "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png";
     // },
@@ -50,7 +171,8 @@ export const users: IUser[] = [
     //     email: "lutz@web.de",
     //     department: "Finance",
     //     team: "F",
-    //     skill: "Exel",
+    //     skillName: "Exel",
+    // skillCategory: 'Technical Skill',
     //     language: "french",
     //     imageUrl: "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png";
     // },
@@ -61,7 +183,8 @@ export const users: IUser[] = [
     //     email: "motz@web.de",
     //     department: "Marketing",
     //     team: "C",
-    //     skill: "Photoshop Illustrator",
+    //     skillName: "Photoshop Illustrator",
+    // skillCategory: 'Technical Skill',
     //     language: "hindi",
     //     imageUrl: "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png";
     // },
@@ -72,7 +195,8 @@ export const users: IUser[] = [
     //     email: "perty@web.de",
     //     department: "CEO",
     //     team: "V",
-    //     skill: "Corrdinating",
+    //     skillName: "Corrdinating",
+    // skillCategory: 'Technical Skill',
     //     language: "danish",
     //     imageUrl: "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png";
     // },
@@ -83,7 +207,8 @@ export const users: IUser[] = [
     //     email: "peter@web.de",
     //     department: "Development",
     //     team: "G",
-    //     skill: "Java C# C C++ BASIC HTML CSS Angular",
+    //     skillName: "Java C# C C++ BASIC HTML CSS Angular",
+    // skillCategory: 'Technical Skill',
     //     language: "spanish",
     //     imageUrl: "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png";
     // },
@@ -94,7 +219,8 @@ export const users: IUser[] = [
     //     email: "Hans@web.de",
     //     department: "Development",
     //     team: "B",
-    //     skill: "C#",
+    //     skillName: "C#",
+    // skillCategory: 'Technical Skill',
     //     language: "spanish",
     //     imageUrl: "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png";
     // },
@@ -105,7 +231,8 @@ export const users: IUser[] = [
     //     email: "fritzl@web.de",
     //     department: "Public Relations",
     //     team: "D",
-    //     skill: "Scrum Master",
+    //     skillName: "Scrum Master",
+    // skillCategory: 'Technical Skill',
     //     language: "italian",
     //     imageUrl: "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png";
     // },
@@ -116,7 +243,8 @@ export const users: IUser[] = [
     //     email: "Stefan@web.de",
     //     department: "Facility",
     //     team: "C",
-    //     skill: "Facility Managemnent",
+    //     skillName: "Facility Managemnent",
+    // skillCategory: 'Technical Skill',
     //     language: "ungarian",
     //     imageUrl: "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png";
     // }

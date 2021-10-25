@@ -1,17 +1,28 @@
 <app-submenu pageTitle="Member List"></app-submenu>
 <div class="container">
-  <app-add-button goToPath='skillmatrix/members/addUser'></app-add-button>
+  <div class='row align-middle'>
+
+    <div class='col-sm-1'>
+      <app-add-button goToPath='skillmatrix/user/0'></app-add-button>
+    </div>
+    <div class='col-md'>
+      <mat-form-field appearance="standard">
+        <mat-label>User Name</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="John Doe" #input>
+      </mat-form-field>
+    </div>
+  </div>
   <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
     <ng-container [matColumnDef]="column.id" *ngFor="let column of columnsToDisplay">
       <th mat-header-cell *matHeaderCellDef> {{column.name}} </th>
       <td mat-cell *matCellDef="let element">
         <ng-container *ngIf="isChip(column.columnStyle); else elseBlock">
           <ng-container *ngIf="isSkills(column.id)">
-            <app-mat-rated-chips [items]="GetTopThreeSkills(element[column.id])" key="skill"></app-mat-rated-chips>
+            <app-mat-rated-chips [items]="getTopThreeSkills(element[column.id])" key="skillName"></app-mat-rated-chips>
           </ng-container>
 
           <ng-container *ngIf="isLanguages(column.id)">
-            <app-mat-rated-chips [items]="GetTopThreeLanguages(element[column.id])" key="language">
+            <app-mat-rated-chips [items]="getTopThreeLanguages(element[column.id])" key="language">
             </app-mat-rated-chips>
           </ng-container>
 
@@ -29,7 +40,7 @@
               <img src="{{user.imageUrl}}" width=75>
             </div>
             <div class='image col-sm-2'>
-              <h2>{{user.firstName}} {{ user.surName}} </h2>
+              <h2>{{user.firstName}} {{user.surName}} </h2>
               <div> Team: {{user.team}} </div>
               <i>{{user.department}}</i>
               <div> {{user.telephone}} </div>
@@ -37,7 +48,7 @@
             </div>
             <div class='mt-2 col-sm-4'>
               <p>Skills</p>
-              <app-mat-rated-chips [items]="user.skills" key="skill"></app-mat-rated-chips>
+              <app-mat-rated-chips [items]="user.skills" key="skillName"></app-mat-rated-chips>
             </div>
             <div class='mt-2 col-sm-4'>
               <p>Languages</p>

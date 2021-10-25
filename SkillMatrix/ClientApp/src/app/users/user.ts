@@ -16,7 +16,8 @@ export interface IUserHability {
 }
 
 export interface IUserSkill extends IUserHability {
-  skill: string,
+  skillName: string,
+  skillCategory: string,
 }
 
 export interface IUserLanguage extends IUserHability {

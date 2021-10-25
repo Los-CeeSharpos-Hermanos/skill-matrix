@@ -1,6 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { MatTableDataSource } from '@angular/material/table';
+import { RoutingService } from 'src/app/shared/services/routing.service';
 import { IUser, IUserHability, IUserLanguage, IUserSkill, Rating } from '../user';
 import { UserService } from '../user.service';
 import { ColumnStyle, IExpandableTableColumn } from './expandable-table-column';
@@ -18,7 +19,7 @@ import { ColumnStyle, IExpandableTableColumn } from './expandable-table-column';
   ],
 })
 export class UserListComponent implements OnInit {
-  dataSource: IUser[];
+  dataSource: MatTableDataSource<IUser>;
   columnsToDisplay: IExpandableTableColumn[] = [
     {
       id: 'surName',
@@ -51,16 +52,19 @@ export class UserListComponent implements OnInit {
   expandedElement: IUser | null;
   users: IUser[];
 
-  constructor(private router: Router, private userService: UserService) { }
+  constructor(private routingService: RoutingService, private userService: UserService) { }
 
   ngOnInit(): void {
-    //We want to load our users data here
     this.loadUsers();
   }
 
-  goTo(path: string) {
-    this.router.navigate([path]);
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 
+  goToAddUser() {
+    this.routingService.goTo('skillmatrix/users/0/edit');
   }
 
   isChip(columnStyle: ColumnStyle): boolean {
@@ -75,12 +79,12 @@ export class UserListComponent implements OnInit {
     return columnName == 'languages';
   }
 
-  GetTopThreeSkills(skills: IUserSkill[]): IUserSkill[] {
-    return this.GetTopHabilities(skills, 3) as IUserSkill[];
+  getTopThreeSkills(skills: IUserSkill[]): IUserSkill[] {
+    return this.getTopHabilities(skills, 3) as IUserSkill[];
   }
 
-  GetTopThreeLanguages(languages: IUserLanguage[]): IUserLanguage[] {
-    return this.GetTopHabilities(languages, 3) as IUserLanguage[];
+  getTopThreeLanguages(languages: IUserLanguage[]): IUserLanguage[] {
+    return this.getTopHabilities(languages, 3) as IUserLanguage[];
   }
 
   getRatingColor(rating: Rating) {
@@ -98,18 +102,19 @@ export class UserListComponent implements OnInit {
         return '';
     }
   }
+
   private loadUsers() {
     this.userService.getUsers().subscribe({
       next: users => {
         this.users = users;
-        this.dataSource = users;
+        this.dataSource = new MatTableDataSource(users);
       },
       error: err => console.log(err)
     });
   }
 
 
-  private GetTopHabilities<T extends IUserHability>(habilities: T[], listSize: number) {
+  private getTopHabilities<T extends IUserHability>(habilities: T[], listSize: number) {
     if (listSize - 1 < 0) {
       throw Error("Only positive numbers are accepted");
     }
