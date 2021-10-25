@@ -25,21 +25,21 @@
       <td class="detail-card" mat-cell *matCellDef="let user" [attr.colspan]="columnsToDisplay.length">
         <div class="example-element-detail" [@detailExpand]="user == expandedElement ? 'expanded' : 'collapsed'">
           <div class='row p-3 align-items-center'>
-            <div class='col-sm-1'>
+            <div class='profile-image col-sm-1 '>
               <img src="{{user.imageUrl}}" width=75>
             </div>
-            <div class='col-sm-2'>
-              <p>{{user.firstName}} {{ user.surName}} </p>
-              <i>{{user.department}}</i>
+            <div class='image col-sm-2'>
+              <h2>{{user.firstName}} {{ user.surName}} </h2>
               <div> Team: {{user.team}} </div>
-              <div> Telephone: {{user.telephone}} </div>
-              <div> email{{user.email}} </div>
+              <i>{{user.department}}</i>
+              <div> {{user.telephone}} </div>
+              <div> {{user.email}} </div>
             </div>
-            <div class='col-sm-4'>
+            <div class='mt-2 col-sm-4'>
               <p>Skills</p>
               <app-mat-rated-chips [items]="user.skills" key="skill"></app-mat-rated-chips>
             </div>
-            <div class='col-sm-4'>
+            <div class='mt-2 col-sm-4'>
               <p>Languages</p>
               <app-mat-rated-chips [items]="user.languages" key="language"></app-mat-rated-chips>
             </div>
