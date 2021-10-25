@@ -2,6 +2,10 @@
 using Microsoft.EntityFrameworkCore;
 
 using SkillMatrix.Domain.Languages.Models;
+<<<<<<< HEAD
+=======
+using SkillMatrix.Domain.Users;
+>>>>>>> main
 using SkillMatrix.DataAccess.Seeds;
 using SkillMatrix.Domain.Skills.Models;
 using SkillMatrix.DataAccess.Skills;
