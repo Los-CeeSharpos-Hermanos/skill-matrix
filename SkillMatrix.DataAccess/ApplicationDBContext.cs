@@ -2,10 +2,10 @@
 using Microsoft.EntityFrameworkCore;
 
 using SkillMatrix.Domain.Languages.Models;
-using SkillMatrix.Domain.Users;
 using SkillMatrix.DataAccess.Seeds;
 using SkillMatrix.Domain.Skills.Models;
 using SkillMatrix.DataAccess.Skills;
+using SkillMatrix.Domain.Users.Models;
 
 namespace SkillMatrix.DataAccess
 {
@@ -15,6 +15,8 @@ namespace SkillMatrix.DataAccess
         public DbSet<SkillCategory> SkillCategories { get; set; }
         public DbSet<Language> Languages { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Department> Departments { get; set; }
+        public DbSet<Team> Teams { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

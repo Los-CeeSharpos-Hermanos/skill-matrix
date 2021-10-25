@@ -1,4 +1,4 @@
-﻿using SkillMatrix.Domain.Users;
+﻿using SkillMatrix.Domain.Users.Models;
 using System;
 using System.Collections.Generic;
 

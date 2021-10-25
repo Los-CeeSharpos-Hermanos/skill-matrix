@@ -3,7 +3,7 @@ using SkillMatrix.Domain.Skills.Models;
 using System;
 using System.Collections.Generic;
 
-namespace SkillMatrix.Domain.Users
+namespace SkillMatrix.Domain.Users.Models
 {
     public class User
     {
@@ -13,8 +13,8 @@ namespace SkillMatrix.Domain.Users
         public string Email { get; set; }
         public string ImageUrl { get; set; }
 
-        public virtual ICollection<Skill> Skills { get; set; }
-        public virtual ICollection<Language> Languages { get; set; }
+        public virtual IEnumerable<Skill> Skills { get; set; }
+        public virtual IEnumerable<Language> Languages { get; set; }
 
         public virtual Department Department { get; set; }
         public virtual Team Team { get; set; }
