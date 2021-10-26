@@ -19,7 +19,7 @@ namespace SkillMatrix.Application.DTOs
         public string Department { get; set; }
         public string Team { get; set; }
 
-        public List<String> Skills { get; set; }
+    
         
     }
 }

@@ -59,10 +59,24 @@ namespace SkillMatrix.Application.Mappers
         private void MapTeams()
         {
             CreateMap<Team, TeamDTO>()
-                .ForMember(
-                destination => destination.Id,
-                map => map.MapFrom(source => source.Id))
-                .ReverseMap();
+                 .ForMember(
+                 destination => destination.Id,
+                 map => map.MapFrom(source => source.Id))
+                 .ForMember(
+                 d => d.DepartmentName,
+                 map => map.MapFrom(source => source.Department.Name))
+                 .ForMember(
+                 d => d.DepartmentId,
+                 map => map.MapFrom(source => source.Department.Id))
+                 .ForMember(
+                 d => d.UsersSurnames, 
+                 map => map.MapFrom(source => source.Users))
+                 .ForMember(
+                 d => d.UsersIds,
+                 map => map.MapFrom(source => source.Users))
+                 .ReverseMap();
+
+            CreateMap<FormTeamDTO, Team>().ReverseMap();
         }
 
         private void MapDepartments()
