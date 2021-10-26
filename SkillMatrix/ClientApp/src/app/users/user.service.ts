@@ -1,6 +1,6 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { IUser } from './user';
 
@@ -9,13 +9,62 @@ import { IUser } from './user';
   providedIn: 'root'
 })
 export class UserService {
-
-  private userUrl = 'api/users'
+  headers = new HttpHeaders({ 'Content-type': 'application/json' });
+  private userUrl = 'api/users';
 
   constructor(private http: HttpClient) { }
 
-  getUsers(): Observable<IUser[]>{
+  getUsers(): Observable<IUser[]> {
     return this.http.get<IUser[]>(this.userUrl).pipe(tap(data => console.log('All')), catchError(this.handleError));
+  }
+
+  deleteUser(id: number): Observable<{}> {
+    if (id === 0) {
+      console.log("invalid user");
+    }
+    const url = `${this.userUrl}/${id}`;
+    return this.http.delete<IUser>(url, { headers: this.headers });
+  }
+
+  createUser(user: IUser) {
+    const url = `${this.userUrl}`;
+    user.id = undefined;
+    return this.http.post<IUser>(url, user, { headers: this.headers });
+  }
+
+  updateUser(user: IUser): Observable<IUser> {
+    const url = `${this.userUrl}/${user.id}}`;
+    return this.http.put<IUser>(url, user, { headers: this.headers });
+  }
+
+
+
+  getUser(id: string): Observable<IUser> {
+    if (id == "0") {
+      return of(this.initializeUser());
+    }
+
+    const url = `${this.userUrl}/${id}`;
+    return this.http.get<IUser>(url)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  private initializeUser(): IUser {
+    return {
+      id: 0,
+      surName: '',
+      firstName: '',
+      telephone: '',
+      email: '',
+      department: '',
+      team: '',
+      skills: [],
+      languages: [],
+      imageUrl: '',
+    };
+
   }
 
   private handleError(err: HttpErrorResponse) {
@@ -34,6 +83,4 @@ export class UserService {
     return throwError(errorMessage);
   }
 
-
 }
-

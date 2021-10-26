@@ -1,0 +1,3 @@
+<mat-chip-list aria-label="Languages" *ngFor="let item of items">
+    <mat-chip [ngClass]="getRatingColor(item.rating)">{{item[key]}}</mat-chip>
+</mat-chip-list>

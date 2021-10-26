@@ -1,22 +1,20 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../shared/shared.module';
-import { RouterModule } from '@angular/router';
-import { UserListComponent } from './userList/user-list.component';
-import { AddUserComponent } from './addUser/add-user.component';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { ProfileComponent } from '../profile/profile.component';
+import { SharedModule } from '../shared/shared.module';
+import { UserListComponent } from './userList/user-list.component';
 
 
 @NgModule({
   declarations: [
-    UserListComponent,
-    AddUserComponent
+    UserListComponent
   ],
   imports: [
     RouterModule.forChild([
-      { path: 'skillmatrix/members', component: UserListComponent },
-      { path: '', component: UserListComponent },
-      { path: 'skillmatrix/members/addUser', component: AddUserComponent },
-
+      { path: 'skillmatrix/users', component: UserListComponent },
+      { path: 'skillmatrix/users/:id', component: ProfileComponent },
+      { path: 'skillmatrix/users/:id/edit', component: ProfileComponent }
     ]),
     SharedModule,
     FormsModule,
