@@ -1,11 +1,11 @@
 export interface IUser{
-  id: number;
-  surName: string;
-  firstName: string;
-  email: string;
-  department: string;
-  team: string;
-  skill: string;
-  language: string;
-  imageUrl: string;
+  id: number | undefined;
+  surName: string | null;
+  firstName: string | null;
+  email: string | null;
+  department: string | null;
+  team: string | null;
+  skill: string | null;
+  language: string | null;
+  imageUrl: string | null;
 }
