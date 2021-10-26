@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { RoutingService } from 'src/app/shared/services/routing.service';
+import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
 import { IUser, IUserHability, IUserLanguage, IUserSkill, Rating } from '../user';
 import { UserService } from '../user.service';
 import { ColumnStyle, IExpandableTableColumn } from './expandable-table-column';
@@ -20,12 +21,13 @@ import { ColumnStyle, IExpandableTableColumn } from './expandable-table-column';
     ]),
   ],
 })
+
 export class UserListComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
 
-  constructor(private routingService: RoutingService, private userService: UserService) { }
+  constructor(private snackBarService: SnackBarService, private routingService: RoutingService, private userService: UserService) { }
 
   dataSource: MatTableDataSource<IUser>;
   columnsToDisplay: IExpandableTableColumn[] = [
@@ -59,6 +61,7 @@ export class UserListComponent implements OnInit {
   displayedColumns: string[] = this.columnsToDisplay.map(col => col.id);
   expandedElement: IUser | null;
   users: IUser[];
+  errorMessage: '';
 
 
   ngOnInit(): void {
@@ -72,6 +75,21 @@ export class UserListComponent implements OnInit {
 
   goToAddUser() {
     this.routingService.goTo('skillmatrix/users/0/edit');
+  }
+
+  onDeleteClick(userToDelete: number) {
+    if (userToDelete === 0) {
+      this.snackBarService.warn("Invalid id");
+    } else {
+      if (confirm(`Are you sure you want to delete this language?`)) {
+        this.userService.deleteUser(userToDelete)
+          .subscribe({
+            next: () => this.loadUsers(),
+            error: err => { this.errorMessage = err; console.log(this.errorMessage); }
+          });
+        this.snackBarService.success("Language successful deleted");
+      }
+    }
   }
 
   isJoinedArray(columnStyle: ColumnStyle): boolean {
@@ -138,7 +156,6 @@ export class UserListComponent implements OnInit {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
-
 }
 
 const joinWithCommaAndSpace = (stringArray: string[]) => stringArray.join(', ');
