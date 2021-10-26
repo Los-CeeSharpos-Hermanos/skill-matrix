@@ -4,7 +4,6 @@ import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { CategoriesModule } from './admin/categories/categories.module';
-import { CRUDComponent } from './admin/categories/crud/crud.component';
 import { LanguageModule } from './admin/languages/language.module';
 import { SkillModule } from './admin/skills/skill.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -22,8 +21,8 @@ import { UserModule } from './users/user.module';
     HttpClientModule,
     AppRoutingModule,
     RouterModule.forRoot([
-      { path: '', redirectTo: 'welcome', pathMatch: 'full' },
-      { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
+      { path: '', redirectTo: 'skillmatrix/users', pathMatch: 'full' },
+      { path: '**', redirectTo: 'skillmatrix/users', pathMatch: 'full' }
     ]),
     SharedModule,
     LanguageModule,
