@@ -1,7 +1,7 @@
 <app-submenu pageTitle="Categories"></app-submenu>
 <div class="container">
 <div class="searchAddThing">
-  <app-add-button [goToPath]='there'></app-add-button>
+  <app-add-button (click)="goTo(addCategory)"></app-add-button>
 
 <mat-form-field appearance="standard" class="searchField">
   <mat-label>Filter</mat-label>
@@ -9,28 +9,21 @@
 </mat-form-field>
 </div>
 
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 bigTable">
-
-
-  <ng-container matColumnDef="name" class="nameColumn">
-    <th mat-header-cell *matHeaderCellDef > Category </th>
-    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-  </ng-container>
-
-
-    <ng-container matColumnDef="member" class="numberColumn">
-      <th mat-header-cell *matHeaderCellDef > Members</th>
-      <td mat-cell *matCellDef="let element"> {{element.member}} </td>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 bigTable" class="dyeableContainer">
+   <div class="row">
+    <ng-container matColumnDef="name" class="nameColumn">
+      <th mat-header-cell *matHeaderCellDef > Category </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
     </ng-container>
 
-
-  <ng-container class="buttonsColumn" matColumnDef="buttons">
-    <th mat-header-cell *matHeaderCellDef hidden='hidden'> </th>
-    <td mat-cell *matCellDef="let element">
-      <button mat-icon-button color="primary" aria-label="Go to edit screen" (click)="goTo('skillmatrix/categories/5')"><mat-icon>edit</mat-icon></button>
-       <button mat-icon-button color="warn" aria-label="Delete Skill"><mat-icon>clear</mat-icon></button>
-      </td>
-  </ng-container>
+    <ng-container class="buttonsColumn" matColumnDef="buttons">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button color="accent" aria-label="Go to edit screen" (click)="goToEdit(element.id)"><mat-icon>edit</mat-icon></button>
+         <button mat-icon-button color="warn" aria-label="Delete Skill" (click)="deleteCategory(element.id)"><mat-icon>clear</mat-icon></button>
+        </td>
+    </ng-container>
+   </div>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
