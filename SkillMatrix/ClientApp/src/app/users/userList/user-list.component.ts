@@ -56,16 +56,22 @@ export class UserListComponent implements OnInit {
       name: 'Department',
       columnStyle: ColumnStyle.SimpleText
     },
+    {
+      id: 'actions',
+      name: 'Actions',
+      columnStyle: ColumnStyle.SimpleText
+    },
   ];
 
   displayedColumns: string[] = this.columnsToDisplay.map(col => col.id);
   expandedElement: IUser | null;
   users: IUser[];
   errorMessage: '';
-
+  isHidden = true;
 
   ngOnInit(): void {
     this.loadUsers();
+    this.hideUser();
   }
 
   applyFilter(event: Event) {
@@ -81,15 +87,19 @@ export class UserListComponent implements OnInit {
     if (userToDelete === 0) {
       this.snackBarService.warn("Invalid id");
     } else {
-      if (confirm(`Are you sure you want to delete this language?`)) {
+      if (confirm(`Are you sure you want to delete this member?`)) {
         this.userService.deleteUser(userToDelete)
           .subscribe({
             next: () => this.loadUsers(),
             error: err => { this.errorMessage = err; console.log(this.errorMessage); }
           });
-        this.snackBarService.success("Language successful deleted");
+        this.snackBarService.success("Member successful deleted");
       }
     }
+  }
+
+  hideUser() {
+    this.isHidden = !this.isHidden;
   }
 
   isJoinedArray(columnStyle: ColumnStyle): boolean {
@@ -102,6 +112,10 @@ export class UserListComponent implements OnInit {
 
   isLanguages(columnName: string): boolean {
     return columnName == 'languages';
+  }
+
+  isActions(columnName: string): boolean {
+    return columnName == 'actions';
   }
 
   getTopThreeSkills(skills: IUserSkill[]): string {

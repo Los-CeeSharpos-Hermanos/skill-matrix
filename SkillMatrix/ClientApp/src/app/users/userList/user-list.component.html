@@ -44,6 +44,7 @@
       </td>
     </ng-container>
 
+
     <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
     <ng-container matColumnDef="expandedDetail">
       <td class="detail-card" mat-cell *matCellDef="let user" [attr.colspan]="columnsToDisplay.length">
@@ -52,24 +53,34 @@
             <div class='profile-image col-sm-1 '>
               <img src="{{user.imageUrl}}" width=75>
             </div>
-            <div class='image col-sm-2'>
+            <div class='image col-sm-3'>
               <h2>{{user.firstName}} {{user.surName}} </h2>
               <div> Team: {{user.team}} </div>
               <i>{{user.department}}</i>
               <div> {{user.telephone}} </div>
               <div> {{user.email}} </div>
             </div>
-            <div class='mt-2 col-sm-4'>
+            <div class='mt-2 col-sm-3'>
               <p>Skills</p>
               <app-mat-rated-chips [items]="user.skills" key="skillName"></app-mat-rated-chips>
             </div>
-            <div class='mt-2 col-sm-4'>
+            <div class='mt-2 col-sm-3'>
               <p>Languages</p>
               <app-mat-rated-chips [items]="user.languages" key="language"></app-mat-rated-chips>
             </div>
 
-          </div>
+            <div class='mt-2 col-sm-1'>
+              <p>Actions</p>
+              <button mat-icon-button color="default" aria-label="Delete Skill" (click)="hideUser()">
+                <mat-icon>{{isHidden ? 'visibility_off' : 'visibility' }}</mat-icon>
+              </button>
+              <button mat-icon-button color="warn" aria-label="Delete Skill" (click)="onDeleteClick(user.id)">
+                <mat-icon>clear</mat-icon>
+              </button>
+            </div>
 
+
+          </div>
         </div>
       </td>
     </ng-container>
