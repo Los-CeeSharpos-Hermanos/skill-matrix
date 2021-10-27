@@ -10,19 +10,19 @@ export class ProfileComponent implements OnInit {
 
   profileForm: FormGroup;
   categoriesList: ['Frontend', 'Backend', 'Databases', 'Cloud expertise'];
+  
   profilePic: string = "assets/dogPic2.jpg";
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
 
-    this.categoriesListInit();
-
     this.profileFormInit();
 
   }
 
   private profileFormInit() {
+
     this.profileForm = this.fb.group({
       firstname: '',
       surname: '',
@@ -48,9 +48,9 @@ export class ProfileComponent implements OnInit {
 
   }
 
-  buildSkill(): any {
+  buildSkill(): FormGroup {
     return this.fb.group({
-      category: '',
+      skillName: '',
       proficiency: ''
     });
   }
@@ -62,6 +62,11 @@ export class ProfileComponent implements OnInit {
   addSkill() : void
   {
     this.skills.push(this.buildSkill())
+  }
+
+  removeSkill(index: number) : void
+  {
+    this.skills.removeAt(index);
   }
 
   buildLanguage(): FormGroup {
