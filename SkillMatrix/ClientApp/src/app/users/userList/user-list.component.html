@@ -52,35 +52,38 @@
         <div class="example-element-detail" [@detailExpand]="user == expandedElement ? 'expanded' : 'collapsed'">
           <div class='row p-3 align-items-center'>
             <div class='profile-image col-sm-1 '>
-              <img src="{{user.imageUrl}}" width=75>
-            </div>
-            <div class='image col-sm-3'>
-              <h2>{{user.firstName}} {{user.surName}} </h2>
-              <div> Team: {{user.team}} </div>
-              <i>{{user.department}}</i>
-              <div> {{user.telephone}} </div>
-              <div> {{user.email}} </div>
-            </div>
-            <div class='mt-2 col-sm-3'>
-              <p>Skills</p>
-              <app-mat-rated-chips [items]="user.skills" key="skillName"></app-mat-rated-chips>
-            </div>
-            <div class='mt-2 col-sm-3'>
-              <p>Languages</p>
-              <app-mat-rated-chips [items]="user.languages" key="language"></app-mat-rated-chips>
+              <img src="{{user.imageUrl != '' ? user.imageUrl : profilePicPlaceholder }}" width=75>
             </div>
 
-            <div class='mt-2 col-sm-1'>
-              <p>Actions</p>
-              <button mat-icon-button color="default" aria-label="Delete Skill" (click)="hideUser()">
-                <mat-icon>{{isHidden ? 'visibility_off' : 'visibility' }}</mat-icon>
-              </button>
-              <button mat-icon-button color="warn" aria-label="Delete Skill" (click)="onDeleteClick(user.id)">
-                <mat-icon>clear</mat-icon>
-              </button>
+            <div class='col-sm-11'>
+              <div class='row align-items-top'>
+                <div class='image col-sm-3'>
+                  <h2>{{user.firstName}} {{user.surName}} </h2>
+                  <div> Team: {{user.team}} </div>
+                  <i>{{user.department}}</i>
+                  <div> {{user.telephone}} </div>
+                  <div> {{user.email}} </div>
+                </div>
+                <div class='mt-2 col-sm-3'>
+                  <p>Skills</p>
+                  <app-mat-rated-chips [items]="user.skills" key="skillName"></app-mat-rated-chips>
+                </div>
+                <div class='mt-2 col-sm-3'>
+                  <p>Languages</p>
+                  <app-mat-rated-chips [items]="user.languages" key="language"></app-mat-rated-chips>
+                </div>
+
+                <div class='mt-2 col-sm-1'>
+                  <p>Actions</p>
+                  <button mat-icon-button color="default" aria-label="Delete Skill" (click)="hideUser()">
+                    <mat-icon>{{isHidden ? 'visibility_off' : 'visibility' }}</mat-icon>
+                  </button>
+                  <button mat-icon-button color="warn" aria-label="Delete Skill" (click)="onDeleteClick(user.id)">
+                    <mat-icon>clear</mat-icon>
+                  </button>
+                </div>
+              </div>
             </div>
-
-
           </div>
         </div>
       </td>

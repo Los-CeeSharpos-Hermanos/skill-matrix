@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-user-edit',
@@ -11,7 +12,7 @@ export class UserEditComponent implements OnInit {
   profileForm: FormGroup;
   categoriesList: ['Frontend', 'Backend', 'Databases', 'Cloud expertise'];
 
-  profilePic: string = "assets/dogPic2.jpg";
+  profilePic = environment.profilePic;
 
   constructor(private fb: FormBuilder) { }
 
