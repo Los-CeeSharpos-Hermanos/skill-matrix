@@ -8,7 +8,6 @@ import { LanguageModule } from './admin/languages/language.module';
 import { SkillModule } from './admin/skills/skill.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ProfileModule } from './profile/profile.module';
 import { SharedModule } from './shared/shared.module';
 import { UserModule } from './users/user.module';
 
@@ -28,8 +27,7 @@ import { UserModule } from './users/user.module';
     LanguageModule,
     CategoriesModule,
     SkillModule,
-    UserModule,
-    ProfileModule
+    UserModule
   ],
   providers: [
     { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500 } }
