@@ -1,13 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { RoutingService } from 'src/app/shared/services/routing.service';
+import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
+import { environment } from 'src/environments/environment';
 import { ILanguage } from '../../language';
 import { LanguageService } from '../../services/language.service';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatSort } from '@angular/material/sort';
-import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
-import { RoutingService } from 'src/app/shared/services/routing.service';
 
 @Component({
   selector: 'app-languagelist',
@@ -18,7 +19,7 @@ export class LanguagelistComponent implements OnInit {
   displayedColumns: string[] = ['language', 'nativeName', 'action'];
   errorMessage: string = '';
   sub!: Subscription;
-  
+
   languages: ILanguage[] = [];
   languageToEdit: number;
   dataSource: MatTableDataSource<ILanguage>;
@@ -36,8 +37,12 @@ export class LanguagelistComponent implements OnInit {
     this.router.navigate([path]);
   }
 
-  goToAdd(id: number) {
-    this.routingService.goTo(`skillmatrix/languages/${id}/add`)
+  goToAdd() {
+    this.routingService.goTo(`skillmatrix/languages/${environment.addItemId}/add`);
+  }
+
+  goToEdit(id: number) {
+    this.routingService.goTo(`skillmatrix/languages/${id}/add`);
   }
 
   onDeleteClick(languageToDelete: number) {
