@@ -1,26 +1,32 @@
 <app-submenu [pageTitle]=pageTitle></app-submenu>
-<div class="container">
-    <form [formGroup]="languageForm">
-<!--INPUTFIELD-->
-        <mat-card>
-            <div class='row d-flex justify-content-center'>
-                <mat-form-field class="form-group" appearance="fill">
-                    <p>Language Name</p>
-                    <input formControlName="name" matInput>
-                </mat-form-field>
-                <mat-form-field appearance="fill">
-                    <p>Language Name (native)</p>
-                    <input formControlName="nativeName" matInput>
-                </mat-form-field>
-                <mat-form-field appearance="fill">
-                    <p>Language Code</p>
-                    <input formControlName="code" matInput>
-                </mat-form-field>
-            </div> 
-        </mat-card>
-<!--CANCELBUTTON-->
-        <app-go-back-button></app-go-back-button>
-<!--SENDBUTTON-->
-        <button mat-fab color="primary" (click)="saveLanguage()"><mat-icon>add</mat-icon></button>
-    </form>
+<div class="container edit-item">
+    <div class='row'>
+        <div class='d-flex justify-content-center'>
+            <form [formGroup]="languageForm">
+                <mat-card>
+                    <div class='row d-flex justify-content-center'>
+                        <mat-form-field class="form-group" appearance="fill">
+                            <p>Language Name</p>
+                            <input formControlName="name" matInput>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <p>Language Name (native)</p>
+                            <input formControlName="nativeName" matInput>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <p>Language Code</p>
+                            <input formControlName="code" matInput>
+                        </mat-form-field>
+
+                        <div class="row justify-content-md-center">
+                            <div class="col-sm-6 d-flex justify-content-center">
+                                <button mat-raised-button color="primary" (click)="saveLanguage()">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                    <app-go-back-button></app-go-back-button>
+                </mat-card>
+            </form>
+        </div>
+    </div>
 </div>

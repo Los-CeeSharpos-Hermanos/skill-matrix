@@ -9,14 +9,14 @@
         </div>
         <div class='col-md'>
             <mat-form-field appearance="standard">
-                <mat-label>Skill</mat-label>
+                <mat-label>Skill name</mat-label>
                 <input matInput (keyup)="applyFilter($event)" placeholder="Ex. C#" #input>
             </mat-form-field>
         </div>
     </div>
 
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements"
-    class="dyeableContainer">
+        class="dyeableContainer">
     </mat-paginator>
 
     <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8 dyeableContainer">

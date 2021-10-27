@@ -1,26 +1,25 @@
 <app-submenu pageTitle="Add new Category"></app-submenu>
+<div class="container edit-item">
 
-<br>
-<br>
-<br>
-<div class="container row d-flex justify-content-center">
+  <div class='row'>
+    <div class="d-flex justify-content-center">
+      <div class='col-4'>
 
-  <mat-form-field appearance="fill" class="formField">
-    <mat-label>Enter your category</mat-label>
-    <input matInput placeholder="People Skills" required
-    [formControl]="categoryForm">
-  </mat-form-field>
+        <mat-card>
+          <mat-form-field appearance="fill" class="formField">
+            <mat-label>Enter your category</mat-label>
+            <input matInput placeholder="People Skills" required [formControl]="categoryForm">
+          </mat-form-field>
 
-
-  <div class="">
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <button mat-raised-button color="primary" (click)="saveCategory()">Add Category</button>
-        </div>
-        <div class="col">
-          <button mat-raised-button color="warn" (click)="goTo('skillmatrix/categories')">Discard</button>
-        </div>
+          <div class="row justify-content-md-center">
+            <div class="col-sm-6 d-flex justify-content-center">
+              <button mat-raised-button color="primary" (click)="saveCategory()">Save</button>
+            </div>
+          </div>
+          <app-go-back-button></app-go-back-button>
+        </mat-card>
       </div>
+    </div>
+
   </div>
 </div>
