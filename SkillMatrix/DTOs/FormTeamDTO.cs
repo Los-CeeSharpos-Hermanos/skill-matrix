@@ -9,6 +9,5 @@ namespace SkillMatrix.Application.DTOs
     {
         public string TeammName { get; set; }
         public long DepartmentId { get; set; }
-        public List<long> UserIds { get; set; }
     }
 }
