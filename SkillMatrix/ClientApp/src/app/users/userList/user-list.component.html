@@ -3,7 +3,7 @@
   <div class='row align-middle'>
 
     <div class='col-sm-1'>
-      <app-add-button goToPath='skillmatrix/user/0'></app-add-button>
+      <app-add-button (click)="goToAddUser()"></app-add-button>
     </div>
     <div class='col-md'>
       <mat-form-field appearance="standard">
@@ -13,10 +13,11 @@
     </div>
   </div>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements"
+    class=" dyeableContainer">
   </mat-paginator>
 
-  <table mat-table matSort [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
+  <table mat-table matSort [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8 dyeableContainer">
 
     <ng-container [matColumnDef]="column.id" *ngFor="let column of columnsToDisplay">
 

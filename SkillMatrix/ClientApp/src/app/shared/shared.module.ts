@@ -14,7 +14,6 @@ import { SkillMatrixMockDb } from './database/fake-in-memory-db';
 import { MaterialsModule } from './materials/materials.module';
 
 
-
 @NgModule({
   declarations: [
     ToolbarComponent,

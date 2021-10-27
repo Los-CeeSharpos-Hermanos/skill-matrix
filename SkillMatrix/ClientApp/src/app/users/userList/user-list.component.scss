@@ -34,7 +34,7 @@ tr.example-detail-row {
 }
 
 tr.example-element-row:not(.example-expanded-row):hover {
-  background: rgb(75, 74, 74);
+  background:#423E54;
 }
 
 tr.example-element-row:not(.example-expanded-row):active {
@@ -42,7 +42,7 @@ tr.example-element-row:not(.example-expanded-row):active {
 }
 
 .detail-card {
-  background-color: #353535;
+  background-color: #322F40;
 }
 
 .example-element-row td {
@@ -76,9 +76,5 @@ tr.example-element-row:not(.example-expanded-row):active {
   opacity: 0.5;
 }
 
-
-.unstyled {
-  background-color: aliceblue !important;
-}
 
 
