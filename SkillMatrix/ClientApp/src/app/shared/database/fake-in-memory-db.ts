@@ -9,6 +9,6 @@ export class SkillMatrixMockDb implements InMemoryDbService {
   static apiBase: 'api/mock';
 
   createDb() {
-    return {  };
+    return {  categories, users };
   }
 }
