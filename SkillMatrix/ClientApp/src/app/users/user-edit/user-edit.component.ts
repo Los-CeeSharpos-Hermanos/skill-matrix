@@ -2,21 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  selector: 'app-user-edit',
+  templateUrl: './user-edit.component.html',
+  styleUrls: ['./user-edit.component.scss']
 })
-export class ProfileComponent implements OnInit {
+export class UserEditComponent implements OnInit {
 
   profileForm: FormGroup;
   categoriesList: ['Frontend', 'Backend', 'Databases', 'Cloud expertise'];
+
   profilePic: string = "assets/dogPic2.jpg";
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
-
-    this.categoriesListInit();
 
     this.profileFormInit();
 
@@ -48,9 +47,9 @@ export class ProfileComponent implements OnInit {
 
   }
 
-  buildSkill(): any {
+  buildSkill(): FormGroup {
     return this.fb.group({
-      category: '',
+      skillName: '',
       proficiency: ''
     });
   }
@@ -59,9 +58,12 @@ export class ProfileComponent implements OnInit {
     return this.profileForm.get('skills') as FormArray;
   }
 
-  addSkill() : void
-  {
-    this.skills.push(this.buildSkill())
+  addSkill(): void {
+    this.skills.push(this.buildSkill());
+  }
+
+  removeSkill(index: number): void {
+    this.skills.removeAt(index);
   }
 
   buildLanguage(): FormGroup {
@@ -75,13 +77,11 @@ export class ProfileComponent implements OnInit {
     return this.profileForm.get('languages') as FormArray;
   }
 
-  addLanguage() : void
-  {
-    this.languages.push(this.buildLanguage())
+  addLanguage(): void {
+    this.languages.push(this.buildLanguage());
   }
 
-  removeLanguage(index: number): void
-  {
+  removeLanguage(index: number): void {
     this.languages.removeAt(index);
   }
 }

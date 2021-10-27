@@ -1,5 +1,4 @@
-import { Component, Input } from '@angular/core';
-import { RoutingService } from '../../services/routing.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-add-button',
@@ -8,11 +7,6 @@ import { RoutingService } from '../../services/routing.service';
 })
 export class AddButtonComponent {
 
-  @Input() goToPath = '';
 
-  constructor(private routingService: RoutingService) { }
 
-  goTo(): void {
-    this.routingService.goTo(this.goToPath);
-  }
 }
