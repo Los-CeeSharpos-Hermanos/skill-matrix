@@ -11,6 +11,6 @@ namespace SkillMatrix.Domain.Languages.Models
         public string Name { get; set; }
         public string NativeName { get; set; }
 
-        public virtual IEnumerable<User> Users { get; set; }
+        public virtual IEnumerable<LanguageUser> Users { get; set; }
     }
 }

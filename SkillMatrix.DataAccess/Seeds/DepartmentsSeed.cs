@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SkillMatrix.Domain.Users.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SkillMatrix.DataAccess.Seeds
 {
@@ -14,8 +9,8 @@ namespace SkillMatrix.DataAccess.Seeds
         {
             modelBuilder.Entity<Department>()
                .HasData(
-                   new Department { Id = 1, Name = "Sales" },
-                   new Department { Id = 2, Name = "Development" }
+                   new Department { DepartmentId = 1, DepartmentName = "Sales" },
+                   new Department { DepartmentId = 2, DepartmentName = "Development" }
             );
         }
     }

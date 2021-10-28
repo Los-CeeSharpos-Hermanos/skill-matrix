@@ -20,8 +20,8 @@ namespace SkillMatrix.DataAccess.Repositories.Users
 
         public async Task<List<Department>> GetDepartmentsAsync()
         {
-            return await _db.Departments.Where(p => p.Id > 0)
-                                  .OrderBy(t => t.Id)
+            return await _db.Departments.Where(p => p.DepartmentId > 0)
+                                  .OrderBy(t => t.DepartmentId)
                                   .ToListAsync();
         }
 
@@ -44,7 +44,7 @@ namespace SkillMatrix.DataAccess.Repositories.Users
 
         public async Task DeleteDepartmentAsync(long id)
         {
-            Department dbDepartment = await _db.Departments.Where(department => department.Id == id).FirstOrDefaultAsync()
+            Department dbDepartment = await _db.Departments.Where(department => department.DepartmentId == id).FirstOrDefaultAsync()
                 ?? throw new KeyNotFoundException("$Department not found");
             _db.Departments.Remove(dbDepartment);
             await _db.SaveChangesAsync();

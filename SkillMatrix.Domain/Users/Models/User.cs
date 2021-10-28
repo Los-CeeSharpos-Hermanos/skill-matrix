@@ -1,7 +1,4 @@
-﻿using SkillMatrix.Domain.Languages.Models;
-using SkillMatrix.Domain.Skills.Models;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace SkillMatrix.Domain.Users.Models
 {
@@ -13,10 +10,10 @@ namespace SkillMatrix.Domain.Users.Models
         public string Email { get; set; }
         public string ImageUrl { get; set; }
 
-        public virtual IEnumerable<Skill> Skills { get; set; }
-        public virtual IEnumerable<Language> Languages { get; set; }
-
+        public long? DepartmentId { get; set; }
         public virtual Department Department { get; set; }
+
+        public long? TeamId { get; set; }
         public virtual Team Team { get; set; }
     }
 }

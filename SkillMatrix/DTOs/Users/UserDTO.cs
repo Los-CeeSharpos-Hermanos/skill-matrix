@@ -13,13 +13,12 @@ namespace SkillMatrix.Application.DTOs
         public long Id { get; set; }
         public string SurName { get; set; }
         public string FirstName { get; set; }
+        public string Telephone { get; set; }
         public string Email { get; set; }
         public string ImageUrl { get; set; }
-        
         public string Department { get; set; }
         public string Team { get; set; }
-
-    
-        
+        public List<UserSkillDTO> Skills { get; set; }
+        public List<UserLanguageDTO> Languages { get; set; }
     }
 }

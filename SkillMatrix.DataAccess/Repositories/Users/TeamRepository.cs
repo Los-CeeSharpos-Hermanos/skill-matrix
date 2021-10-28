@@ -20,8 +20,8 @@ namespace SkillMatrix.DataAccess.Repositories.Users
 
         public async Task<List<Team>> GetTeamsAsync()
         {
-            return await _db.Teams.Where(p => p.Id > 0)
-                                  .OrderBy(t => t.Id)
+            return await _db.Teams.Where(p => p.TeamId > 0)
+                                  .OrderBy(t => t.TeamId)
                                   .ToListAsync();
         }
 
@@ -44,7 +44,7 @@ namespace SkillMatrix.DataAccess.Repositories.Users
 
         public async Task DeleteTeamAsync(long id)
         {
-            Team dbTeam = await _db.Teams.Where(team => team.Id == id).FirstOrDefaultAsync()
+            Team dbTeam = await _db.Teams.Where(team => team.TeamId == id).FirstOrDefaultAsync()
                 ?? throw new KeyNotFoundException("$Team not found");
             _db.Teams.Remove(dbTeam);
             await _db.SaveChangesAsync();

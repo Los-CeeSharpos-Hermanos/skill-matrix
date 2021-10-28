@@ -15,6 +15,7 @@ namespace SkillMatrix.DataAccess
         public DbSet<SkillCategory> SkillCategories { get; set; }
         public DbSet<Language> Languages { get; set; }
         public DbSet<User> Users { get; set; }
+
         public DbSet<Department> Departments { get; set; }
         public DbSet<Team> Teams { get; set; }
 
