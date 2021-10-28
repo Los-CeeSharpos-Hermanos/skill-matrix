@@ -1,17 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
+
+
+
 export class ProfileComponent implements OnInit {
 
   profileForm: FormGroup;
-  categoriesList: ['Frontend', 'Backend', 'Databases', 'Cloud expertise'];
-  
   profilePic: string = "assets/dogPic2.jpg";
+
+  languages: [''];
+  skills: [''];
+
+
 
   constructor(private fb: FormBuilder) { }
 
@@ -32,19 +37,9 @@ export class ProfileComponent implements OnInit {
       email: ['', [Validators.email]],
       phone: '',
       favQuote: '',
-      languages: this.fb.array([this.buildLanguage()]),
+      languages: this.fb.array([this.buildFormLanguage()]),
       skills: this.fb.array([this.buildSkill()])
     });
-  }
-
-  categoriesListInit() {
-
-    //To do:
-    //1. Grab categories from backend/fakeapi
-    //2. Turn them into an array of strings
-
-    this.categoriesList = ['Frontend', 'Backend', 'Databases', 'Cloud expertise'];
-
   }
 
   buildSkill(): FormGroup {
@@ -54,38 +49,40 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  get skills(): FormArray {
+  get formSkills(): FormArray {
     return this.profileForm.get('skills') as FormArray;
   }
 
-  addSkill() : void
+  addFormSkill() : void
   {
-    this.skills.push(this.buildSkill())
+    this.formSkills.push(this.buildSkill())
   }
 
-  removeSkill(index: number) : void
+  removeFormSkill(index: number) : void
   {
-    this.skills.removeAt(index);
+    this.formSkills.removeAt(index);
   }
 
-  buildLanguage(): FormGroup {
+  buildFormLanguage(): FormGroup {
     return this.fb.group({
       language: '',
       proficiency: ''
     });
   }
 
-  get languages(): FormArray {
+  get formLanguages(): FormArray {
     return this.profileForm.get('languages') as FormArray;
   }
 
-  addLanguage() : void
+  addFormLanguage() : void
   {
-    this.languages.push(this.buildLanguage())
+    this.formLanguages.push(this.buildFormLanguage())
   }
 
-  removeLanguage(index: number): void
+  removeFormLanguage(index: number): void
   {
-    this.languages.removeAt(index);
+    this.formLanguages.removeAt(index);
   }
 }
+
+

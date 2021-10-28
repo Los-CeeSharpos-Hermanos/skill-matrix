@@ -1,141 +1,121 @@
-<app-submenu pageTitle="Your Profile"></app-submenu>
+<div class="grid place-items-center min-h-screen">
+     <div class="p-4 lg:max-w-3xl sm:max-w-lg grid gap-10 sm:grid-cols-1 lg:grid-cols-2">
 
-<div class="container">
-  <div class="row">
-     <div class="col-10 offset-1">
-       <div class="row">
+            <div class="portraitCard">
+              <mat-card>
+                  <img [src]="profilePic" class="rounded-full img-fluid">
+                  <input type="file" class="fileInput">
+                </mat-card>
+            </div>
 
-         <div class="col-lg-4 col-sm-10 offset-sm-1">
+           <div class="personalInfoCard lg:row-start-2">
 
-           <mat-card>
-           <div class="row">
-             <img [src]="profilePic" class="rounded-full img-fluid">
-             <input type="file" class="fileInput">
+                <form [formGroup]="profileForm">
+
+                        <mat-card class="mb-2">
+                          <mat-form-field appearance="fill" class="m-1">
+                            <mat-label>First Name</mat-label>
+                            <input formControlName="firstname" matInput>
+                        </mat-form-field>
+
+                          <mat-form-field appearance="fill" class="m-1">
+                              <mat-label>Surname</mat-label>
+                              <input formControlName="surname" matInput>
+                          </mat-form-field>
+                        </mat-card>
+
+                        <mat-card>
+                          <mat-form-field appearance="fill" class="m-1">
+                            <mat-label>Email</mat-label>
+                            <input formControlName="email" matInput>
+                          </mat-form-field>
+
+                          <mat-form-field appearance="fill" class="m-1">
+                            <mat-label>Phone</mat-label>
+                            <input formControlName="phone" matInput>
+                          </mat-form-field>
+                         </mat-card>
+
+                 </form>
+          </div>
+
+
+
+
+         <div class="jobInfoCard lg:row-start-2">
+
+          <mat-card class="h-full">
+            <form [formGroup]="profileForm">
+                        <mat-form-field appearance="fill" class="m-1">
+                          <mat-label>Job Title</mat-label>
+                          <input formControlName="jobTitle" matInput>
+                        </mat-form-field>
+
+                      <mat-form-field appearance="fill" class="m-1">
+                        <mat-label>Team</mat-label>
+                        <input formControlName="team" matInput>
+                      </mat-form-field>
+
+                      <mat-form-field appearance="fill" class="m-1">
+                        <mat-label>Department</mat-label>
+                        <input formControlName="department" matInput>
+                      </mat-form-field>
+
+                      <mat-form-field appearance="fill" class="m-1">
+                        <mat-label>Location</mat-label>
+                        <input formControlName="location" matInput>
+                      </mat-form-field>
+            </form>
+
+          </mat-card>
+         </div>
+
+
+         <div class="attrCol lg:row-start-3 lg:col-span-2">
+
+           <div class="languagesCard mb-2">
+
+            <mat-card>
+              <form>
+                <div class="grid grid-cols-12">
+
+                  <div class="col-span-1 mx-3">
+                    <app-add-button></app-add-button>
+                  </div>
+
+                  <mat-form-field appearance="fill" class="col-span-4 col-start-3 mx-2">
+                    <mat-label>Favorite food</mat-label>
+                    <input matInput placeholder="Ex. Pizza" value="Sushi">
+                  </mat-form-field>
+
+                  <mat-form-field appearance="fill" class="col-span-4">
+                    <mat-label>Favorite food</mat-label>
+                    <input matInput placeholder="Ex. Pizza" value="Sushi">
+                  </mat-form-field>
+
+                  <div *ngIf="false" class="col-span-1 col-start-11 mx-4">
+                    <app-remove-button></app-remove-button>
+                 </div>
+
+                </div>
+              </form>
+            </mat-card>
+
            </div>
-           </mat-card>
 
-           <mat-card class="h-64">
-            <mat-form-field  appearance="fill">
-              <mat-label>Favorite Quote</mat-label>
-              <textarea matInput placeholder="Not all who wander are lost." class="h-48 w-40 justify-center"></textarea>
-            </mat-form-field>
-           </mat-card>
-
-
-         </div>
-
-         <div class="col-lg-6 col-sm-12">
-           <mat-card>
-             <div class="row">
-               <form [formGroup]="profileForm">
-                     <div class="row">
-                         <mat-form-field appearance="fill">
-                             <mat-label>First Name</mat-label>
-                             <input formControlName="firstname" matInput>
-                         </mat-form-field>
-
-                           <mat-form-field appearance="fill">
-                               <mat-label>Surname</mat-label>
-                               <input formControlName="surname" matInput>
-                           </mat-form-field>
-
-                           <mat-form-field appearance="fill">
-                             <mat-label>Job Title</mat-label>
-                             <input formControlName="jobTitle" matInput>
-                           </mat-form-field>
-
-                         <mat-form-field appearance="fill">
-                           <mat-label>Team</mat-label>
-                           <input formControlName="team" matInput>
-                         </mat-form-field>
-
-                         <mat-form-field appearance="fill">
-                           <mat-label>Department</mat-label>
-                           <input formControlName="department" matInput>
-                         </mat-form-field>
-
-                         <mat-form-field appearance="fill">
-                           <mat-label>Location</mat-label>
-                           <input formControlName="location" matInput>
-                         </mat-form-field>
-
-                         <mat-form-field appearance="fill">
-                           <mat-label>Email</mat-label>
-                           <input formControlName="email" matInput>
-                         </mat-form-field>
-
-                         <mat-form-field appearance="fill">
-                           <mat-label>Phone</mat-label>
-                           <input formControlName="phone" matInput>
-                         </mat-form-field>
-
-                     </div>
-             </form>
-
-               </div>
-           </mat-card>
-         </div>
-
-         <div class="col 12">
-           <mat-card>
-
-             <form [formGroup]="profileForm">
-               <div class="row">
-                 <app-add-button class="col-2" (click)="addLanguage()"></app-add-button>
-                 <div class="col-10">
-                   <div formArrayName="languages" *ngFor="let language of languages.controls; let i=index">
-                     <div [formGroupName]="i" class="row">
-
-
-                       <mat-form-field appearance="fill" class="col-4">
-                         <mat-label attr.for="{{ 'languageId' + i}}">Language</mat-label>
-                         <input matInput formControlName="language"
-                         id="{{ 'languageId' + i}}">
-                       </mat-form-field>
-
-                       <mat-form-field appearance="fill" class="col-4">
-                         <mat-label attr.for="{{ 'proficiencyId' + i}}">Proficiency</mat-label>
-                         <input matInput formControlName="proficiency"
-                         id="{{ 'proficiencyId' + i}}">
-                       </mat-form-field>
-
-                       <div *ngIf="i > 0" class="col-2">
-                          <app-remove-button (click)="removeLanguage(i)"></app-remove-button>
-                       </div>
-
-                     </div>
-                   </div>
-
-               </div>
-
-
-              </div>
-
-             </form>
-
-           </mat-card>
-
-           <div class="col 12">
+           <div class="skillsCard">
             <mat-card>
 
               <form [formGroup]="profileForm">
-                <div class="row">
-                  <app-add-button class="col-2" (click)="addSkill()"></app-add-button>
-                  <div class="col-10">
-                    <div formArrayName="skills" *ngFor="let skill of skills.controls; let i=index">
-                      <div [formGroupName]="i" class="row">
+                    <div formArrayName="skills" *ngFor="let skill of formSkills.controls; let i=index">
+                      <div [formGroupName]="i" class="grid grid-cols-12">
 
-                        <mat-form-field appearance="fill" class="col-3">
-                          <mat-label>Choose a Category</mat-label>
-                          <mat-select>
-                            <mat-option value="option1">Frontend</mat-option>
-                            <mat-option value="option2" >Backend</mat-option>
-                            <mat-option value="option3">Databases</mat-option>
-                          </mat-select>
-                        </mat-form-field>
+                        <div class="col-span-1 mx-3" *ngIf="i === 0">
+                          <app-add-button (click)="addFormSkill()" ></app-add-button>
+                        </div>
 
-                        <mat-form-field appearance="fill" class="col-3">
-                          <mat-label>Choose a skill</mat-label>
+                        <mat-form-field appearance="fill" class="col-span-4 col-start-3 mx-2">
+                          <mat-label>Skill</mat-label>
                           <mat-select>
                             <mat-option value="option1">Angular</mat-option>
                             <mat-option value="option2" >C#</mat-option>
@@ -143,8 +123,8 @@
                           </mat-select>
                         </mat-form-field>
 
-                        <mat-form-field appearance="fill" class="col-3">
-                          <mat-label>Choose a proficiency</mat-label>
+                        <mat-form-field appearance="fill" class="col-span-4">
+                          <mat-label>Proficiency</mat-label>
                           <mat-select>
                             <mat-option value="option1">Beginner</mat-option>
                             <mat-option value="option2" >Intermediate</mat-option>
@@ -152,8 +132,8 @@
                           </mat-select>
                         </mat-form-field>
 
-                        <div *ngIf="i > 0" class="col-2">
-                           <app-remove-button (click)="removeSkill(i)"></app-remove-button>
+                        <div *ngIf="i > 0" class="col-span-1 col-start-11 mx-4">
+                           <app-remove-button (click)="removeFormSkill(i)"></app-remove-button>
                         </div>
 
                       </div>
@@ -162,46 +142,21 @@
 
                     </div>
 
-                </div>
 
-
-               </div>
 
               </form>
 
             </mat-card>
 
 
-           <!-- <ul name="categoriesList" *ngFor="let category of categoriesList; let i=index">
-             <li id='i'>
-              <mat-card >
-                <div formArrayName="{{category}}" *ngFor="let skills of category; let i=index">
-                  <div [formGroupName]="i" class="row">
-
-
-                    <mat-form-field appearance="fill" class="col-4">
-                      <mat-label attr.for="{{ 'skillId' + i}}">Language</mat-label>
-                      <input matInput formControlName="skill"
-                      id="{{ 'languageId' + i}}">
-                    </mat-form-field>
-
-                    <mat-form-field appearance="fill" class="col-4">
-                      <mat-label attr.for="{{ 'proficiencyId' + i}}">Proficiency</mat-label>
-                      <input matInput formControlName="proficiency"
-                      id="{{ 'proficiencyId' + i}}">
-                    </mat-form-field>
-
-                    <div *ngIf="i > 0" class="col-2">
-                       <app-remove-button (click)="removeLanguage(i)"></app-remove-button>
-                    </div>
-                  </div>
-                </div>
-              </mat-card>
-             </li>
-           </ul> -->
 
          </div>
+
+         <div class="buttonsCard mt-2" class="grid grid-cols-12">
+          <div class="col-start-9 mt-4">
+            <button mat-raised-button color="primary">Submit</button>
+          </div>
+        </div>
        </div>
      </div>
    </div>
-</div>
