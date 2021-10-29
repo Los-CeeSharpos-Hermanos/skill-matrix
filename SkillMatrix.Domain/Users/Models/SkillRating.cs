@@ -3,10 +3,10 @@
 
 namespace SkillMatrix.Domain.Users.Models
 {
-    public class LanguageRating
+    public class SkillRating
     {
-        public long LanguageRatingId { get; set; }
-        public long LanguageId { get; set; }
+        public long SkillRatingId { get; set; }
+        public long SkillId { get; set; }
         public long UserId { get; set; }
         public Rating Rating { get; set; }
     }

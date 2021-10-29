@@ -17,6 +17,6 @@ namespace SkillMatrix.Application.DTOs.Users
         public string Department { get; set; }
         public string Team { get; set; }
         public LanguageRatingDTO[] Languages { get; set; }
-        //public SkillRatingDTO[] Skills { get; set; }
+        public SkillRatingDTO[] Skills { get; set; }
     }
 }

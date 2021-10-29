@@ -20,6 +20,6 @@ namespace SkillMatrix.Domain.Users.Models
         public virtual Team Team { get; set; }
 
         public virtual ICollection<LanguageRating> LanguageRatings { get; set; } = new Collection<LanguageRating>();
-        //have to build public virtual ICollection<SkillRating> SkillRatings { get; set; } = new Collection<SkillRatings>();
+        public virtual ICollection<SkillRating> SkillRatings { get; set; } = new Collection<SkillRating>();
     }
 }

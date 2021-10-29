@@ -49,6 +49,7 @@ namespace SkillMatrix.Application.Services
         {
             User userAdd = new User();
             LanguageRating tt = new LanguageRating();
+            SkillRating skillRating = new SkillRating();
             userAdd.FirstName = user.FirstName;
             userAdd.SurName = user.SurName;
             userAdd.Telephone = user.Telephone;
@@ -72,6 +73,19 @@ namespace SkillMatrix.Application.Services
                 }
                 userAdd.LanguageRatings.Add(tt);
             }
+            foreach (SkillRatingDTO s in user.Skills)
+            {
+                skillRating.SkillId = s.SkillId;
+                skillRating.UserId = user.Id;
+                switch (s.Rating)
+                {
+                    case 1: skillRating.Rating = Domain.Skills.Enums.Rating.Begginer; break;
+                    case 2: skillRating.Rating = Domain.Skills.Enums.Rating.Intermediate; break;
+                    case 3: skillRating.Rating = Domain.Skills.Enums.Rating.Advanced; break;
+                    default: skillRating.Rating = Domain.Skills.Enums.Rating.Begginer; break;
+                }
+                userAdd.SkillRatings.Add(skillRating);
+            }
             await _userRepository.PostUserAsync(userAdd);
 
         }
@@ -79,6 +93,7 @@ namespace SkillMatrix.Application.Services
         public async Task PutUserAsync(long id, FormUserDTO user)
         {
             LanguageRating tt = new LanguageRating();
+            SkillRating skillRating = new SkillRating();
             var updatedUser = await _userRepository.GetUserAsync(id);
             updatedUser.FirstName = user.FirstName;
             updatedUser.SurName = user.SurName;
@@ -101,7 +116,20 @@ namespace SkillMatrix.Application.Services
                 }
                 updatedUser.LanguageRatings.Add(tt);
             }
-           
+            foreach (SkillRatingDTO s in user.Skills)
+            {
+                skillRating.SkillId = s.SkillId;
+                skillRating.UserId = user.Id;
+                switch (s.Rating)
+                {
+                    case 1: skillRating.Rating = Domain.Skills.Enums.Rating.Begginer; break;
+                    case 2: skillRating.Rating = Domain.Skills.Enums.Rating.Intermediate; break;
+                    case 3: skillRating.Rating = Domain.Skills.Enums.Rating.Advanced; break;
+                    default: skillRating.Rating = Domain.Skills.Enums.Rating.Begginer; break;
+                }
+                updatedUser.SkillRatings.Add(skillRating);
+            }
+
             await _userRepository.PutUserAsync(id, updatedUser);
         }
 
