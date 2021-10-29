@@ -6,6 +6,7 @@ using SkillMatrix.DataAccess.Seeds;
 using SkillMatrix.Domain.Skills.Models;
 using SkillMatrix.DataAccess.Skills;
 using SkillMatrix.Domain.Users.Models;
+using SkillMatrix.DataAccess.Configurations;
 
 namespace SkillMatrix.DataAccess
 {
@@ -38,6 +39,8 @@ namespace SkillMatrix.DataAccess
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDBContext).Assembly);
             modelBuilder.ApplyConfiguration(new SkillConfiguration());
+            modelBuilder.ApplyConfiguration(new LanguageConfiguration());
+            modelBuilder.ApplyConfiguration(new DepartmentConfiguration());
 
             modelBuilder.InsertSeeds();
         }

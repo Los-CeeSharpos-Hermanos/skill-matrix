@@ -7,7 +7,7 @@ namespace SkillMatrix.Application.DTOs
 {
     public class DepartmentDTO
     {
-        public long Id { get; set; }
-        public string Name { get; set; }
+        public long DepartmentId { get; set; }
+        public string DepartmentName { get; set; }
     }
 }

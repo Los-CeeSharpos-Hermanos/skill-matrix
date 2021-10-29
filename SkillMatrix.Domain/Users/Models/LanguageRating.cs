@@ -1,4 +1,5 @@
-﻿using SkillMatrix.Domain.Skills.Enums;
+﻿using SkillMatrix.Domain.Languages.Models;
+using SkillMatrix.Domain.Skills.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,7 @@ namespace SkillMatrix.Domain.Users.Models
     {
         public long LanguageRatingId { get; set; }
         public long LanguageId { get; set; }
-        public LanguageRating Language { get; set; }
-        public int RatingId { get; set; }
+        public long UserId { get; set; }
         public Rating Rating { get; set; }
-
     }
 }

@@ -12,6 +12,7 @@ namespace SkillMatrix.DataAccess.Seeds
             modelBuilder.SeedDepartments();
             modelBuilder.SeedTeams();
             modelBuilder.SeedUsers();
+            modelBuilder.SeedLangugaeRatings();
         }
     }
 }

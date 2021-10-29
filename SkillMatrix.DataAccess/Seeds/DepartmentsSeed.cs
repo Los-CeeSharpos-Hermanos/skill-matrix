@@ -10,7 +10,8 @@ namespace SkillMatrix.DataAccess.Seeds
             modelBuilder.Entity<Department>()
                .HasData(
                    new Department { DepartmentId = 1, DepartmentName = "Sales" },
-                   new Department { DepartmentId = 2, DepartmentName = "Development" }
+                   new Department { DepartmentId = 2, DepartmentName = "Development" },
+                   new Department { DepartmentId = 3, DepartmentName = "Marketing" }
             );
         }
     }

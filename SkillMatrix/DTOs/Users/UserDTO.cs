@@ -18,7 +18,5 @@ namespace SkillMatrix.Application.DTOs
         public string ImageUrl { get; set; }
         public string Department { get; set; }
         public string Team { get; set; }
-        public List<UserSkillDTO> Skills { get; set; }
-        public List<UserLanguageDTO> Languages { get; set; }
     }
 }

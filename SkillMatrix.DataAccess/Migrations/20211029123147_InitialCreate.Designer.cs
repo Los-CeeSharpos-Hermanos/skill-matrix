@@ -10,8 +10,8 @@ using SkillMatrix.DataAccess;
 namespace SkillMatrix.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20211021143343_UpdateLanguageTable")]
-    partial class UpdateLanguageTable
+    [Migration("20211029123147_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,21 +20,6 @@ namespace SkillMatrix.DataAccess.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.11")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("LanguageUser", b =>
-                {
-                    b.Property<long>("LanguagesId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("UsersId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("LanguagesId", "UsersId");
-
-                    b.HasIndex("UsersId");
-
-                    b.ToTable("LanguageUser");
-                });
 
             modelBuilder.Entity("SkillMatrix.Domain.Languages.Models.Language", b =>
                 {
@@ -1726,9 +1711,7 @@ namespace SkillMatrix.DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .ValueGeneratedOnUpdate()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETDATE()");
+                        .HasColumnType("datetime2");
 
                     b.HasKey("SkillId");
 
@@ -1807,13 +1790,11 @@ namespace SkillMatrix.DataAccess.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETDATE()");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("SkillCategoryName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .ValueGeneratedOnUpdate()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETDATE()");
+                        .HasColumnType("datetime2");
 
                     b.HasKey("SkillCategoryId");
 
@@ -1824,35 +1805,35 @@ namespace SkillMatrix.DataAccess.Migrations
                         {
                             SkillCategoryId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Technical Skills",
+                            SkillCategoryName = "Technical Skills",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             SkillCategoryId = 2L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Soft Skills",
+                            SkillCategoryName = "Soft Skills",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             SkillCategoryId = 3L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "SWOValue",
+                            SkillCategoryName = "SWOValue",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             SkillCategoryId = 4L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Sport",
+                            SkillCategoryName = "Sport",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
-            modelBuilder.Entity("SkillMatrix.Domain.Users.Department", b =>
+            modelBuilder.Entity("SkillMatrix.Domain.Users.Models.Department", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<long>("DepartmentId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -1862,7 +1843,7 @@ namespace SkillMatrix.DataAccess.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETDATE()");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("DepartmentName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("UpdatedAt")
@@ -1870,14 +1851,69 @@ namespace SkillMatrix.DataAccess.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETDATE()");
 
-                    b.HasKey("Id");
+                    b.HasKey("DepartmentId");
 
-                    b.ToTable("Department");
+                    b.ToTable("Departments");
+
+                    b.HasData(
+                        new
+                        {
+                            DepartmentId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DepartmentName = "Sales",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            DepartmentId = 2L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DepartmentName = "Development",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            DepartmentId = 3L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DepartmentName = "Marketing",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
-            modelBuilder.Entity("SkillMatrix.Domain.Users.Team", b =>
+            modelBuilder.Entity("SkillMatrix.Domain.Users.Models.LanguageRating", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<long>("LanguageRatingId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("LanguageId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("LanguageRatingId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("LanguageRating");
+
+                    b.HasData(
+                        new
+                        {
+                            LanguageRatingId = 1L,
+                            LanguageId = 40L,
+                            Rating = 3,
+                            UserId = 1L
+                        });
+                });
+
+            modelBuilder.Entity("SkillMatrix.Domain.Users.Models.Team", b =>
+                {
+                    b.Property<long>("TeamId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -1890,7 +1926,7 @@ namespace SkillMatrix.DataAccess.Migrations
                     b.Property<long?>("DepartmentId")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("TeamName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("UpdatedAt")
@@ -1898,14 +1934,30 @@ namespace SkillMatrix.DataAccess.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETDATE()");
 
-                    b.HasKey("Id");
+                    b.HasKey("TeamId");
 
                     b.HasIndex("DepartmentId");
 
-                    b.ToTable("Team");
+                    b.ToTable("Teams");
+
+                    b.HasData(
+                        new
+                        {
+                            TeamId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TeamName = "A-Team",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            TeamId = 2L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TeamName = "B-Team",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
-            modelBuilder.Entity("SkillMatrix.Domain.Users.User", b =>
+            modelBuilder.Entity("SkillMatrix.Domain.Users.Models.User", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -1929,16 +1981,20 @@ namespace SkillMatrix.DataAccess.Migrations
                     b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("JobTitle")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("SurName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<long?>("TeamId")
                         .HasColumnType("bigint");
 
+                    b.Property<string>("Telephone")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("UpdatedAt")
-                        .ValueGeneratedOnUpdate()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETDATE()");
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -1947,36 +2003,50 @@ namespace SkillMatrix.DataAccess.Migrations
                     b.HasIndex("TeamId");
 
                     b.ToTable("Users");
-                });
 
-            modelBuilder.Entity("SkillUser", b =>
-                {
-                    b.Property<long>("SkillsSkillId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("UsersId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("SkillsSkillId", "UsersId");
-
-                    b.HasIndex("UsersId");
-
-                    b.ToTable("SkillUser");
-                });
-
-            modelBuilder.Entity("LanguageUser", b =>
-                {
-                    b.HasOne("SkillMatrix.Domain.Languages.Models.Language", null)
-                        .WithMany()
-                        .HasForeignKey("LanguagesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SkillMatrix.Domain.Users.User", null)
-                        .WithMany()
-                        .HasForeignKey("UsersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DepartmentId = 2L,
+                            Email = "martin.schmidt@web.de",
+                            FirstName = "Martin",
+                            ImageUrl = "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png",
+                            JobTitle = "Developer",
+                            SurName = "Schmidt",
+                            TeamId = 1L,
+                            Telephone = "0845679123",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DepartmentId = 1L,
+                            Email = "nico.marten@web.de",
+                            FirstName = "Nico",
+                            ImageUrl = "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png",
+                            JobTitle = "Software Architect",
+                            SurName = "Marten",
+                            TeamId = 1L,
+                            Telephone = "0987654321",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DepartmentId = 1L,
+                            Email = "tom.tompson@web.de",
+                            FirstName = "Tom",
+                            ImageUrl = "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png",
+                            JobTitle = "Sailsman",
+                            SurName = "Tompson",
+                            TeamId = 2L,
+                            Telephone = "0123456789",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("SkillMatrix.Domain.Skills.Models.Skill", b =>
@@ -1990,22 +2060,31 @@ namespace SkillMatrix.DataAccess.Migrations
                     b.Navigation("SkillCategory");
                 });
 
-            modelBuilder.Entity("SkillMatrix.Domain.Users.Team", b =>
+            modelBuilder.Entity("SkillMatrix.Domain.Users.Models.LanguageRating", b =>
                 {
-                    b.HasOne("SkillMatrix.Domain.Users.Department", "Department")
+                    b.HasOne("SkillMatrix.Domain.Users.Models.User", null)
+                        .WithMany("LanguageRatings")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("SkillMatrix.Domain.Users.Models.Team", b =>
+                {
+                    b.HasOne("SkillMatrix.Domain.Users.Models.Department", "Department")
                         .WithMany()
                         .HasForeignKey("DepartmentId");
 
                     b.Navigation("Department");
                 });
 
-            modelBuilder.Entity("SkillMatrix.Domain.Users.User", b =>
+            modelBuilder.Entity("SkillMatrix.Domain.Users.Models.User", b =>
                 {
-                    b.HasOne("SkillMatrix.Domain.Users.Department", "Department")
+                    b.HasOne("SkillMatrix.Domain.Users.Models.Department", "Department")
                         .WithMany("Users")
                         .HasForeignKey("DepartmentId");
 
-                    b.HasOne("SkillMatrix.Domain.Users.Team", "Team")
+                    b.HasOne("SkillMatrix.Domain.Users.Models.Team", "Team")
                         .WithMany("Users")
                         .HasForeignKey("TeamId");
 
@@ -2014,34 +2093,24 @@ namespace SkillMatrix.DataAccess.Migrations
                     b.Navigation("Team");
                 });
 
-            modelBuilder.Entity("SkillUser", b =>
-                {
-                    b.HasOne("SkillMatrix.Domain.Skills.Models.Skill", null)
-                        .WithMany()
-                        .HasForeignKey("SkillsSkillId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SkillMatrix.Domain.Users.User", null)
-                        .WithMany()
-                        .HasForeignKey("UsersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("SkillMatrix.Domain.Skills.Models.SkillCategory", b =>
                 {
                     b.Navigation("Skills");
                 });
 
-            modelBuilder.Entity("SkillMatrix.Domain.Users.Department", b =>
+            modelBuilder.Entity("SkillMatrix.Domain.Users.Models.Department", b =>
                 {
                     b.Navigation("Users");
                 });
 
-            modelBuilder.Entity("SkillMatrix.Domain.Users.Team", b =>
+            modelBuilder.Entity("SkillMatrix.Domain.Users.Models.Team", b =>
                 {
                     b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("SkillMatrix.Domain.Users.Models.User", b =>
+                {
+                    b.Navigation("LanguageRatings");
                 });
 #pragma warning restore 612, 618
         }

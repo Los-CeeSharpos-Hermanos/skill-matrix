@@ -60,7 +60,7 @@ namespace SkillMatrix.Application.Mappers
         {
             CreateMap<Team, TeamDTO>()
                  .ForMember(
-                 destination => destination.Id,
+                 destination => destination.TeamId,
                  map => map.MapFrom(source => source.TeamId))
                  .ReverseMap();
 
@@ -71,7 +71,7 @@ namespace SkillMatrix.Application.Mappers
         {
             CreateMap<Department, DepartmentDTO>()
                 .ForMember(
-                destination => destination.Id,
+                destination => destination.DepartmentId,
                 map => map.MapFrom(source => source.DepartmentId))
                 .ReverseMap();
         }

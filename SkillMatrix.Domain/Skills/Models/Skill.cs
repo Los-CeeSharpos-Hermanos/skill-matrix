@@ -10,7 +10,7 @@ namespace SkillMatrix.Domain.Skills.Models
         public string SkillName { get; set; }
         public long SkillCategoryId { get; set; }
         public virtual SkillCategory SkillCategory { get; set; }
-        public virtual IEnumerable<SkillUser> SkillUsers { get; set; }
+        
 
     }
 }
