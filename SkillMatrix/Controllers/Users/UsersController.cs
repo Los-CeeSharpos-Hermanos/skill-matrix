@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SkillMatrix.Application.DTOs;
+using SkillMatrix.Application.DTOs.Users;
 using SkillMatrix.Application.Services;
 using SkillMatrix.Domain.Users.Models;
 using System;
@@ -38,16 +39,16 @@ namespace SkillMatrix.Application.Controllers.Users
 
         // POST api/<UsersController>
         [HttpPost]
-        public async Task PostUserAsync([FromBody] User user)
+        public async Task PostUserAsync([FromBody] FormUserDTO user)
         {
             await _userService.PostUserAsync(user);
         }
 
         // PUT api/<UsersController>/5
         [HttpPut("{id}")]
-        public async Task PutUserAsync([FromBody] User user)
+        public async Task PutUserAsync(long id, [FromBody] FormUserDTO user)
         {
-            await _userService.PutUserAsync(user);
+            await _userService.PutUserAsync(id, user);
         }
 
         // DELETE api/<UsersController>/5

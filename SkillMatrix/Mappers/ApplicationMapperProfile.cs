@@ -4,6 +4,7 @@ using SkillMatrix.Domain.Languages.Models;
 using SkillMatrix.Application.DTOs.Skills;
 using SkillMatrix.Domain.Skills.Models;
 using SkillMatrix.Domain.Users.Models;
+using SkillMatrix.Application.DTOs.Users;
 
 namespace SkillMatrix.Application.Mappers
 {

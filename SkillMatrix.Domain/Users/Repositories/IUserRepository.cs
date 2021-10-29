@@ -1,8 +1,5 @@
 ﻿using SkillMatrix.Domain.Users.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SkillMatrix.Domain.Users.Repositories
@@ -12,7 +9,9 @@ namespace SkillMatrix.Domain.Users.Repositories
         Task<List<User>> GetUsersAsync();
         Task<User> GetUserAsync(long id);
         Task PostUserAsync(User user);
-        Task PutUserAsync(User user);
+        Task PutUserAsync(long id, User user);
         Task DeleteUserAsync(long id);
+        Task<Department> GetDepartmentAsync(string department);
+        Task<Team> GetTeamAsync(string team);
     }
 }
