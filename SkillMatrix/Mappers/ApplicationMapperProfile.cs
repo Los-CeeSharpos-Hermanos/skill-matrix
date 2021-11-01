@@ -79,22 +79,21 @@ namespace SkillMatrix.Application.Mappers
 
         private void MapUsers()
         {
-            CreateMap<User, UserDTO>()
+            SkillRating skillRating = new SkillRating();
+            LanguageRating tt = new LanguageRating();
+            CreateMap<User, FormUserDTO>()
                 .ForMember(
                 destination => destination.Id,
                 map => map.MapFrom(source => source.Id))
-                /* .ForMember(
-                d => d.Skills,
-                map => map.MapFrom(source => source.Skills))
                 .ForMember(
-                d => d.Languages,
-                map => map.MapFrom(source => source.Languages))
+                destination => destination.Department,
+                map => map.MapFrom(source => source.Department.DepartmentName))
                 .ForMember(
-                d => d.Department,
-                map => map.MapFrom(source => source.Department.Id))
+                destination => destination.Team,
+                map => map.MapFrom(source => source.Team.TeamName))
                 .ForMember(
-                d => d.Team,
-                map => map.MapFrom(source => source.Team.Id))*/
+                destination => destination.Languages,
+                map => map.MapFrom(source => source.LanguageRatings))
                 .ReverseMap();
         }
     }

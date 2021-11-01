@@ -25,7 +25,7 @@ namespace SkillMatrix.Application.Controllers.Users
 
         // GET: api/<UsersController>
         [HttpGet]
-        public async Task<IEnumerable<UserDTO>> GetAsync()
+        public async Task<IEnumerable<FormUserDTO>> GetAsync()
         {
             return await _userService.GetUsersAsync();
         }

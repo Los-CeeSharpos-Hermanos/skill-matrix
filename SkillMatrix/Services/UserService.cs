@@ -14,7 +14,7 @@ namespace SkillMatrix.Application.Services
 {
     public interface IUserService
     {
-        Task<List<UserDTO>> GetUsersAsync();
+        Task<List<FormUserDTO>> GetUsersAsync();
         Task<UserDTO> GetUserAsync(long id);
         Task PostUserAsync(FormUserDTO user);
         Task PutUserAsync(long id, FormUserDTO user);
@@ -31,11 +31,11 @@ namespace SkillMatrix.Application.Services
             _mapper = mapper;
         }
 
-        public async Task<List<UserDTO>> GetUsersAsync()
+        public async Task<List<FormUserDTO>> GetUsersAsync()
         {
             var users = await _userRepository.GetUsersAsync();
 
-            return _mapper.Map<List<UserDTO>>(users);
+            return _mapper.Map<List<FormUserDTO>>(users);
         }
 
         public async Task<UserDTO> GetUserAsync(long id)
