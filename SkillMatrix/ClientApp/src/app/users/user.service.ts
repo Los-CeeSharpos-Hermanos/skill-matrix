@@ -12,6 +12,7 @@ export class UserService {
   headers = new HttpHeaders({ 'Content-type': 'application/json' });
   private userUrl = 'api/users';
   private baseUri = `${environment.apiEndpoint}/${this.userUrl}`;
+
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<IUser[]> {

@@ -1,4 +1,5 @@
-﻿using SkillMatrix.Domain.Users.Models;
+﻿using SkillMatrix.Domain.Teams;
+using SkillMatrix.Domain.Users.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

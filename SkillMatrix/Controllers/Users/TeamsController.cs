@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SkillMatrix.Application.DTOs;
 using SkillMatrix.Application.Services;
-using SkillMatrix.Domain.Users.Models;
+using SkillMatrix.Domain.Teams;
 using System;
 using System.Collections.Generic;
 using System.Linq;

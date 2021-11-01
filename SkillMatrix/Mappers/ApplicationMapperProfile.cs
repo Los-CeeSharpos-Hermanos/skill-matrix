@@ -5,6 +5,7 @@ using SkillMatrix.Application.DTOs.Skills;
 using SkillMatrix.Domain.Skills.Models;
 using SkillMatrix.Domain.Users.Models;
 using SkillMatrix.Application.DTOs.Users;
+using SkillMatrix.Domain.Teams;
 
 namespace SkillMatrix.Application.Mappers
 {
@@ -28,7 +29,7 @@ namespace SkillMatrix.Application.Mappers
 
         private void MapSkills()
         {
-            CreateMap<Skill, DTOs.Skills.GetSkillDTO>()
+            CreateMap<Skill, GetSkillDTO>()
                 .ForMember(
                 destination => destination.Id,
                 map => map.MapFrom(source => source.SkillId))
@@ -40,7 +41,23 @@ namespace SkillMatrix.Application.Mappers
                 map => map.MapFrom(source => source.SkillCategory.SkillCategoryId))
                 .ReverseMap();
 
-            CreateMap<FormSkillDTO, Skill>().ReverseMap();
+            CreateMap<FormSkillDTO, Skill>()
+                .ForMember(
+                d => d.SkillCategoryId,
+                map => map.MapFrom(source => source.SkillCategoryId))
+                .ReverseMap();
+
+            CreateMap<SkillRating, SkillRatingSummaryDTO>()
+                .ForMember(
+                d => d.Rating,
+                map => map.MapFrom(source => source.Rating))
+                .ForMember(
+                d => d.SkillName,
+                map => map.MapFrom(source => source.Skill.SkillName))
+                .ForMember(
+                d => d.SkillCategory,
+                map => map.MapFrom(source => source.Skill.SkillCategory.SkillCategoryName))
+                .ReverseMap();
         }
 
         private void MapSkillCategories()
@@ -83,18 +100,18 @@ namespace SkillMatrix.Application.Mappers
                 .ForMember(
                 destination => destination.Id,
                 map => map.MapFrom(source => source.Id))
-                /* .ForMember(
-                d => d.Skills,
-                map => map.MapFrom(source => source.Skills))
                 .ForMember(
-                d => d.Languages,
-                map => map.MapFrom(source => source.Languages))
+                d => d.Skills,
+                map => map.MapFrom(source => source.SkillRatings))
+                //.ForMember(
+                //d => d.Languages,
+                //map => map.MapFrom(source => source.LanguageRatings))
                 .ForMember(
                 d => d.Department,
-                map => map.MapFrom(source => source.Department.Id))
+                map => map.MapFrom(source => source.Department.DepartmentName))
                 .ForMember(
                 d => d.Team,
-                map => map.MapFrom(source => source.Team.Id))*/
+                map => map.MapFrom(source => source.Team.TeamName))
                 .ReverseMap();
         }
     }

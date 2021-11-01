@@ -1,4 +1,5 @@
-﻿using SkillMatrix.Domain.Languages.Models;
+﻿using SkillMatrix.Application.DTOs.Skills;
+using SkillMatrix.Domain.Languages.Models;
 using SkillMatrix.Domain.Skills.Models;
 using SkillMatrix.Domain.Users.Models;
 using System;
@@ -18,5 +19,7 @@ namespace SkillMatrix.Application.DTOs
         public string ImageUrl { get; set; }
         public string Department { get; set; }
         public string Team { get; set; }
+        public IList<SkillRatingSummaryDTO> Skills { get; set; }
+        public IList<LanguageRating> Languages { get; set; }
     }
 }

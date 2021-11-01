@@ -7,6 +7,7 @@ using SkillMatrix.Domain.Skills.Models;
 using SkillMatrix.DataAccess.Skills;
 using SkillMatrix.Domain.Users.Models;
 using SkillMatrix.DataAccess.Configurations;
+using SkillMatrix.Domain.Teams;
 
 namespace SkillMatrix.DataAccess
 {
@@ -24,7 +25,7 @@ namespace SkillMatrix.DataAccess
         {
             var connectionStringBuilder = new SqlConnectionStringBuilder
             {
-                DataSource = "(localdb)\\MSSQLLocalDB",
+                DataSource = "DEPNB07438\\MSSQLSERVER2019",
                 InitialCatalog = "SkillMatrix",
                 IntegratedSecurity = true
             };

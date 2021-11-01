@@ -148,6 +148,9 @@ export class UserListComponent implements OnInit {
       throw Error("Only positive numbers are accepted");
     }
 
+    //TODO: Add language support to database
+    if (habilities == null) return [];
+
     return habilities.sort((a, b) => b.rating - a.rating).slice(0, listSize - 1);
   }
 

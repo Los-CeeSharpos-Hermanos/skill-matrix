@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using SkillMatrix.Application.DTOs;
-using SkillMatrix.Domain.Users.Models;
+using SkillMatrix.Domain.Teams;
 using SkillMatrix.Domain.Users.Repositories;
 using System;
 using System.Collections.Generic;

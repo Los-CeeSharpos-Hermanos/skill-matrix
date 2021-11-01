@@ -17,10 +17,14 @@ namespace SkillMatrix.DataAccess.Seeds
                .HasData(
                    new SkillRating
                    {
-                       SkillRatingId = 1,
-                       SkillId = 40,
+                       SkillId = 1,
                        UserId = 1,
                        Rating = Rating.Advanced
+                   }, new SkillRating
+                   {
+                       SkillId = 2,
+                       UserId = 1,
+                       Rating = Rating.Begginer
                    }
              );
         }

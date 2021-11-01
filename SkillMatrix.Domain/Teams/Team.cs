@@ -1,7 +1,7 @@
-﻿using System;
+﻿using SkillMatrix.Domain.Users.Models;
 using System.Collections.Generic;
 
-namespace SkillMatrix.Domain.Users.Models
+namespace SkillMatrix.Domain.Teams
 {
     public class Team : BaseEntity
     {
@@ -9,6 +9,5 @@ namespace SkillMatrix.Domain.Users.Models
         public string TeamName { get; set; }
 
         public virtual IEnumerable<User> Users { get; set; }
-        public virtual Department Department { get; set; }
     }
 }

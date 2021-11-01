@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using SkillMatrix.Domain.Teams;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace SkillMatrix.Domain.Users.Models

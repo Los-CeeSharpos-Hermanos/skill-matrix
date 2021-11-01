@@ -98,9 +98,9 @@ namespace SkillMatrix.Application.Services
         {
             LanguageRating tt = new LanguageRating();
             SkillRating skillRating = new SkillRating();
-            
+
             var updatedUser = await _userRepository.GetUserAsync(id);
-            
+
             updatedUser.FirstName = user.FirstName;
             updatedUser.SurName = user.SurName;
             updatedUser.ImageUrl = user.ImageUrl;

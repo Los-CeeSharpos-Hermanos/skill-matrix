@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SkillMatrix.Domain.Users.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SkillMatrix.Domain.Teams;
 
 namespace SkillMatrix.DataAccess.Seeds
 {

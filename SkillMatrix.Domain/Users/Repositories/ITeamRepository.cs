@@ -1,4 +1,4 @@
-﻿using SkillMatrix.Domain.Users.Models;
+﻿using SkillMatrix.Domain.Teams;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SkillMatrix.Domain.Teams;
 using SkillMatrix.Domain.Users.Models;
 using SkillMatrix.Domain.Users.Repositories;
 using System;

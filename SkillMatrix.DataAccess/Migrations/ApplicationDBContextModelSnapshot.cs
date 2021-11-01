@@ -41,9 +41,7 @@ namespace SkillMatrix.DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .ValueGeneratedOnUpdate()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETDATE()");
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -1829,6 +1827,45 @@ namespace SkillMatrix.DataAccess.Migrations
                         });
                 });
 
+            modelBuilder.Entity("SkillMatrix.Domain.Teams.Team", b =>
+                {
+                    b.Property<long>("TeamId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<string>("TeamName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("TeamId");
+
+                    b.ToTable("Teams");
+
+                    b.HasData(
+                        new
+                        {
+                            TeamId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TeamName = "A-Team",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            TeamId = 2L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TeamName = "B-Team",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
+                });
+
             modelBuilder.Entity("SkillMatrix.Domain.Users.Models.Department", b =>
                 {
                     b.Property<long>("DepartmentId")
@@ -1895,6 +1932,8 @@ namespace SkillMatrix.DataAccess.Migrations
 
                     b.HasKey("LanguageRatingId");
 
+                    b.HasIndex("LanguageId");
+
                     b.HasIndex("UserId");
 
                     b.ToTable("LanguageRating");
@@ -1911,79 +1950,33 @@ namespace SkillMatrix.DataAccess.Migrations
 
             modelBuilder.Entity("SkillMatrix.Domain.Users.Models.SkillRating", b =>
                 {
-                    b.Property<long>("SkillRatingId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Rating")
-                        .HasColumnType("int");
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
 
                     b.Property<long>("SkillId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
 
-                    b.HasKey("SkillRatingId");
+                    b.HasKey("UserId", "SkillId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("SkillId");
 
                     b.ToTable("SkillRating");
 
                     b.HasData(
                         new
                         {
-                            SkillRatingId = 1L,
-                            Rating = 3,
-                            SkillId = 40L,
-                            UserId = 1L
-                        });
-                });
-
-            modelBuilder.Entity("SkillMatrix.Domain.Users.Models.Team", b =>
-                {
-                    b.Property<long>("TeamId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETDATE()");
-
-                    b.Property<long?>("DepartmentId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("TeamName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .ValueGeneratedOnUpdate()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETDATE()");
-
-                    b.HasKey("TeamId");
-
-                    b.HasIndex("DepartmentId");
-
-                    b.ToTable("Teams");
-
-                    b.HasData(
-                        new
-                        {
-                            TeamId = 1L,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            TeamName = "A-Team",
-                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            UserId = 1L,
+                            SkillId = 1L,
+                            Rating = 3
                         },
                         new
                         {
-                            TeamId = 2L,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            TeamName = "B-Team",
-                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            UserId = 1L,
+                            SkillId = 2L,
+                            Rating = 1
                         });
                 });
 
@@ -2092,29 +2085,40 @@ namespace SkillMatrix.DataAccess.Migrations
 
             modelBuilder.Entity("SkillMatrix.Domain.Users.Models.LanguageRating", b =>
                 {
-                    b.HasOne("SkillMatrix.Domain.Users.Models.User", null)
+                    b.HasOne("SkillMatrix.Domain.Languages.Models.Language", "Language")
+                        .WithMany()
+                        .HasForeignKey("LanguageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SkillMatrix.Domain.Users.Models.User", "User")
                         .WithMany("LanguageRatings")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Language");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("SkillMatrix.Domain.Users.Models.SkillRating", b =>
                 {
-                    b.HasOne("SkillMatrix.Domain.Users.Models.User", null)
+                    b.HasOne("SkillMatrix.Domain.Skills.Models.Skill", "Skill")
+                        .WithMany("SkillRatings")
+                        .HasForeignKey("SkillId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SkillMatrix.Domain.Users.Models.User", "User")
                         .WithMany("SkillRatings")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
 
-            modelBuilder.Entity("SkillMatrix.Domain.Users.Models.Team", b =>
-                {
-                    b.HasOne("SkillMatrix.Domain.Users.Models.Department", "Department")
-                        .WithMany()
-                        .HasForeignKey("DepartmentId");
+                    b.Navigation("Skill");
 
-                    b.Navigation("Department");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("SkillMatrix.Domain.Users.Models.User", b =>
@@ -2123,7 +2127,7 @@ namespace SkillMatrix.DataAccess.Migrations
                         .WithMany("Users")
                         .HasForeignKey("DepartmentId");
 
-                    b.HasOne("SkillMatrix.Domain.Users.Models.Team", "Team")
+                    b.HasOne("SkillMatrix.Domain.Teams.Team", "Team")
                         .WithMany("Users")
                         .HasForeignKey("TeamId");
 
@@ -2132,17 +2136,22 @@ namespace SkillMatrix.DataAccess.Migrations
                     b.Navigation("Team");
                 });
 
+            modelBuilder.Entity("SkillMatrix.Domain.Skills.Models.Skill", b =>
+                {
+                    b.Navigation("SkillRatings");
+                });
+
             modelBuilder.Entity("SkillMatrix.Domain.Skills.Models.SkillCategory", b =>
                 {
                     b.Navigation("Skills");
                 });
 
-            modelBuilder.Entity("SkillMatrix.Domain.Users.Models.Department", b =>
+            modelBuilder.Entity("SkillMatrix.Domain.Teams.Team", b =>
                 {
                     b.Navigation("Users");
                 });
 
-            modelBuilder.Entity("SkillMatrix.Domain.Users.Models.Team", b =>
+            modelBuilder.Entity("SkillMatrix.Domain.Users.Models.Department", b =>
                 {
                     b.Navigation("Users");
                 });

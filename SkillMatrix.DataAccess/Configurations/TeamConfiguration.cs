@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using SkillMatrix.Domain.Users.Models;
+using SkillMatrix.Domain.Teams;
 
 namespace SkillMatrix.DataAccess.Configurations
 {
@@ -9,10 +9,8 @@ namespace SkillMatrix.DataAccess.Configurations
         public void Configure(EntityTypeBuilder<Team> builder)
         {
             builder.Property(p => p.CreatedAt).HasDefaultValueSql("GETDATE()").ValueGeneratedOnAdd();
-            builder.Property(p => p.UpdatedAt).HasDefaultValueSql("GETDATE()").ValueGeneratedOnUpdate();
 
             builder.HasMany(p => p.Users);
-            builder.HasOne(p => p.Department);
         }
     }
 }
