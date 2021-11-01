@@ -46,6 +46,7 @@ namespace SkillMatrix.DataAccess.Repositories.Users
             User dbUser = await _db.Users.Where(user => user.Id == id).FirstOrDefaultAsync()
                 ?? throw new KeyNotFoundException($"User not found");
 
+            
             _db.Users.Remove(dbUser);
 
             await _db.SaveChangesAsync();
@@ -53,12 +54,14 @@ namespace SkillMatrix.DataAccess.Repositories.Users
 
         public async Task<Department>GetDepartmentAsync(string department)
         {
-            return await _db.Departments.Where(d => d.DepartmentName == department).FirstOrDefaultAsync() ?? throw new KeyNotFoundException($"Department not found");
+            return await _db.Departments.Where(d => d.DepartmentName == department).FirstOrDefaultAsync() 
+                ?? throw new KeyNotFoundException($"Department not found");
         }
 
         public async Task<Team> GetTeamAsync(string team)
         {
-            return await _db.Teams.Where(d => d.TeamName == team).FirstOrDefaultAsync() ?? throw new KeyNotFoundException($"Team not found");
+            return await _db.Teams.Where(t => t.TeamName == team).FirstOrDefaultAsync() 
+                ?? throw new KeyNotFoundException($"Team not found");
         }
     }
 }
