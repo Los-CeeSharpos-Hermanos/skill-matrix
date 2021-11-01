@@ -25,7 +25,7 @@ namespace SkillMatrix.DataAccess
         {
             var connectionStringBuilder = new SqlConnectionStringBuilder
             {
-                DataSource = "DEPNB07438\\MSSQLSERVER2019",
+                DataSource = "(localdb)\\MSSQLLocalDB",
                 InitialCatalog = "SkillMatrix",
                 IntegratedSecurity = true
             };
