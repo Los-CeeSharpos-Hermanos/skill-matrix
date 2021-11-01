@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using SkillMatrix.Domain.Users;
+using SkillMatrix.Domain.Users.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +16,7 @@ namespace SkillMatrix.DataAccess.Configurations
             builder.Property(p => p.CreatedAt).HasDefaultValueSql("GETDATE()").ValueGeneratedOnAdd();
             builder.Property(p => p.UpdatedAt).HasDefaultValueSql("GETDATE()").ValueGeneratedOnUpdate();
 
-            builder.HasMany(p => p.Users);
+            builder.HasMany(u => u.Users).WithOne(d => d.Department);
         }
     }
 }

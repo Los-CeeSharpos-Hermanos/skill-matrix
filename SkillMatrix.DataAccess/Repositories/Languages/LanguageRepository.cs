@@ -19,7 +19,7 @@ namespace SkillMatrix.DataAccess.Repositories.Languages
         public async Task<List<Language>> GetLanguagesAsync()
         {
             return await _db.Languages.Where(p => p.Id > 0)
-                                      .OrderBy(l => l.Id)
+                                      .OrderBy(l => l.Name)
                                       .ToListAsync();
         }
 

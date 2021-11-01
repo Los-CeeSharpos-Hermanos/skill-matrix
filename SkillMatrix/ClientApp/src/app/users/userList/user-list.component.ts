@@ -5,7 +5,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { RoutingService } from 'src/app/shared/services/routing.service';
 import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
-import { IUser, IUserHability, IUserLanguage, IUserSkill, Rating } from '../user';
+import { environment } from 'src/environments/environment';
+import { IUser, IUserHability, IUserLanguage, IUserSkill } from '../user';
 import { UserService } from '../user.service';
 import { ColumnStyle, IExpandableTableColumn } from './expandable-table-column';
 
@@ -29,6 +30,7 @@ export class UserListComponent implements OnInit {
 
   constructor(private snackBarService: SnackBarService, private routingService: RoutingService, private userService: UserService) { }
 
+  profilePicPlaceholder = environment.profilePic;
   dataSource: MatTableDataSource<IUser>;
   columnsToDisplay: IExpandableTableColumn[] = [
     {
@@ -128,22 +130,6 @@ export class UserListComponent implements OnInit {
     return joinWithCommaAndSpace(
       this.getTopHabilities(languages, 3)
         .map(item => item.language));
-  }
-
-  getRatingColor(rating: Rating) {
-    switch (rating) {
-      case Rating.Intermediate:
-        return {
-          'intermediate': true
-        };
-      case Rating.Advanced:
-        return {
-          'advanced': true
-        };
-
-      default:
-        return '';
-    }
   }
 
   private loadUsers() {

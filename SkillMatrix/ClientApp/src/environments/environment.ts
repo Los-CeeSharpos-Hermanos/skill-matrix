@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  apiEndpoint: "https://localhost:44311"
+  apiEndpoint: "https://localhost:44311",
+  addItemId: 0,
+  profilePic: "assets/user_placeholder.png"
 };
 
 /*

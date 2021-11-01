@@ -1,9 +1,9 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { IUser } from './user';
-
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +11,11 @@ import { IUser } from './user';
 export class UserService {
   headers = new HttpHeaders({ 'Content-type': 'application/json' });
   private userUrl = 'api/users';
-
+  private baseUri = `${environment.apiEndpoint}/${this.userUrl}`;
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<IUser[]> {
-    return this.http.get<IUser[]>(this.userUrl).pipe(tap(data => console.log('All')), catchError(this.handleError));
+    return this.http.get<IUser[]>(this.baseUri).pipe(catchError(this.handleError));
   }
 
   deleteUser(id: number): Observable<{}> {
