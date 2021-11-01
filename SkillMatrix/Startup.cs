@@ -8,6 +8,12 @@ using Microsoft.OpenApi.Models;
 using SkillMatrix.Application.Mappers;
 using SkillMatrix.Application.Services;
 using SkillMatrix.DataAccess;
+using SkillMatrix.DataAccess.Repositories.Skills;
+using SkillMatrix.DataAccess.Repositories.Languages;
+using SkillMatrix.Domain.Languages.Repositories;
+using SkillMatrix.Domain.Skills.Repositories;
+using SkillMatrix.DataAccess.Repositories.Users;
+using SkillMatrix.Domain.Users.Repositories;
 
 namespace SkillMatrix.Application
 {
@@ -23,11 +29,28 @@ namespace SkillMatrix.Application
         public void ConfigureServices(IServiceCollection services)
         {
 
-            DataAccessConfig.ServiceRegistry(services, Configuration);
-
-            ServicesConfig.ServiceRegistry(services);
+            services.AddTransient<ApplicationDBContext>();
 
             services.AddAutoMapper(typeof(ApplicationMapperProfile));
+
+            services.AddScoped<ISkillRepository, SkillRepository>();
+            services.AddScoped<ISkillService, SkillService>();
+
+            services.AddScoped<ISkillCategoryService, SkillCategoryService>();
+            services.AddScoped<ISkillCategoryRepository, SkillCategoryRepository>();
+
+            services.AddScoped<ILanguageRepository, LanguageRepository>();
+            services.AddScoped<ILanguageService, LanguageService>();
+
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserRepository, UserRepository>();
+
+            services.AddScoped<ITeamService, TeamService>();
+            services.AddScoped<ITeamRepository, TeamRepository>();
+
+            services.AddScoped<IDepartmentService, DepartmentService>();
+            services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+
 
             services.AddControllersWithViews();
 
@@ -50,7 +73,10 @@ namespace SkillMatrix.Application
 
                 app.UseDeveloperExceptionPage();
 
-                SetupCors(app);
+                app.UseCors(options => options.WithOrigins("https://localhost:44351", "http://localhost:4200")
+                                .AllowAnyHeader()
+                                .AllowAnyMethod()
+                                .AllowCredentials());
             }
             else
             {
@@ -93,22 +119,10 @@ namespace SkillMatrix.Application
             });
         }
 
-        private static void SetupCors(IApplicationBuilder app)
-        {
-            app.UseCors(options => options.WithOrigins("https://localhost:44351", "http://localhost:4200")
-                            .AllowAnyHeader()
-                            .AllowAnyMethod()
-                            .AllowCredentials());
-        }
-
         private static void UpdateDatabase(IApplicationBuilder app)
         {
-            using (var serviceScope = app.ApplicationServices.CreateScope())
-            {
-                var dbContext = serviceScope.ServiceProvider.GetService<ApplicationDBContext>();
-
-                dbContext.UpdateDatabase();
-            }
+            var dbContext = app.ApplicationServices.GetRequiredService<ApplicationDBContext>();
+            dbContext.UpdateDatabase();
         }
     }
 }
