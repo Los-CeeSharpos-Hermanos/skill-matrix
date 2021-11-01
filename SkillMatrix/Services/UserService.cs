@@ -47,19 +47,23 @@ namespace SkillMatrix.Application.Services
 
         public async Task PostUserAsync(FormUserDTO user)
         {
-            User userAdd = new User();
-            LanguageRating tt = new LanguageRating();
-            SkillRating skillRating = new SkillRating();
-            userAdd.FirstName = user.FirstName;
-            userAdd.SurName = user.SurName;
-            userAdd.Telephone = user.Telephone;
-            userAdd.Email = user.Email;
-            userAdd.ImageUrl = user.ImageUrl;
-            userAdd.JobTitle = user.JobTitle;
-            userAdd.Department = await _userRepository.GetDepartmentAsync(user.Department);
-            userAdd.Team = await _userRepository.GetTeamAsync(user.Team);
+            User userAdd = new()
+            {
+                FirstName = user.FirstName,
+                SurName = user.SurName,
+                Telephone = user.Telephone,
+                Email = user.Email,
+                ImageUrl = user.ImageUrl,
+                JobTitle = user.JobTitle,
+                Department = await _userRepository.GetDepartmentAsync(user.Department),
+                Team = await _userRepository.GetTeamAsync(user.Team)
+            };
             userAdd.DepartmentId = userAdd.Department.DepartmentId;
             userAdd.TeamId = userAdd.Team.TeamId;
+
+            LanguageRating tt = new LanguageRating();
+            SkillRating skillRating = new SkillRating();
+
             foreach (LanguageRatingDTO l in user.Languages)
             {
                 tt.LanguageId = l.LanguageId;
@@ -94,7 +98,9 @@ namespace SkillMatrix.Application.Services
         {
             LanguageRating tt = new LanguageRating();
             SkillRating skillRating = new SkillRating();
+            
             var updatedUser = await _userRepository.GetUserAsync(id);
+            
             updatedUser.FirstName = user.FirstName;
             updatedUser.SurName = user.SurName;
             updatedUser.ImageUrl = user.ImageUrl;
@@ -103,6 +109,10 @@ namespace SkillMatrix.Application.Services
             updatedUser.Email = user.Email;
             updatedUser.Department = await _userRepository.GetDepartmentAsync(user.Department);
             updatedUser.Team = await _userRepository.GetTeamAsync(user.Team);
+
+            updatedUser.LanguageRatings.Clear();
+            updatedUser.SkillRatings.Clear();
+
             foreach (LanguageRatingDTO l in user.Languages)
             {
                 tt.LanguageId = l.LanguageId;
