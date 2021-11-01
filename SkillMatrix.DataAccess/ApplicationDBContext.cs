@@ -20,20 +20,7 @@ namespace SkillMatrix.DataAccess
         public DbSet<Department> Departments { get; set; }
         public DbSet<Team> Teams { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            var connectionStringBuilder = new SqlConnectionStringBuilder
-            {
-                DataSource = "(localdb)\\MSSQLLocalDB",
-                InitialCatalog = "SkillMatrix",
-                IntegratedSecurity = true
-            };
-
-            optionsBuilder
-                .UseSqlServer(connectionStringBuilder.ConnectionString)
-                .UseLazyLoadingProxies();
-
-        }
+        public ApplicationDBContext(DbContextOptions<ApplicationDBContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
