@@ -1,7 +1,9 @@
-<div class="grid place-items-center min-h-screen">
-     <div class="p-4 lg:max-w-3xl sm:max-w-lg grid gap-10 sm:grid-cols-1 lg:grid-cols-2">
+<app-submenu pageTitle="Your Profile"></app-submenu>
 
-            <div class="portraitCard">
+<div class="grid place-items-center min-h-screen">
+     <div class="lg:max-w-5xl sm:max-w-lg grid gap-10 sm:grid-cols-1 lg:grid-cols-2">
+
+            <div class="portraitCard m-3">
               <mat-card>
                   <img [src]="profilePic" class="rounded-full img-fluid">
                   <input type="file" class="fileInput">
@@ -74,33 +76,46 @@
          <div class="attrCol lg:row-start-3 lg:col-span-2">
 
            <div class="languagesCard mb-2">
-
             <mat-card>
-              <form>
-                <div class="grid grid-cols-12">
 
-                  <div class="col-span-1 mx-3">
-                    <app-add-button></app-add-button>
+              <form [formGroup]="profileForm">
+                <div formArrayName="languages" *ngFor="let language of formLanguages.controls; let i=index">
+                  <div [formGroupName]="i" class="grid grid-cols-12">
+
+                      <div class="col-span-1 mx-3" *ngIf="i === 0">
+                        <app-add-button (click)="addFormLanguage()"></app-add-button>
+                      </div>
+
+                      <div class="col-span-4 col-start-3 mx-2">
+
+                        <mat-form-field appearance="fill">
+                          <mat-label>Language</mat-label>
+                          <input type="text"
+                                 matInput
+                                 [matAutocomplete]="auto"
+                                 [formControl]="myControl"
+                                [matAutocomplete]="auto">
+                          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                              {{option}}
+                            </mat-option>
+                          </mat-autocomplete>
+                        </mat-form-field>
+
+                      </div>
+
+                      <div  class="col-span-4">
+
+                      </div>
+
+                      <div *ngIf="i > 0" class="col-span-1 col-start-11 mx-4">
+                        <app-remove-button (click)="removeFormLanguage(i)"></app-remove-button>
+                     </div>
+                    </div>
                   </div>
-
-                  <mat-form-field appearance="fill" class="col-span-4 col-start-3 mx-2">
-                    <mat-label>Favorite food</mat-label>
-                    <input matInput placeholder="Ex. Pizza" value="Sushi">
-                  </mat-form-field>
-
-                  <mat-form-field appearance="fill" class="col-span-4">
-                    <mat-label>Favorite food</mat-label>
-                    <input matInput placeholder="Ex. Pizza" value="Sushi">
-                  </mat-form-field>
-
-                  <div *ngIf="false" class="col-span-1 col-start-11 mx-4">
-                    <app-remove-button></app-remove-button>
-                 </div>
-
-                </div>
               </form>
-            </mat-card>
 
+            </mat-card>
            </div>
 
            <div class="skillsCard">
@@ -137,13 +152,7 @@
                         </div>
 
                       </div>
-
-
-
                     </div>
-
-
-
               </form>
 
             </mat-card>
