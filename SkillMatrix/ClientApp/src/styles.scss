@@ -5,33 +5,27 @@
 @import 'tailwindcss/utilities';
 
 
-$candy-app-primary: mat-palette($mat-deep-purple);
-$candy-app-accent:  mat-palette($mat-yellow);
-$candy-app-warn:    mat-palette($mat-red);
+$dark-primary: mat-palette($mat-deep-purple);
+$dark-accent:  mat-palette($mat-yellow);
+$dark-warn:    mat-palette($mat-red);
 
-$candy-app-theme: mat-dark-theme(
-    $candy-app-primary, $candy-app-accent, $candy-app-warn);
+$dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 
-@include angular-material-theme($candy-app-theme);
+$light-primary: mat-palette($mat-deep-purple);
+$light-accent: mat-palette($mat-yellow);
+$light-warn: mat-palette($mat-red);
 
-html, body { height: 100%; background-color:#282C35}
+$light-theme: mat-light-theme($light-primary, $light-accent, $light-warn);
+
+html, body { height: 100%;}
 
 body {  margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
 
-.mat-card {
-  background-color: #55516D;
+.light-theme {
+  @include angular-material-theme($light-theme);
+  html, body { background-color: #e5e4e2}
 }
 
-.dyeableContainer {
-  background-color: #55516D;
+.dark-theme {
+  @include angular-material-theme($dark-theme);
 }
-
-.OnHoverDyeable {
-  background-color: #423E54;
-}
-
-.darkDyeableContainer {
-  background-color: #322F40;
-}
-
-

@@ -34,15 +34,11 @@ tr.example-detail-row {
 }
 
 tr.example-element-row:not(.example-expanded-row):hover {
-  background: rgb(75, 74, 74);
+  background: rgba(103, 58, 183, .6);
 }
 
 tr.example-element-row:not(.example-expanded-row):active {
-  background: #777777;
-}
-
-.detail-card {
-  background-color: #353535;
+  background: rgba(103, 58, 183, .6);
 }
 
 .example-element-row td {

@@ -48,7 +48,6 @@ export class ProfileComponent implements OnInit {
     this.categoriesInit();
 
     this.filterInit();
-
   }
 
   categoriesInit() {
