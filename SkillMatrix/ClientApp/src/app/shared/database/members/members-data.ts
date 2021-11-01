@@ -321,5 +321,17 @@ export const users: IUser[] = [
             }
         ],
         imageUrl: "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png"
+    },
+    {
+        id: 10,
+        surName: "Janßen",
+        firstName: "Stefan",
+        telephone: "4901512345678",
+        email: "Stefan@web.de",
+        department: "Facility",
+        team: "C",
+        skills: [],
+        languages: [],
+        imageUrl: ''
     }
 ];

@@ -12,6 +12,8 @@ using SkillMatrix.DataAccess.Repositories.Skills;
 using SkillMatrix.DataAccess.Repositories.Languages;
 using SkillMatrix.Domain.Languages.Repositories;
 using SkillMatrix.Domain.Skills.Repositories;
+using SkillMatrix.DataAccess.Repositories.Users;
+using SkillMatrix.Domain.Users.Repositories;
 
 namespace SkillMatrix.Application
 {
@@ -38,8 +40,16 @@ namespace SkillMatrix.Application
             services.AddScoped<ISkillCategoryRepository, SkillCategoryRepository>();
 
             services.AddScoped<ILanguageRepository, LanguageRepository>();
-
             services.AddScoped<ILanguageService, LanguageService>();
+
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserRepository, UserRepository>();
+
+            services.AddScoped<ITeamService, TeamService>();
+            services.AddScoped<ITeamRepository, TeamRepository>();
+
+            services.AddScoped<IDepartmentService, DepartmentService>();
+            services.AddScoped<IDepartmentRepository, DepartmentRepository>();
 
 
             services.AddControllersWithViews();

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SkillMatrix.DataAccess;
 
 namespace SkillMatrix.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20211029123147_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1909,38 +1911,6 @@ namespace SkillMatrix.DataAccess.Migrations
                         });
                 });
 
-            modelBuilder.Entity("SkillMatrix.Domain.Users.Models.SkillRating", b =>
-                {
-                    b.Property<long>("SkillRatingId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Rating")
-                        .HasColumnType("int");
-
-                    b.Property<long>("SkillId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("SkillRatingId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("SkillRating");
-
-                    b.HasData(
-                        new
-                        {
-                            SkillRatingId = 1L,
-                            Rating = 3,
-                            SkillId = 40L,
-                            UserId = 1L
-                        });
-                });
-
             modelBuilder.Entity("SkillMatrix.Domain.Users.Models.Team", b =>
                 {
                     b.Property<long>("TeamId")
@@ -2099,15 +2069,6 @@ namespace SkillMatrix.DataAccess.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("SkillMatrix.Domain.Users.Models.SkillRating", b =>
-                {
-                    b.HasOne("SkillMatrix.Domain.Users.Models.User", null)
-                        .WithMany("SkillRatings")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("SkillMatrix.Domain.Users.Models.Team", b =>
                 {
                     b.HasOne("SkillMatrix.Domain.Users.Models.Department", "Department")
@@ -2150,8 +2111,6 @@ namespace SkillMatrix.DataAccess.Migrations
             modelBuilder.Entity("SkillMatrix.Domain.Users.Models.User", b =>
                 {
                     b.Navigation("LanguageRatings");
-
-                    b.Navigation("SkillRatings");
                 });
 #pragma warning restore 612, 618
         }

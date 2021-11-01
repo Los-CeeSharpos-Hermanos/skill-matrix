@@ -1,4 +1,4 @@
-﻿using SkillMatrix.Domain.Users;
+﻿using SkillMatrix.Domain.Users.Models;
 using System;
 using System.Collections.Generic;
 
@@ -10,7 +10,7 @@ namespace SkillMatrix.Domain.Skills.Models
         public string SkillName { get; set; }
         public long SkillCategoryId { get; set; }
         public virtual SkillCategory SkillCategory { get; set; }
-        public virtual IEnumerable<User> Users { get; set; }
+        
 
     }
 }
