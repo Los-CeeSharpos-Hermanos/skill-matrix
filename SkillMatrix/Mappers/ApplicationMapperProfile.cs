@@ -20,6 +20,7 @@ namespace SkillMatrix.Application.Mappers
             MapSkills();
             MapSkillCategories();
             MapLanguages();
+            MapLanguageRating();
             MapUsers();
             MapDepartments();
             MapTeams();
@@ -57,6 +58,11 @@ namespace SkillMatrix.Application.Mappers
                 .ReverseMap();
         }
 
+        private void MapLanguageRating()
+        {
+            CreateMap<LanguageRating, LanguageRatingDTO>().ReverseMap();
+        }
+
         private void MapTeams()
         {
             CreateMap<Team, TeamDTO>()
@@ -79,8 +85,6 @@ namespace SkillMatrix.Application.Mappers
 
         private void MapUsers()
         {
-            SkillRating skillRating = new SkillRating();
-            LanguageRating tt = new LanguageRating();
             CreateMap<User, FormUserDTO>()
                 .ForMember(
                 destination => destination.Id,
@@ -92,9 +96,16 @@ namespace SkillMatrix.Application.Mappers
                 destination => destination.Team,
                 map => map.MapFrom(source => source.Team.TeamName))
                 .ForMember(
-                destination => destination.Languages,
-                map => map.MapFrom(source => source.LanguageRatings))
-                .ReverseMap();
+                dest => dest.Languages,
+                map => map.MapFrom(src => src.LanguageRatings))
+                .ReverseMap()
+                .ForPath(
+                destination => destination.Department.DepartmentName,
+                map => map.MapFrom(source => source.Department))
+                .ForPath(
+                destination => destination.Team.TeamName,
+                map => map.MapFrom(source => source.Team));
+
         }
     }
 }

@@ -47,35 +47,23 @@ namespace SkillMatrix.Application.Services
 
         public async Task PostUserAsync(FormUserDTO user)
         {
-            User userAdd = new()
-            {
-                FirstName = user.FirstName,
-                SurName = user.SurName,
-                Telephone = user.Telephone,
-                Email = user.Email,
-                ImageUrl = user.ImageUrl,
-                JobTitle = user.JobTitle,
-                Department = await _userRepository.GetDepartmentAsync(user.Department),
-                Team = await _userRepository.GetTeamAsync(user.Team)
-            };
-            userAdd.DepartmentId = userAdd.Department.DepartmentId;
-            userAdd.TeamId = userAdd.Team.TeamId;
-
-            LanguageRating tt = new LanguageRating();
+            User userAdd = _mapper.Map<User>(user);
+        
+            LanguageRating languageRating = new LanguageRating();
             SkillRating skillRating = new SkillRating();
 
             foreach (LanguageRatingDTO l in user.Languages)
             {
-                tt.LanguageId = l.LanguageId;
-                tt.UserId = user.Id;
+                languageRating.LanguageId = l.LanguageId;
+                languageRating.UserId = user.Id;
                 switch (l.Rating)
                 {
-                    case 1: tt.Rating = Domain.Skills.Enums.Rating.Begginer; break;
-                    case 2: tt.Rating = Domain.Skills.Enums.Rating.Intermediate; break;
-                    case 3: tt.Rating = Domain.Skills.Enums.Rating.Advanced; break;
-                    default: tt.Rating = Domain.Skills.Enums.Rating.Begginer; break;
+                    case 1: languageRating.Rating = Domain.Skills.Enums.Rating.Begginer; break;
+                    case 2: languageRating.Rating = Domain.Skills.Enums.Rating.Intermediate; break;
+                    case 3: languageRating.Rating = Domain.Skills.Enums.Rating.Advanced; break;
+                    default: languageRating.Rating = Domain.Skills.Enums.Rating.Begginer; break;
                 }
-                userAdd.LanguageRatings.Add(tt);
+                userAdd.LanguageRatings.Add(languageRating);
             }
             foreach (SkillRatingDTO s in user.Skills)
             {
@@ -96,7 +84,7 @@ namespace SkillMatrix.Application.Services
 
         public async Task PutUserAsync(long id, FormUserDTO user)
         {
-            LanguageRating tt = new LanguageRating();
+            LanguageRating languageRating = new LanguageRating();
             SkillRating skillRating = new SkillRating();
             
             var updatedUser = await _userRepository.GetUserAsync(id);
@@ -115,16 +103,16 @@ namespace SkillMatrix.Application.Services
 
             foreach (LanguageRatingDTO l in user.Languages)
             {
-                tt.LanguageId = l.LanguageId;
-                tt.UserId = user.Id;
+                languageRating.LanguageId = l.LanguageId;
+                languageRating.UserId = user.Id;
                 switch (l.Rating)
                 {
-                    case 1: tt.Rating = Domain.Skills.Enums.Rating.Begginer; break;
-                    case 2: tt.Rating = Domain.Skills.Enums.Rating.Intermediate; break;
-                    case 3: tt.Rating = Domain.Skills.Enums.Rating.Advanced; break;
-                    default: tt.Rating = Domain.Skills.Enums.Rating.Begginer; break;
+                    case 1: languageRating.Rating = Domain.Skills.Enums.Rating.Begginer; break;
+                    case 2: languageRating.Rating = Domain.Skills.Enums.Rating.Intermediate; break;
+                    case 3: languageRating.Rating = Domain.Skills.Enums.Rating.Advanced; break;
+                    default: languageRating.Rating = Domain.Skills.Enums.Rating.Begginer; break;
                 }
-                updatedUser.LanguageRatings.Add(tt);
+                updatedUser.LanguageRatings.Add(languageRating);
             }
             foreach (SkillRatingDTO s in user.Skills)
             {
