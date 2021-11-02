@@ -28,7 +28,6 @@ export class SkillService {
   //HERE
   //HERE
   //HERE
-  //HERE
 
   listSkills(): Observable<Skill[]> {
     return this.http.get<Skill[]>(`${baseUri}`);
