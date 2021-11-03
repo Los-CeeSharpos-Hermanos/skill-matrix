@@ -15,7 +15,7 @@ namespace SkillMatrix.Application.Services
     public interface IUserService
     {
         Task<List<FormUserDTO>> GetUsersAsync();
-        Task<UserDTO> GetUserAsync(long id);
+        Task<FormUserDTO> GetUserAsync(long id);
         Task PostUserAsync(FormUserDTO user);
         Task PutUserAsync(long id, FormUserDTO user);
         Task DeleteUserAsync(long id);
@@ -38,11 +38,11 @@ namespace SkillMatrix.Application.Services
             return _mapper.Map<List<FormUserDTO>>(users);
         }
 
-        public async Task<UserDTO> GetUserAsync(long id)
+        public async Task<FormUserDTO> GetUserAsync(long id)
         {
             var user = await _userRepository.GetUserAsync(id);
 
-            return _mapper.Map<UserDTO>(user);
+            return _mapper.Map<FormUserDTO>(user);
         }
 
         public async Task PostUserAsync(FormUserDTO user)
@@ -54,7 +54,7 @@ namespace SkillMatrix.Application.Services
 
             foreach (LanguageRatingDTO l in user.Languages)
             {
-                languageRating.LanguageId = l.LanguageId;
+                languageRating.LanguageName = l.LanguageName;
                 languageRating.UserId = user.Id;
                 switch (l.Rating)
                 {
@@ -67,7 +67,7 @@ namespace SkillMatrix.Application.Services
             }
             foreach (SkillRatingDTO s in user.Skills)
             {
-                skillRating.SkillId = s.SkillId;
+                skillRating.SkillName = s.SkillName;
                 skillRating.UserId = user.Id;
                 switch (s.Rating)
                 {
@@ -103,7 +103,7 @@ namespace SkillMatrix.Application.Services
 
             foreach (LanguageRatingDTO l in user.Languages)
             {
-                languageRating.LanguageId = l.LanguageId;
+                languageRating.LanguageName = l.LanguageName;
                 languageRating.UserId = user.Id;
                 switch (l.Rating)
                 {
@@ -116,7 +116,7 @@ namespace SkillMatrix.Application.Services
             }
             foreach (SkillRatingDTO s in user.Skills)
             {
-                skillRating.SkillId = s.SkillId;
+                skillRating.SkillName = s.SkillName;
                 skillRating.UserId = user.Id;
                 switch (s.Rating)
                 {

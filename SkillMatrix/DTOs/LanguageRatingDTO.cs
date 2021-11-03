@@ -7,7 +7,7 @@ namespace SkillMatrix.Application.DTOs
 {
     public class LanguageRatingDTO
     {
-        public long LanguageId { get; set; }
+        public string LanguageName { get; set; }
         public int  Rating { get; set; }
     }
 }

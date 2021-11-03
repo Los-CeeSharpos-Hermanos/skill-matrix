@@ -32,7 +32,7 @@ namespace SkillMatrix.Application.Controllers.Users
 
         // GET api/<UsersController>/5
         [HttpGet("{id}")]
-        public async Task<UserDTO> GetUserAsync(long id)
+        public async Task<FormUserDTO> GetUserAsync(long id)
         {
             return await _userService.GetUserAsync(id);
         }

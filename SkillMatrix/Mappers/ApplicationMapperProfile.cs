@@ -21,6 +21,7 @@ namespace SkillMatrix.Application.Mappers
             MapSkillCategories();
             MapLanguages();
             MapLanguageRating();
+            MapSkillRating();
             MapUsers();
             MapDepartments();
             MapTeams();
@@ -63,6 +64,11 @@ namespace SkillMatrix.Application.Mappers
             CreateMap<LanguageRating, LanguageRatingDTO>().ReverseMap();
         }
 
+        private void MapSkillRating()
+        {
+            CreateMap<SkillRating, SkillRatingDTO>().ReverseMap();
+        }
+
         private void MapTeams()
         {
             CreateMap<Team, TeamDTO>()
@@ -87,24 +93,27 @@ namespace SkillMatrix.Application.Mappers
         {
             CreateMap<User, FormUserDTO>()
                 .ForMember(
-                destination => destination.Id,
-                map => map.MapFrom(source => source.Id))
+                dst => dst.Id,
+                map => map.MapFrom(src => src.Id))
                 .ForMember(
-                destination => destination.Department,
-                map => map.MapFrom(source => source.Department.DepartmentName))
+                dst => dst.Department,
+                map => map.MapFrom(src => src.Department.DepartmentName))
                 .ForMember(
-                destination => destination.Team,
-                map => map.MapFrom(source => source.Team.TeamName))
+                dst => dst.Team,
+                map => map.MapFrom(src => src.Team.TeamName))
                 .ForMember(
-                dest => dest.Languages,
+                dst => dst.Languages,
                 map => map.MapFrom(src => src.LanguageRatings))
+                .ForMember(
+                dst => dst.Skills,
+                map => map.MapFrom(src => src.SkillRatings))
                 .ReverseMap()
                 .ForPath(
-                destination => destination.Department.DepartmentName,
-                map => map.MapFrom(source => source.Department))
+                dst => dst.Department.DepartmentName,
+                map => map.MapFrom(src => src.Department))
                 .ForPath(
-                destination => destination.Team.TeamName,
-                map => map.MapFrom(source => source.Team));
+                dst => dst.Team.TeamName,
+                map => map.MapFrom(src => src.Team));
 
         }
     }

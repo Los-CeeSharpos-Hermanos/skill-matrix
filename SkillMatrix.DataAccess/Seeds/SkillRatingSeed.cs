@@ -18,7 +18,7 @@ namespace SkillMatrix.DataAccess.Seeds
                    new SkillRating
                    {
                        SkillRatingId = 1,
-                       SkillId = 40,
+                       SkillName = "C#",
                        UserId = 1,
                        Rating = Rating.Advanced
                    }

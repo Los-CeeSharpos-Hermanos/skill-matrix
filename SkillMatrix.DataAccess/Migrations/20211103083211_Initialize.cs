@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SkillMatrix.DataAccess.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class Initialize : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -138,7 +138,7 @@ namespace SkillMatrix.DataAccess.Migrations
                 {
                     LanguageRatingId = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    LanguageId = table.Column<long>(type: "bigint", nullable: false),
+                    LanguageName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<long>(type: "bigint", nullable: false),
                     Rating = table.Column<int>(type: "int", nullable: false)
                 },
@@ -147,6 +147,27 @@ namespace SkillMatrix.DataAccess.Migrations
                     table.PrimaryKey("PK_LanguageRating", x => x.LanguageRatingId);
                     table.ForeignKey(
                         name: "FK_LanguageRating_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SkillRating",
+                columns: table => new
+                {
+                    SkillRatingId = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SkillName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserId = table.Column<long>(type: "bigint", nullable: false),
+                    Rating = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SkillRating", x => x.SkillRatingId);
+                    table.ForeignKey(
+                        name: "FK_SkillRating_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -426,12 +447,22 @@ namespace SkillMatrix.DataAccess.Migrations
 
             migrationBuilder.InsertData(
                 table: "LanguageRating",
-                columns: new[] { "LanguageRatingId", "LanguageId", "Rating", "UserId" },
-                values: new object[] { 1L, 40L, 3, 1L });
+                columns: new[] { "LanguageRatingId", "LanguageName", "Rating", "UserId" },
+                values: new object[] { 1L, "german", 3, 1L });
+
+            migrationBuilder.InsertData(
+                table: "SkillRating",
+                columns: new[] { "SkillRatingId", "Rating", "SkillName", "UserId" },
+                values: new object[] { 1L, 3, "C#", 1L });
 
             migrationBuilder.CreateIndex(
                 name: "IX_LanguageRating_UserId",
                 table: "LanguageRating",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SkillRating_UserId",
+                table: "SkillRating",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
@@ -462,6 +493,9 @@ namespace SkillMatrix.DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "Languages");
+
+            migrationBuilder.DropTable(
+                name: "SkillRating");
 
             migrationBuilder.DropTable(
                 name: "Skills");
