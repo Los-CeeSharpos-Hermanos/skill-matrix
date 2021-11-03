@@ -48,44 +48,15 @@ namespace SkillMatrix.Application.Services
         public async Task PostUserAsync(FormUserDTO user)
         {
             User userAdd = _mapper.Map<User>(user);
-        
-            LanguageRating languageRating = new LanguageRating();
-            SkillRating skillRating = new SkillRating();
-
-            foreach (LanguageRatingDTO l in user.Languages)
-            {
-                languageRating.LanguageName = l.LanguageName;
-                languageRating.UserId = user.Id;
-                switch (l.Rating)
-                {
-                    case 1: languageRating.Rating = Domain.Skills.Enums.Rating.Begginer; break;
-                    case 2: languageRating.Rating = Domain.Skills.Enums.Rating.Intermediate; break;
-                    case 3: languageRating.Rating = Domain.Skills.Enums.Rating.Advanced; break;
-                    default: languageRating.Rating = Domain.Skills.Enums.Rating.Begginer; break;
-                }
-                userAdd.LanguageRatings.Add(languageRating);
-            }
-            foreach (SkillRatingDTO s in user.Skills)
-            {
-                skillRating.SkillName = s.SkillName;
-                skillRating.UserId = user.Id;
-                switch (s.Rating)
-                {
-                    case 1: skillRating.Rating = Domain.Skills.Enums.Rating.Begginer; break;
-                    case 2: skillRating.Rating = Domain.Skills.Enums.Rating.Intermediate; break;
-                    case 3: skillRating.Rating = Domain.Skills.Enums.Rating.Advanced; break;
-                    default: skillRating.Rating = Domain.Skills.Enums.Rating.Begginer; break;
-                }
-                userAdd.SkillRatings.Add(skillRating);
-            }
+      
             await _userRepository.PostUserAsync(userAdd);
 
         }
 
         public async Task PutUserAsync(long id, FormUserDTO user)
         {
-            LanguageRating languageRating = new LanguageRating();
-            SkillRating skillRating = new SkillRating();
+            LanguageRating languageRating = new();
+            SkillRating skillRating = new();
             
             var updatedUser = await _userRepository.GetUserAsync(id);
             
@@ -103,7 +74,7 @@ namespace SkillMatrix.Application.Services
 
             foreach (LanguageRatingDTO l in user.Languages)
             {
-                languageRating.LanguageName = l.LanguageName;
+                languageRating.Language = l.Language;
                 languageRating.UserId = user.Id;
                 switch (l.Rating)
                 {

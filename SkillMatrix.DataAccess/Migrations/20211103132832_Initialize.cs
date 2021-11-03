@@ -138,7 +138,7 @@ namespace SkillMatrix.DataAccess.Migrations
                 {
                     LanguageRatingId = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    LanguageName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Language = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<long>(type: "bigint", nullable: false),
                     Rating = table.Column<int>(type: "int", nullable: false)
                 },
@@ -447,8 +447,13 @@ namespace SkillMatrix.DataAccess.Migrations
 
             migrationBuilder.InsertData(
                 table: "LanguageRating",
-                columns: new[] { "LanguageRatingId", "LanguageName", "Rating", "UserId" },
+                columns: new[] { "LanguageRatingId", "Language", "Rating", "UserId" },
                 values: new object[] { 1L, "german", 3, 1L });
+
+            migrationBuilder.InsertData(
+                table: "LanguageRating",
+                columns: new[] { "LanguageRatingId", "Language", "Rating", "UserId" },
+                values: new object[] { 2L, "englisch", 2, 2L });
 
             migrationBuilder.InsertData(
                 table: "SkillRating",
