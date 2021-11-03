@@ -20,6 +20,9 @@
       </div>
     </div>
     <div class="col-sm d-flex justify-content-end">
+      <div class="wtfCSS">
+        <mat-slide-toggle (change)="onDarkModeSwitched($event)"><mat-icon>light_mode</mat-icon></mat-slide-toggle>
+      </div>
       <button mat-button color="basic" (click)="goTo('skillmatrix/users')">Home</button>
       <button mat-icon-button color="basic" aria-label="Example icon button with a home icon"
         (click)="goTo('skillmatrix/users/0/edit')">
