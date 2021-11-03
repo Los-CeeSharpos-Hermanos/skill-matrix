@@ -61,7 +61,7 @@ export class UserListComponent implements OnInit {
     },
     {
       id: 'actions',
-      name: 'Actions',
+      name: '',
       columnStyle: ColumnStyle.SimpleText
     },
   ];
@@ -83,8 +83,8 @@ export class UserListComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  goToAddUser() {
-    this.routingService.goTo('skillmatrix/users/0/edit');
+  goToAddUser(id: number) {
+    this.routingService.goTo(`skillmatrix/users/${id}/edit`);
   }
 
   onDeleteClick(userToDelete: number) {

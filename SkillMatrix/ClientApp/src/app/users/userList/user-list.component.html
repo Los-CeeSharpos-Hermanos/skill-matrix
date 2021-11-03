@@ -3,7 +3,7 @@
   <div class='row align-middle'>
 
     <div class='col-sm-1'>
-      <app-add-button (click)="goToAddUser()"></app-add-button>
+      <app-add-button (click)="goToAddUser(0)"></app-add-button>
     </div>
     <div class='col-md'>
       <mat-form-field appearance="standard">
@@ -73,12 +73,15 @@
                   <app-mat-rated-chips [items]="user.languages" key="language"></app-mat-rated-chips>
                 </div>
 
-                <div class='mt-2 col-sm-1'>
+                <div class='mt-2 col-sm-2'>
                   <p>Actions</p>
                   <button mat-icon-button color="default" aria-label="Delete Skill" (click)="hideUser()">
                     <mat-icon>{{isHidden ? 'visibility_off' : 'visibility' }}</mat-icon>
                   </button>
-                  <button mat-icon-button color="warn" aria-label="Delete Skill" (click)="onDeleteClick(user.id)">
+                  <button mat-icon-button color="default" aria-label="Update User" (click)="goToAddUser(user.id)">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                  <button mat-icon-button color="warn" aria-label="Delete User" (click)="onDeleteClick(user.id)">
                     <mat-icon>clear</mat-icon>
                   </button>
                 </div>
