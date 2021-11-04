@@ -7,7 +7,6 @@ namespace SkillMatrix.Domain.Teams
     {
         public long TeamId { get; set; }
         public string TeamName { get; set; }
-
         public virtual IEnumerable<User> Users { get; set; }
     }
 }

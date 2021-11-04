@@ -4,11 +4,7 @@ using SkillMatrix.Application.DTOs.Skills;
 using SkillMatrix.Application.Services;
 using SkillMatrix.Domain.Skills.Models;
 using SkillMatrix.Domain.Skills.Repositories;
-using SkillMatrix.Test.Services.Skills;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using SkillMatrix.Test.Fakes;
 using System.Threading.Tasks;
 using Xunit;
 

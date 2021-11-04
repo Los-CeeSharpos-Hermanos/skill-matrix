@@ -1,4 +1,4 @@
-﻿using SkillMatrix.Domain.Skills.Enums;
+﻿using SkillMatrix.Domain.Enums;
 using SkillMatrix.Domain.Skills.Models;
 
 namespace SkillMatrix.Domain.Users.Models

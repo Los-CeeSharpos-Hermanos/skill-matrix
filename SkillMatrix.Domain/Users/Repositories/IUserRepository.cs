@@ -7,10 +7,10 @@ namespace SkillMatrix.Domain.Users.Repositories
 {
     public interface IUserRepository
     {
-        Task<List<User>> GetUsersAsync();
+        Task<List<User>> ListUsersAsync();
         Task<User> GetUserAsync(long id);
-        Task PostUserAsync(User user);
-        Task PutUserAsync(long id, User user);
+        Task InsertUserAsync(User user);
+        Task UpdateUserAsync(long id, User user);
         Task DeleteUserAsync(long id);
         Task<Department> GetDepartmentAsync(string department);
         Task<Team> GetTeamAsync(string team);

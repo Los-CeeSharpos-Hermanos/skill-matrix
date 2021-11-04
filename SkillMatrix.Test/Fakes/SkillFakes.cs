@@ -2,10 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SkillMatrix.Test.Services.Skills
+namespace SkillMatrix.Test.Fakes
 {
     public static class SkillFakes
     {

@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SkillMatrix.Domain.Skills.Enums;
+using SkillMatrix.Domain.Enums;
 using SkillMatrix.Domain.Users.Models;
 using System;
 using System.Collections.Generic;

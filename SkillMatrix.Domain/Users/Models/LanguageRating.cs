@@ -1,5 +1,5 @@
-﻿using SkillMatrix.Domain.Languages.Models;
-using SkillMatrix.Domain.Skills.Enums;
+﻿using SkillMatrix.Domain.Enums;
+using SkillMatrix.Domain.Languages.Models;
 
 
 namespace SkillMatrix.Domain.Users.Models

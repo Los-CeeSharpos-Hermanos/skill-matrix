@@ -27,7 +27,7 @@ namespace SkillMatrix.Application.Controllers.Users
         [HttpGet]
         public async Task<IEnumerable<UserDTO>> GetAsync()
         {
-            return await _userService.GetUsersAsync();
+            return await _userService.ListUsersAsync();
         }
 
         // GET api/<UsersController>/5
@@ -41,14 +41,14 @@ namespace SkillMatrix.Application.Controllers.Users
         [HttpPost]
         public async Task PostUserAsync([FromBody] FormUserDTO user)
         {
-            await _userService.PostUserAsync(user);
+            await _userService.InsertUserAsync(user);
         }
 
         // PUT api/<UsersController>/5
         [HttpPut("{id}")]
         public async Task PutUserAsync(long id, [FromBody] FormUserDTO user)
         {
-            await _userService.PutUserAsync(id, user);
+            await _userService.UpdateUserAsync(id, user);
         }
 
         // DELETE api/<UsersController>/5

@@ -1,4 +1,4 @@
-﻿using SkillMatrix.Domain.Skills.Enums;
+﻿using SkillMatrix.Domain.Enums;
 
 namespace SkillMatrix.Application.DTOs
 {

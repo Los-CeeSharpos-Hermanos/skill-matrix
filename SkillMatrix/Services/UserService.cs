@@ -2,6 +2,7 @@
 using SkillMatrix.Application.DTOs;
 using SkillMatrix.Application.DTOs.Users;
 using SkillMatrix.DataAccess;
+using SkillMatrix.Domain.Enums;
 using SkillMatrix.Domain.Languages.Models;
 using SkillMatrix.Domain.Users.Models;
 using SkillMatrix.Domain.Users.Repositories;
@@ -14,10 +15,10 @@ namespace SkillMatrix.Application.Services
 {
     public interface IUserService
     {
-        Task<List<UserDTO>> GetUsersAsync();
+        Task<List<UserDTO>> ListUsersAsync();
         Task<UserDTO> GetUserAsync(long id);
-        Task PostUserAsync(FormUserDTO user);
-        Task PutUserAsync(long id, FormUserDTO user);
+        Task InsertUserAsync(FormUserDTO user);
+        Task UpdateUserAsync(long id, FormUserDTO user);
         Task DeleteUserAsync(long id);
     }
     public class UserService : IUserService
@@ -25,15 +26,15 @@ namespace SkillMatrix.Application.Services
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
 
-        public UserService(IUserRepository userRepository, IMapper mapper)
+        public UserService(IMapper mapper, IUserRepository userRepository)
         {
-            _userRepository = userRepository;
             _mapper = mapper;
+            _userRepository = userRepository;
         }
 
-        public async Task<List<UserDTO>> GetUsersAsync()
+        public async Task<List<UserDTO>> ListUsersAsync()
         {
-            var users = await _userRepository.GetUsersAsync();
+            var users = await _userRepository.ListUsersAsync();
 
             return _mapper.Map<List<UserDTO>>(users);
         }
@@ -45,7 +46,7 @@ namespace SkillMatrix.Application.Services
             return _mapper.Map<UserDTO>(user);
         }
 
-        public async Task PostUserAsync(FormUserDTO user)
+        public async Task InsertUserAsync(FormUserDTO user)
         {
             User userAdd = new()
             {
@@ -70,10 +71,10 @@ namespace SkillMatrix.Application.Services
                 tt.UserId = user.Id;
                 switch (l.Rating)
                 {
-                    case 1: tt.Rating = Domain.Skills.Enums.Rating.Begginer; break;
-                    case 2: tt.Rating = Domain.Skills.Enums.Rating.Intermediate; break;
-                    case 3: tt.Rating = Domain.Skills.Enums.Rating.Advanced; break;
-                    default: tt.Rating = Domain.Skills.Enums.Rating.Begginer; break;
+                    case 1: tt.Rating = Rating.Begginer; break;
+                    case 2: tt.Rating = Rating.Intermediate; break;
+                    case 3: tt.Rating = Rating.Advanced; break;
+                    default: tt.Rating = Rating.Begginer; break;
                 }
                 userAdd.LanguageRatings.Add(tt);
             }
@@ -83,18 +84,18 @@ namespace SkillMatrix.Application.Services
                 skillRating.UserId = user.Id;
                 switch (s.Rating)
                 {
-                    case 1: skillRating.Rating = Domain.Skills.Enums.Rating.Begginer; break;
-                    case 2: skillRating.Rating = Domain.Skills.Enums.Rating.Intermediate; break;
-                    case 3: skillRating.Rating = Domain.Skills.Enums.Rating.Advanced; break;
-                    default: skillRating.Rating = Domain.Skills.Enums.Rating.Begginer; break;
+                    case 1: skillRating.Rating = Rating.Begginer; break;
+                    case 2: skillRating.Rating = Rating.Intermediate; break;
+                    case 3: skillRating.Rating = Rating.Advanced; break;
+                    default: skillRating.Rating = Rating.Begginer; break;
                 }
                 userAdd.SkillRatings.Add(skillRating);
             }
-            await _userRepository.PostUserAsync(userAdd);
+            await _userRepository.InsertUserAsync(userAdd);
 
         }
 
-        public async Task PutUserAsync(long id, FormUserDTO user)
+        public async Task UpdateUserAsync(long id, FormUserDTO user)
         {
             LanguageRating tt = new LanguageRating();
             SkillRating skillRating = new SkillRating();
@@ -119,10 +120,10 @@ namespace SkillMatrix.Application.Services
                 tt.UserId = user.Id;
                 switch (l.Rating)
                 {
-                    case 1: tt.Rating = Domain.Skills.Enums.Rating.Begginer; break;
-                    case 2: tt.Rating = Domain.Skills.Enums.Rating.Intermediate; break;
-                    case 3: tt.Rating = Domain.Skills.Enums.Rating.Advanced; break;
-                    default: tt.Rating = Domain.Skills.Enums.Rating.Begginer; break;
+                    case 1: tt.Rating = Rating.Begginer; break;
+                    case 2: tt.Rating = Rating.Intermediate; break;
+                    case 3: tt.Rating = Rating.Advanced; break;
+                    default: tt.Rating = Rating.Begginer; break;
                 }
                 updatedUser.LanguageRatings.Add(tt);
             }
@@ -132,15 +133,15 @@ namespace SkillMatrix.Application.Services
                 skillRating.UserId = user.Id;
                 switch (s.Rating)
                 {
-                    case 1: skillRating.Rating = Domain.Skills.Enums.Rating.Begginer; break;
-                    case 2: skillRating.Rating = Domain.Skills.Enums.Rating.Intermediate; break;
-                    case 3: skillRating.Rating = Domain.Skills.Enums.Rating.Advanced; break;
-                    default: skillRating.Rating = Domain.Skills.Enums.Rating.Begginer; break;
+                    case 1: skillRating.Rating = Rating.Begginer; break;
+                    case 2: skillRating.Rating = Rating.Intermediate; break;
+                    case 3: skillRating.Rating = Rating.Advanced; break;
+                    default: skillRating.Rating = Rating.Begginer; break;
                 }
                 updatedUser.SkillRatings.Add(skillRating);
             }
 
-            await _userRepository.PutUserAsync(id, updatedUser);
+            await _userRepository.UpdateUserAsync(id, updatedUser);
         }
 
         public async Task DeleteUserAsync(long id)

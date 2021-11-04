@@ -6,7 +6,7 @@ using SkillMatrix.Application.Services;
 using SkillMatrix.DataAccess;
 using SkillMatrix.Domain.Skills.Models;
 using SkillMatrix.Domain.Skills.Repositories;
-using SkillMatrix.Test.Services.Skills;
+using SkillMatrix.Test.Fakes;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -19,7 +19,7 @@ namespace SkillMatrix.DataAccess.Repositories.Users
             _db = db;
         }
 
-        public async Task<List<User>> GetUsersAsync()
+        public async Task<List<User>> ListUsersAsync()
         {
             return await _db.Users.Where(p => p.Id > 0)
                                   .OrderBy(u => u.SurName)
@@ -31,12 +31,12 @@ namespace SkillMatrix.DataAccess.Repositories.Users
             return await _db.Users.FindAsync(id);
         }
 
-        public async Task PostUserAsync(User user)
+        public async Task InsertUserAsync(User user)
         {
             await _db.Users.AddAsync(user);
             await _db.SaveChangesAsync();
         }
-        public async Task PutUserAsync(long id, User user)
+        public async Task UpdateUserAsync(long id, User user)
         {
             _db.Users.Update(user);
             await _db.SaveChangesAsync();
@@ -52,7 +52,7 @@ namespace SkillMatrix.DataAccess.Repositories.Users
             await _db.SaveChangesAsync();
         }
 
-        public async Task<Department>GetDepartmentAsync(string department)
+        public async Task<Department> GetDepartmentAsync(string department)
         {
             return await _db.Departments.Where(d => d.DepartmentName == department).FirstOrDefaultAsync() ?? throw new KeyNotFoundException($"Department not found");
         }
