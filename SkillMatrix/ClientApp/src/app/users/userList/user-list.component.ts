@@ -124,13 +124,13 @@ export class UserListComponent implements OnInit {
 
   getTopThreeSkills(skills: IUserSkill[]): string {
     return joinWithCommaAndSpace(
-      this.getTopHabilities(skills, 3)
+      this.getTopHabilities(skills, 4)
         .map(item => item.skillName));
   }
 
   getTopThreeLanguages(languages: IUserLanguage[]): string {
     return joinWithCommaAndSpace(
-      this.getTopHabilities(languages, 3)
+      this.getTopHabilities(languages, 4)
         .map(item => item.language));
   }
 
