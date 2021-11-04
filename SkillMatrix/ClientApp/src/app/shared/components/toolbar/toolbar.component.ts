@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { RoutingService } from '../../services/routing.service';
+import {MatSlideToggleChange} from "@angular/material/slide-toggle";
 
 @Component({
   selector: 'app-toolbar',
@@ -8,6 +9,10 @@ import { RoutingService } from '../../services/routing.service';
 })
 export class ToolbarComponent implements OnInit {
 
+  @Output()
+
+  readonly darkModeSwitched = new EventEmitter<boolean>();
+
   constructor(private routingService: RoutingService) { }
 
   ngOnInit(): void {
@@ -15,6 +20,11 @@ export class ToolbarComponent implements OnInit {
 
   goTo(path: string) {
     this.routingService.goTo(path);
+  }
+
+  onDarkModeSwitched({checked}: MatSlideToggleChange)
+  {
+    this.darkModeSwitched.emit(checked);
   }
 
   title = 'Skill-Matrix by Andrei-Nicolae Ene, Conrado Goncalves, Marten Maiburg and Nico Wisotzki';

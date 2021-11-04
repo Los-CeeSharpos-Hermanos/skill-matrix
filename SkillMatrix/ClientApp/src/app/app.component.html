@@ -1,2 +1,5 @@
-<app-toolbar></app-toolbar>
-<router-outlet></router-outlet>
+<div class="mat-typography app-frame mat-app-background">
+  <app-toolbar (darkModeSwitched)="switchTheme($event)"></app-toolbar>
+  <router-outlet></router-outlet>
+</div>
+

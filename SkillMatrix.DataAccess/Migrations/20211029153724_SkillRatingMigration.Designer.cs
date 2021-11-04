@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SkillMatrix.DataAccess;
 
 namespace SkillMatrix.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20211029153724_SkillRatingMigration")]
+    partial class SkillRatingMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1884,13 +1886,8 @@ namespace SkillMatrix.DataAccess.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-<<<<<<< HEAD
-                    b.Property<string>("Language")
-                        .HasColumnType("nvarchar(max)");
-=======
                     b.Property<long>("LanguageId")
                         .HasColumnType("bigint");
->>>>>>> main
 
                     b.Property<int>("Rating")
                         .HasColumnType("int");
@@ -1908,22 +1905,9 @@ namespace SkillMatrix.DataAccess.Migrations
                         new
                         {
                             LanguageRatingId = 1L,
-<<<<<<< HEAD
-                            Language = "german",
-                            Rating = 3,
-                            UserId = 1L
-                        },
-                        new
-                        {
-                            LanguageRatingId = 2L,
-                            Language = "englisch",
-                            Rating = 2,
-                            UserId = 2L
-=======
                             LanguageId = 40L,
                             Rating = 3,
                             UserId = 1L
->>>>>>> main
                         });
                 });
 
@@ -1937,8 +1921,8 @@ namespace SkillMatrix.DataAccess.Migrations
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
-                    b.Property<string>("SkillName")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<long>("SkillId")
+                        .HasColumnType("bigint");
 
                     b.Property<long>("UserId")
                         .HasColumnType("bigint");
@@ -1954,7 +1938,7 @@ namespace SkillMatrix.DataAccess.Migrations
                         {
                             SkillRatingId = 1L,
                             Rating = 3,
-                            SkillName = "C#",
+                            SkillId = 40L,
                             UserId = 1L
                         });
                 });
