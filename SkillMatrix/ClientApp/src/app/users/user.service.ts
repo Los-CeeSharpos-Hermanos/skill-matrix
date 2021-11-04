@@ -58,6 +58,8 @@ export class UserService {
       firstName: '',
       telephone: '',
       email: '',
+      location: '',
+      jobTitle: '',
       department: '',
       team: '',
       skills: [],

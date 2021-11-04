@@ -15,7 +15,8 @@ namespace SkillMatrix.DataAccess.Seeds
             modelBuilder.Entity<Team>()
                .HasData(
                    new Team { TeamId = 1, TeamName = "A-Team" },
-                   new Team { TeamId = 2, TeamName = "B-Team" }
+                   new Team { TeamId = 2, TeamName = "B-Team" },
+                   new Team { TeamId = 3, TeamName = "C-Team" }
             );
         }
     }

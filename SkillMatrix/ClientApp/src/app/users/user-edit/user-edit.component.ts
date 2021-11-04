@@ -65,10 +65,10 @@ export class UserEditComponent implements OnInit {
       this.profileForm.patchValue({
         firstname: this.user.firstName,
         surname: this.user.surName,
-        jobTitle: '',
+        jobTitle: this.user.jobTitle,
         team: this.user.team,
         department: this.user.department,
-        location: '',
+        location: this.user.location,
         email: this.user.email,
         phone: this.user.telephone,
         favQuote: ''

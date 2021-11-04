@@ -9,6 +9,8 @@ export const users: IUser[] = [
         telephone: "4901512345678",
         email: "marten@web.de",
         department: "Sales",
+        jobTitle: "Test",
+        location: "Leipzig",
         team: "A",
         skills: [
             {
@@ -45,6 +47,8 @@ export const users: IUser[] = [
         telephone: "4901512345678",
         email: "Bernd@web.de",
         department: "Coding",
+        jobTitle: "Test",
+        location: "Leipzig",
         team: "B",
         skills: [
             {
@@ -81,6 +85,8 @@ export const users: IUser[] = [
         telephone: "4901512345678",
         email: "lutz@web.de",
         department: "Finance",
+        jobTitle: "Test",
+        location: "Leipzig",
         team: "F",
         skills: [
             {
@@ -113,6 +119,8 @@ export const users: IUser[] = [
         telephone: "4901512345678",
         email: "motz@web.de",
         department: "Marketing",
+        jobTitle: "Test",
+        location: "Leipzig",
         team: "C",
         skills: [
             {
@@ -149,6 +157,8 @@ export const users: IUser[] = [
         telephone: "4901512345678",
         email: "perty@web.de",
         department: "CEO",
+        jobTitle: "Test",
+        location: "Leipzig",
         team: "V",
         skills: [
             {
@@ -185,6 +195,8 @@ export const users: IUser[] = [
         telephone: "4901512345678",
         email: "peter@web.de",
         department: "Development",
+        jobTitle: "Test",
+        location: "Leipzig",
         team: "G",
         skills: [
             {
@@ -221,6 +233,8 @@ export const users: IUser[] = [
         telephone: "4901512345678",
         email: "Hans@web.de",
         department: "Development",
+        jobTitle: "Test",
+        location: "Leipzig",
         team: "B",
         skills: [
             {
@@ -256,7 +270,9 @@ export const users: IUser[] = [
         firstName: "Joseph",
         telephone: "4901512345678",
         email: "fritzl@web.de",
+        jobTitle: "Test",
         department: "Public Relations",
+        location: "Leipzig",
         team: "D",
         skills: [
             {
@@ -293,6 +309,8 @@ export const users: IUser[] = [
         telephone: "4901512345678",
         email: "Stefan@web.de",
         department: "Facility",
+        jobTitle: "Test",
+        location: "Leipzig",
         team: "C",
         skills: [
             {
@@ -329,6 +347,8 @@ export const users: IUser[] = [
         telephone: "4901512345678",
         email: "Stefan@web.de",
         department: "Facility",
+        jobTitle: "Test",
+        location: "Leipzig",
         team: "C",
         skills: [],
         languages: [],

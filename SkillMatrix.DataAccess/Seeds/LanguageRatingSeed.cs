@@ -25,9 +25,142 @@ namespace SkillMatrix.DataAccess.Seeds
                    new LanguageRating
                    {
                        LanguageRatingId = 2,
-                       Language = "englisch",
+                       Language = "english",
                        UserId = 2,
                        Rating = Rating.Intermediate
+                   },
+                   new LanguageRating
+                   {
+                       LanguageRatingId = 3,
+                       Language = "german",
+                       UserId = 2,
+                       Rating = Rating.Advanced
+                   },
+                   new LanguageRating
+                   {
+                       LanguageRatingId = 4,
+                       Language = "german",
+                       UserId = 3,
+                       Rating = Rating.Advanced
+                   },
+                   new LanguageRating
+                   {
+                       LanguageRatingId = 5,
+                       Language = "english",
+                       UserId = 3,
+                       Rating = Rating.Advanced
+                   },
+                   new LanguageRating
+                   {
+                       LanguageRatingId = 6,
+                       Language = "french",
+                       UserId = 3,
+                       Rating = Rating.Intermediate
+                   },
+                   new LanguageRating
+                   {
+                       LanguageRatingId = 7,
+                       Language = "latin",
+                       UserId = 3,
+                       Rating = Rating.Begginer
+                   },
+                   new LanguageRating
+                   {
+                       LanguageRatingId = 8,
+                       Language = "english",
+                       UserId = 4,
+                       Rating = Rating.Intermediate
+                   },
+                   new LanguageRating
+                   {
+                       LanguageRatingId = 9,
+                       Language = "german",
+                       UserId = 4,
+                       Rating = Rating.Advanced
+                   },
+                   new LanguageRating
+                   {
+                       LanguageRatingId = 10,
+                       Language = "english",
+                       UserId = 5,
+                       Rating = Rating.Intermediate
+                   },
+                   new LanguageRating
+                   {
+                       LanguageRatingId = 11,
+                       Language = "german",
+                       UserId = 5,
+                       Rating = Rating.Advanced
+                   },
+                   new LanguageRating
+                   {
+                       LanguageRatingId = 12,
+                       Language = "english",
+                       UserId = 6,
+                       Rating = Rating.Intermediate
+                   },
+                   new LanguageRating
+                   {
+                       LanguageRatingId = 13,
+                       Language = "german",
+                       UserId = 6,
+                       Rating = Rating.Advanced
+                   },
+                   new LanguageRating
+                   {
+                       LanguageRatingId = 14,
+                       Language = "english",
+                       UserId = 7,
+                       Rating = Rating.Intermediate
+                   },
+                   new LanguageRating
+                   {
+                       LanguageRatingId = 15,
+                       Language = "german",
+                       UserId = 7,
+                       Rating = Rating.Advanced
+                   },
+                   new LanguageRating
+                   {
+                       LanguageRatingId = 17,
+                       Language = "english",
+                       UserId = 8,
+                       Rating = Rating.Intermediate
+                   },
+                   new LanguageRating
+                   {
+                       LanguageRatingId = 16,
+                       Language = "german",
+                       UserId = 8,
+                       Rating = Rating.Advanced
+                   },
+                   new LanguageRating
+                   {
+                       LanguageRatingId = 18,
+                       Language = "english",
+                       UserId = 9,
+                       Rating = Rating.Intermediate
+                   },
+                   new LanguageRating
+                   {
+                       LanguageRatingId = 19,
+                       Language = "german",
+                       UserId = 9,
+                       Rating = Rating.Advanced
+                   },
+                   new LanguageRating
+                   {
+                       LanguageRatingId = 20,
+                       Language = "english",
+                       UserId = 10,
+                       Rating = Rating.Intermediate
+                   },
+                   new LanguageRating
+                   {
+                       LanguageRatingId = 21,
+                       Language = "german",
+                       UserId = 10,
+                       Rating = Rating.Advanced
                    }
              );
         }

@@ -4,6 +4,8 @@ export interface IUser {
   firstName: string;
   telephone: string;
   email: string;
+  location: string;
+  jobTitle: string;
   department: string;
   team: string;
   skills: IUserSkill[];

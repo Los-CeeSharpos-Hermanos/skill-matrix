@@ -14,6 +14,8 @@ export class UserShowComponent implements OnInit {
     firstName: "Test",
     telephone: "0123456789",
     email: "test.person@gmail.com",
+    jobTitle: "Developer",
+    location: "Leipzig",
     department: "Sales",
     team: "A-Team",
     skills: [{skillName: "C#", skillCategory: "Coding", rating: 1}, {skillName: "Java", skillCategory: "Coding", rating: 3}],
