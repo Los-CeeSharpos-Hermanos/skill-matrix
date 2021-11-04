@@ -13,8 +13,7 @@ namespace SkillMatrix.DataAccess.Configurations
     {
         public void Configure(EntityTypeBuilder<LanguageRating> builder)
         {
-
-
+            //builder.HasIndex(u => u.LanguageId).IsUnique();
         }
     }
 }

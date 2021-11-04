@@ -10,8 +10,8 @@ using SkillMatrix.DataAccess;
 namespace SkillMatrix.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20211029153724_SkillRatingMigration")]
-    partial class SkillRatingMigration
+    [Migration("20211104065935_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -1886,8 +1886,8 @@ namespace SkillMatrix.DataAccess.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long>("LanguageId")
-                        .HasColumnType("bigint");
+                    b.Property<string>("Language")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Rating")
                         .HasColumnType("int");
@@ -1905,9 +1905,16 @@ namespace SkillMatrix.DataAccess.Migrations
                         new
                         {
                             LanguageRatingId = 1L,
-                            LanguageId = 40L,
+                            Language = "german",
                             Rating = 3,
                             UserId = 1L
+                        },
+                        new
+                        {
+                            LanguageRatingId = 2L,
+                            Language = "englisch",
+                            Rating = 2,
+                            UserId = 2L
                         });
                 });
 
@@ -1921,8 +1928,8 @@ namespace SkillMatrix.DataAccess.Migrations
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
-                    b.Property<long>("SkillId")
-                        .HasColumnType("bigint");
+                    b.Property<string>("SkillName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("UserId")
                         .HasColumnType("bigint");
@@ -1938,7 +1945,7 @@ namespace SkillMatrix.DataAccess.Migrations
                         {
                             SkillRatingId = 1L,
                             Rating = 3,
-                            SkillId = 40L,
+                            SkillName = "C#",
                             UserId = 1L
                         });
                 });

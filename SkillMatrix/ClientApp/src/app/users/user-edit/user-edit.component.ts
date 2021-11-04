@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { RoutingService } from 'src/app/shared/services/routing.service';
+import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
 import { environment } from 'src/environments/environment';
+import { IUser } from '../user';
+import { UserService } from '../user.service';
+
 
 @Component({
   selector: 'app-user-edit',
@@ -13,13 +20,62 @@ export class UserEditComponent implements OnInit {
   categoriesList: ['Frontend', 'Backend', 'Databases', 'Cloud expertise'];
 
   profilePic = environment.profilePic;
+  private sub: Subscription;
+  pageTitle: string;
+  errorMessage: string;
+  user: IUser;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private routingService: RoutingService,
+    private userService: UserService,
+    private snackBarService: SnackBarService) { }
 
   ngOnInit(): void {
 
     this.profileFormInit();
+    this.sub = this.route.paramMap.subscribe(
+      params => {
+        const id = params.get('id')!;
+        this.getUser(id);
+      });
+  }
 
+  getUser(id: string): void {
+    this.userService.getUser(id)
+      .subscribe({
+        next: (user: IUser) => this.displayUser(user),
+        error: err => this.errorMessage = err
+      });
+  }
+
+  displayUser(user: IUser): void {
+    if (this.profileForm) {
+      this.profileForm.reset();
+    }
+
+    this.user = user;
+    if (this.user.id === 0) {
+      this.pageTitle = 'Add a new User';
+      
+    
+    } else {
+      this.profilePic = this.user.imageUrl;
+      this.pageTitle = `Editing User: ${this.user.firstName} ${this.user.surName}`;
+      this.profileForm.patchValue({
+        firstname: this.user.firstName,
+        surname: this.user.surName,
+        jobTitle: '',
+        team: this.user.team,
+        department: this.user.department,
+        location: '',
+        email: this.user.email,
+        phone: this.user.telephone,
+        favQuote: ''
+      });
+    }
+
+    
   }
 
   private profileFormInit() {
@@ -37,6 +93,8 @@ export class UserEditComponent implements OnInit {
       skills: this.fb.array([this.buildSkill()])
     });
   }
+
+  
 
   categoriesListInit() {
 

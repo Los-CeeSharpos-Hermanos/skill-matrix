@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { users } from 'src/app/shared/database/members/members-data';
 import { RoutingService } from 'src/app/shared/services/routing.service';
 import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
 import { environment } from 'src/environments/environment';
@@ -60,7 +61,7 @@ export class UserListComponent implements OnInit {
     },
     {
       id: 'actions',
-      name: 'Actions',
+      name: '',
       columnStyle: ColumnStyle.SimpleText
     },
   ];
@@ -73,6 +74,7 @@ export class UserListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadUsers();
+
     this.hideUser();
   }
 
@@ -81,8 +83,8 @@ export class UserListComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  goToAddUser() {
-    this.routingService.goTo('skillmatrix/users/0/edit');
+  goToAddUser(id: number) {
+    this.routingService.goTo(`skillmatrix/users/${id}/edit`);
   }
 
   onDeleteClick(userToDelete: number) {
@@ -122,13 +124,13 @@ export class UserListComponent implements OnInit {
 
   getTopThreeSkills(skills: IUserSkill[]): string {
     return joinWithCommaAndSpace(
-      this.getTopHabilities(skills, 3)
+      this.getTopHabilities(skills, 4)
         .map(item => item.skillName));
   }
 
   getTopThreeLanguages(languages: IUserLanguage[]): string {
     return joinWithCommaAndSpace(
-      this.getTopHabilities(languages, 3)
+      this.getTopHabilities(languages, 4)
         .map(item => item.language));
   }
 
@@ -155,6 +157,7 @@ export class UserListComponent implements OnInit {
     this.dataSource = new MatTableDataSource(this.users);
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
+    console.log(this.dataSource);
   }
 }
 

@@ -18,9 +18,16 @@ namespace SkillMatrix.DataAccess.Seeds
                    new LanguageRating
                    {
                        LanguageRatingId = 1,
-                       LanguageId = 40,
+                       Language = "german",
                        UserId = 1,
                        Rating = Rating.Advanced
+                   },
+                   new LanguageRating
+                   {
+                       LanguageRatingId = 2,
+                       Language = "englisch",
+                       UserId = 2,
+                       Rating = Rating.Intermediate
                    }
              );
         }

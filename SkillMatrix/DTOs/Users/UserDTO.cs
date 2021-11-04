@@ -16,6 +16,9 @@ namespace SkillMatrix.Application.DTOs
         public string Telephone { get; set; }
         public string Email { get; set; }
         public string ImageUrl { get; set; }
+
+        public string JobTitle { get; set; }
+
         public string Department { get; set; }
         public string Team { get; set; }
     }

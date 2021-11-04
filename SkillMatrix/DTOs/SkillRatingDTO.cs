@@ -7,7 +7,7 @@ namespace SkillMatrix.Application.DTOs
 {
     public class SkillRatingDTO
     {
-        public long SkillId { get; set; }
+        public string SkillName { get; set; }
         public int Rating { get; set; }
     }
 }

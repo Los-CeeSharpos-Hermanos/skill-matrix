@@ -14,8 +14,8 @@ namespace SkillMatrix.Application.Services
 {
     public interface IUserService
     {
-        Task<List<UserDTO>> GetUsersAsync();
-        Task<UserDTO> GetUserAsync(long id);
+        Task<List<FormUserDTO>> GetUsersAsync();
+        Task<FormUserDTO> GetUserAsync(long id);
         Task PostUserAsync(FormUserDTO user);
         Task PutUserAsync(long id, FormUserDTO user);
         Task DeleteUserAsync(long id);
@@ -31,76 +31,41 @@ namespace SkillMatrix.Application.Services
             _mapper = mapper;
         }
 
-        public async Task<List<UserDTO>> GetUsersAsync()
+        public async Task<List<FormUserDTO>> GetUsersAsync()
         {
             var users = await _userRepository.GetUsersAsync();
 
-            return _mapper.Map<List<UserDTO>>(users);
+            return _mapper.Map<List<FormUserDTO>>(users);
         }
 
-        public async Task<UserDTO> GetUserAsync(long id)
+        public async Task<FormUserDTO> GetUserAsync(long id)
         {
             var user = await _userRepository.GetUserAsync(id);
 
-            return _mapper.Map<UserDTO>(user);
+            return _mapper.Map<FormUserDTO>(user);
         }
 
         public async Task PostUserAsync(FormUserDTO user)
         {
-            User userAdd = new()
-            {
-                FirstName = user.FirstName,
-                SurName = user.SurName,
-                Telephone = user.Telephone,
-                Email = user.Email,
-                ImageUrl = user.ImageUrl,
-                JobTitle = user.JobTitle,
-                Department = await _userRepository.GetDepartmentAsync(user.Department),
-                Team = await _userRepository.GetTeamAsync(user.Team)
-            };
-            userAdd.DepartmentId = userAdd.Department.DepartmentId;
-            userAdd.TeamId = userAdd.Team.TeamId;
-
-            LanguageRating tt = new LanguageRating();
-            SkillRating skillRating = new SkillRating();
-
-            foreach (LanguageRatingDTO l in user.Languages)
-            {
-                tt.LanguageId = l.LanguageId;
-                tt.UserId = user.Id;
-                switch (l.Rating)
-                {
-                    case 1: tt.Rating = Domain.Skills.Enums.Rating.Begginer; break;
-                    case 2: tt.Rating = Domain.Skills.Enums.Rating.Intermediate; break;
-                    case 3: tt.Rating = Domain.Skills.Enums.Rating.Advanced; break;
-                    default: tt.Rating = Domain.Skills.Enums.Rating.Begginer; break;
-                }
-                userAdd.LanguageRatings.Add(tt);
-            }
-            foreach (SkillRatingDTO s in user.Skills)
-            {
-                skillRating.SkillId = s.SkillId;
-                skillRating.UserId = user.Id;
-                switch (s.Rating)
-                {
-                    case 1: skillRating.Rating = Domain.Skills.Enums.Rating.Begginer; break;
-                    case 2: skillRating.Rating = Domain.Skills.Enums.Rating.Intermediate; break;
-                    case 3: skillRating.Rating = Domain.Skills.Enums.Rating.Advanced; break;
-                    default: skillRating.Rating = Domain.Skills.Enums.Rating.Begginer; break;
-                }
-                userAdd.SkillRatings.Add(skillRating);
-            }
+            User userAdd = _mapper.Map<User>(user);
+      
             await _userRepository.PostUserAsync(userAdd);
 
         }
 
         public async Task PutUserAsync(long id, FormUserDTO user)
         {
-            LanguageRating tt = new LanguageRating();
-            SkillRating skillRating = new SkillRating();
-            
+            LanguageRating languageRating = new();
+            SkillRating skillRating = new();
+
+
+           
             var updatedUser = await _userRepository.GetUserAsync(id);
-            
+            //updatedUser.LanguageRatings.Clear();
+            //updatedUser.SkillRatings.Clear();
+            updatedUser = _mapper.Map<User>(user);
+
+            /*
             updatedUser.FirstName = user.FirstName;
             updatedUser.SurName = user.SurName;
             updatedUser.ImageUrl = user.ImageUrl;
@@ -115,20 +80,20 @@ namespace SkillMatrix.Application.Services
 
             foreach (LanguageRatingDTO l in user.Languages)
             {
-                tt.LanguageId = l.LanguageId;
-                tt.UserId = user.Id;
+                languageRating.Language = l.Language;
+                languageRating.UserId = user.Id;
                 switch (l.Rating)
                 {
-                    case 1: tt.Rating = Domain.Skills.Enums.Rating.Begginer; break;
-                    case 2: tt.Rating = Domain.Skills.Enums.Rating.Intermediate; break;
-                    case 3: tt.Rating = Domain.Skills.Enums.Rating.Advanced; break;
-                    default: tt.Rating = Domain.Skills.Enums.Rating.Begginer; break;
+                    case 1: languageRating.Rating = Domain.Skills.Enums.Rating.Begginer; break;
+                    case 2: languageRating.Rating = Domain.Skills.Enums.Rating.Intermediate; break;
+                    case 3: languageRating.Rating = Domain.Skills.Enums.Rating.Advanced; break;
+                    default: languageRating.Rating = Domain.Skills.Enums.Rating.Begginer; break;
                 }
-                updatedUser.LanguageRatings.Add(tt);
+                updatedUser.LanguageRatings.Add(languageRating);
             }
             foreach (SkillRatingDTO s in user.Skills)
             {
-                skillRating.SkillId = s.SkillId;
+                skillRating.SkillName = s.SkillName;
                 skillRating.UserId = user.Id;
                 switch (s.Rating)
                 {
@@ -139,10 +104,10 @@ namespace SkillMatrix.Application.Services
                 }
                 updatedUser.SkillRatings.Add(skillRating);
             }
-
+            */
             await _userRepository.PutUserAsync(id, updatedUser);
         }
-
+            
         public async Task DeleteUserAsync(long id)
         {
             await _userRepository.DeleteUserAsync(id);
