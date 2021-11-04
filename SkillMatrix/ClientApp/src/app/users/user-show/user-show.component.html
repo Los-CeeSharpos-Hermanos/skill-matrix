@@ -7,7 +7,7 @@
                 <div class="col-lg-4 col-sm-10 offset-sm-1">
                     <mat-card>
                         <div class="row">
-                            <img [src]="https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png" class="rounded-full img-fluid">
+                            <img src='https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png' class="rounded-full img-fluid">
                         </div>
                     </mat-card>
                 </div>
@@ -16,71 +16,71 @@
                         <div class="row">
                             <form>
                                 <div class="row">
+                                    <div>
                                     <mat-form-field appearance="fill">
-                                        <mat-label>First Name</mat-label>
+                                        <h3>First Name</h3>
                                         <p>{{user.firstName}}</p>
                                     </mat-form-field>
 
                                     <mat-form-field appearance="fill">
-                                        <mat-label>Surname</mat-label>
+                                        <h3>Surname</h3>
                                         <p>{{user.surName}}</p>
                                     </mat-form-field>
-
+                                    </div>
+                                    <div>
                                     <mat-form-field appearance="fill">
-                                        <mat-label>Job Title</mat-label>
+                                        <h3>Team</h3>
+                                        <p>{{user.team}}</p>
                                     </mat-form-field>
 
                                     <mat-form-field appearance="fill">
-                                        <mat-label>Team</mat-label>
+                                        <h3>Department</h3>
+                                        <p>{{user.department}}</p>
+                                    </mat-form-field>
+                                    </div>
+                                    <div>
+                                    <mat-form-field appearance="fill">
+                                        <h3>Phone</h3>
+                                        <p>{{user.telephone}}</p>
                                     </mat-form-field>
 
                                     <mat-form-field appearance="fill">
-                                        <mat-label>Department</mat-label>
+                                        <h3>Email</h3>
+                                        <p>{{user.email}}</p>
                                     </mat-form-field>
-
-                                    <mat-form-field appearance="fill">
-                                        <mat-label>Location</mat-label>
-                                    </mat-form-field>
-
-                                    <mat-form-field appearance="fill">
-                                        <mat-label>Email</mat-label>
-                                    </mat-form-field>
-
-                                    <mat-form-field appearance="fill">
-                                        <mat-label>Phone</mat-label>
-                                    </mat-form-field>
+                                    </div>
                                 </div>
                             </form>
                         </div>
                     </mat-card>
                 </div>
 
-                <div class="col 12">
+                <div class="col-10 offset-1">
                     <mat-card>
 
                         <form>
                             <div class="row">
-                                <div class="col-10">
-                                    <div formArrayName="languages" *ngFor="let language of user.languages; let i=index">
-                                        
+                               <h3>Languages</h3>
+                                <div class="col-lg-4">
+                                    <div *ngFor="let language of user.languages; let i=index">
+                                        <p>{{language.language}}</p>
                                     </div>
                                 </div>
                             </div>
                         </form>
                     </mat-card>
-                    <div class="col 12">
-                        <mat-card>
-                            <form>
-                                <div class="row">
-                                    <div class="col-10">
-                                        <div formArrayName="skills" *ngFor="let skill of user.skills; let i=index">
-    
-                                        </div>
+                    <mat-card>
+                        <form>
+                            <div class="row">
+                                <h3>Skills</h3>
+                                <div class="col-lg-4">
+                                    <div *ngFor="let skill of user.skills; let i=index">
+                                        <p>{{skill.skillName}}</p>
                                     </div>
                                 </div>
-                            </form>
-                        </mat-card>
-                    </div>
+                            </div>
+                        </form>
+                    </mat-card>
                 </div>
             </div>
         </div>

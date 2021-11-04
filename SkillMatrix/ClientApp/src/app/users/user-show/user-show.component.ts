@@ -9,7 +9,7 @@ import { IUser } from '../user';
 export class UserShowComponent implements OnInit {
 
   public user: IUser = {
-    id: 0,
+    id: 100,
     surName: "Person",
     firstName: "Test",
     telephone: "0123456789",
