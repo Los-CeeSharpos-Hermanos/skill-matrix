@@ -10,13 +10,8 @@ using SkillMatrix.DataAccess;
 namespace SkillMatrix.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-<<<<<<< HEAD:SkillMatrix.DataAccess/Migrations/20211103132832_Initialize.Designer.cs
-    [Migration("20211103132832_Initialize")]
-    partial class Initialize
-=======
-    [Migration("20211029123147_InitialCreate")]
+    [Migration("20211104065935_InitialCreate")]
     partial class InitialCreate
->>>>>>> main:SkillMatrix.DataAccess/Migrations/20211029123147_InitialCreate.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -1859,7 +1854,6 @@ namespace SkillMatrix.DataAccess.Migrations
                     b.HasKey("DepartmentId");
 
                     b.ToTable("Departments");
-<<<<<<< HEAD:SkillMatrix.DataAccess/Migrations/20211103132832_Initialize.Designer.cs
 
                     b.HasData(
                         new
@@ -1958,67 +1952,6 @@ namespace SkillMatrix.DataAccess.Migrations
 
             modelBuilder.Entity("SkillMatrix.Domain.Users.Models.Team", b =>
                 {
-=======
-
-                    b.HasData(
-                        new
-                        {
-                            DepartmentId = 1L,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DepartmentName = "Sales",
-                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            DepartmentId = 2L,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DepartmentName = "Development",
-                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            DepartmentId = 3L,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DepartmentName = "Marketing",
-                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        });
-                });
-
-            modelBuilder.Entity("SkillMatrix.Domain.Users.Models.LanguageRating", b =>
-                {
-                    b.Property<long>("LanguageRatingId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<long>("LanguageId")
-                        .HasColumnType("bigint");
-
-                    b.Property<int>("Rating")
-                        .HasColumnType("int");
-
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("LanguageRatingId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("LanguageRating");
-
-                    b.HasData(
-                        new
-                        {
-                            LanguageRatingId = 1L,
-                            LanguageId = 40L,
-                            Rating = 3,
-                            UserId = 1L
-                        });
-                });
-
-            modelBuilder.Entity("SkillMatrix.Domain.Users.Models.Team", b =>
-                {
->>>>>>> main:SkillMatrix.DataAccess/Migrations/20211029123147_InitialCreate.Designer.cs
                     b.Property<long>("TeamId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
@@ -2153,7 +2086,6 @@ namespace SkillMatrix.DataAccess.Migrations
                             Telephone = "0123456789",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
-<<<<<<< HEAD:SkillMatrix.DataAccess/Migrations/20211103132832_Initialize.Designer.cs
                 });
 
             modelBuilder.Entity("SkillMatrix.Domain.Skills.Models.Skill", b =>
@@ -2174,8 +2106,6 @@ namespace SkillMatrix.DataAccess.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-=======
->>>>>>> main:SkillMatrix.DataAccess/Migrations/20211029123147_InitialCreate.Designer.cs
                 });
 
             modelBuilder.Entity("SkillMatrix.Domain.Users.Models.SkillRating", b =>
@@ -2187,22 +2117,8 @@ namespace SkillMatrix.DataAccess.Migrations
                         .IsRequired();
                 });
 
-<<<<<<< HEAD:SkillMatrix.DataAccess/Migrations/20211103132832_Initialize.Designer.cs
             modelBuilder.Entity("SkillMatrix.Domain.Users.Models.Team", b =>
                 {
-=======
-            modelBuilder.Entity("SkillMatrix.Domain.Users.Models.LanguageRating", b =>
-                {
-                    b.HasOne("SkillMatrix.Domain.Users.Models.User", null)
-                        .WithMany("LanguageRatings")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("SkillMatrix.Domain.Users.Models.Team", b =>
-                {
->>>>>>> main:SkillMatrix.DataAccess/Migrations/20211029123147_InitialCreate.Designer.cs
                     b.HasOne("SkillMatrix.Domain.Users.Models.Department", "Department")
                         .WithMany()
                         .HasForeignKey("DepartmentId");
@@ -2243,11 +2159,8 @@ namespace SkillMatrix.DataAccess.Migrations
             modelBuilder.Entity("SkillMatrix.Domain.Users.Models.User", b =>
                 {
                     b.Navigation("LanguageRatings");
-<<<<<<< HEAD:SkillMatrix.DataAccess/Migrations/20211103132832_Initialize.Designer.cs
 
                     b.Navigation("SkillRatings");
-=======
->>>>>>> main:SkillMatrix.DataAccess/Migrations/20211029123147_InitialCreate.Designer.cs
                 });
 #pragma warning restore 612, 618
         }

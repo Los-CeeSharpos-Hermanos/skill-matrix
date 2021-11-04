@@ -1884,13 +1884,8 @@ namespace SkillMatrix.DataAccess.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-<<<<<<< HEAD
                     b.Property<string>("Language")
                         .HasColumnType("nvarchar(max)");
-=======
-                    b.Property<long>("LanguageId")
-                        .HasColumnType("bigint");
->>>>>>> main
 
                     b.Property<int>("Rating")
                         .HasColumnType("int");
@@ -1908,7 +1903,6 @@ namespace SkillMatrix.DataAccess.Migrations
                         new
                         {
                             LanguageRatingId = 1L,
-<<<<<<< HEAD
                             Language = "german",
                             Rating = 3,
                             UserId = 1L
@@ -1919,11 +1913,6 @@ namespace SkillMatrix.DataAccess.Migrations
                             Language = "englisch",
                             Rating = 2,
                             UserId = 2L
-=======
-                            LanguageId = 40L,
-                            Rating = 3,
-                            UserId = 1L
->>>>>>> main
                         });
                 });
 
