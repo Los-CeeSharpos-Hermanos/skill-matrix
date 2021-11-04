@@ -57,9 +57,15 @@ namespace SkillMatrix.Application.Services
         {
             LanguageRating languageRating = new();
             SkillRating skillRating = new();
-            
+
+
+           
             var updatedUser = await _userRepository.GetUserAsync(id);
-            
+            //updatedUser.LanguageRatings.Clear();
+            //updatedUser.SkillRatings.Clear();
+            updatedUser = _mapper.Map<User>(user);
+
+            /*
             updatedUser.FirstName = user.FirstName;
             updatedUser.SurName = user.SurName;
             updatedUser.ImageUrl = user.ImageUrl;
@@ -98,10 +104,10 @@ namespace SkillMatrix.Application.Services
                 }
                 updatedUser.SkillRatings.Add(skillRating);
             }
-
+            */
             await _userRepository.PutUserAsync(id, updatedUser);
         }
-
+            
         public async Task DeleteUserAsync(long id)
         {
             await _userRepository.DeleteUserAsync(id);
