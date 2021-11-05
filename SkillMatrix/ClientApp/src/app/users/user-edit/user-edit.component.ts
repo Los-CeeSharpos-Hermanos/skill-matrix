@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { ILanguage } from 'src/app/admin/languages/language';
+import { LanguageService } from 'src/app/admin/languages/services/language.service';
+import { SkillService } from 'src/app/admin/skills/services/skill.service';
+import { Skill } from 'src/app/admin/skills/skill';
 import { RoutingService } from 'src/app/shared/services/routing.service';
 import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
 import { environment } from 'src/environments/environment';
@@ -23,20 +27,50 @@ export class UserEditComponent implements OnInit {
   private sub: Subscription;
   pageTitle: string;
   errorMessage: string;
-  user: IUser;
+  user: IUser = {
+    id: 0,
+    firstName: "",
+    surName: "",
+    department: "",
+    team: "",
+    telephone: "",
+    email: "",
+    location: "",
+    jobTitle: "",
+    imageUrl: "",
+    languages: [
+      {
+        language: "",
+        rating: 1
+      }
+    ],
+    skills: [
+      {
+        skillName: "",
+        skillCategory: "",
+        rating: 1
+      }
+    ]
+  };
 
   rat: Rating;
+  allLanguages: ILanguage[] = [];
+  allSkills: Skill[] = [];
 
   languagesUser: string[];
   languagesRating: string[];
 
   constructor(private fb: FormBuilder,
     private route: ActivatedRoute,
+    private skillService: SkillService,
     private routingService: RoutingService,
     private userService: UserService,
+    private languageService: LanguageService,
     private snackBarService: SnackBarService) { }
 
   ngOnInit(): void {
+
+    this.loadAll();
 
     this.profileFormInit();
     this.sub = this.route.paramMap.subscribe(
@@ -65,10 +99,8 @@ export class UserEditComponent implements OnInit {
       
     
     } else {
-   
       this.profilePic = this.user.imageUrl;
       this.pageTitle = `Editing User: ${this.user.firstName} ${this.user.surName}`;
-
       this.profileForm.patchValue({
         firstname: this.user.firstName,
         surname: this.user.surName,
@@ -78,11 +110,8 @@ export class UserEditComponent implements OnInit {
         location: this.user.location,
         email: this.user.email,
         phone: this.user.telephone
-        
       });
     }
-
-    
   }
 
   private profileFormInit() {
@@ -128,11 +157,19 @@ export class UserEditComponent implements OnInit {
       console.log("choose profi");
     } else {
       this.user.skills.push({skillName: this.profileForm.value.skill, rating: this.rat, skillCategory: "skillcategory"});
+      this.profileForm.patchValue({
+        skill: "",
+        skillproficiency: ""
+      });
     }
   }
 
   removeSkill(skill: IUserSkill): void {
     this.user.skills = this.user.skills.filter(s => s !== skill);
+  }
+
+  changeSkill(skill: IUserSkill, proficiency: number): void {
+
   }
 
   addLanguage(): void {
@@ -145,7 +182,18 @@ export class UserEditComponent implements OnInit {
     if(!this.rat) {
       console.log("choose profi");
     } else {
-      this.user.languages.push({language: this.profileForm.value.language, rating: this.rat});
+      var index = this.user.languages.indexOf({language: this.profileForm.value.language, rating: this.rat});
+      console.log(index);
+      console.log(this.user.languages);
+      if(index === -1)
+      {
+        this.user.languages.push({language: this.profileForm.value.language, rating: this.rat});
+      }
+      
+      this.profileForm.patchValue({
+        language: "",
+        languageproficiency: ""
+      });
     }
   }
 
@@ -156,5 +204,19 @@ export class UserEditComponent implements OnInit {
   changeLanguage(language: IUserLanguage, proficiency: number): void {
 
   }
-  
+
+  private loadAll() {
+    this.languageService.getLanguages().subscribe({
+      next: languages => {
+        this.allLanguages = languages;
+      },
+      error: err => { this.errorMessage = err; console.log(err); }
+    });
+    this.skillService.listSkills().subscribe({
+      next: skills => {
+        this.allSkills = skills;
+      },
+      error: err => { this.errorMessage = err; console.log(err); }
+    });
+  }
 }
