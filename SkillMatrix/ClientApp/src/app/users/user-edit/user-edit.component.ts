@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { RoutingService } from 'src/app/shared/services/routing.service';
 import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
 import { environment } from 'src/environments/environment';
-import { IUser } from '../user';
+import { IUser, IUserLanguage, IUserSkill, Rating } from '../user';
 import { UserService } from '../user.service';
 
 
@@ -24,6 +24,11 @@ export class UserEditComponent implements OnInit {
   pageTitle: string;
   errorMessage: string;
   user: IUser;
+
+  rat: Rating;
+
+  languagesUser: string[];
+  languagesRating: string[];
 
   constructor(private fb: FormBuilder,
     private route: ActivatedRoute,
@@ -60,8 +65,10 @@ export class UserEditComponent implements OnInit {
       
     
     } else {
+   
       this.profilePic = this.user.imageUrl;
       this.pageTitle = `Editing User: ${this.user.firstName} ${this.user.surName}`;
+
       this.profileForm.patchValue({
         firstname: this.user.firstName,
         surname: this.user.surName,
@@ -70,8 +77,8 @@ export class UserEditComponent implements OnInit {
         department: this.user.department,
         location: this.user.location,
         email: this.user.email,
-        phone: this.user.telephone,
-        favQuote: ''
+        phone: this.user.telephone
+        
       });
     }
 
@@ -88,59 +95,66 @@ export class UserEditComponent implements OnInit {
       location: '',
       email: ['', [Validators.email]],
       phone: '',
-      favQuote: '',
-      languages: this.fb.array([this.buildLanguage()]),
-      skills: this.fb.array([this.buildSkill()])
+      language: '',
+      languageproficiency: '',
+      skill: '',
+      skillproficiency: ''
     });
   }
 
-  
-
-  categoriesListInit() {
-
-    //To do:
-    //1. Grab categories from backend/fakeapi
-    //2. Turn them into an array of strings
-
-    this.categoriesList = ['Frontend', 'Backend', 'Databases', 'Cloud expertise'];
-
-  }
-
-  buildSkill(): FormGroup {
-    return this.fb.group({
-      skillName: '',
-      proficiency: ''
-    });
-  }
-
-  get skills(): FormArray {
-    return this.profileForm.get('skills') as FormArray;
+  saveUser(): void {
+    this.user.firstName = this.profileForm.value.firstname;
+    this.user.surName = this.profileForm.value.surname;
+    this.user.jobTitle = this.profileForm.value.jobTitle;
+    this.user.team = this.profileForm.value.team;
+    this.user.department = this.profileForm.value.department;
+    this.user.location = this.profileForm.value.location;
+    this.user.email = this.profileForm.value.email;
+    this.user.telephone = this.profileForm.value.phone;
+    this.userService.updateUser(this.user)
+      .subscribe({
+        error: err => this.errorMessage = err
+      });
   }
 
   addSkill(): void {
-    this.skills.push(this.buildSkill());
+    switch(this.profileForm.value.skillproficiency) {
+      case "beginner": this.rat = 1; break;
+      case "intermediate": this.rat = 2; break;
+      case "advanced": this.rat = 3; break;
+      default: this.rat = 0; 
+    } 
+    if(!this.rat) {
+      console.log("choose profi");
+    } else {
+      this.user.skills.push({skillName: this.profileForm.value.skill, rating: this.rat, skillCategory: "skillcategory"});
+    }
   }
 
-  removeSkill(index: number): void {
-    this.skills.removeAt(index);
-  }
-
-  buildLanguage(): FormGroup {
-    return this.fb.group({
-      language: '',
-      proficiency: ''
-    });
-  }
-
-  get languages(): FormArray {
-    return this.profileForm.get('languages') as FormArray;
+  removeSkill(skill: IUserSkill): void {
+    this.user.skills = this.user.skills.filter(s => s !== skill);
   }
 
   addLanguage(): void {
-    this.languages.push(this.buildLanguage());
+    switch(this.profileForm.value.languageproficiency) {
+      case "beginner": this.rat = 1; break;
+      case "intermediate": this.rat = 2; break;
+      case "advanced": this.rat = 3; break;
+      default: this.rat = 0; 
+    } 
+    if(!this.rat) {
+      console.log("choose profi");
+    } else {
+      this.user.languages.push({language: this.profileForm.value.language, rating: this.rat});
+    }
   }
 
-  removeLanguage(index: number): void {
-    this.languages.removeAt(index);
+  removeLanguage(language: IUserLanguage): void {
+    this.user.languages = this.user.languages.filter(l => l !== language);
   }
+
+  changeLanguage(language: IUserLanguage, proficiency: number): void {
+
+  }
+  
 }

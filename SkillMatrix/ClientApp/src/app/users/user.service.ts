@@ -28,12 +28,13 @@ export class UserService {
 
   createUser(user: IUser) {
     const url = `${this.userUrl}`;
-    user.id = undefined;
+    user.id = 0;
     return this.http.post<IUser>(url, user, { headers: this.headers });
   }
 
   updateUser(user: IUser): Observable<IUser> {
-    const url = `${this.userUrl}/${user.id}}`;
+    const url = `${this.baseUri}/${user.id}}`;
+    console.log(url);
     return this.http.put<IUser>(url, user, { headers: this.headers });
   }
 

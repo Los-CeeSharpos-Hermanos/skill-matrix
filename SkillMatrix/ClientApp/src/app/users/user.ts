@@ -1,5 +1,5 @@
 export interface IUser {
-  id: number | undefined;
+  id: number;
   surName: string;
   firstName: string;
   telephone: string;

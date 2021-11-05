@@ -17,7 +17,7 @@ namespace SkillMatrix.Application.Services
         Task<List<FormUserDTO>> GetUsersAsync();
         Task<FormUserDTO> GetUserAsync(long id);
         Task PostUserAsync(FormUserDTO user);
-        Task PutUserAsync(long id, FormUserDTO user);
+        Task PutUserAsync(FormUserDTO user);
         Task DeleteUserAsync(long id);
     }
     public class UserService : IUserService
@@ -53,14 +53,14 @@ namespace SkillMatrix.Application.Services
 
         }
 
-        public async Task PutUserAsync(long id, FormUserDTO user)
+        public async Task PutUserAsync(FormUserDTO user)
         {
             LanguageRating languageRating = new();
             SkillRating skillRating = new();
 
 
            
-            var updatedUser = await _userRepository.GetUserAsync(id);
+            var updatedUser = await _userRepository.GetUserAsync(user.Id);
             //updatedUser.LanguageRatings.Clear();
             //updatedUser.SkillRatings.Clear();
             updatedUser = _mapper.Map<User>(user);
@@ -105,7 +105,7 @@ namespace SkillMatrix.Application.Services
                 updatedUser.SkillRatings.Add(skillRating);
             }
             */
-            await _userRepository.PutUserAsync(id, updatedUser);
+            await _userRepository.PutUserAsync(updatedUser);
         }
             
         public async Task DeleteUserAsync(long id)

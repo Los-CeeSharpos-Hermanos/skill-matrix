@@ -35,7 +35,7 @@ namespace SkillMatrix.DataAccess.Repositories.Users
             await _db.Users.AddAsync(user);
             await _db.SaveChangesAsync();
         }
-        public async Task PutUserAsync(long id, User user)
+        public async Task PutUserAsync(User user)
         {
             _db.Users.Update(user);
             await _db.SaveChangesAsync();
