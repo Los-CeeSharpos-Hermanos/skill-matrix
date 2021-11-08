@@ -54,8 +54,6 @@ namespace SkillMatrix.Application.Services
 
         public async Task PutUserAsync(FormUserDTO user)
         {   
-           
-
             var updatedUser = _mapper.Map<User>(user);
 
             await _userRepository.PutUserAsync(updatedUser);

@@ -37,6 +37,18 @@ namespace SkillMatrix.DataAccess.Repositories.Users
         }
         public async Task PutUserAsync(User user)
         {
+            var languageRatings = await _db.LanguageRatings.Where(l => l.UserId == user.Id).ToListAsync();
+            foreach(LanguageRating l in languageRatings)
+            {
+                _db.LanguageRatings.Remove(l);
+            }
+
+            var skillRatings = await _db.SkillRatings.Where(s => s.UserId == user.Id).ToListAsync();
+            foreach (SkillRating s in skillRatings)
+            {
+                _db.SkillRatings.Remove(s);
+            }
+           
             _db.Users.Update(user);
             await _db.SaveChangesAsync();
         }

@@ -113,7 +113,9 @@
                               </mat-form-field>
                         </div>
                         <div class="col-sm">
-                            <app-remove-button (click)="removeLanguage(language)"></app-remove-button>
+                            <button mat-icon-button color="warn" aria-label="Delete User" (click)="removeLanguage(language)">
+                                <mat-icon>clear</mat-icon>
+                            </button>
                         </div>
                     </div>
                 </mat-card>
@@ -138,7 +140,9 @@
                               </mat-form-field>
                         </div>
                         <div class="col-sm">
-                            <app-remove-button (click)="removeSkill(skill)"></app-remove-button>
+                            <button mat-icon-button color="warn" aria-label="Delete User" (click)="removeSkill(skill)">
+                                <mat-icon>clear</mat-icon>
+                            </button>
                         </div>
                     </div>
                     </mat-card>

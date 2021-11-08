@@ -1879,387 +1879,329 @@ namespace SkillMatrix.DataAccess.Migrations
 
             modelBuilder.Entity("SkillMatrix.Domain.Users.Models.LanguageRating", b =>
                 {
-                    b.Property<long>("LanguageRatingId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
                     b.Property<string>("Language")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Rating")
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<long>("UserId")
                         .HasColumnType("bigint");
 
-                    b.HasKey("LanguageRatingId");
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.HasKey("Language", "UserId");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("LanguageRating");
+                    b.ToTable("LanguageRatings");
 
                     b.HasData(
                         new
                         {
-                            LanguageRatingId = 1L,
                             Language = "german",
-                            Rating = 3,
-                            UserId = 1L
+                            UserId = 1L,
+                            Rating = 3
                         },
                         new
                         {
-                            LanguageRatingId = 2L,
                             Language = "english",
-                            Rating = 2,
-                            UserId = 2L
+                            UserId = 2L,
+                            Rating = 2
                         },
                         new
                         {
-                            LanguageRatingId = 3L,
                             Language = "german",
-                            Rating = 3,
-                            UserId = 2L
+                            UserId = 2L,
+                            Rating = 3
                         },
                         new
                         {
-                            LanguageRatingId = 4L,
                             Language = "german",
-                            Rating = 3,
-                            UserId = 3L
+                            UserId = 3L,
+                            Rating = 3
                         },
                         new
                         {
-                            LanguageRatingId = 5L,
                             Language = "english",
-                            Rating = 3,
-                            UserId = 3L
+                            UserId = 3L,
+                            Rating = 3
                         },
                         new
                         {
-                            LanguageRatingId = 6L,
                             Language = "french",
-                            Rating = 2,
-                            UserId = 3L
+                            UserId = 3L,
+                            Rating = 2
                         },
                         new
                         {
-                            LanguageRatingId = 7L,
                             Language = "latin",
-                            Rating = 1,
-                            UserId = 3L
+                            UserId = 3L,
+                            Rating = 1
                         },
                         new
                         {
-                            LanguageRatingId = 8L,
                             Language = "english",
-                            Rating = 2,
-                            UserId = 4L
+                            UserId = 4L,
+                            Rating = 2
                         },
                         new
                         {
-                            LanguageRatingId = 9L,
                             Language = "german",
-                            Rating = 3,
-                            UserId = 4L
+                            UserId = 4L,
+                            Rating = 3
                         },
                         new
                         {
-                            LanguageRatingId = 10L,
                             Language = "english",
-                            Rating = 2,
-                            UserId = 5L
+                            UserId = 5L,
+                            Rating = 2
                         },
                         new
                         {
-                            LanguageRatingId = 11L,
                             Language = "german",
-                            Rating = 3,
-                            UserId = 5L
+                            UserId = 5L,
+                            Rating = 3
                         },
                         new
                         {
-                            LanguageRatingId = 12L,
                             Language = "english",
-                            Rating = 2,
-                            UserId = 6L
+                            UserId = 6L,
+                            Rating = 2
                         },
                         new
                         {
-                            LanguageRatingId = 13L,
                             Language = "german",
-                            Rating = 3,
-                            UserId = 6L
+                            UserId = 6L,
+                            Rating = 3
                         },
                         new
                         {
-                            LanguageRatingId = 14L,
                             Language = "english",
-                            Rating = 2,
-                            UserId = 7L
+                            UserId = 7L,
+                            Rating = 2
                         },
                         new
                         {
-                            LanguageRatingId = 15L,
                             Language = "german",
-                            Rating = 3,
-                            UserId = 7L
+                            UserId = 7L,
+                            Rating = 3
                         },
                         new
                         {
-                            LanguageRatingId = 17L,
                             Language = "english",
-                            Rating = 2,
-                            UserId = 8L
+                            UserId = 8L,
+                            Rating = 2
                         },
                         new
                         {
-                            LanguageRatingId = 16L,
                             Language = "german",
-                            Rating = 3,
-                            UserId = 8L
+                            UserId = 8L,
+                            Rating = 3
                         },
                         new
                         {
-                            LanguageRatingId = 18L,
                             Language = "english",
-                            Rating = 2,
-                            UserId = 9L
+                            UserId = 9L,
+                            Rating = 2
                         },
                         new
                         {
-                            LanguageRatingId = 19L,
                             Language = "german",
-                            Rating = 3,
-                            UserId = 9L
+                            UserId = 9L,
+                            Rating = 3
                         },
                         new
                         {
-                            LanguageRatingId = 20L,
                             Language = "english",
-                            Rating = 2,
-                            UserId = 10L
+                            UserId = 10L,
+                            Rating = 2
                         },
                         new
                         {
-                            LanguageRatingId = 21L,
                             Language = "german",
-                            Rating = 3,
-                            UserId = 10L
+                            UserId = 10L,
+                            Rating = 3
                         });
                 });
 
             modelBuilder.Entity("SkillMatrix.Domain.Users.Models.SkillRating", b =>
                 {
-                    b.Property<long>("SkillRatingId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Rating")
-                        .HasColumnType("int");
-
                     b.Property<string>("SkillName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<long>("UserId")
                         .HasColumnType("bigint");
 
-                    b.HasKey("SkillRatingId");
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.HasKey("SkillName", "UserId");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("SkillRating");
+                    b.ToTable("SkillRatings");
 
                     b.HasData(
                         new
                         {
-                            SkillRatingId = 1L,
-                            Rating = 3,
                             SkillName = "C#",
-                            UserId = 1L
+                            UserId = 1L,
+                            Rating = 3
                         },
                         new
                         {
-                            SkillRatingId = 2L,
-                            Rating = 3,
                             SkillName = "C#",
-                            UserId = 2L
+                            UserId = 2L,
+                            Rating = 3
                         },
                         new
                         {
-                            SkillRatingId = 3L,
-                            Rating = 3,
                             SkillName = "C#",
-                            UserId = 3L
+                            UserId = 3L,
+                            Rating = 3
                         },
                         new
                         {
-                            SkillRatingId = 4L,
-                            Rating = 3,
                             SkillName = "C#",
-                            UserId = 4L
+                            UserId = 4L,
+                            Rating = 3
                         },
                         new
                         {
-                            SkillRatingId = 5L,
-                            Rating = 2,
                             SkillName = "Java",
-                            UserId = 1L
+                            UserId = 1L,
+                            Rating = 2
                         },
                         new
                         {
-                            SkillRatingId = 6L,
-                            Rating = 2,
                             SkillName = "Java",
-                            UserId = 3L
+                            UserId = 3L,
+                            Rating = 2
                         },
                         new
                         {
-                            SkillRatingId = 7L,
-                            Rating = 1,
                             SkillName = "Java",
-                            UserId = 8L
+                            UserId = 8L,
+                            Rating = 1
                         },
                         new
                         {
-                            SkillRatingId = 8L,
-                            Rating = 2,
                             SkillName = "Java",
-                            UserId = 9L
+                            UserId = 9L,
+                            Rating = 2
                         },
                         new
                         {
-                            SkillRatingId = 9L,
-                            Rating = 3,
                             SkillName = "Java",
-                            UserId = 10L
+                            UserId = 10L,
+                            Rating = 3
                         },
                         new
                         {
-                            SkillRatingId = 10L,
-                            Rating = 2,
                             SkillName = "HTML",
-                            UserId = 1L
+                            UserId = 1L,
+                            Rating = 2
                         },
                         new
                         {
-                            SkillRatingId = 11L,
-                            Rating = 1,
                             SkillName = "HTML",
-                            UserId = 2L
+                            UserId = 2L,
+                            Rating = 1
                         },
                         new
                         {
-                            SkillRatingId = 12L,
-                            Rating = 2,
                             SkillName = "HTML",
-                            UserId = 3L
+                            UserId = 3L,
+                            Rating = 2
                         },
                         new
                         {
-                            SkillRatingId = 13L,
-                            Rating = 3,
                             SkillName = "HTML",
-                            UserId = 4L
+                            UserId = 4L,
+                            Rating = 3
                         },
                         new
                         {
-                            SkillRatingId = 14L,
-                            Rating = 2,
                             SkillName = "HTML",
-                            UserId = 5L
+                            UserId = 5L,
+                            Rating = 2
                         },
                         new
                         {
-                            SkillRatingId = 15L,
-                            Rating = 1,
                             SkillName = "HTML",
-                            UserId = 6L
+                            UserId = 6L,
+                            Rating = 1
                         },
                         new
                         {
-                            SkillRatingId = 16L,
-                            Rating = 3,
                             SkillName = "HTML",
-                            UserId = 7L
+                            UserId = 7L,
+                            Rating = 3
                         },
                         new
                         {
-                            SkillRatingId = 17L,
-                            Rating = 2,
                             SkillName = "HTML",
-                            UserId = 8L
+                            UserId = 8L,
+                            Rating = 2
                         },
                         new
                         {
-                            SkillRatingId = 18L,
-                            Rating = 3,
                             SkillName = "HTML",
-                            UserId = 9L
+                            UserId = 9L,
+                            Rating = 3
                         },
                         new
                         {
-                            SkillRatingId = 19L,
-                            Rating = 1,
                             SkillName = "HTML",
-                            UserId = 10L
+                            UserId = 10L,
+                            Rating = 1
                         },
                         new
                         {
-                            SkillRatingId = 20L,
-                            Rating = 2,
                             SkillName = "C++",
-                            UserId = 2L
+                            UserId = 2L,
+                            Rating = 2
                         },
                         new
                         {
-                            SkillRatingId = 21L,
-                            Rating = 3,
                             SkillName = "C++",
-                            UserId = 4L
+                            UserId = 4L,
+                            Rating = 3
                         },
                         new
                         {
-                            SkillRatingId = 22L,
-                            Rating = 3,
                             SkillName = "C++",
-                            UserId = 5L
+                            UserId = 5L,
+                            Rating = 3
                         },
                         new
                         {
-                            SkillRatingId = 23L,
-                            Rating = 1,
                             SkillName = "C++",
-                            UserId = 7L
+                            UserId = 7L,
+                            Rating = 1
                         },
                         new
                         {
-                            SkillRatingId = 24L,
-                            Rating = 1,
                             SkillName = "C",
-                            UserId = 1L
+                            UserId = 1L,
+                            Rating = 1
                         },
                         new
                         {
-                            SkillRatingId = 25L,
-                            Rating = 3,
                             SkillName = "C",
-                            UserId = 3L
+                            UserId = 3L,
+                            Rating = 3
                         },
                         new
                         {
-                            SkillRatingId = 26L,
-                            Rating = 2,
                             SkillName = "C",
-                            UserId = 7L
+                            UserId = 7L,
+                            Rating = 2
                         },
                         new
                         {
-                            SkillRatingId = 27L,
-                            Rating = 3,
                             SkillName = "C",
-                            UserId = 10L
+                            UserId = 10L,
+                            Rating = 3
                         });
                 });
 

@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace SkillMatrix.DataAccess.Configurations
 {
-    public class LanguageRatingConfiguration : IEntityTypeConfiguration<LanguageRating>
+    public class SkillRatingConfiguration : IEntityTypeConfiguration<SkillRating>
     {
-        public void Configure(EntityTypeBuilder<LanguageRating> builder)
-        {
-            builder.HasKey(u => new { u.Language, u.UserId });
-        }
+         public void Configure(EntityTypeBuilder<SkillRating> builder)
+         {
+            builder.HasKey(u => new { u.SkillName, u.UserId });
+         }
     }
 }

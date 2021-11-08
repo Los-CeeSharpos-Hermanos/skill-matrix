@@ -27,6 +27,7 @@ export class UserEditComponent implements OnInit {
   private sub: Subscription;
   pageTitle: string;
   errorMessage: string;
+
   user: IUser = {
     id: 0,
     firstName: "",
@@ -140,10 +141,12 @@ export class UserEditComponent implements OnInit {
     this.user.location = this.profileForm.value.location;
     this.user.email = this.profileForm.value.email;
     this.user.telephone = this.profileForm.value.phone;
+
     this.userService.updateUser(this.user)
       .subscribe({
         error: err => this.errorMessage = err
       });
+    this.goToUser();
   }
 
   addSkill(): void {
@@ -157,6 +160,7 @@ export class UserEditComponent implements OnInit {
       console.log("choose profi");
     } else {
       this.user.skills.push({skillName: this.profileForm.value.skill, rating: this.rat, skillCategory: "skillcategory"});
+
       this.profileForm.patchValue({
         skill: "",
         skillproficiency: ""
@@ -183,8 +187,6 @@ export class UserEditComponent implements OnInit {
       console.log("choose profi");
     } else {
       var index = this.user.languages.indexOf({language: this.profileForm.value.language, rating: this.rat});
-      console.log(index);
-      console.log(this.user.languages);
       if(index === -1)
       {
         this.user.languages.push({language: this.profileForm.value.language, rating: this.rat});
@@ -218,5 +220,9 @@ export class UserEditComponent implements OnInit {
       },
       error: err => { this.errorMessage = err; console.log(err); }
     });
+  }
+
+  goToUser() {
+    this.routingService.goTo(`skillmatrix/users/profile`);
   }
 }
