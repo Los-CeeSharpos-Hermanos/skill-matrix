@@ -8,6 +8,7 @@ namespace SkillMatrix.Application.DTOs
     public class SkillRatingDTO
     {
         public string SkillName { get; set; }
+        public string SkillCategory { get; set; }
         public int Rating { get; set; }
     }
 }
