@@ -10,7 +10,7 @@ using SkillMatrix.DataAccess;
 namespace SkillMatrix.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20211104065935_InitialCreate")]
+    [Migration("20211104111200_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -1912,9 +1912,142 @@ namespace SkillMatrix.DataAccess.Migrations
                         new
                         {
                             LanguageRatingId = 2L,
-                            Language = "englisch",
+                            Language = "english",
                             Rating = 2,
                             UserId = 2L
+                        },
+                        new
+                        {
+                            LanguageRatingId = 3L,
+                            Language = "german",
+                            Rating = 3,
+                            UserId = 2L
+                        },
+                        new
+                        {
+                            LanguageRatingId = 4L,
+                            Language = "german",
+                            Rating = 3,
+                            UserId = 3L
+                        },
+                        new
+                        {
+                            LanguageRatingId = 5L,
+                            Language = "english",
+                            Rating = 3,
+                            UserId = 3L
+                        },
+                        new
+                        {
+                            LanguageRatingId = 6L,
+                            Language = "french",
+                            Rating = 2,
+                            UserId = 3L
+                        },
+                        new
+                        {
+                            LanguageRatingId = 7L,
+                            Language = "latin",
+                            Rating = 1,
+                            UserId = 3L
+                        },
+                        new
+                        {
+                            LanguageRatingId = 8L,
+                            Language = "english",
+                            Rating = 2,
+                            UserId = 4L
+                        },
+                        new
+                        {
+                            LanguageRatingId = 9L,
+                            Language = "german",
+                            Rating = 3,
+                            UserId = 4L
+                        },
+                        new
+                        {
+                            LanguageRatingId = 10L,
+                            Language = "english",
+                            Rating = 2,
+                            UserId = 5L
+                        },
+                        new
+                        {
+                            LanguageRatingId = 11L,
+                            Language = "german",
+                            Rating = 3,
+                            UserId = 5L
+                        },
+                        new
+                        {
+                            LanguageRatingId = 12L,
+                            Language = "english",
+                            Rating = 2,
+                            UserId = 6L
+                        },
+                        new
+                        {
+                            LanguageRatingId = 13L,
+                            Language = "german",
+                            Rating = 3,
+                            UserId = 6L
+                        },
+                        new
+                        {
+                            LanguageRatingId = 14L,
+                            Language = "english",
+                            Rating = 2,
+                            UserId = 7L
+                        },
+                        new
+                        {
+                            LanguageRatingId = 15L,
+                            Language = "german",
+                            Rating = 3,
+                            UserId = 7L
+                        },
+                        new
+                        {
+                            LanguageRatingId = 17L,
+                            Language = "english",
+                            Rating = 2,
+                            UserId = 8L
+                        },
+                        new
+                        {
+                            LanguageRatingId = 16L,
+                            Language = "german",
+                            Rating = 3,
+                            UserId = 8L
+                        },
+                        new
+                        {
+                            LanguageRatingId = 18L,
+                            Language = "english",
+                            Rating = 2,
+                            UserId = 9L
+                        },
+                        new
+                        {
+                            LanguageRatingId = 19L,
+                            Language = "german",
+                            Rating = 3,
+                            UserId = 9L
+                        },
+                        new
+                        {
+                            LanguageRatingId = 20L,
+                            Language = "english",
+                            Rating = 2,
+                            UserId = 10L
+                        },
+                        new
+                        {
+                            LanguageRatingId = 21L,
+                            Language = "german",
+                            Rating = 3,
+                            UserId = 10L
                         });
                 });
 
@@ -1947,6 +2080,188 @@ namespace SkillMatrix.DataAccess.Migrations
                             Rating = 3,
                             SkillName = "C#",
                             UserId = 1L
+                        },
+                        new
+                        {
+                            SkillRatingId = 2L,
+                            Rating = 3,
+                            SkillName = "C#",
+                            UserId = 2L
+                        },
+                        new
+                        {
+                            SkillRatingId = 3L,
+                            Rating = 3,
+                            SkillName = "C#",
+                            UserId = 3L
+                        },
+                        new
+                        {
+                            SkillRatingId = 4L,
+                            Rating = 3,
+                            SkillName = "C#",
+                            UserId = 4L
+                        },
+                        new
+                        {
+                            SkillRatingId = 5L,
+                            Rating = 2,
+                            SkillName = "Java",
+                            UserId = 1L
+                        },
+                        new
+                        {
+                            SkillRatingId = 6L,
+                            Rating = 2,
+                            SkillName = "Java",
+                            UserId = 3L
+                        },
+                        new
+                        {
+                            SkillRatingId = 7L,
+                            Rating = 1,
+                            SkillName = "Java",
+                            UserId = 8L
+                        },
+                        new
+                        {
+                            SkillRatingId = 8L,
+                            Rating = 2,
+                            SkillName = "Java",
+                            UserId = 9L
+                        },
+                        new
+                        {
+                            SkillRatingId = 9L,
+                            Rating = 3,
+                            SkillName = "Java",
+                            UserId = 10L
+                        },
+                        new
+                        {
+                            SkillRatingId = 10L,
+                            Rating = 2,
+                            SkillName = "HTML",
+                            UserId = 1L
+                        },
+                        new
+                        {
+                            SkillRatingId = 11L,
+                            Rating = 1,
+                            SkillName = "HTML",
+                            UserId = 2L
+                        },
+                        new
+                        {
+                            SkillRatingId = 12L,
+                            Rating = 2,
+                            SkillName = "HTML",
+                            UserId = 3L
+                        },
+                        new
+                        {
+                            SkillRatingId = 13L,
+                            Rating = 3,
+                            SkillName = "HTML",
+                            UserId = 4L
+                        },
+                        new
+                        {
+                            SkillRatingId = 14L,
+                            Rating = 2,
+                            SkillName = "HTML",
+                            UserId = 5L
+                        },
+                        new
+                        {
+                            SkillRatingId = 15L,
+                            Rating = 1,
+                            SkillName = "HTML",
+                            UserId = 6L
+                        },
+                        new
+                        {
+                            SkillRatingId = 16L,
+                            Rating = 3,
+                            SkillName = "HTML",
+                            UserId = 7L
+                        },
+                        new
+                        {
+                            SkillRatingId = 17L,
+                            Rating = 2,
+                            SkillName = "HTML",
+                            UserId = 8L
+                        },
+                        new
+                        {
+                            SkillRatingId = 18L,
+                            Rating = 3,
+                            SkillName = "HTML",
+                            UserId = 9L
+                        },
+                        new
+                        {
+                            SkillRatingId = 19L,
+                            Rating = 1,
+                            SkillName = "HTML",
+                            UserId = 10L
+                        },
+                        new
+                        {
+                            SkillRatingId = 20L,
+                            Rating = 2,
+                            SkillName = "C++",
+                            UserId = 2L
+                        },
+                        new
+                        {
+                            SkillRatingId = 21L,
+                            Rating = 3,
+                            SkillName = "C++",
+                            UserId = 4L
+                        },
+                        new
+                        {
+                            SkillRatingId = 22L,
+                            Rating = 3,
+                            SkillName = "C++",
+                            UserId = 5L
+                        },
+                        new
+                        {
+                            SkillRatingId = 23L,
+                            Rating = 1,
+                            SkillName = "C++",
+                            UserId = 7L
+                        },
+                        new
+                        {
+                            SkillRatingId = 24L,
+                            Rating = 1,
+                            SkillName = "C",
+                            UserId = 1L
+                        },
+                        new
+                        {
+                            SkillRatingId = 25L,
+                            Rating = 3,
+                            SkillName = "C",
+                            UserId = 3L
+                        },
+                        new
+                        {
+                            SkillRatingId = 26L,
+                            Rating = 2,
+                            SkillName = "C",
+                            UserId = 7L
+                        },
+                        new
+                        {
+                            SkillRatingId = 27L,
+                            Rating = 3,
+                            SkillName = "C",
+                            UserId = 10L
                         });
                 });
 
@@ -1993,6 +2308,13 @@ namespace SkillMatrix.DataAccess.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             TeamName = "B-Team",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            TeamId = 3L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TeamName = "C-Team",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -2021,6 +2343,9 @@ namespace SkillMatrix.DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("JobTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Location")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SurName")
@@ -2053,6 +2378,7 @@ namespace SkillMatrix.DataAccess.Migrations
                             FirstName = "Martin",
                             ImageUrl = "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png",
                             JobTitle = "Developer",
+                            Location = "Leipzig",
                             SurName = "Schmidt",
                             TeamId = 1L,
                             Telephone = "0845679123",
@@ -2067,6 +2393,7 @@ namespace SkillMatrix.DataAccess.Migrations
                             FirstName = "Nico",
                             ImageUrl = "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png",
                             JobTitle = "Software Architect",
+                            Location = "Leipzig",
                             SurName = "Marten",
                             TeamId = 1L,
                             Telephone = "0987654321",
@@ -2081,9 +2408,115 @@ namespace SkillMatrix.DataAccess.Migrations
                             FirstName = "Tom",
                             ImageUrl = "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png",
                             JobTitle = "Sailsman",
+                            Location = "Leipzig",
                             SurName = "Tompson",
                             TeamId = 2L,
                             Telephone = "0123456789",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DepartmentId = 2L,
+                            Email = "n.mustermann@web.de",
+                            FirstName = "Nancy",
+                            ImageUrl = "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png",
+                            JobTitle = "Developer",
+                            Location = "Dresden",
+                            SurName = "Mustermann",
+                            TeamId = 2L,
+                            Telephone = "0125896743",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DepartmentId = 2L,
+                            Email = "mandy.meyer@gmail.com",
+                            FirstName = "Mandy",
+                            ImageUrl = "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png",
+                            JobTitle = "Developer",
+                            Location = "Munich",
+                            SurName = "Meyer",
+                            TeamId = 1L,
+                            Telephone = "0128764539",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 6L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DepartmentId = 2L,
+                            Email = "m.mustermann@gmx.de",
+                            FirstName = "Max",
+                            ImageUrl = "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png",
+                            JobTitle = "Sailsman",
+                            Location = "Leipzig",
+                            SurName = "Mustermann",
+                            TeamId = 3L,
+                            Telephone = "017463589",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 7L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DepartmentId = 2L,
+                            Email = "c.burns@web.de",
+                            FirstName = "C Montgomery",
+                            ImageUrl = "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png",
+                            JobTitle = "CEO",
+                            Location = "Dresden",
+                            SurName = "Burns",
+                            TeamId = 3L,
+                            Telephone = "0125634789",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 8L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DepartmentId = 2L,
+                            Email = "tim.ford@web.de",
+                            FirstName = "Tim",
+                            ImageUrl = "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png",
+                            JobTitle = "Developer",
+                            Location = "Leipzig",
+                            SurName = "Ford",
+                            TeamId = 3L,
+                            Telephone = "0123548697",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 9L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DepartmentId = 3L,
+                            Email = "s.muller@web.de",
+                            FirstName = "Susi",
+                            ImageUrl = "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png",
+                            JobTitle = "Marketing Expert",
+                            Location = "Leipzig",
+                            SurName = "Muller",
+                            TeamId = 3L,
+                            Telephone = "0321456789",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 10L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DepartmentId = 3L,
+                            Email = "m.meier@web.de",
+                            FirstName = "Mary",
+                            ImageUrl = "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png",
+                            JobTitle = "Marketing Expert",
+                            Location = "Leipzig",
+                            SurName = "Meier",
+                            TeamId = 3L,
+                            Telephone = "0213456789",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });

@@ -59,10 +59,12 @@
               <div class='row align-items-top'>
                 <div class='image col-sm-3'>
                   <h2>{{user.firstName}} {{user.surName}} </h2>
-                  <div> Team: {{user.team}} </div>
-                  <i>{{user.department}}</i>
-                  <div> {{user.telephone}} </div>
-                  <div> {{user.email}} </div>
+                  <h3> {{user.jobTitle}} </h3>
+                  <p>
+                    {{user.team}} <br>
+                    <i style="margin-bottom: 50%;"> {{user.department}} <br> {{user.location}} </i>
+                  </p>
+                  <p>{{user.telephone}} <br> {{user.email}} </p>
                 </div>
                 <div class='mt-2 col-sm-3'>
                   <p>Skills</p>

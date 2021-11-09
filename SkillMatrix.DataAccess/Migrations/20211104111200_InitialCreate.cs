@@ -109,6 +109,7 @@ namespace SkillMatrix.DataAccess.Migrations
                     Telephone = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Location = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     JobTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DepartmentId = table.Column<long>(type: "bigint", nullable: true),
                     TeamId = table.Column<long>(type: "bigint", nullable: true),
@@ -312,7 +313,7 @@ namespace SkillMatrix.DataAccess.Migrations
                     { 41L, "eo", "Esperanto", "Esperanto", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 42L, "et", "Estonian", "eesti, eesti keel", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 43L, "ee", "Ewe", "Eʋegbe", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 44L, "fo", "Faroese", "føroyskt", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 93L, "lo", "Lao", "ພາສາລາວ", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 25L, "my", "Burmese", "ဗမာစာ", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 24L, "bg", "Bulgarian", "български език", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 23L, "br", "Breton", "brezhoneg", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
@@ -333,7 +334,7 @@ namespace SkillMatrix.DataAccess.Migrations
                 columns: new[] { "Id", "Code", "Name", "NativeName", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { 93L, "lo", "Lao", "ພາສາລາວ", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 45L, "fj", "Fijian", "vosa Vakaviti", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 11L, "av", "Avaric", "авар мацӀ, магӀарул мацӀ", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 13L, "ay", "Aymara", "aymar aru", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 14L, "az", "Azerbaijani", "azərbaycan dili", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
@@ -346,7 +347,7 @@ namespace SkillMatrix.DataAccess.Migrations
                     { 21L, "bi", "Bislama", "Bislama", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 12L, "ae", "Avestan", "avesta", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 46L, "fi", "Finnish", "suomi, suomen kieli", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 45L, "fj", "Fijian", "vosa Vakaviti", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 44L, "fo", "Faroese", "føroyskt", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 48L, "ff", "Fula; Fulah; Pulaar; Pular", "Fulfulde, Pulaar, Pular", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 47L, "fr", "French", "français, langue française", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 74L, "kl", "Kalaallisut, Greenlandic", "kalaallisut, kalaallit oqaasii", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
@@ -384,11 +385,11 @@ namespace SkillMatrix.DataAccess.Migrations
                 {
                     { 53L, "gn", "Guaraní", "Avañeẽ", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 54L, "gu", "Gujarati", "ગુજરાતી", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 55L, "ht", "Haitian; Haitian Creole", "Kreyòl ayisyen", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 70L, "it", "Italian", "Italiano", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 56L, "ha", "Hausa", "Hausa, هَوُسَ", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 57L, "he", "Hebrew (modern)", "עברית", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 58L, "hz", "Herero", "Otjiherero", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 56L, "ha", "Hausa", "Hausa, هَوُسَ", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 55L, "ht", "Haitian; Haitian Creole", "Kreyòl ayisyen", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 60L, "ho", "Hiri Motu", "Hiri Motu", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 61L, "hu", "Hungarian", "Magyar", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 62L, "ia", "Interlingua", "Interlingua", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
@@ -396,9 +397,9 @@ namespace SkillMatrix.DataAccess.Migrations
                     { 64L, "ie", "Interlingue", "Originally called Occidental; then Interlingue after WWII", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 65L, "ga", "Irish", "Gaeilge", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 66L, "ig", "Igbo", "Asụsụ Igbo", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 67L, "ik", "Inupiaq", "Iñupiaq, Iñupiatun", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 68L, "io", "Ido", "Ido", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 59L, "hi", "Hindi", "हिन्दी, हिंदी", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { 59L, "hi", "Hindi", "हिन्दी, हिंदी", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 67L, "ik", "Inupiaq", "Iñupiaq, Iñupiatun", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(
@@ -406,9 +407,9 @@ namespace SkillMatrix.DataAccess.Migrations
                 columns: new[] { "SkillCategoryId", "SkillCategoryName", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { 1L, "Technical Skills", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 2L, "Soft Skills", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 3L, "SWOValue", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 1L, "Technical Skills", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 4L, "Sport", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
@@ -417,8 +418,9 @@ namespace SkillMatrix.DataAccess.Migrations
                 columns: new[] { "TeamId", "DepartmentId", "TeamName", "UpdatedAt" },
                 values: new object[,]
                 {
+                    { 2L, null, "B-Team", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 1L, null, "A-Team", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 2L, null, "B-Team", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { 3L, null, "C-Team", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(
@@ -437,28 +439,89 @@ namespace SkillMatrix.DataAccess.Migrations
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "Id", "DepartmentId", "Email", "FirstName", "ImageUrl", "JobTitle", "SurName", "TeamId", "Telephone", "UpdatedAt" },
+                columns: new[] { "Id", "DepartmentId", "Email", "FirstName", "ImageUrl", "JobTitle", "Location", "SurName", "TeamId", "Telephone", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { 1L, 2L, "martin.schmidt@web.de", "Martin", "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png", "Developer", "Schmidt", 1L, "0845679123", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 2L, 1L, "nico.marten@web.de", "Nico", "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png", "Software Architect", "Marten", 1L, "0987654321", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 3L, 1L, "tom.tompson@web.de", "Tom", "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png", "Sailsman", "Tompson", 2L, "0123456789", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { 8L, 2L, "tim.ford@web.de", "Tim", "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png", "Developer", "Leipzig", "Ford", 3L, "0123548697", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 7L, 2L, "c.burns@web.de", "C Montgomery", "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png", "CEO", "Dresden", "Burns", 3L, "0125634789", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 6L, 2L, "m.mustermann@gmx.de", "Max", "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png", "Sailsman", "Leipzig", "Mustermann", 3L, "017463589", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 4L, 2L, "n.mustermann@web.de", "Nancy", "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png", "Developer", "Dresden", "Mustermann", 2L, "0125896743", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2L, 1L, "nico.marten@web.de", "Nico", "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png", "Software Architect", "Leipzig", "Marten", 1L, "0987654321", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 5L, 2L, "mandy.meyer@gmail.com", "Mandy", "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png", "Developer", "Munich", "Meyer", 1L, "0128764539", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 9L, 3L, "s.muller@web.de", "Susi", "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png", "Marketing Expert", "Leipzig", "Muller", 3L, "0321456789", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 1L, 2L, "martin.schmidt@web.de", "Martin", "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png", "Developer", "Leipzig", "Schmidt", 1L, "0845679123", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 3L, 1L, "tom.tompson@web.de", "Tom", "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png", "Sailsman", "Leipzig", "Tompson", 2L, "0123456789", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 10L, 3L, "m.meier@web.de", "Mary", "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png", "Marketing Expert", "Leipzig", "Meier", 3L, "0213456789", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(
                 table: "LanguageRating",
                 columns: new[] { "LanguageRatingId", "Language", "Rating", "UserId" },
-                values: new object[] { 1L, "german", 3, 1L });
-
-            migrationBuilder.InsertData(
-                table: "LanguageRating",
-                columns: new[] { "LanguageRatingId", "Language", "Rating", "UserId" },
-                values: new object[] { 2L, "englisch", 2, 2L });
+                values: new object[,]
+                {
+                    { 1L, "german", 3, 1L },
+                    { 21L, "german", 3, 10L },
+                    { 20L, "english", 2, 10L },
+                    { 19L, "german", 3, 9L },
+                    { 18L, "english", 2, 9L },
+                    { 16L, "german", 3, 8L },
+                    { 17L, "english", 2, 8L },
+                    { 15L, "german", 3, 7L },
+                    { 14L, "english", 2, 7L },
+                    { 13L, "german", 3, 6L },
+                    { 12L, "english", 2, 6L },
+                    { 8L, "english", 2, 4L },
+                    { 7L, "latin", 1, 3L },
+                    { 6L, "french", 2, 3L },
+                    { 5L, "english", 3, 3L },
+                    { 9L, "german", 3, 4L },
+                    { 3L, "german", 3, 2L },
+                    { 2L, "english", 2, 2L },
+                    { 10L, "english", 2, 5L },
+                    { 11L, "german", 3, 5L },
+                    { 4L, "german", 3, 3L }
+                });
 
             migrationBuilder.InsertData(
                 table: "SkillRating",
                 columns: new[] { "SkillRatingId", "Rating", "SkillName", "UserId" },
-                values: new object[] { 1L, 3, "C#", 1L });
+                values: new object[,]
+                {
+                    { 22L, 3, "C++", 5L },
+                    { 26L, 2, "C", 7L },
+                    { 7L, 1, "Java", 8L },
+                    { 17L, 2, "HTML", 8L },
+                    { 24L, 1, "C", 1L },
+                    { 8L, 2, "Java", 9L },
+                    { 18L, 3, "HTML", 9L },
+                    { 5L, 2, "Java", 1L },
+                    { 1L, 3, "C#", 1L },
+                    { 9L, 3, "Java", 10L },
+                    { 10L, 2, "HTML", 1L },
+                    { 23L, 1, "C++", 7L },
+                    { 2L, 3, "C#", 2L },
+                    { 11L, 1, "HTML", 2L },
+                    { 15L, 1, "HTML", 6L },
+                    { 20L, 2, "C++", 2L },
+                    { 21L, 3, "C++", 4L },
+                    { 13L, 3, "HTML", 4L },
+                    { 4L, 3, "C#", 4L },
+                    { 19L, 1, "HTML", 10L },
+                    { 25L, 3, "C", 3L }
+                });
+
+            migrationBuilder.InsertData(
+                table: "SkillRating",
+                columns: new[] { "SkillRatingId", "Rating", "SkillName", "UserId" },
+                values: new object[,]
+                {
+                    { 12L, 2, "HTML", 3L },
+                    { 6L, 2, "Java", 3L },
+                    { 3L, 3, "C#", 3L },
+                    { 14L, 2, "HTML", 5L },
+                    { 16L, 3, "HTML", 7L },
+                    { 27L, 3, "C", 10L }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_LanguageRating_UserId",
