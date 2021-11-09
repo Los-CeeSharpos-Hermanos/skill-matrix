@@ -10,11 +10,7 @@ using SkillMatrix.DataAccess;
 namespace SkillMatrix.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-<<<<<<< HEAD:SkillMatrix.DataAccess/Migrations/20211109105133_InitialCreate.Designer.cs
-    [Migration("20211109105133_InitialCreate")]
-=======
-    [Migration("20211104111200_InitialCreate")]
->>>>>>> main:SkillMatrix.DataAccess/Migrations/20211104111200_InitialCreate.Designer.cs
+    [Migration("20211109154240_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -2017,7 +2013,6 @@ namespace SkillMatrix.DataAccess.Migrations
                         },
                         new
                         {
-<<<<<<< HEAD:SkillMatrix.DataAccess/Migrations/20211109105133_InitialCreate.Designer.cs
                             Language = "english",
                             UserId = 10L,
                             Rating = 2
@@ -2027,145 +2022,6 @@ namespace SkillMatrix.DataAccess.Migrations
                             Language = "german",
                             UserId = 10L,
                             Rating = 3
-=======
-                            LanguageRatingId = 2L,
-                            Language = "english",
-                            Rating = 2,
-                            UserId = 2L
-                        },
-                        new
-                        {
-                            LanguageRatingId = 3L,
-                            Language = "german",
-                            Rating = 3,
-                            UserId = 2L
-                        },
-                        new
-                        {
-                            LanguageRatingId = 4L,
-                            Language = "german",
-                            Rating = 3,
-                            UserId = 3L
-                        },
-                        new
-                        {
-                            LanguageRatingId = 5L,
-                            Language = "english",
-                            Rating = 3,
-                            UserId = 3L
-                        },
-                        new
-                        {
-                            LanguageRatingId = 6L,
-                            Language = "french",
-                            Rating = 2,
-                            UserId = 3L
-                        },
-                        new
-                        {
-                            LanguageRatingId = 7L,
-                            Language = "latin",
-                            Rating = 1,
-                            UserId = 3L
-                        },
-                        new
-                        {
-                            LanguageRatingId = 8L,
-                            Language = "english",
-                            Rating = 2,
-                            UserId = 4L
-                        },
-                        new
-                        {
-                            LanguageRatingId = 9L,
-                            Language = "german",
-                            Rating = 3,
-                            UserId = 4L
-                        },
-                        new
-                        {
-                            LanguageRatingId = 10L,
-                            Language = "english",
-                            Rating = 2,
-                            UserId = 5L
-                        },
-                        new
-                        {
-                            LanguageRatingId = 11L,
-                            Language = "german",
-                            Rating = 3,
-                            UserId = 5L
-                        },
-                        new
-                        {
-                            LanguageRatingId = 12L,
-                            Language = "english",
-                            Rating = 2,
-                            UserId = 6L
-                        },
-                        new
-                        {
-                            LanguageRatingId = 13L,
-                            Language = "german",
-                            Rating = 3,
-                            UserId = 6L
-                        },
-                        new
-                        {
-                            LanguageRatingId = 14L,
-                            Language = "english",
-                            Rating = 2,
-                            UserId = 7L
-                        },
-                        new
-                        {
-                            LanguageRatingId = 15L,
-                            Language = "german",
-                            Rating = 3,
-                            UserId = 7L
-                        },
-                        new
-                        {
-                            LanguageRatingId = 17L,
-                            Language = "english",
-                            Rating = 2,
-                            UserId = 8L
-                        },
-                        new
-                        {
-                            LanguageRatingId = 16L,
-                            Language = "german",
-                            Rating = 3,
-                            UserId = 8L
-                        },
-                        new
-                        {
-                            LanguageRatingId = 18L,
-                            Language = "english",
-                            Rating = 2,
-                            UserId = 9L
-                        },
-                        new
-                        {
-                            LanguageRatingId = 19L,
-                            Language = "german",
-                            Rating = 3,
-                            UserId = 9L
-                        },
-                        new
-                        {
-                            LanguageRatingId = 20L,
-                            Language = "english",
-                            Rating = 2,
-                            UserId = 10L
-                        },
-                        new
-                        {
-                            LanguageRatingId = 21L,
-                            Language = "german",
-                            Rating = 3,
-                            UserId = 10L
->>>>>>> main:SkillMatrix.DataAccess/Migrations/20211104111200_InitialCreate.Designer.cs
                         });
                 });
 
@@ -2190,7 +2046,6 @@ namespace SkillMatrix.DataAccess.Migrations
                         new
                         {
                             SkillName = "C#",
-<<<<<<< HEAD:SkillMatrix.DataAccess/Migrations/20211109105133_InitialCreate.Designer.cs
                             UserId = 1L,
                             Rating = 3
                         },
@@ -2349,191 +2204,6 @@ namespace SkillMatrix.DataAccess.Migrations
                             SkillName = "C",
                             UserId = 10L,
                             Rating = 3
-=======
-                            UserId = 1L
-                        },
-                        new
-                        {
-                            SkillRatingId = 2L,
-                            Rating = 3,
-                            SkillName = "C#",
-                            UserId = 2L
-                        },
-                        new
-                        {
-                            SkillRatingId = 3L,
-                            Rating = 3,
-                            SkillName = "C#",
-                            UserId = 3L
-                        },
-                        new
-                        {
-                            SkillRatingId = 4L,
-                            Rating = 3,
-                            SkillName = "C#",
-                            UserId = 4L
-                        },
-                        new
-                        {
-                            SkillRatingId = 5L,
-                            Rating = 2,
-                            SkillName = "Java",
-                            UserId = 1L
-                        },
-                        new
-                        {
-                            SkillRatingId = 6L,
-                            Rating = 2,
-                            SkillName = "Java",
-                            UserId = 3L
-                        },
-                        new
-                        {
-                            SkillRatingId = 7L,
-                            Rating = 1,
-                            SkillName = "Java",
-                            UserId = 8L
-                        },
-                        new
-                        {
-                            SkillRatingId = 8L,
-                            Rating = 2,
-                            SkillName = "Java",
-                            UserId = 9L
-                        },
-                        new
-                        {
-                            SkillRatingId = 9L,
-                            Rating = 3,
-                            SkillName = "Java",
-                            UserId = 10L
-                        },
-                        new
-                        {
-                            SkillRatingId = 10L,
-                            Rating = 2,
-                            SkillName = "HTML",
-                            UserId = 1L
-                        },
-                        new
-                        {
-                            SkillRatingId = 11L,
-                            Rating = 1,
-                            SkillName = "HTML",
-                            UserId = 2L
-                        },
-                        new
-                        {
-                            SkillRatingId = 12L,
-                            Rating = 2,
-                            SkillName = "HTML",
-                            UserId = 3L
-                        },
-                        new
-                        {
-                            SkillRatingId = 13L,
-                            Rating = 3,
-                            SkillName = "HTML",
-                            UserId = 4L
-                        },
-                        new
-                        {
-                            SkillRatingId = 14L,
-                            Rating = 2,
-                            SkillName = "HTML",
-                            UserId = 5L
-                        },
-                        new
-                        {
-                            SkillRatingId = 15L,
-                            Rating = 1,
-                            SkillName = "HTML",
-                            UserId = 6L
-                        },
-                        new
-                        {
-                            SkillRatingId = 16L,
-                            Rating = 3,
-                            SkillName = "HTML",
-                            UserId = 7L
-                        },
-                        new
-                        {
-                            SkillRatingId = 17L,
-                            Rating = 2,
-                            SkillName = "HTML",
-                            UserId = 8L
-                        },
-                        new
-                        {
-                            SkillRatingId = 18L,
-                            Rating = 3,
-                            SkillName = "HTML",
-                            UserId = 9L
-                        },
-                        new
-                        {
-                            SkillRatingId = 19L,
-                            Rating = 1,
-                            SkillName = "HTML",
-                            UserId = 10L
-                        },
-                        new
-                        {
-                            SkillRatingId = 20L,
-                            Rating = 2,
-                            SkillName = "C++",
-                            UserId = 2L
-                        },
-                        new
-                        {
-                            SkillRatingId = 21L,
-                            Rating = 3,
-                            SkillName = "C++",
-                            UserId = 4L
-                        },
-                        new
-                        {
-                            SkillRatingId = 22L,
-                            Rating = 3,
-                            SkillName = "C++",
-                            UserId = 5L
-                        },
-                        new
-                        {
-                            SkillRatingId = 23L,
-                            Rating = 1,
-                            SkillName = "C++",
-                            UserId = 7L
-                        },
-                        new
-                        {
-                            SkillRatingId = 24L,
-                            Rating = 1,
-                            SkillName = "C",
-                            UserId = 1L
-                        },
-                        new
-                        {
-                            SkillRatingId = 25L,
-                            Rating = 3,
-                            SkillName = "C",
-                            UserId = 3L
-                        },
-                        new
-                        {
-                            SkillRatingId = 26L,
-                            Rating = 2,
-                            SkillName = "C",
-                            UserId = 7L
-                        },
-                        new
-                        {
-                            SkillRatingId = 27L,
-                            Rating = 3,
-                            SkillName = "C",
-                            UserId = 10L
->>>>>>> main:SkillMatrix.DataAccess/Migrations/20211104111200_InitialCreate.Designer.cs
                         });
                 });
 
@@ -2549,9 +2219,6 @@ namespace SkillMatrix.DataAccess.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETDATE()");
 
-                    b.Property<long?>("DepartmentId")
-                        .HasColumnType("bigint");
-
                     b.Property<string>("TeamName")
                         .HasColumnType("nvarchar(max)");
 
@@ -2561,8 +2228,6 @@ namespace SkillMatrix.DataAccess.Migrations
                         .HasDefaultValueSql("GETDATE()");
 
                     b.HasKey("TeamId");
-
-                    b.HasIndex("DepartmentId");
 
                     b.ToTable("Teams");
 
@@ -2822,15 +2487,6 @@ namespace SkillMatrix.DataAccess.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("SkillMatrix.Domain.Users.Models.Team", b =>
-                {
-                    b.HasOne("SkillMatrix.Domain.Users.Models.Department", "Department")
-                        .WithMany()
-                        .HasForeignKey("DepartmentId");
-
-                    b.Navigation("Department");
-                });
-
             modelBuilder.Entity("SkillMatrix.Domain.Users.Models.User", b =>
                 {
                     b.HasOne("SkillMatrix.Domain.Users.Models.Department", "Department")
@@ -2838,7 +2494,7 @@ namespace SkillMatrix.DataAccess.Migrations
                         .HasForeignKey("DepartmentId");
 
                     b.HasOne("SkillMatrix.Domain.Users.Models.Team", "Team")
-                        .WithMany("Users")
+                        .WithMany()
                         .HasForeignKey("TeamId");
 
                     b.Navigation("Department");
@@ -2852,11 +2508,6 @@ namespace SkillMatrix.DataAccess.Migrations
                 });
 
             modelBuilder.Entity("SkillMatrix.Domain.Users.Models.Department", b =>
-                {
-                    b.Navigation("Users");
-                });
-
-            modelBuilder.Entity("SkillMatrix.Domain.Users.Models.Team", b =>
                 {
                     b.Navigation("Users");
                 });

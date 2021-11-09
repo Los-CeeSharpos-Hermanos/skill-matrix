@@ -2217,9 +2217,6 @@ namespace SkillMatrix.DataAccess.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETDATE()");
 
-                    b.Property<long?>("DepartmentId")
-                        .HasColumnType("bigint");
-
                     b.Property<string>("TeamName")
                         .HasColumnType("nvarchar(max)");
 
@@ -2229,8 +2226,6 @@ namespace SkillMatrix.DataAccess.Migrations
                         .HasDefaultValueSql("GETDATE()");
 
                     b.HasKey("TeamId");
-
-                    b.HasIndex("DepartmentId");
 
                     b.ToTable("Teams");
 
@@ -2490,15 +2485,6 @@ namespace SkillMatrix.DataAccess.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("SkillMatrix.Domain.Users.Models.Team", b =>
-                {
-                    b.HasOne("SkillMatrix.Domain.Users.Models.Department", "Department")
-                        .WithMany()
-                        .HasForeignKey("DepartmentId");
-
-                    b.Navigation("Department");
-                });
-
             modelBuilder.Entity("SkillMatrix.Domain.Users.Models.User", b =>
                 {
                     b.HasOne("SkillMatrix.Domain.Users.Models.Department", "Department")
@@ -2506,7 +2492,7 @@ namespace SkillMatrix.DataAccess.Migrations
                         .HasForeignKey("DepartmentId");
 
                     b.HasOne("SkillMatrix.Domain.Users.Models.Team", "Team")
-                        .WithMany("Users")
+                        .WithMany()
                         .HasForeignKey("TeamId");
 
                     b.Navigation("Department");
@@ -2520,11 +2506,6 @@ namespace SkillMatrix.DataAccess.Migrations
                 });
 
             modelBuilder.Entity("SkillMatrix.Domain.Users.Models.Department", b =>
-                {
-                    b.Navigation("Users");
-                });
-
-            modelBuilder.Entity("SkillMatrix.Domain.Users.Models.Team", b =>
                 {
                     b.Navigation("Users");
                 });

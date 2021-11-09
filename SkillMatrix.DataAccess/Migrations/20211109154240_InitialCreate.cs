@@ -61,19 +61,12 @@ namespace SkillMatrix.DataAccess.Migrations
                     TeamId = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TeamName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DepartmentId = table.Column<long>(type: "bigint", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Teams", x => x.TeamId);
-                    table.ForeignKey(
-                        name: "FK_Teams_Departments_DepartmentId",
-                        column: x => x.DepartmentId,
-                        principalTable: "Departments",
-                        principalColumn: "DepartmentId",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -411,12 +404,12 @@ namespace SkillMatrix.DataAccess.Migrations
 
             migrationBuilder.InsertData(
                 table: "Teams",
-                columns: new[] { "TeamId", "DepartmentId", "TeamName", "UpdatedAt" },
+                columns: new[] { "TeamId", "TeamName", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { 2L, null, "B-Team", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 1L, null, "A-Team", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 3L, null, "C-Team", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { 2L, "B-Team", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 1L, "A-Team", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 3L, "C-Team", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(
@@ -451,7 +444,6 @@ namespace SkillMatrix.DataAccess.Migrations
                 });
 
             migrationBuilder.InsertData(
-<<<<<<< HEAD:SkillMatrix.DataAccess/Migrations/20211109105133_InitialCreate.cs
                 table: "LanguageRatings",
                 columns: new[] { "Language", "UserId", "Rating" },
                 values: new object[,]
@@ -518,74 +510,6 @@ namespace SkillMatrix.DataAccess.Migrations
                     { "HTML", 5L, 2 },
                     { "HTML", 7L, 3 },
                     { "C", 10L, 3 }
-=======
-                table: "LanguageRating",
-                columns: new[] { "LanguageRatingId", "Language", "Rating", "UserId" },
-                values: new object[,]
-                {
-                    { 1L, "german", 3, 1L },
-                    { 21L, "german", 3, 10L },
-                    { 20L, "english", 2, 10L },
-                    { 19L, "german", 3, 9L },
-                    { 18L, "english", 2, 9L },
-                    { 16L, "german", 3, 8L },
-                    { 17L, "english", 2, 8L },
-                    { 15L, "german", 3, 7L },
-                    { 14L, "english", 2, 7L },
-                    { 13L, "german", 3, 6L },
-                    { 12L, "english", 2, 6L },
-                    { 8L, "english", 2, 4L },
-                    { 7L, "latin", 1, 3L },
-                    { 6L, "french", 2, 3L },
-                    { 5L, "english", 3, 3L },
-                    { 9L, "german", 3, 4L },
-                    { 3L, "german", 3, 2L },
-                    { 2L, "english", 2, 2L },
-                    { 10L, "english", 2, 5L },
-                    { 11L, "german", 3, 5L },
-                    { 4L, "german", 3, 3L }
-                });
-
-            migrationBuilder.InsertData(
-                table: "SkillRating",
-                columns: new[] { "SkillRatingId", "Rating", "SkillName", "UserId" },
-                values: new object[,]
-                {
-                    { 22L, 3, "C++", 5L },
-                    { 26L, 2, "C", 7L },
-                    { 7L, 1, "Java", 8L },
-                    { 17L, 2, "HTML", 8L },
-                    { 24L, 1, "C", 1L },
-                    { 8L, 2, "Java", 9L },
-                    { 18L, 3, "HTML", 9L },
-                    { 5L, 2, "Java", 1L },
-                    { 1L, 3, "C#", 1L },
-                    { 9L, 3, "Java", 10L },
-                    { 10L, 2, "HTML", 1L },
-                    { 23L, 1, "C++", 7L },
-                    { 2L, 3, "C#", 2L },
-                    { 11L, 1, "HTML", 2L },
-                    { 15L, 1, "HTML", 6L },
-                    { 20L, 2, "C++", 2L },
-                    { 21L, 3, "C++", 4L },
-                    { 13L, 3, "HTML", 4L },
-                    { 4L, 3, "C#", 4L },
-                    { 19L, 1, "HTML", 10L },
-                    { 25L, 3, "C", 3L }
-                });
-
-            migrationBuilder.InsertData(
-                table: "SkillRating",
-                columns: new[] { "SkillRatingId", "Rating", "SkillName", "UserId" },
-                values: new object[,]
-                {
-                    { 12L, 2, "HTML", 3L },
-                    { 6L, 2, "Java", 3L },
-                    { 3L, 3, "C#", 3L },
-                    { 14L, 2, "HTML", 5L },
-                    { 16L, 3, "HTML", 7L },
-                    { 27L, 3, "C", 10L }
->>>>>>> main:SkillMatrix.DataAccess/Migrations/20211104111200_InitialCreate.cs
                 });
 
             migrationBuilder.CreateIndex(
@@ -602,11 +526,6 @@ namespace SkillMatrix.DataAccess.Migrations
                 name: "IX_Skills_SkillCategoryId",
                 table: "Skills",
                 column: "SkillCategoryId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Teams_DepartmentId",
-                table: "Teams",
-                column: "DepartmentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_DepartmentId",
@@ -640,10 +559,10 @@ namespace SkillMatrix.DataAccess.Migrations
                 name: "SkillCategories");
 
             migrationBuilder.DropTable(
-                name: "Teams");
+                name: "Departments");
 
             migrationBuilder.DropTable(
-                name: "Departments");
+                name: "Teams");
         }
     }
 }
