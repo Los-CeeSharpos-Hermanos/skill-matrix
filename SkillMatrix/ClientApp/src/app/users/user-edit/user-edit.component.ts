@@ -143,7 +143,6 @@ export class UserEditComponent implements OnInit {
     this.user.location = this.profileForm.value.location;
     this.user.email = this.profileForm.value.email;
     this.user.telephone = this.profileForm.value.phone;
-
     this.userService.updateUser(this.user)
       .subscribe({
         error: err => this.errorMessage = err

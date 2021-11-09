@@ -43,7 +43,6 @@ namespace SkillMatrix.Application.Services
         public async Task PostUserAsync(FormUserDTO user)
         {
             User userAdd = _mapper.Map<User>(user);
-
             await _userRepository.PostUserAsync(userAdd);
         }
 
