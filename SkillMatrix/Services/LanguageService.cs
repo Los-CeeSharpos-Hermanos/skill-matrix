@@ -31,21 +31,18 @@ namespace SkillMatrix.Application.Services
         public async Task<List<LanguageDTO>> GetLanguagesAsync()
         {
             var languages = await _languageRepository.GetLanguagesAsync();
-
             return _mapper.Map<List<LanguageDTO>>(languages);
         }
 
         public async Task<LanguageDTO> GetLanguageAsync(long id)
         {
             var language = await _languageRepository.GetLanguageAsync(id);
-
             return _mapper.Map<LanguageDTO>(language);
         }
 
         public async Task PostLanguageAsync(Language language)
         {
             await _languageRepository.PostLanguageAsync(language);
-
         }
 
         public async Task PutLanguageAsync(Language language)

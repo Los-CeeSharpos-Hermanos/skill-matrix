@@ -144,6 +144,11 @@
                                 <mat-icon>clear</mat-icon>
                             </button>
                         </div>
+                        <div class ="col-sm" *ngIf="isChanged">
+                            <button mat-icon-button color="warn" aria-label="Edit Skill" (click)="changeSkill(skill)">
+                                <mat-icon>Edit</mat-icon>
+                            </button>
+                        </div>
                     </div>
                     </mat-card>
                 </div>

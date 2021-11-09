@@ -10,8 +10,8 @@ using SkillMatrix.DataAccess;
 namespace SkillMatrix.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20211108150105_InitialeCreate")]
-    partial class InitialeCreate
+    [Migration("20211109105133_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

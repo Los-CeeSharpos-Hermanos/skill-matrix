@@ -44,11 +44,8 @@ namespace SkillMatrix.DataAccess.Repositories.Languages
         {
             Language dbLanguage = await _db.Languages.Where(l => l.Id == id).FirstOrDefaultAsync()
                     ?? throw new KeyNotFoundException($"Language not found");
-
             _db.Languages.Remove(dbLanguage);
-
             await _db.SaveChangesAsync();
-
         }
     }
 }

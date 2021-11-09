@@ -27,6 +27,7 @@ export class UserEditComponent implements OnInit {
   private sub: Subscription;
   pageTitle: string;
   errorMessage: string;
+  isChanged: boolean;
 
   user: IUser = {
     id: 0,
@@ -54,7 +55,7 @@ export class UserEditComponent implements OnInit {
     ]
   };
 
-  rat: Rating;
+  rating: Rating;
   allLanguages: ILanguage[] = [];
   allSkills: Skill[] = [];
 
@@ -79,6 +80,7 @@ export class UserEditComponent implements OnInit {
         const id = params.get('id')!;
         this.getUser(id);
       });
+    this.isChanged = false;
   }
 
   getUser(id: string): void {
@@ -151,15 +153,15 @@ export class UserEditComponent implements OnInit {
 
   addSkill(): void {
     switch(this.profileForm.value.skillproficiency) {
-      case "beginner": this.rat = 1; break;
-      case "intermediate": this.rat = 2; break;
-      case "advanced": this.rat = 3; break;
-      default: this.rat = 0; 
+      case "beginner": this.rating = 1; break;
+      case "intermediate": this.rating = 2; break;
+      case "advanced": this.rating = 3; break;
+      default: this.rating = 0; 
     } 
-    if(!this.rat) {
+    if(!this.rating) {
       console.log("choose profi");
     } else {
-      this.user.skills.push({skillName: this.profileForm.value.skill, rating: this.rat, skillCategory: "skillcategory"});
+      this.user.skills.push({skillName: this.profileForm.value.skill, rating: this.rating, skillCategory: "skillcategory"});
 
       this.profileForm.patchValue({
         skill: "",
@@ -172,24 +174,24 @@ export class UserEditComponent implements OnInit {
     this.user.skills = this.user.skills.filter(s => s !== skill);
   }
 
-  changeSkill(skill: IUserSkill, proficiency: number): void {
+  changeSkill(skill: IUserSkill): void {
 
   }
 
   addLanguage(): void {
     switch(this.profileForm.value.languageproficiency) {
-      case "beginner": this.rat = 1; break;
-      case "intermediate": this.rat = 2; break;
-      case "advanced": this.rat = 3; break;
-      default: this.rat = 0; 
+      case "beginner": this.rating = 1; break;
+      case "intermediate": this.rating = 2; break;
+      case "advanced": this.rating = 3; break;
+      default: this.rating = 0; 
     } 
-    if(!this.rat) {
+    if(!this.rating) {
       console.log("choose profi");
     } else {
-      var index = this.user.languages.indexOf({language: this.profileForm.value.language, rating: this.rat});
+      var index = this.user.languages.indexOf({language: this.profileForm.value.language, rating: this.rating});
       if(index === -1)
       {
-        this.user.languages.push({language: this.profileForm.value.language, rating: this.rat});
+        this.user.languages.push({language: this.profileForm.value.language, rating: this.rating});
       }
       
       this.profileForm.patchValue({

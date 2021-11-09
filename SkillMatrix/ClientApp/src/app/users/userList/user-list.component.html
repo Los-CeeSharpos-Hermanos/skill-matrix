@@ -13,7 +13,7 @@
     </div>
   </div>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements"
+  <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements"
     class=" dyeableContainer">
   </mat-paginator>
 
@@ -44,9 +44,6 @@
         <ng-template #defaultColumn>{{element[column.id]}}</ng-template>
       </td>
     </ng-container>
-
-
-    <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
     <ng-container matColumnDef="expandedDetail">
       <td class="detail-card" mat-cell *matCellDef="let user" [attr.colspan]="columnsToDisplay.length">
         <div class="example-element-detail" [@detailExpand]="user == expandedElement ? 'expanded' : 'collapsed'">
