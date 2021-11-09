@@ -12,7 +12,7 @@ namespace SkillMatrix.DataAccess.Seeds
                .HasData(
                    new User
                    {
-                       Id = 1,
+                       Id = "1",
                        FirstName = "Martin",
                        SurName = "Schmidt",
                        Telephone = "0845679123",
@@ -23,10 +23,10 @@ namespace SkillMatrix.DataAccess.Seeds
                        TeamId = 1,
                    }, new User
                    {
-                       Id = 2,
+                       Id = "2",
                        FirstName = "Nico",
                        SurName = "Marten",
-                       Telephone ="0987654321",
+                       Telephone = "0987654321",
                        Email = "nico.marten@web.de",
                        ImageUrl = "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png",
                        JobTitle = "Software Architect",
@@ -34,7 +34,7 @@ namespace SkillMatrix.DataAccess.Seeds
                        TeamId = 1,
                    }, new User
                    {
-                       Id = 3,
+                       Id = "3",
                        FirstName = "Tom",
                        SurName = "Tompson",
                        Telephone = "0123456789",

@@ -7,13 +7,20 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using SkillMatrix.Application.Mappers;
 using SkillMatrix.Application.Services;
-using SkillMatrix.DataAccess;
 using SkillMatrix.DataAccess.Repositories.Skills;
 using SkillMatrix.DataAccess.Repositories.Languages;
 using SkillMatrix.Domain.Languages.Repositories;
 using SkillMatrix.Domain.Skills.Repositories;
 using SkillMatrix.DataAccess.Repositories.Users;
 using SkillMatrix.Domain.Users.Repositories;
+using Microsoft.AspNetCore.Identity;
+using SkillMatrix.Application.Extensions;
+using SkillMatrix.DataAccess;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using SkillMatrix.Application.DTOs.Identity;
+using SkillMatrix.DataAccess.Infrastructures;
 
 namespace SkillMatrix.Application
 {
@@ -29,27 +36,26 @@ namespace SkillMatrix.Application
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddTransient<ApplicationDBContext>();
+            var tokenSettings = Configuration.GetSection("TokenSettings");
+            services.Configure<TokenSettings>(tokenSettings);
+
+            DataAccessConfig.Registry(services, Configuration);
+
 
             services.AddAutoMapper(typeof(ApplicationMapperProfile));
 
-            services.AddScoped<ISkillRepository, SkillRepository>();
             services.AddScoped<ISkillService, SkillService>();
 
             services.AddScoped<ISkillCategoryService, SkillCategoryService>();
-            services.AddScoped<ISkillCategoryRepository, SkillCategoryRepository>();
 
-            services.AddScoped<ILanguageRepository, LanguageRepository>();
             services.AddScoped<ILanguageService, LanguageService>();
 
             services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IUserRepository, UserRepository>();
 
             services.AddScoped<ITeamService, TeamService>();
-            services.AddScoped<ITeamRepository, TeamRepository>();
 
             services.AddScoped<IDepartmentService, DepartmentService>();
-            services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+
 
 
             services.AddControllersWithViews();
@@ -59,10 +65,37 @@ namespace SkillMatrix.Application
                 configuration.RootPath = "ClientApp/dist";
             });
 
+            var section = Configuration.GetSection("Token");
+            services.Configure<TokenDTO>(section);
+
+            var token = section.Get<TokenDTO>();
+            var key = Encoding.ASCII.GetBytes(token.Secret);
+
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = true;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidAudience = token.ValidAt,
+                    ValidIssuer = token.Issuer,
+                };
+            });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Skill Matrix API", Version = "v1" });
             });
+
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

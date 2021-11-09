@@ -8,7 +8,7 @@ namespace SkillMatrix.DataAccess.Configurations
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.Property(p => p.CreatedAt).HasDefaultValueSql("GETDATE()").ValueGeneratedOnAdd();
+            //builder.Property(p => p.CreatedAt).HasDefaultValueSql("GETDATE()").ValueGeneratedOnAdd();
         }
     }
 }

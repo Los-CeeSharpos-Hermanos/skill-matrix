@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using SkillMatrix.Domain.Users.Models;
 using SkillMatrix.Domain.Users.Repositories;
 using System;
@@ -11,57 +12,38 @@ namespace SkillMatrix.DataAccess.Repositories.Users
 {
     public class UserRepository : IUserRepository
     {
-        private readonly ApplicationDBContext _db;
+        private readonly UserManager<User> _userManager;
 
-        public UserRepository(ApplicationDBContext db)
+        public UserRepository(UserManager<User> userManager)
         {
-            _db = db;
+            _userManager = userManager;
         }
 
         public async Task<List<User>> GetUsersAsync()
         {
-            return await _db.Users.Where(p => p.Id > 0)
+            return await _userManager.Users
                                   .OrderBy(u => u.SurName)
                                   .ToListAsync();
         }
 
-        public async Task<User> GetUserAsync(long id)
+        public async Task<User> GetUserAsync(string id)
         {
-            return await _db.Users.FindAsync(id);
+            return await _userManager.FindByIdAsync(id);
         }
 
-        public async Task PostUserAsync(User user)
+        public async Task<IdentityResult> CreateUserAsync(User user, string password)
         {
-            await _db.Users.AddAsync(user);
-            await _db.SaveChangesAsync();
+            return await _userManager.CreateAsync(user, password);
         }
-        public async Task PutUserAsync(long id, User user)
+        public async Task<IdentityResult> UpdateUserAsync(User user)
         {
-            _db.Users.Update(user);
-            await _db.SaveChangesAsync();
+            return await _userManager.UpdateAsync(user);
         }
 
-        public async Task DeleteUserAsync(long id)
+        public async Task<IdentityResult> DeleteUserAsync(string id)
         {
-            User dbUser = await _db.Users.Where(user => user.Id == id).FirstOrDefaultAsync()
-                ?? throw new KeyNotFoundException($"User not found");
-
-            
-            _db.Users.Remove(dbUser);
-
-            await _db.SaveChangesAsync();
-        }
-
-        public async Task<Department>GetDepartmentAsync(string department)
-        {
-            return await _db.Departments.Where(d => d.DepartmentName == department).FirstOrDefaultAsync() 
-                ?? throw new KeyNotFoundException($"Department not found");
-        }
-
-        public async Task<Team> GetTeamAsync(string team)
-        {
-            return await _db.Teams.Where(t => t.TeamName == team).FirstOrDefaultAsync() 
-                ?? throw new KeyNotFoundException($"Team not found");
+            var user = await _userManager.FindByIdAsync(id);
+            return await _userManager.DeleteAsync(user);
         }
     }
 }

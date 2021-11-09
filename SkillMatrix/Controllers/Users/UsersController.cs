@@ -32,28 +32,28 @@ namespace SkillMatrix.Application.Controllers.Users
 
         // GET api/<UsersController>/5
         [HttpGet("{id}")]
-        public async Task<FormUserDTO> GetUserAsync(long id)
+        public async Task<FormUserDTO> GetUserAsync(string id)
         {
             return await _userService.GetUserAsync(id);
         }
 
         // POST api/<UsersController>
         [HttpPost]
-        public async Task PostUserAsync([FromBody] FormUserDTO user)
+        public async Task PostUserAsync([FromBody] FormUserDTO user, string password)
         {
-            await _userService.PostUserAsync(user);
+            await _userService.PostUserAsync(user, password);
         }
 
         // PUT api/<UsersController>/5
         [HttpPut("{id}")]
-        public async Task PutUserAsync(long id, [FromBody] FormUserDTO user)
+        public async Task PutUserAsync([FromBody] FormUserDTO user)
         {
-            await _userService.PutUserAsync(id, user);
+            await _userService.PutUserAsync(user);
         }
 
         // DELETE api/<UsersController>/5
         [HttpDelete("{id}")]
-        public async Task DeleteUserAsync(long id)
+        public async Task DeleteUserAsync(string id)
         {
             await _userService.DeleteUserAsync(id);
         }
