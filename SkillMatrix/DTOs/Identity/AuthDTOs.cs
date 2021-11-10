@@ -36,7 +36,7 @@ namespace SkillMatrix.Application.DTOs.Identity
 
     }
 
-    public class UserLoginResponse
+    public class UserTokenResponse
     {
         public string AccessToken { get; set; }
         public double ExpiresIn { get; set; }

@@ -21,6 +21,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using SkillMatrix.Application.DTOs.Identity;
 using SkillMatrix.DataAccess.Infrastructures;
+using SkillMatrix.Application.Services.Authentication;
 
 namespace SkillMatrix.Application
 {
@@ -35,9 +36,6 @@ namespace SkillMatrix.Application
 
         public void ConfigureServices(IServiceCollection services)
         {
-
-            var tokenSettings = Configuration.GetSection("TokenSettings");
-            services.Configure<TokenSettings>(tokenSettings);
 
             DataAccessConfig.Registry(services, Configuration);
 
@@ -55,8 +53,8 @@ namespace SkillMatrix.Application
             services.AddScoped<ITeamService, TeamService>();
 
             services.AddScoped<IDepartmentService, DepartmentService>();
-
-
+            services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IAuthenticationService, AuthenticationService>();
 
             services.AddControllersWithViews();
 
@@ -65,37 +63,12 @@ namespace SkillMatrix.Application
                 configuration.RootPath = "ClientApp/dist";
             });
 
-            var section = Configuration.GetSection("Token");
-            services.Configure<TokenDTO>(section);
-
-            var token = section.Get<TokenDTO>();
-            var key = Encoding.ASCII.GetBytes(token.Secret);
-
-            services.AddAuthentication(x =>
-            {
-                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(x =>
-            {
-                x.RequireHttpsMetadata = true;
-                x.SaveToken = true;
-                x.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidAudience = token.ValidAt,
-                    ValidIssuer = token.Issuer,
-                };
-            });
+            services.ConfigureAuthentication(Configuration);
 
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Skill Matrix API", Version = "v1" });
             });
-
-
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -126,6 +99,8 @@ namespace SkillMatrix.Application
             }
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {
