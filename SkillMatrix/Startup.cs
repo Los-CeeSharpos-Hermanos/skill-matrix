@@ -7,19 +7,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using SkillMatrix.Application.Mappers;
 using SkillMatrix.Application.Services;
-using SkillMatrix.DataAccess.Repositories.Skills;
-using SkillMatrix.DataAccess.Repositories.Languages;
-using SkillMatrix.Domain.Languages.Repositories;
-using SkillMatrix.Domain.Skills.Repositories;
-using SkillMatrix.DataAccess.Repositories.Users;
-using SkillMatrix.Domain.Users.Repositories;
-using Microsoft.AspNetCore.Identity;
-using SkillMatrix.Application.Extensions;
 using SkillMatrix.DataAccess;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using SkillMatrix.Application.DTOs.Identity;
 using SkillMatrix.DataAccess.Infrastructures;
 using SkillMatrix.Application.Services.Authentication;
 
@@ -68,6 +56,15 @@ namespace SkillMatrix.Application
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Skill Matrix API", Version = "v1" });
+                c.OperationFilter<AddAuthHeaderOperationFilter>();
+                c.AddSecurityDefinition("bearer", new OpenApiSecurityScheme
+                {
+                    Description = "`Token only!!!` - without `Bearer_` prefix",
+                    Type = SecuritySchemeType.Http,
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Scheme = "bearer"
+                });
             });
         }
 
@@ -101,6 +98,7 @@ namespace SkillMatrix.Application
             app.UseRouting();
 
             app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
@@ -114,6 +112,7 @@ namespace SkillMatrix.Application
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("v1/swagger.json", "Skill Matrix API V1");
+
             });
 
             app.UseSpa(spa =>

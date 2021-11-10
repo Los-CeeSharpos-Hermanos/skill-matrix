@@ -1,18 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SkillMatrix.Application.DTOs.Skills;
 using SkillMatrix.Application.Services;
-using SkillMatrix.Domain.Skills.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace SkillMatrix.Application.Controllers.Skills
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
+
     public class SkillCategoriesController : ControllerBase
     {
         private readonly ISkillCategoryService _skillCategoryService;
