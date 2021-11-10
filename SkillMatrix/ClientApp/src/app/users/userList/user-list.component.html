@@ -12,6 +12,64 @@
       </mat-form-field>
     </div>
   </div>
+  <mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Filter by Skills or Languages
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <form [formGroup]="filterForm">
+        <div class="row align-middle">
+          <div class="col">
+            <mat-form-field appearance="standard">
+              <mat-label>Search for Skill</mat-label>
+              <mat-select matInput formControlName="filterSkill">
+                <mat-option *ngFor="let filterSkill of allSkills" [value]="filterSkill.skillName">{{filterSkill.skillName}}</mat-option>
+            </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <app-add-button (click)="addSkillFilter()">Add Filter</app-add-button>
+          </div>
+            <div class="col-8">
+                <mat-chip-list>
+                  <mat-chip *ngFor="let skill of filteredSkills" [removable]="removable" (removed)="removeSkillFilter(skill)">
+                    {{skill}}
+                    <button matChipRemove *ngIf="removable">
+                      <mat-icon>cancel</mat-icon>
+                    </button>
+                  </mat-chip>
+                </mat-chip-list>
+              </div>
+            </div>
+        <div class="row align-middle">
+          <div class="col">
+            <mat-form-field appearance="standard">
+              <mat-label>Search for Language</mat-label>
+              <mat-select matInput formControlName="filterLanguage">
+                <mat-option *ngFor="let filterLanguage of allLanguages" [value]="filterLanguage.name">{{filterLanguage.name}}</mat-option>
+            </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <app-add-button (click)="addLanguageFilter()">Add Filter</app-add-button>
+          </div>
+              <div class="col-8">
+                <mat-chip-list>
+                  <mat-chip *ngFor="let language of filteredLanguages" [removable]="removable" (removed)="removeLanguageFilter(language)">
+                    {{language}}
+                    <button matChipRemove *ngIf="removable">
+                      <mat-icon>cancel</mat-icon>
+                    </button>
+                  </mat-chip>
+                </mat-chip-list>
+              </div>
+            </div>
+        </form>
+    </mat-expansion-panel>
+  </mat-accordion>  
 
   <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements"
     class=" dyeableContainer">

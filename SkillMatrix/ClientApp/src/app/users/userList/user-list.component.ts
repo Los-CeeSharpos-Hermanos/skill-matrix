@@ -1,9 +1,15 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { ILanguage } from 'src/app/admin/languages/language';
+import { LanguageService } from 'src/app/admin/languages/services/language.service';
+import { SkillService } from 'src/app/admin/skills/services/skill.service';
+import { Skill } from 'src/app/admin/skills/skill';
 import { users } from 'src/app/shared/database/members/members-data';
+import { skills } from 'src/app/shared/database/skills/skills-data';
 import { RoutingService } from 'src/app/shared/services/routing.service';
 import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
 import { environment } from 'src/environments/environment';
@@ -29,7 +35,21 @@ export class UserListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
 
-  constructor(private snackBarService: SnackBarService, private routingService: RoutingService, private userService: UserService) { }
+  constructor(private fb: FormBuilder,
+    private snackBarService: SnackBarService, 
+    private routingService: RoutingService, 
+    private skillService: SkillService,
+    private languageService: LanguageService,
+    private userService: UserService) { }
+
+  allSkills: Skill[] = [];
+  allLanguages: ILanguage[] = [];
+  filterForm: FormGroup;
+  removable = true;
+
+  filteredSkills: string[] = [];
+  filteredLanguages: string[] = [];
+  panelOpenState = false;
 
   profilePicPlaceholder = environment.profilePic;
   dataSource: MatTableDataSource<IUser>;
@@ -69,13 +89,22 @@ export class UserListComponent implements OnInit {
   displayedColumns: string[] = this.columnsToDisplay.map(col => col.id);
   expandedElement: IUser | null;
   users: IUser[];
+  usersFiltered: IUser[];
   errorMessage: '';
   isHidden = true;
 
   ngOnInit(): void {
     this.loadUsers();
-
+    this.loadAll();
+    this.profileFormInit();
     this.hideUser();
+  }
+
+  private profileFormInit() {
+    this.filterForm = this.fb.group({
+      filterSkill: "",
+      filterLanguage: ""
+    });
   }
 
   applyFilter(event: Event) {
@@ -138,9 +167,25 @@ export class UserListComponent implements OnInit {
     this.userService.getUsers().subscribe({
       next: users => {
         this.users = users;
-        this.setupDataSource();
+        this.usersFiltered = users;
+        this.setupDataSource(this.users);
       },
       error: err => console.log(err)
+    });
+  }
+
+  private loadAll() {
+    this.languageService.getLanguages().subscribe({
+      next: languages => {
+        this.allLanguages = languages;
+      },
+      error: err => { this.errorMessage = err; console.log(err); }
+    });
+    this.skillService.listSkills().subscribe({
+      next: skills => {
+        this.allSkills = skills;
+      },
+      error: err => { this.errorMessage = err; console.log(err); }
     });
   }
 
@@ -153,11 +198,74 @@ export class UserListComponent implements OnInit {
     return habilities.sort((a, b) => b.rating - a.rating).slice(0, listSize - 1);
   }
 
-  private setupDataSource() {
-    this.dataSource = new MatTableDataSource(this.users);
+  private setupDataSource(users: IUser[]) {
+    this.dataSource = new MatTableDataSource(users);
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
-    console.log(this.dataSource);
+  }
+
+  addSkillFilter() {
+    if(!this.filteredSkills.includes(this.filterForm.value.filterSkill) && this.filterForm.value.filterSkill != "") {
+      this.filteredSkills.push(this.filterForm.value.filterSkill);
+    }
+    this.skillFilter(this.usersFiltered, this.filteredSkills);
+  }
+
+  removeLanguageFilter(language: String) {
+      this.filteredLanguages = this.filteredLanguages.filter(l => l !== language);
+      this.languageFilter(this.usersFiltered, this.filteredLanguages);
+  }
+
+  addLanguageFilter() {
+    if(!this.filteredLanguages.includes(this.filterForm.value.filterLanguage) && this.filterForm.value.filterLanguage != "") {
+      this.filteredLanguages.push(this.filterForm.value.filterLanguage);
+    }
+    this.languageFilter(this.usersFiltered, this.filteredLanguages);
+  }
+
+  removeSkillFilter(skill: String) {
+    this.filteredSkills = this.filteredSkills.filter(s => s !== skill);
+    this.skillFilter(this.usersFiltered, this.filteredSkills);
+  
+  }
+
+  skillFilter(usersFiltered: IUser[], filteredSkills: string[] ) {
+    var isIn = false;
+    for(let k=0;k<filteredSkills.length;k++) {
+      for(let i=0;i<this.users.length;i++) {
+        for(let j=0;j<this.users[i].skills.length;j++) {
+          if(this.users[i].skills[j].skillName === filteredSkills[k]) {
+            isIn=true;
+          }
+        }
+        if(!isIn) {
+          usersFiltered = usersFiltered.filter(u => u !== this.users[i])
+        } else {
+          isIn = false;
+        }
+      }
+    }
+    this.setupDataSource(usersFiltered);
+  }
+
+  languageFilter(usersFiltered: IUser[], filteredLanguages: string[] ) {
+    console.log(filteredLanguages);
+    var isIn = false;
+    for(let k=0;k<filteredLanguages.length;k++) {
+      for(let i=0;i<this.users.length;i++) {
+        for(let j=0;j<this.users[i].languages.length;j++) {
+          if(this.users[i].languages[j].language.toLowerCase() === filteredLanguages[k].toLowerCase()) {
+            isIn=true;
+          }
+        }
+        if(!isIn) {
+          usersFiltered = usersFiltered.filter(u => u !== this.users[i])
+        } else {
+          isIn = false;
+        }
+      }
+    }
+    this.setupDataSource(usersFiltered);
   }
 }
 
