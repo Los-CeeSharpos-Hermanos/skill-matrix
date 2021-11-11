@@ -20,14 +20,27 @@
       </div>
     </div>
     <div class="col-sm d-flex justify-content-end">
-      <div class="wtfCSS">
-        <mat-slide-toggle (change)="onDarkModeSwitched($event)"><mat-icon>light_mode</mat-icon></mat-slide-toggle>
-      </div>
       <button mat-button color="basic" (click)="goTo('skillmatrix/users')">Home</button>
-      <button mat-icon-button color="basic" aria-label="Example icon button with a home icon"
-        (click)="goTo('skillmatrix/users/profile')">
-        <mat-icon>account_circle</mat-icon>
+
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>manage_accounts</mat-icon>
       </button>
+
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="goTo('skillmatrix/users/profile')">
+          <mat-icon>account_circle</mat-icon>
+          <span>My Profile</span>
+        </button>
+        <div mat-menu-item>
+          <mat-slide-toggle (change)="onDarkModeSwitched($event)">
+            <mat-icon>light_mode</mat-icon>
+          </mat-slide-toggle>
+        </div>
+        <button mat-menu-item>
+          <mat-icon>logout</mat-icon>
+          <span>Logout</span>
+        </button>
+      </mat-menu>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
