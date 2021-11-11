@@ -8,20 +8,24 @@ import { LanguageModule } from './admin/languages/language.module';
 import { SkillModule } from './admin/skills/skill.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { LoginComponent } from './auth/login/login.component';
 import { SharedModule } from './shared/shared.module';
 import { UserModule } from './users/user.module';
 
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     RouterModule.forRoot([
-      { path: '', redirectTo: 'skillmatrix/users', pathMatch: 'full' },
-      { path: '**', redirectTo: 'skillmatrix/users', pathMatch: 'full' }
+      { path: '', component: LoginComponent },
+      { path: '**', component: LoginComponent }
+      // { path: '', redirectTo: 'skillmatrix/users', pathMatch: 'full' },
+      // { path: '**', redirectTo: 'skillmatrix/users', pathMatch: 'full' }
     ]),
     SharedModule,
     LanguageModule,
