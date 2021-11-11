@@ -204,14 +204,14 @@ export class UserListComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  addSkillFilter(rating: number) {
+  addSkillFilter() {
     if(!this.filteredSkills.includes({skillName: this.filterForm.value.filterSkill, skillCategory: "something", rating: 0}) && this.filterForm.value.filterSkill != "") {
       this.filteredSkills.push({skillName: this.filterForm.value.filterSkill, skillCategory: "something", rating: 0});
     }
     this.abilityFilter();
   }
 
-  addLanguageFilter(rating: number) {
+  addLanguageFilter() {
     if(!this.filteredLanguages.includes({language: this.filterForm.value.filterLanguage, rating: 0}) && this.filterForm.value.filterLanguage !== "") {
       this.filteredLanguages.push({language: this.filterForm.value.filterLanguage, rating: 0});
     }
@@ -261,33 +261,6 @@ export class UserListComponent implements OnInit {
     this.setupDataSource(this.usersFiltered);
   }
 
-  abilityFilter2() {
-    var isIn = false;
-    var countSk = 0;
-    var countLa = 0;
-    this.usersFiltered = [];
-    for(let i=0; i<this.users.length;i++) {
-      for(let k=0;k<this.filteredLanguages.length;k++) {
-        for(let j=0;j<this.users[i].languages.length;j++) {
-          if(this.users[i].languages[j].language.toLowerCase() === this.filteredLanguages[k].language.toLowerCase() && (this.users[i].languages[j].rating === this.filteredLanguages[k].rating || this.filteredLanguages[k].rating === 0)) {
-            countLa++;
-          }
-        }
-      }
-      for(let k=0;k<this.filteredSkills.length;k++) {
-        for(let j=0;j<this.users[i].skills.length;j++) {
-          if(this.users[i].skills[j].skillName.toLowerCase() === this.filteredSkills[k].skillName.toLowerCase() && (this.users[i].skills[j].rating === this.filteredSkills[k].rating || this.filteredSkills[k].rating === 0)) {
-            countSk++;
-          }
-        }
-      }
-      if(countSk === this.filteredSkills.length && countLa === this.filteredLanguages.length) {
-        this.usersFiltered.push(this.users[i]);
-      }
-    }
-    this.setupDataSource(this.usersFiltered); 
-  }
-
   getRatingColor(rating: number): string {
     switch(rating) {
       case 1: return "beginner"; 
@@ -298,7 +271,7 @@ export class UserListComponent implements OnInit {
   }
 
   sendMail (email: string) {
-    var mail = 'mailto:' + email + '?subject=I found you on SkillMatrix&body=Send via SkillMatrix';
+    var mail = 'mailto:' + email + '?subject=I found you on SkillMatrix&body=Sent via SkillMatrix';
     window.open(mail);
   }
 }
