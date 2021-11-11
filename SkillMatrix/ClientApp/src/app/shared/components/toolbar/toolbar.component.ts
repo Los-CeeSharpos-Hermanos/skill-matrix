@@ -1,6 +1,7 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { MatSlideToggleChange } from "@angular/material/slide-toggle";
+import { AuthenticationService } from 'src/app/auth/authentication.service';
 import { RoutingService } from '../../services/routing.service';
-import {MatSlideToggleChange} from "@angular/material/slide-toggle";
 
 @Component({
   selector: 'app-toolbar',
@@ -13,7 +14,7 @@ export class ToolbarComponent implements OnInit {
 
   readonly darkModeSwitched = new EventEmitter<boolean>();
 
-  constructor(private routingService: RoutingService) { }
+  constructor(private routingService: RoutingService, private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
   }
@@ -22,8 +23,12 @@ export class ToolbarComponent implements OnInit {
     this.routingService.goTo(path);
   }
 
-  onDarkModeSwitched({checked}: MatSlideToggleChange)
-  {
+  logout() {
+    this.authenticationService.logout();
+    this.routingService.goTo('/');
+  }
+
+  onDarkModeSwitched({ checked }: MatSlideToggleChange) {
     this.darkModeSwitched.emit(checked);
   }
 

@@ -76,5 +76,13 @@ namespace SkillMatrix.Application.Controllers
 
             return CustomResponse();
         }
+
+        [HttpGet("logout")]
+        public async Task<ActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+
+            return CustomResponse();
+        }
     }
 }

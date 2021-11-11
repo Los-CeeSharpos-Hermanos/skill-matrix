@@ -31,6 +31,11 @@ export class AuthenticationService {
   }
 
   logout() {
+
+    const logoutRoute = `${baseUri}/logout`;
+
+    this.http.get(logoutRoute).pipe(shareReplay(1));
+
     localStorage.removeItem("id_token");
     localStorage.removeItem("expires_at");
   }
