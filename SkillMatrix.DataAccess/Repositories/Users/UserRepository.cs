@@ -35,6 +35,7 @@ namespace SkillMatrix.DataAccess.Repositories.Users
         {
             return await _userManager.CreateAsync(user, password);
         }
+        
         public async Task<IdentityResult> UpdateUserAsync(User user)
         {
             return await _userManager.UpdateAsync(user);
