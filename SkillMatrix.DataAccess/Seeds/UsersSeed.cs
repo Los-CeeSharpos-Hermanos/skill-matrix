@@ -1,18 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SkillMatrix.Domain.Users.Models;
+using System;
 using System.Collections.Generic;
 
 namespace SkillMatrix.DataAccess.Seeds
 {
     public static class UsersSeed
     {
-        public static void SeedUsers(this ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<User>()
-               .HasData(
-                   new User
+        public static readonly List<User> defaultUsers = new List<User>
+           {
+                new User
                    {
-                       Id = "1",
+                       Id = "2647ef6e-3a78-4f27-8cd0-7e9478e9e8ef",
                        FirstName = "Martin",
                        SurName = "Schmidt",
                        Telephone = "0845679123",
@@ -22,9 +21,10 @@ namespace SkillMatrix.DataAccess.Seeds
                        JobTitle = "Developer",
                        DepartmentId = 2,
                        TeamId = 1,
-                   }, new User
+                   },
+                new User
                    {
-                       Id = "2",
+                       Id = "96fa3c64-5640-4ee9-a37a-bdacb8c43005",
                        FirstName = "Nico",
                        SurName = "Marten",
                        Telephone = "0987654321",
@@ -34,9 +34,10 @@ namespace SkillMatrix.DataAccess.Seeds
                        JobTitle = "Software Architect",
                        DepartmentId = 1,
                        TeamId = 1,
-                   }, new User
+                   },
+                new User
                    {
-                       Id = "3",
+                       Id = "e78986c7-9c10-4c87-b639-ba38fc64e10b",
                        FirstName = "Tom",
                        SurName = "Tompson",
                        Telephone = "0123456789",
@@ -46,9 +47,10 @@ namespace SkillMatrix.DataAccess.Seeds
                        JobTitle = "Sailsman",
                        DepartmentId = 1,
                        TeamId = 2,
-                   }, new User
+                   },
+                new User
                    {
-                       Id = 4,
+                       Id = "eb691e66-7037-4827-bf92-561f978acea7",
                        FirstName = "Nancy",
                        SurName = "Mustermann",
                        Telephone = "0125896743",
@@ -58,9 +60,10 @@ namespace SkillMatrix.DataAccess.Seeds
                        JobTitle = "Developer",
                        DepartmentId = 2,
                        TeamId = 2,
-                   }, new User
+                   },
+                new User
                    {
-                       Id = 5,
+                       Id = "d26fba96-da21-43ac-8250-6b42374cc529",
                        FirstName = "Mandy",
                        SurName = "Meyer",
                        Telephone = "0128764539",
@@ -70,9 +73,10 @@ namespace SkillMatrix.DataAccess.Seeds
                        JobTitle = "Developer",
                        DepartmentId = 2,
                        TeamId = 1,
-                   }, new User
+                   },
+                new User
                    {
-                       Id = 6,
+                       Id = "03902199-fb13-4f7d-b4d7-138bc849977f",
                        FirstName = "Max",
                        SurName = "Mustermann",
                        Telephone = "017463589",
@@ -82,9 +86,10 @@ namespace SkillMatrix.DataAccess.Seeds
                        JobTitle = "Sailsman",
                        DepartmentId = 2,
                        TeamId = 3,
-                   }, new User
+                   },
+                new User
                    {
-                       Id = 7,
+                       Id = "90db1068-f144-4d86-9851-7473ff53d6e4",
                        FirstName = "C Montgomery",
                        SurName = "Burns",
                        Telephone = "0125634789",
@@ -94,9 +99,10 @@ namespace SkillMatrix.DataAccess.Seeds
                        JobTitle = "CEO",
                        DepartmentId = 2,
                        TeamId = 3,
-                   }, new User
+                   },
+                new User
                    {
-                       Id = 8,
+                       Id = "9f39b3a5-9e09-465d-a63d-34c1eac909c4",
                        FirstName = "Tim",
                        SurName = "Ford",
                        Telephone = "0123548697",
@@ -106,9 +112,10 @@ namespace SkillMatrix.DataAccess.Seeds
                        JobTitle = "Developer",
                        DepartmentId = 2,
                        TeamId = 3,
-                   }, new User
+                   },
+                new User
                    {
-                       Id = 9,
+                       Id = "5a248924-7e9a-4de5-ad8b-86fc25163458",
                        FirstName = "Susi",
                        SurName = "Muller",
                        Telephone = "0321456789",
@@ -118,9 +125,10 @@ namespace SkillMatrix.DataAccess.Seeds
                        JobTitle = "Marketing Expert",
                        DepartmentId = 3,
                        TeamId = 3,
-                   }, new User
+                   },
+                new User
                    {
-                       Id = 10,
+                       Id = "85947f68-31e2-441c-983d-5b8df633835f",
                        FirstName = "Mary",
                        SurName = "Meier",
                        Telephone = "0213456789",
@@ -131,9 +139,13 @@ namespace SkillMatrix.DataAccess.Seeds
                        DepartmentId = 3,
                        TeamId = 3,
                    }
-             );
-        }
+            };
 
+        public static void SeedUsers(this ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>()
+               .HasData(defaultUsers);
+        }
     }
 }
 

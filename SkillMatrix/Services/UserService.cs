@@ -20,7 +20,7 @@ namespace SkillMatrix.Application.Services
         Task PutUserAsync(FormUserDTO user);
         Task DeleteUserAsync(string id);
     }
-    
+
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
@@ -49,17 +49,17 @@ namespace SkillMatrix.Application.Services
         public async Task PostUserAsync(FormUserDTO user, string password)
         {
             User userAdd = _mapper.Map<User>(user);
-      
-            await _userRepository.PostUserAsync(userAdd);
+
+            await _userRepository.CreateUserAsync(userAdd, password);
         }
 
         public async Task PutUserAsync(FormUserDTO user)
-        {   
+        {
             var updatedUser = await _userRepository.GetUserAsync(user.Id);
 
             updatedUser = _mapper.Map<User>(user);
 
-            await _userRepository.PutUserAsync(updatedUser);
+            await _userRepository.UpdateUserAsync(updatedUser);
         }
 
         public async Task DeleteUserAsync(string id)
