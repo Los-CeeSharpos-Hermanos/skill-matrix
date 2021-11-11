@@ -45,7 +45,7 @@ export class UserService {
       return of(this.initializeUser());
     }
 
-    const url = `${this.userUrl}/${id}`;
+    const url = `${this.baseUri}/${id}`;
     return this.http.get<IUser>(url)
       .pipe(
         catchError(this.handleError)
