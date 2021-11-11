@@ -12,14 +12,14 @@ namespace SkillMatrix.Application.Controllers
     [AllowAnonymous]
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthController : MainController
+    public class AuthenticationController : MainController
     {
         private readonly SignInManager<User> _signInManager;
         private readonly IAuthenticationService _authenticationService;
         private readonly ITokenService _tokenService;
 
 
-        public AuthController(
+        public AuthenticationController(
             SignInManager<User> signInManager,
             IAuthenticationService authenticationService,
             ITokenService tokenService)

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RoutingService } from 'src/app/shared/services/routing.service';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
   signInForm: FormGroup;
   registerNewUserForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private routingService: RoutingService) { }
+  constructor(private fb: FormBuilder, private routingService: RoutingService, private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
 
@@ -32,7 +33,12 @@ export class LoginComponent implements OnInit {
 
 
   SignIn() {
-    this.routingService.goTo('skillmatrix/users');
+    const { email, password } = this.signInForm.value;
+
+    if (email && password) {
+      this.authenticationService.login(email, password)
+        .subscribe(() => this.routingService.goTo('skillmatrix/users'));
+    }
   }
 
   checkPasswords(group: FormGroup) {

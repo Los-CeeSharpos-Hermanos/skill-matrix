@@ -40,13 +40,13 @@ namespace SkillMatrix.Application.DTOs.Identity
     {
         public string AccessToken { get; set; }
         public double ExpiresIn { get; set; }
-        public UserToken UserToken { get; set; }
+        public UserInfo UserToken { get; set; }
 
     }
 
-    public class UserToken
+    public class UserInfo
     {
-        private UserToken(string id, string email, IEnumerable<UserClaim> claims)
+        private UserInfo(string id, string email, IEnumerable<UserClaim> claims)
         {
             Id = id;
             Email = email;
@@ -57,10 +57,10 @@ namespace SkillMatrix.Application.DTOs.Identity
         public string Email { get; set; }
         public IEnumerable<UserClaim> Claims { get; set; }
 
-        public static UserToken Create(User user, IList<Claim> claims)
+        public static UserInfo Create(User user, IList<Claim> claims)
         {
             var userClaims = claims.Select(c => new UserClaim { Type = c.Type, Value = c.Value });
-            return new UserToken(user.Id, user.Email, userClaims);
+            return new UserInfo(user.Id, user.Email, userClaims);
 
         }
 

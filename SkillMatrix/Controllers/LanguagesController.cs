@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SkillMatrix.Application.DTOs;
 using SkillMatrix.Application.Services;
 using SkillMatrix.Domain.Languages.Models;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace SkillMatrix.Application.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class LanguagesController : ControllerBase
