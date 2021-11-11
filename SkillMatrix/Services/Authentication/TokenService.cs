@@ -43,7 +43,7 @@ namespace SkillMatrix.Application.Services.Authentication
             {
                 AccessToken = encodedToken,
                 ExpiresIn = TimeSpan.FromHours(_tokenSettings.ExpirationHours).TotalSeconds,
-                UserToken = UserInfo.Create(user, claims)
+                UserInfo = UserInfo.Create(user, claims)
             };
 
             return response;

@@ -25,9 +25,7 @@ import { UserModule } from './users/user.module';
     AppRoutingModule,
     RouterModule.forRoot([
       { path: '', component: LoginComponent },
-      { path: '**', component: LoginComponent }
-      // { path: '', redirectTo: 'skillmatrix/users', pathMatch: 'full' },
-      // { path: '**', redirectTo: 'skillmatrix/users', pathMatch: 'full' }
+      { path: '**', component: LoginComponent },
     ]),
     SharedModule,
     LanguageModule,
@@ -47,7 +45,6 @@ import { UserModule } from './users/user.module';
       useClass: AuthenticationInterceptor,
       multi: true
     }
-
   ],
   bootstrap: [AppComponent]
 })

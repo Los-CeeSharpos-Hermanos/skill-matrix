@@ -6,10 +6,11 @@ export interface IAuthUser {
 export interface IAuthToken {
     accessToken: string;
     expiresIn: string;
-    userinfo: IUserInfo;
+    userInfo: IUserInfo;
 }
 
 export interface IUserInfo {
+    id: string;
     email: string;
     claims: IClaim[];
 }

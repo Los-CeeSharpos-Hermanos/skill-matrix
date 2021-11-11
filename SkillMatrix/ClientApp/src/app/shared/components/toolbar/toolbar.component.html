@@ -1,7 +1,7 @@
 <mat-toolbar color="primary" class="mat-elevation-z8 mat-elevation-z8 toolbar">
   <mat-toolbar-row>
     <div class="col-sm">
-      <div class='adminOnly'>
+      <div class='adminOnly' *ngIf="isLoggedIn">
 
         <button mat-button color="basic" aria-label="Example icon button with a home icon"
           (click)="goTo('skillmatrix/skills')">
@@ -19,10 +19,17 @@
 
       </div>
     </div>
-    <div class="col-sm d-flex justify-content-end">
-      <button mat-button color="basic" (click)="goTo('skillmatrix/users')">Home</button>
 
-      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <div class="col-sm d-flex justify-content-center">
+      <h1>Skill Matrix</h1>
+    </div>
+
+    <div class="col-sm d-flex justify-content-end">
+
+      <button mat-button color="basic" (click)="goToHomePage()">Home</button>
+
+      <button *ngIf="isLoggedIn" mat-icon-button [matMenuTriggerFor]="menu"
+        aria-label="Example icon-button with a menu">
         <mat-icon>manage_accounts</mat-icon>
       </button>
 

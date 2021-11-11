@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
 import { Moment } from 'moment';
+import { BehaviorSubject } from 'rxjs';
 import { shareReplay, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { IAuthToken } from './auth-user';
@@ -13,6 +14,7 @@ const baseUri = `${environment.apiEndpoint}/${baseUrl}`;
   providedIn: 'root'
 })
 export class AuthenticationService {
+  public isLoggedUser = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient) { }
 
@@ -23,6 +25,7 @@ export class AuthenticationService {
       tap({
         next: res => {
           this.setSession(res);
+          this.isLoggedUser.next(this.isLoggedIn());
         }
       }),
       shareReplay(1)
@@ -32,17 +35,19 @@ export class AuthenticationService {
 
   logout() {
 
-    const logoutRoute = `${baseUri}/logout`;
-
-    this.http.get(logoutRoute).pipe(shareReplay(1));
-
     localStorage.removeItem("id_token");
     localStorage.removeItem("expires_at");
+    localStorage.removeItem("user_id");
+
+    this.isLoggedUser.next(this.isLoggedIn());
+
   }
 
   isLoggedIn(): boolean {
     const expirationTime = this.getExpiration();
-    return !!expirationTime ?? moment().isBefore(expirationTime);
+    const isTokenExpired = expirationTime == null ? false : moment().isBefore(expirationTime);
+    const token = localStorage.getItem('id_token');
+    return !!token && isTokenExpired;
   }
 
   isLoggedOut(): boolean {
@@ -51,9 +56,11 @@ export class AuthenticationService {
 
   private setSession(authResult: IAuthToken) {
     const expiresAt = moment().add(authResult.expiresIn, 'second');
+    console.log(authResult);
 
     localStorage.setItem('id_token', authResult.accessToken);
     localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()));
+    localStorage.setItem("user_id", authResult.userInfo.id);
   }
 
   getExpiration(): Moment | null {

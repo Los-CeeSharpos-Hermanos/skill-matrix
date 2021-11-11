@@ -40,7 +40,7 @@ namespace SkillMatrix.Application.DTOs.Identity
     {
         public string AccessToken { get; set; }
         public double ExpiresIn { get; set; }
-        public UserInfo UserToken { get; set; }
+        public UserInfo UserInfo { get; set; }
 
     }
 
