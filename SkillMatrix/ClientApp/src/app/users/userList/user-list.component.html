@@ -132,6 +132,9 @@
 
                 <div class='mt-2 col-sm-2'>
                   <p>Actions</p>
+                  <button mat-icon-button color="default" aria-label="Delete Skill" (click)="sendMail(user.email)">
+                    <mat-icon>mail</mat-icon>
+                  </button>
                   <button mat-icon-button color="default" aria-label="Delete Skill" (click)="hideUser()">
                     <mat-icon>{{isHidden ? 'visibility_off' : 'visibility' }}</mat-icon>
                   </button>

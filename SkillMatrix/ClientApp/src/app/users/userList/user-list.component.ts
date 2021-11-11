@@ -8,8 +8,6 @@ import { ILanguage } from 'src/app/admin/languages/language';
 import { LanguageService } from 'src/app/admin/languages/services/language.service';
 import { SkillService } from 'src/app/admin/skills/services/skill.service';
 import { Skill } from 'src/app/admin/skills/skill';
-import { users } from 'src/app/shared/database/members/members-data';
-import { skills } from 'src/app/shared/database/skills/skills-data';
 import { RoutingService } from 'src/app/shared/services/routing.service';
 import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
 import { environment } from 'src/environments/environment';
@@ -266,6 +264,11 @@ export class UserListComponent implements OnInit {
       }
     }
     this.setupDataSource(usersFiltered);
+  }
+
+  sendMail (email: string) {
+    var mail = 'mailto:' + email + '?subject=I found you on SkillMatrix&body=Send via SkillMatrix';
+    window.open(mail);
   }
 }
 
