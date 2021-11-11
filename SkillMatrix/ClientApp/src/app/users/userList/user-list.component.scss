@@ -76,5 +76,20 @@ tr.example-element-row:not(.example-expanded-row):active {
   margin-top: 50px;
 }
 
+.intermediate {
+  background-color: #a8a500 !important;
+}
+
+.advanced {
+  background-color: #339b4d !important;
+}
+
+.beginner {
+  background-color: #FF5252 !important;
+}
+
+.withoutFilter {
+  background-color: gray !important;
+}
 
 

@@ -31,15 +31,22 @@
             </mat-form-field>
           </div>
           <div class="col">
-            <app-add-button (click)="addSkillFilter()">Add Filter</app-add-button>
+            <app-add-button (click)="addSkillFilter(0)">Add Filter</app-add-button>
           </div>
             <div class="col-8">
                 <mat-chip-list>
-                  <mat-chip *ngFor="let skill of filteredSkills" [removable]="removable" (removed)="removeSkillFilter(skill)">
-                    {{skill}}
+                  <mat-chip *ngFor="let skill of filteredSkills" [ngClass]="getRatingColor(skill.rating)"  [removable]="removable" (removed)="removeSkillFilter(skill)">
+                    {{skill.skillName}}
                     <button matChipRemove *ngIf="removable">
                       <mat-icon>cancel</mat-icon>
                     </button>
+                    <button mat-button [matMenuTriggerFor]="menu"><mat-icon>edit</mat-icon></button>
+                      <mat-menu #menu="matMenu">
+                        <button mat-menu-item (click)="changeSkillFilter(0, skill)">all</button>
+                        <button mat-menu-item (click)="changeSkillFilter(1, skill)">beginner</button>
+                        <button mat-menu-item (click)="changeSkillFilter(2, skill)">intermediate</button>
+                        <button mat-menu-item (click)="changeSkillFilter(3, skill)">advanced</button>
+                      </mat-menu>
                   </mat-chip>
                 </mat-chip-list>
               </div>
@@ -54,15 +61,22 @@
             </mat-form-field>
           </div>
           <div class="col">
-            <app-add-button (click)="addLanguageFilter()">Add Filter</app-add-button>
+            <app-add-button (click)="addLanguageFilter(0)">Add Filter</app-add-button>
           </div>
               <div class="col-8">
                 <mat-chip-list>
-                  <mat-chip *ngFor="let language of filteredLanguages" [removable]="removable" (removed)="removeLanguageFilter(language)">
-                    {{language}}
+                  <mat-chip *ngFor="let language of filteredLanguages" [ngClass]="getRatingColor(language.rating)"  [removable]="removable" (removed)="removeLanguageFilter(language)">
+                    {{language.language}}
                     <button matChipRemove *ngIf="removable">
                       <mat-icon>cancel</mat-icon>
                     </button>
+                    <button mat-button [matMenuTriggerFor]="menu"><mat-icon>edit</mat-icon></button>
+                      <mat-menu #menu="matMenu">
+                        <button mat-menu-item (click)="changeLanguageFilter(0, language)">all</button>
+                        <button mat-menu-item (click)="changeLanguageFilter(1, language)">beginner</button>
+                        <button mat-menu-item (click)="changeLanguageFilter(2, language)">intermediate</button>
+                        <button mat-menu-item (click)="changeLanguageFilter(3, language)">advanced</button>
+                      </mat-menu>
                   </mat-chip>
                 </mat-chip-list>
               </div>

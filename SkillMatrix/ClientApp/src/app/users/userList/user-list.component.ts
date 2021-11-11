@@ -11,7 +11,7 @@ import { Skill } from 'src/app/admin/skills/skill';
 import { RoutingService } from 'src/app/shared/services/routing.service';
 import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
 import { environment } from 'src/environments/environment';
-import { IUser, IUserHability, IUserLanguage, IUserSkill } from '../user';
+import { IUser, IUserHability, IUserLanguage, IUserSkill, Rating } from '../user';
 import { UserService } from '../user.service';
 import { ColumnStyle, IExpandableTableColumn } from './expandable-table-column';
 
@@ -44,10 +44,12 @@ export class UserListComponent implements OnInit {
   allLanguages: ILanguage[] = [];
   filterForm: FormGroup;
   removable = true;
-
-  filteredSkills: string[] = [];
-  filteredLanguages: string[] = [];
+  ratingClass: string = "";
+  filteredSkills: IUserSkill[] = [];
+  filteredLanguages: IUserLanguage[] = [];
   panelOpenState = false;
+  
+    is: string[] = [];
 
   profilePicPlaceholder = environment.profilePic;
   dataSource: MatTableDataSource<IUser>;
@@ -202,68 +204,97 @@ export class UserListComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  addSkillFilter() {
-    if(!this.filteredSkills.includes(this.filterForm.value.filterSkill) && this.filterForm.value.filterSkill != "") {
-      this.filteredSkills.push(this.filterForm.value.filterSkill);
+  addSkillFilter(rating: number) {
+    if(!this.filteredSkills.includes({skillName: this.filterForm.value.filterSkill, skillCategory: "something", rating: 0}) && this.filterForm.value.filterSkill != "") {
+      this.filteredSkills.push({skillName: this.filterForm.value.filterSkill, skillCategory: "something", rating: 0});
     }
-    this.skillFilter(this.usersFiltered, this.filteredSkills);
+    this.abilityFilter();
   }
 
-  removeLanguageFilter(language: String) {
-      this.filteredLanguages = this.filteredLanguages.filter(l => l !== language);
-      this.languageFilter(this.usersFiltered, this.filteredLanguages);
-  }
-
-  addLanguageFilter() {
-    if(!this.filteredLanguages.includes(this.filterForm.value.filterLanguage) && this.filterForm.value.filterLanguage != "") {
-      this.filteredLanguages.push(this.filterForm.value.filterLanguage);
+  addLanguageFilter(rating: number) {
+    if(!this.filteredLanguages.includes({language: this.filterForm.value.filterLanguage, rating: 0}) && this.filterForm.value.filterLanguage !== "") {
+      this.filteredLanguages.push({language: this.filterForm.value.filterLanguage, rating: 0});
     }
-    this.languageFilter(this.usersFiltered, this.filteredLanguages);
+    this.abilityFilter();
   }
 
-  removeSkillFilter(skill: String) {
+  changeSkillFilter(rating: number, skill: IUserSkill) {
+    skill.rating = rating;
+    this.abilityFilter();
+  }
+
+  changeLanguageFilter(rating: number, language: IUserLanguage) {
+    language.rating = rating;
+    this.abilityFilter();
+  }
+
+  removeSkillFilter(skill: IUserSkill) {
     this.filteredSkills = this.filteredSkills.filter(s => s !== skill);
-    this.skillFilter(this.usersFiltered, this.filteredSkills);
-  
+    this.abilityFilter();
   }
 
-  skillFilter(usersFiltered: IUser[], filteredSkills: string[] ) {
-    var isIn = false;
-    for(let k=0;k<filteredSkills.length;k++) {
-      for(let i=0;i<this.users.length;i++) {
-        for(let j=0;j<this.users[i].skills.length;j++) {
-          if(this.users[i].skills[j].skillName === filteredSkills[k]) {
-            isIn=true;
-          }
-        }
-        if(!isIn) {
-          usersFiltered = usersFiltered.filter(u => u !== this.users[i])
-        } else {
-          isIn = false;
-        }
-      }
-    }
-    this.setupDataSource(usersFiltered);
+  removeLanguageFilter(language: IUserLanguage) {
+      this.filteredLanguages = this.filteredLanguages.filter(l => l !== language);
+      this.abilityFilter();
   }
 
-  languageFilter(usersFiltered: IUser[], filteredLanguages: string[] ) {
-    console.log(filteredLanguages);
-    var isIn = false;
-    for(let k=0;k<filteredLanguages.length;k++) {
+  abilityFilter() {
+    this.usersFiltered = [];
+    for(let k=0;k<this.filteredLanguages.length;k++) {
       for(let i=0;i<this.users.length;i++) {
         for(let j=0;j<this.users[i].languages.length;j++) {
-          if(this.users[i].languages[j].language.toLowerCase() === filteredLanguages[k].toLowerCase()) {
-            isIn=true;
+          if(this.users[i].languages[j].language.toLowerCase() === this.filteredLanguages[k].language.toLowerCase() && (this.users[i].languages[j].rating === this.filteredLanguages[k].rating || this.filteredLanguages[k].rating === 0) && !this.usersFiltered.includes(this.users[i])) {
+            this.usersFiltered.push(this.users[i]);
           }
-        }
-        if(!isIn) {
-          usersFiltered = usersFiltered.filter(u => u !== this.users[i])
-        } else {
-          isIn = false;
         }
       }
     }
-    this.setupDataSource(usersFiltered);
+    for(let k=0;k<this.filteredSkills.length;k++) {
+      for(let i=0;i<this.users.length;i++) {
+        for(let j=0;j<this.users[i].skills.length;j++) {
+          if(this.users[i].skills[j].skillName.toLowerCase() === this.filteredSkills[k].skillName.toLowerCase() && (this.users[i].skills[j].rating === this.filteredSkills[k].rating || this.filteredSkills[k].rating === 0) && !this.usersFiltered.includes(this.users[i])) {
+            this.usersFiltered.push(this.users[i]);
+          }
+        }
+      }
+    }
+    this.setupDataSource(this.usersFiltered);
+  }
+
+  abilityFilter2() {
+    var isIn = false;
+    var countSk = 0;
+    var countLa = 0;
+    this.usersFiltered = [];
+    for(let i=0; i<this.users.length;i++) {
+      for(let k=0;k<this.filteredLanguages.length;k++) {
+        for(let j=0;j<this.users[i].languages.length;j++) {
+          if(this.users[i].languages[j].language.toLowerCase() === this.filteredLanguages[k].language.toLowerCase() && (this.users[i].languages[j].rating === this.filteredLanguages[k].rating || this.filteredLanguages[k].rating === 0)) {
+            countLa++;
+          }
+        }
+      }
+      for(let k=0;k<this.filteredSkills.length;k++) {
+        for(let j=0;j<this.users[i].skills.length;j++) {
+          if(this.users[i].skills[j].skillName.toLowerCase() === this.filteredSkills[k].skillName.toLowerCase() && (this.users[i].skills[j].rating === this.filteredSkills[k].rating || this.filteredSkills[k].rating === 0)) {
+            countSk++;
+          }
+        }
+      }
+      if(countSk === this.filteredSkills.length && countLa === this.filteredLanguages.length) {
+        this.usersFiltered.push(this.users[i]);
+      }
+    }
+    this.setupDataSource(this.usersFiltered); 
+  }
+
+  getRatingColor(rating: number): string {
+    switch(rating) {
+      case 1: return "beginner"; 
+      case 2: return "intermediate";
+      case 3: return "advanced";
+      default: return "withoutFilter";
+    }
   }
 
   sendMail (email: string) {
