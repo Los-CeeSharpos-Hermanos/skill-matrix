@@ -224,7 +224,7 @@ export class UserEditComponent implements OnInit {
         default: break; 
       } 
     }
-    }
+  }
 
   private loadAll() {
     this.languageService.getLanguages().subscribe({
