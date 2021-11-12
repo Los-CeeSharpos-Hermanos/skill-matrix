@@ -1,13 +1,9 @@
 <app-submenu pageTitle="Member List"></app-submenu>
 <div class="container">
   <div class='row align-middle'>
-
-    <div class='col-sm-1'>
-      <app-add-button (click)="goToAddUser(0)"></app-add-button>
-    </div>
     <div class='col-md'>
       <mat-form-field appearance="standard">
-        <mat-label>User Name</mat-label>
+        <mat-label>Search for User</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="John Doe" #input>
       </mat-form-field>
     </div>

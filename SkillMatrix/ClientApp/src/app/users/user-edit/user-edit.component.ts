@@ -129,8 +129,10 @@ export class UserEditComponent implements OnInit {
       phone: '',
       language: '',
       languageproficiency: '',
+      languageproficiencyChange: '',
       skill: '',
-      skillproficiency: ''
+      skillproficiency: '',
+      skillproficiencyChange: ''
     });
   }
 
@@ -174,7 +176,15 @@ export class UserEditComponent implements OnInit {
   }
 
   changeSkill(skill: IUserSkill): void {
-
+    if(this.profileForm.value.skillproficiencyChange != "") {
+      var index = this.user.skills.lastIndexOf(skill);
+      switch(this.profileForm.value.skillproficiencyChange) {
+        case "beginner": this.user.skills[index].rating = 1; break;
+        case "intermediate": this.user.skills[index].rating = 2; break;
+        case "advanced": this.user.skills[index].rating = 3; break;
+        default: break; 
+      } 
+    }
   }
 
   addLanguage(): void {
@@ -204,9 +214,17 @@ export class UserEditComponent implements OnInit {
     this.user.languages = this.user.languages.filter(l => l !== language);
   }
 
-  changeLanguage(language: IUserLanguage, proficiency: number): void {
-
-  }
+  changeLanguage(language: IUserLanguage): void {
+    if(this.profileForm.value.languageproficiencyChange != "") {
+      var index = this.user.languages.lastIndexOf(language);
+      switch(this.profileForm.value.languageproficiencyChange) {
+        case "beginner": this.user.languages[index].rating = 1; break;
+        case "intermediate": this.user.languages[index].rating = 2; break;
+        case "advanced": this.user.languages[index].rating = 3; break;
+        default: break; 
+      } 
+    }
+    }
 
   private loadAll() {
     this.languageService.getLanguages().subscribe({

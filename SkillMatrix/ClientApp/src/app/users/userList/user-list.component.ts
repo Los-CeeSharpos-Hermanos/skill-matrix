@@ -246,18 +246,13 @@ export class UserListComponent implements OnInit {
     for(let i=0; i<this.users.length;i++) {
       for(let j=0; j<this.users[i].languages.length;j++) {
         for(let k=0;k<this.filteredLanguages.length;k++) {
-          console.log(this.filteredLanguages[k]);
-          console.log(this.users[i].languages[j]);
           if(this.filteredLanguages[k].language.toLowerCase() === this.users[i].languages[j].language.toLowerCase() && this.users[i].languages[j].rating >= this.filteredLanguages[k].rating) {
             countLanguages++;
           }
         }
       }
-
       for(let j=0; j<this.users[i].skills.length;j++) {
         for(let k=0;k<this.filteredSkills.length;k++) {
-          console.log(this.filteredSkills[k]);
-          console.log(this.users[i].skills[j]);
           if(this.filteredSkills[k].skillName.toLowerCase() === this.users[i].skills[j].skillName.toLowerCase() && this.users[i].skills[j].rating >= this.filteredSkills[k].rating) {
             countSkills++;
           }
