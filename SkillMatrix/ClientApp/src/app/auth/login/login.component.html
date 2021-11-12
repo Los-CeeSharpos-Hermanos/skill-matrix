@@ -1,0 +1,63 @@
+<app-submenu [pageTitle]=pageTitle></app-submenu>
+<div class='container edit-item'>
+    <div class='row'>
+        <div class="d-flex justify-content-center">
+            <mat-card>
+                <form [formGroup]="signInForm">
+                    <div class='row d-flex justify-content-center'>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Email</mat-label>
+                            <input formControlName="email" matInput>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Password</mat-label>
+                            <input type="password" formControlName="password" matInput>
+                        </mat-form-field>
+
+                        <div class="row justify-content-md-center">
+                            <div class="col-sm-6 d-flex justify-content-center">
+                                <button mat-raised-button color="primary" (click)="SignIn()">Sign In</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+
+                <div class="hr-sect">No Account? No problems, sign up!</div>
+
+
+                <form [formGroup]="registerNewUserForm">
+                    <div class='row d-flex justify-content-center'>
+                        <mat-form-field appearance="fill">
+                            <mat-label>First Name</mat-label>
+                            <input formControlName="firstName" matInput>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Surname</mat-label>
+                            <input formControlName="surName" matInput>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Email</mat-label>
+                            <input formControlName="email" matInput>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Password</mat-label>
+                            <input type="password" formControlName="password" matInput>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="fill">
+                            <mat-label>Confirm Password</mat-label>
+                            <input type="password" formControlName="passwordConfirmation" matInput>
+                        </mat-form-field>
+
+                        <div class="row justify-content-md-center">
+                            <div class="col-sm-6 d-flex justify-content-center">
+                                <button mat-raised-button color="accent" (click)="SignUp()">Sign Up!</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </mat-card>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SkillMatrix.Application.DTOs;
 using SkillMatrix.Application.Services;
 using SkillMatrix.Domain.Users.Models;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace SkillMatrix.Application.Controllers.Users
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class DepartmentsController : ControllerBase

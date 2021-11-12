@@ -15,11 +15,12 @@ namespace SkillMatrix.Application.Services
     public interface IUserService
     {
         Task<List<FormUserDTO>> GetUsersAsync();
-        Task<FormUserDTO> GetUserAsync(long id);
-        Task PostUserAsync(FormUserDTO user);
+        Task<FormUserDTO> GetUserAsync(string id);
+        Task PostUserAsync(FormUserDTO user, string password);
         Task PutUserAsync(FormUserDTO user);
-        Task DeleteUserAsync(long id);
+        Task DeleteUserAsync(string id);
     }
+
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
@@ -38,30 +39,30 @@ namespace SkillMatrix.Application.Services
             return _mapper.Map<List<FormUserDTO>>(users);
         }
 
-        public async Task<FormUserDTO> GetUserAsync(long id)
+        public async Task<FormUserDTO> GetUserAsync(string id)
         {
             var user = await _userRepository.GetUserAsync(id);
 
             return _mapper.Map<FormUserDTO>(user);
         }
 
-        public async Task PostUserAsync(FormUserDTO user)
+        public async Task PostUserAsync(FormUserDTO user, string password)
         {
             User userAdd = _mapper.Map<User>(user);
-      
-            await _userRepository.PostUserAsync(userAdd);
+
+            await _userRepository.CreateUserAsync(userAdd, password);
         }
 
         public async Task PutUserAsync(FormUserDTO user)
-        {   
+        {
             var updatedUser = await _userRepository.GetUserAsync(user.Id);
 
             updatedUser = _mapper.Map<User>(user);
 
-            await _userRepository.PutUserAsync(updatedUser);
+            await _userRepository.UpdateUserAsync(updatedUser);
         }
-            
-        public async Task DeleteUserAsync(long id)
+
+        public async Task DeleteUserAsync(string id)
         {
             await _userRepository.DeleteUserAsync(id);
         }

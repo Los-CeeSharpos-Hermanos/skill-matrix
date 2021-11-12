@@ -3,8 +3,8 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { UserEditComponent } from './user-edit/user-edit.component';
-import { UserListComponent } from './userList/user-list.component';
 import { UserShowComponent } from './user-show/user-show.component';
+import { UserListComponent } from './userList/user-list.component';
 
 
 @NgModule({
@@ -16,7 +16,7 @@ import { UserShowComponent } from './user-show/user-show.component';
   imports: [
     RouterModule.forChild([
       { path: 'skillmatrix/users', component: UserListComponent },
-      { path: 'skillmatrix/users/profile', component: UserShowComponent},
+      { path: 'skillmatrix/users/profile', component: UserShowComponent },
       { path: 'skillmatrix/users/:id/add', component: UserEditComponent, pathMatch: 'full' },
       { path: 'skillmatrix/users/:id/edit', component: UserEditComponent, pathMatch: 'full' }
     ]),

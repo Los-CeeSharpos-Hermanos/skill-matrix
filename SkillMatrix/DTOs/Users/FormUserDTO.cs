@@ -7,7 +7,7 @@ namespace SkillMatrix.Application.DTOs.Users
 {
     public class FormUserDTO
     {
-        public long Id { get; set; }
+        public string Id { get; set; }
         public string SurName { get; set; }
         public string FirstName { get; set; }
         public string Telephone { get; set; }

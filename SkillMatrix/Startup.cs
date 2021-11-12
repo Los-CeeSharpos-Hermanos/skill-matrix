@@ -8,12 +8,8 @@ using Microsoft.OpenApi.Models;
 using SkillMatrix.Application.Mappers;
 using SkillMatrix.Application.Services;
 using SkillMatrix.DataAccess;
-using SkillMatrix.DataAccess.Repositories.Skills;
-using SkillMatrix.DataAccess.Repositories.Languages;
-using SkillMatrix.Domain.Languages.Repositories;
-using SkillMatrix.Domain.Skills.Repositories;
-using SkillMatrix.DataAccess.Repositories.Users;
-using SkillMatrix.Domain.Users.Repositories;
+using SkillMatrix.DataAccess.Infrastructures;
+using SkillMatrix.Application.Services.Authentication;
 
 namespace SkillMatrix.Application
 {
@@ -29,28 +25,24 @@ namespace SkillMatrix.Application
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddTransient<ApplicationDBContext>();
+            DataAccessConfig.Registry(services, Configuration);
+
 
             services.AddAutoMapper(typeof(ApplicationMapperProfile));
 
-            services.AddScoped<ISkillRepository, SkillRepository>();
             services.AddScoped<ISkillService, SkillService>();
 
             services.AddScoped<ISkillCategoryService, SkillCategoryService>();
-            services.AddScoped<ISkillCategoryRepository, SkillCategoryRepository>();
 
-            services.AddScoped<ILanguageRepository, LanguageRepository>();
             services.AddScoped<ILanguageService, LanguageService>();
 
             services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IUserRepository, UserRepository>();
 
             services.AddScoped<ITeamService, TeamService>();
-            services.AddScoped<ITeamRepository, TeamRepository>();
 
             services.AddScoped<IDepartmentService, DepartmentService>();
-            services.AddScoped<IDepartmentRepository, DepartmentRepository>();
-
+            services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IAuthenticationService, AuthenticationService>();
 
             services.AddControllersWithViews();
 
@@ -59,9 +51,20 @@ namespace SkillMatrix.Application
                 configuration.RootPath = "ClientApp/dist";
             });
 
+            services.ConfigureAuthentication(Configuration);
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Skill Matrix API", Version = "v1" });
+                c.OperationFilter<AddAuthHeaderOperationFilter>();
+                c.AddSecurityDefinition("bearer", new OpenApiSecurityScheme
+                {
+                    Description = "`Token only!!!` - without `Bearer_` prefix",
+                    Type = SecuritySchemeType.Http,
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Scheme = "bearer"
+                });
             });
         }
 
@@ -94,6 +97,9 @@ namespace SkillMatrix.Application
 
             app.UseRouting();
 
+            app.UseAuthentication();
+            app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
@@ -106,6 +112,7 @@ namespace SkillMatrix.Application
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("v1/swagger.json", "Skill Matrix API V1");
+
             });
 
             app.UseSpa(spa =>
