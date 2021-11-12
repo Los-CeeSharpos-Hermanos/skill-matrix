@@ -32,8 +32,6 @@ export class UserService {
     return this.http.put<IUser>(url, user, { headers: this.headers });
   }
 
-
-
   getUser(id: string | null): Observable<IUser> {
     if (id == "0") {
       return of(this.initializeUser());

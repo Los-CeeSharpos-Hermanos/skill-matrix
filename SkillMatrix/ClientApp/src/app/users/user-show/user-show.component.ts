@@ -12,11 +12,11 @@ import { UserService } from '../user.service';
   styleUrls: ['./user-show.component.scss']
 })
 export class UserShowComponent implements OnInit {
-  id:string | null;
+  id: string | null;
   errorMessage: string;
 
   currentUser: IUser;
-  
+
   constructor(
     private route: ActivatedRoute,
     private routingService: RoutingService,
@@ -25,7 +25,7 @@ export class UserShowComponent implements OnInit {
     private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
-    this.id= this.authenticationService.getLoggedUser();
+    this.id = this.authenticationService.getLoggedUser();
     this.getUser();
   }
 
@@ -36,19 +36,8 @@ export class UserShowComponent implements OnInit {
   getUser(): void {
     this.userService.getUser(this.id)
       .subscribe({
-        next: (user: IUser) => this.displayUser(user),
+        next: (user: IUser) => this.currentUser = user,
         error: err => this.errorMessage = err
       });
   }
-
-  displayUser(user: IUser): void {
-    this.currentUser= user;
-    console.log(JSON.stringify(user));
-    if (this.currentUser.id === "0") {
-      console.log("error wrong id");
-    
-    } 
-    
-  }
-
 }

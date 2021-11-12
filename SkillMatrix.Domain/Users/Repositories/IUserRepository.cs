@@ -10,7 +10,7 @@ namespace SkillMatrix.Domain.Users.Repositories
         Task<List<User>> GetUsersAsync();
         Task<User> GetUserAsync(string id);
         Task<IdentityResult> CreateUserAsync(User user, string password);
-        Task<int> UpdateUserAsync(User user);
+        Task<IdentityResult> UpdateUserAsync(User user);
         Task<IdentityResult> DeleteUserAsync(string id);
     }
 }

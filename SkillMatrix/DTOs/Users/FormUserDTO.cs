@@ -12,6 +12,7 @@ namespace SkillMatrix.Application.DTOs.Users
         public string FirstName { get; set; }
         public string Telephone { get; set; }
         public string Email { get; set; }
+        public string UserName { get; set; }
         public string Location { get; set; }
         public string ImageUrl { get; set; }
         public string JobTitle { get; set; }

@@ -38,11 +38,11 @@ namespace SkillMatrix.DataAccess.Repositories.Users
         {
             return await _userManager.CreateAsync(user, password);
         }
-        
-        public async Task<int> UpdateUserAsync(User user)
+
+        public async Task<IdentityResult> UpdateUserAsync(User user)
         {
             var languageRatings = await _db.LanguageRatings.Where(l => l.UserId == user.Id).ToListAsync();
-            foreach(LanguageRating l in languageRatings)
+            foreach (LanguageRating l in languageRatings)
             {
                 _db.LanguageRatings.Remove(l);
             }
@@ -52,9 +52,10 @@ namespace SkillMatrix.DataAccess.Repositories.Users
             {
                 _db.SkillRatings.Remove(s);
             }
-           
-            _db.Users.Update(user);
-            return await _db.SaveChangesAsync();
+
+            var testc = await _userManager.UpdateAsync(user);
+
+            return testc;
         }
 
         public async Task<IdentityResult> DeleteUserAsync(string id)

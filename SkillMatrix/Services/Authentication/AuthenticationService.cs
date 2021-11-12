@@ -31,7 +31,7 @@ namespace SkillMatrix.Application.Services.Authentication
                 EmailConfirmed = true,
                 SurName = registerUser.SurName,
                 FirstName = registerUser.FirstName,
-                ImageUrl = "abd"
+                ImageUrl = "../assets/user_placeholder.png"
             };
 
             return await _userManager.CreateAsync(user, registerUser.Password);

@@ -25,7 +25,7 @@ export class AuthenticationService {
       tap({
         next: res => {
           this.setSession(res);
-          this.isLoggedUser.next(this.isLoggedIn());
+          this.isLoggedIn();
         }
       }),
       shareReplay(1)
@@ -61,7 +61,12 @@ export class AuthenticationService {
     const expirationTime = this.getExpiration();
     const isNotTokenExpired = expirationTime == null ? false : moment().isBefore(expirationTime);
     const token = localStorage.getItem('id_token');
-    return !!token && isNotTokenExpired;
+    const userName = localStorage.getItem("user_name");
+    const isLoggedIn = userName && token && isNotTokenExpired ? true : false;
+
+    this.isLoggedUser.next(isLoggedIn);
+
+    return isLoggedIn;
   }
 
   isLoggedOut(): boolean {
@@ -73,6 +78,7 @@ export class AuthenticationService {
     localStorage.setItem('id_token', authResult.accessToken);
     localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()));
     localStorage.setItem("user_id", authResult.userInfo.id);
+    localStorage.setItem("user_name", authResult.userInfo.email);
   }
 
   getExpiration(): Moment | null {
@@ -85,8 +91,8 @@ export class AuthenticationService {
     return null;
   }
 
-  getLoggedUser(){
-   return localStorage.getItem("user_id");
+  getLoggedUser() {
+    return localStorage.getItem("user_id");
   }
 
 }

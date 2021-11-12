@@ -48,8 +48,9 @@ namespace SkillMatrix.Application.Controllers.Users
 
         // PUT api/<UsersController>/5
         [HttpPut("{id}")]
-        public async Task PutUserAsync([FromBody] FormUserDTO user)
+        public async Task PutUserAsync([FromBody] FormUserDTO user, [FromHeader] string userName)
         {
+            user.UserName = userName;
             await _userService.PutUserAsync(user);
         }
 
