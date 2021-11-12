@@ -25,7 +25,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
             console.log('this is server side error');
             errorMsg = `Error Code: ${error.status},  Message: ${error.message}`;
           }
-          console.log(errorMsg);
+          console.log(JSON.stringify(error));
           this.snackBarService.warn("An error has occured during your request. Try again!");
           return throwError(errorMsg);
         })

@@ -19,3 +19,9 @@ export interface IClaim {
     type: string;
     value: string;
 }
+
+export interface IRegisterUser extends IAuthUser {
+    firstName: string;
+    surName: string;
+    passwordConfirmation: string;
+}

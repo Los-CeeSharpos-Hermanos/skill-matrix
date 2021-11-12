@@ -5,7 +5,7 @@ import { Moment } from 'moment';
 import { BehaviorSubject } from 'rxjs';
 import { shareReplay, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { IAuthToken } from './auth-user';
+import { IAuthToken, IRegisterUser } from './auth-user';
 
 const baseUrl = 'api/authentication';
 const baseUri = `${environment.apiEndpoint}/${baseUrl}`;
@@ -43,11 +43,25 @@ export class AuthenticationService {
 
   }
 
+  registerNewUser({ email, password, passwordConfirmation, firstName, surName }: IRegisterUser) {
+    const newAccountRoute = `${baseUri}/new-account`;
+
+    return this.http.post<IAuthToken>(newAccountRoute, { email, password, passwordConfirmation, firstName, surName }).pipe(
+      tap({
+        next: res => {
+          this.setSession(res);
+          this.isLoggedUser.next(this.isLoggedIn());
+        }
+      }),
+      shareReplay(1)
+    );
+  }
+
   isLoggedIn(): boolean {
     const expirationTime = this.getExpiration();
-    const isTokenExpired = expirationTime == null ? false : moment().isBefore(expirationTime);
+    const isNotTokenExpired = expirationTime == null ? false : moment().isBefore(expirationTime);
     const token = localStorage.getItem('id_token');
-    return !!token && isTokenExpired;
+    return !!token && isNotTokenExpired;
   }
 
   isLoggedOut(): boolean {

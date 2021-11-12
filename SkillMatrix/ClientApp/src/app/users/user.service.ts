@@ -26,12 +26,6 @@ export class UserService {
     return this.http.delete<IUser>(url, { headers: this.headers });
   }
 
-  createUser(user: IUser) {
-    const url = `${this.userUrl}`;
-    user.id = 0;
-    return this.http.post<IUser>(url, user, { headers: this.headers });
-  }
-
   updateUser(user: IUser): Observable<IUser> {
     const url = `${this.baseUri}/${user.id}}`;
     console.log(url);

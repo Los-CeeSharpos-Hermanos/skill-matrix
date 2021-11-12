@@ -23,10 +23,11 @@ export class LoginComponent implements OnInit {
     });
 
     this.registerNewUserForm = this.fb.group({
-      name: ['', Validators.required],
+      firstName: ['', Validators.required],
+      surName: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.required],
-      confirmPassword: ['', Validators.required],
+      passwordConfirmation: ['', Validators.required],
     }, { validator: this.checkPasswords });
   }
 
@@ -41,9 +42,18 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  SignUp() {
+    const { email, password, passwordConfirmation, firstName, surName } = this.registerNewUserForm.value;
+
+    if (email && password && passwordConfirmation && firstName && surName) {
+      this.authenticationService.registerNewUser({ email, password, passwordConfirmation, firstName, surName })
+        .subscribe(() => this.routingService.goTo('skillmatrix/users/profile'));
+    }
+  }
+
   checkPasswords(group: FormGroup) {
     let pass = group.controls.password.value;
-    let confirmPass = group.controls.confirmPassword.value;
+    let confirmPass = group.controls.passwordConfirmation.value;
     return pass === confirmPass ? null : { notSame: true };
   }
 

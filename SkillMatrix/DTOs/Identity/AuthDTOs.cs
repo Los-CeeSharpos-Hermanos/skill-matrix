@@ -11,6 +11,12 @@ namespace SkillMatrix.Application.DTOs.Identity
     public class RegisterUser
     {
         [Required(ErrorMessage = "The field {0} is obligatory")]
+        public string SurName { get; set; }
+
+        [Required(ErrorMessage = "The field {0} is obligatory")]
+        public string FirstName { get; set; }
+
+        [Required(ErrorMessage = "The field {0} is obligatory")]
         [EmailAddress(ErrorMessage = "The field {0} is in wrong format")]
         public string Email { get; set; }
 
