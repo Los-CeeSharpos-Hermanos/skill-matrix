@@ -21,12 +21,6 @@ export class SkillService {
 
   constructor(private http: HttpClient) { }
 
-  //HERE
-  //HERE
-  //HERE
-  //HERE
-  //HERE
-
   listSkills(): Observable<Skill[]> {
     return this.http.get<Skill[]>(`${baseUri}`);
   }

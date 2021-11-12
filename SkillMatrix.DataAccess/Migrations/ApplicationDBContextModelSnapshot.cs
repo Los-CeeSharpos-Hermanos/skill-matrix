@@ -19,6 +19,137 @@ namespace SkillMatrix.DataAccess.Migrations
                 .HasAnnotation("ProductVersion", "5.0.11")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RoleId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("RoleId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("AspNetUserTokens");
+                });
+
             modelBuilder.Entity("SkillMatrix.Domain.Languages.Models.Language", b =>
                 {
                     b.Property<long>("Id")
@@ -1882,8 +2013,8 @@ namespace SkillMatrix.DataAccess.Migrations
                     b.Property<string>("Language")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("Rating")
                         .HasColumnType("int");
@@ -1898,127 +2029,115 @@ namespace SkillMatrix.DataAccess.Migrations
                         new
                         {
                             Language = "german",
-                            UserId = 1L,
+                            UserId = "2647ef6e-3a78-4f27-8cd0-7e9478e9e8ef",
                             Rating = 3
                         },
                         new
                         {
                             Language = "english",
-                            UserId = 2L,
+                            UserId = "2647ef6e-3a78-4f27-8cd0-7e9478e9e8ef",
                             Rating = 2
                         },
                         new
                         {
                             Language = "german",
-                            UserId = 2L,
+                            UserId = "e78986c7-9c10-4c87-b639-ba38fc64e10b",
                             Rating = 3
                         },
                         new
                         {
                             Language = "german",
-                            UserId = 3L,
+                            UserId = "eb691e66-7037-4827-bf92-561f978acea7",
                             Rating = 3
                         },
                         new
                         {
                             Language = "english",
-                            UserId = 3L,
+                            UserId = "eb691e66-7037-4827-bf92-561f978acea7",
                             Rating = 3
                         },
                         new
                         {
                             Language = "french",
-                            UserId = 3L,
+                            UserId = "eb691e66-7037-4827-bf92-561f978acea7",
                             Rating = 2
                         },
                         new
                         {
                             Language = "latin",
-                            UserId = 3L,
+                            UserId = "eb691e66-7037-4827-bf92-561f978acea7",
                             Rating = 1
                         },
                         new
                         {
                             Language = "english",
-                            UserId = 4L,
+                            UserId = "d26fba96-da21-43ac-8250-6b42374cc529",
                             Rating = 2
                         },
                         new
                         {
                             Language = "german",
-                            UserId = 4L,
+                            UserId = "d26fba96-da21-43ac-8250-6b42374cc529",
                             Rating = 3
                         },
                         new
                         {
                             Language = "english",
-                            UserId = 5L,
+                            UserId = "03902199-fb13-4f7d-b4d7-138bc849977f",
                             Rating = 2
                         },
                         new
                         {
                             Language = "german",
-                            UserId = 5L,
+                            UserId = "03902199-fb13-4f7d-b4d7-138bc849977f",
                             Rating = 3
                         },
                         new
                         {
                             Language = "english",
-                            UserId = 6L,
+                            UserId = "90db1068-f144-4d86-9851-7473ff53d6e4",
                             Rating = 2
                         },
                         new
                         {
                             Language = "german",
-                            UserId = 6L,
+                            UserId = "90db1068-f144-4d86-9851-7473ff53d6e4",
                             Rating = 3
                         },
                         new
                         {
                             Language = "english",
-                            UserId = 7L,
+                            UserId = "9f39b3a5-9e09-465d-a63d-34c1eac909c4",
                             Rating = 2
                         },
                         new
                         {
                             Language = "german",
-                            UserId = 7L,
+                            UserId = "9f39b3a5-9e09-465d-a63d-34c1eac909c4",
                             Rating = 3
                         },
                         new
                         {
                             Language = "english",
-                            UserId = 8L,
+                            UserId = "5a248924-7e9a-4de5-ad8b-86fc25163458",
                             Rating = 2
                         },
                         new
                         {
                             Language = "german",
-                            UserId = 8L,
+                            UserId = "5a248924-7e9a-4de5-ad8b-86fc25163458",
                             Rating = 3
                         },
                         new
                         {
                             Language = "english",
-                            UserId = 9L,
+                            UserId = "85947f68-31e2-441c-983d-5b8df633835f",
                             Rating = 2
                         },
                         new
                         {
                             Language = "german",
-                            UserId = 9L,
-                            Rating = 3
-                        },
-                        new
-                        {
-                            Language = "english",
-                            UserId = 10L,
-                            Rating = 2
-                        },
-                        new
-                        {
-                            Language = "german",
-                            UserId = 10L,
+                            UserId = "85947f68-31e2-441c-983d-5b8df633835f",
                             Rating = 3
                         });
                 });
@@ -2028,8 +2147,8 @@ namespace SkillMatrix.DataAccess.Migrations
                     b.Property<string>("SkillName")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("Rating")
                         .HasColumnType("int");
@@ -2044,163 +2163,163 @@ namespace SkillMatrix.DataAccess.Migrations
                         new
                         {
                             SkillName = "C#",
-                            UserId = 1L,
+                            UserId = "2647ef6e-3a78-4f27-8cd0-7e9478e9e8ef",
                             Rating = 3
                         },
                         new
                         {
                             SkillName = "C#",
-                            UserId = 2L,
+                            UserId = "96fa3c64-5640-4ee9-a37a-bdacb8c43005",
                             Rating = 3
                         },
                         new
                         {
                             SkillName = "C#",
-                            UserId = 3L,
+                            UserId = "e78986c7-9c10-4c87-b639-ba38fc64e10b",
                             Rating = 3
                         },
                         new
                         {
                             SkillName = "C#",
-                            UserId = 4L,
+                            UserId = "eb691e66-7037-4827-bf92-561f978acea7",
                             Rating = 3
                         },
                         new
                         {
                             SkillName = "Java",
-                            UserId = 1L,
+                            UserId = "2647ef6e-3a78-4f27-8cd0-7e9478e9e8ef",
                             Rating = 2
                         },
                         new
                         {
                             SkillName = "Java",
-                            UserId = 3L,
+                            UserId = "e78986c7-9c10-4c87-b639-ba38fc64e10b",
                             Rating = 2
                         },
                         new
                         {
                             SkillName = "Java",
-                            UserId = 8L,
+                            UserId = "9f39b3a5-9e09-465d-a63d-34c1eac909c4",
                             Rating = 1
                         },
                         new
                         {
                             SkillName = "Java",
-                            UserId = 9L,
+                            UserId = "5a248924-7e9a-4de5-ad8b-86fc25163458",
                             Rating = 2
                         },
                         new
                         {
                             SkillName = "Java",
-                            UserId = 10L,
+                            UserId = "85947f68-31e2-441c-983d-5b8df633835f",
                             Rating = 3
                         },
                         new
                         {
                             SkillName = "HTML",
-                            UserId = 1L,
+                            UserId = "2647ef6e-3a78-4f27-8cd0-7e9478e9e8ef",
                             Rating = 2
                         },
                         new
                         {
                             SkillName = "HTML",
-                            UserId = 2L,
+                            UserId = "96fa3c64-5640-4ee9-a37a-bdacb8c43005",
                             Rating = 1
                         },
                         new
                         {
                             SkillName = "HTML",
-                            UserId = 3L,
+                            UserId = "e78986c7-9c10-4c87-b639-ba38fc64e10b",
                             Rating = 2
                         },
                         new
                         {
                             SkillName = "HTML",
-                            UserId = 4L,
+                            UserId = "eb691e66-7037-4827-bf92-561f978acea7",
                             Rating = 3
                         },
                         new
                         {
                             SkillName = "HTML",
-                            UserId = 5L,
+                            UserId = "d26fba96-da21-43ac-8250-6b42374cc529",
                             Rating = 2
                         },
                         new
                         {
                             SkillName = "HTML",
-                            UserId = 6L,
+                            UserId = "03902199-fb13-4f7d-b4d7-138bc849977f",
                             Rating = 1
                         },
                         new
                         {
                             SkillName = "HTML",
-                            UserId = 7L,
+                            UserId = "90db1068-f144-4d86-9851-7473ff53d6e4",
                             Rating = 3
                         },
                         new
                         {
                             SkillName = "HTML",
-                            UserId = 8L,
+                            UserId = "9f39b3a5-9e09-465d-a63d-34c1eac909c4",
                             Rating = 2
                         },
                         new
                         {
                             SkillName = "HTML",
-                            UserId = 9L,
+                            UserId = "5a248924-7e9a-4de5-ad8b-86fc25163458",
                             Rating = 3
                         },
                         new
                         {
                             SkillName = "HTML",
-                            UserId = 10L,
+                            UserId = "85947f68-31e2-441c-983d-5b8df633835f",
                             Rating = 1
                         },
                         new
                         {
                             SkillName = "C++",
-                            UserId = 2L,
+                            UserId = "e78986c7-9c10-4c87-b639-ba38fc64e10b",
                             Rating = 2
                         },
                         new
                         {
                             SkillName = "C++",
-                            UserId = 4L,
+                            UserId = "d26fba96-da21-43ac-8250-6b42374cc529",
                             Rating = 3
                         },
                         new
                         {
                             SkillName = "C++",
-                            UserId = 5L,
+                            UserId = "03902199-fb13-4f7d-b4d7-138bc849977f",
                             Rating = 3
                         },
                         new
                         {
                             SkillName = "C++",
-                            UserId = 7L,
+                            UserId = "9f39b3a5-9e09-465d-a63d-34c1eac909c4",
                             Rating = 1
                         },
                         new
                         {
                             SkillName = "C",
-                            UserId = 1L,
+                            UserId = "2647ef6e-3a78-4f27-8cd0-7e9478e9e8ef",
                             Rating = 1
                         },
                         new
                         {
                             SkillName = "C",
-                            UserId = 3L,
+                            UserId = "03902199-fb13-4f7d-b4d7-138bc849977f",
                             Rating = 3
                         },
                         new
                         {
                             SkillName = "C",
-                            UserId = 7L,
+                            UserId = "90db1068-f144-4d86-9851-7473ff53d6e4",
                             Rating = 2
                         },
                         new
                         {
                             SkillName = "C",
-                            UserId = 10L,
+                            UserId = "85947f68-31e2-441c-983d-5b8df633835f",
                             Rating = 3
                         });
                 });
@@ -2255,21 +2374,25 @@ namespace SkillMatrix.DataAccess.Migrations
 
             modelBuilder.Entity("SkillMatrix.Domain.Users.Models.User", b =>
                 {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETDATE()");
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<long?>("DepartmentId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
@@ -2283,6 +2406,32 @@ namespace SkillMatrix.DataAccess.Migrations
                     b.Property<string>("Location")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("SurName")
                         .HasColumnType("nvarchar(max)");
 
@@ -2292,168 +2441,281 @@ namespace SkillMatrix.DataAccess.Migrations
                     b.Property<string>("Telephone")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("DepartmentId");
 
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
                     b.HasIndex("TeamId");
 
-                    b.ToTable("Users");
+                    b.ToTable("AspNetUsers");
 
                     b.HasData(
                         new
                         {
-                            Id = 1L,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Id = "2647ef6e-3a78-4f27-8cd0-7e9478e9e8ef",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "7b0249d2-92be-42ae-987e-8c57aa515b7b",
                             DepartmentId = 2L,
                             Email = "martin.schmidt@web.de",
+                            EmailConfirmed = false,
                             FirstName = "Martin",
                             ImageUrl = "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png",
                             JobTitle = "Developer",
                             Location = "Leipzig",
+                            LockoutEnabled = false,
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "46d713cf-0ccc-440f-9031-940f70e8a95f",
                             SurName = "Schmidt",
                             TeamId = 1L,
                             Telephone = "0845679123",
-                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            TwoFactorEnabled = false
                         },
                         new
                         {
-                            Id = 2L,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Id = "96fa3c64-5640-4ee9-a37a-bdacb8c43005",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "2ea428d4-81ad-4b6d-b35f-b161368f4c8a",
                             DepartmentId = 1L,
                             Email = "nico.marten@web.de",
+                            EmailConfirmed = false,
                             FirstName = "Nico",
                             ImageUrl = "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png",
                             JobTitle = "Software Architect",
                             Location = "Leipzig",
+                            LockoutEnabled = false,
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "cd542203-ed85-4cd9-885b-7dc7b0656982",
                             SurName = "Marten",
                             TeamId = 1L,
                             Telephone = "0987654321",
-                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            TwoFactorEnabled = false
                         },
                         new
                         {
-                            Id = 3L,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Id = "e78986c7-9c10-4c87-b639-ba38fc64e10b",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "576933c6-c61a-4c90-bb3b-f008b5a31266",
                             DepartmentId = 1L,
                             Email = "tom.tompson@web.de",
+                            EmailConfirmed = false,
                             FirstName = "Tom",
                             ImageUrl = "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png",
                             JobTitle = "Sailsman",
                             Location = "Leipzig",
+                            LockoutEnabled = false,
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "5ff65aa3-bd10-4b11-8007-99961e33220b",
                             SurName = "Tompson",
                             TeamId = 2L,
                             Telephone = "0123456789",
-                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            TwoFactorEnabled = false
                         },
                         new
                         {
-                            Id = 4L,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Id = "eb691e66-7037-4827-bf92-561f978acea7",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "ffc12b69-b419-4090-bc76-78d63c66ce81",
                             DepartmentId = 2L,
                             Email = "n.mustermann@web.de",
+                            EmailConfirmed = false,
                             FirstName = "Nancy",
                             ImageUrl = "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png",
                             JobTitle = "Developer",
                             Location = "Dresden",
+                            LockoutEnabled = false,
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "524cb1a1-3d5d-432f-bb91-5a0be7216c48",
                             SurName = "Mustermann",
                             TeamId = 2L,
                             Telephone = "0125896743",
-                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            TwoFactorEnabled = false
                         },
                         new
                         {
-                            Id = 5L,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Id = "d26fba96-da21-43ac-8250-6b42374cc529",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "f9350fa9-331b-4024-9075-5d9561c05b20",
                             DepartmentId = 2L,
                             Email = "mandy.meyer@gmail.com",
+                            EmailConfirmed = false,
                             FirstName = "Mandy",
                             ImageUrl = "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png",
                             JobTitle = "Developer",
                             Location = "Munich",
+                            LockoutEnabled = false,
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "cae23323-04de-4ed9-b970-55b901f73422",
                             SurName = "Meyer",
                             TeamId = 1L,
                             Telephone = "0128764539",
-                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            TwoFactorEnabled = false
                         },
                         new
                         {
-                            Id = 6L,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Id = "03902199-fb13-4f7d-b4d7-138bc849977f",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "5aa1aaff-8b9c-4aa6-ab04-e7db6c89c292",
                             DepartmentId = 2L,
                             Email = "m.mustermann@gmx.de",
+                            EmailConfirmed = false,
                             FirstName = "Max",
                             ImageUrl = "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png",
                             JobTitle = "Sailsman",
                             Location = "Leipzig",
+                            LockoutEnabled = false,
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "30ed039b-616c-4892-a1a3-3ab313e44ea5",
                             SurName = "Mustermann",
                             TeamId = 3L,
                             Telephone = "017463589",
-                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            TwoFactorEnabled = false
                         },
                         new
                         {
-                            Id = 7L,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Id = "90db1068-f144-4d86-9851-7473ff53d6e4",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "13dfdbd5-233b-4ae4-848e-25d1ba3cf068",
                             DepartmentId = 2L,
                             Email = "c.burns@web.de",
+                            EmailConfirmed = false,
                             FirstName = "C Montgomery",
                             ImageUrl = "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png",
                             JobTitle = "CEO",
                             Location = "Dresden",
+                            LockoutEnabled = false,
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "aa26ce23-932f-429f-9d1e-29c87d30cf73",
                             SurName = "Burns",
                             TeamId = 3L,
                             Telephone = "0125634789",
-                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            TwoFactorEnabled = false
                         },
                         new
                         {
-                            Id = 8L,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Id = "9f39b3a5-9e09-465d-a63d-34c1eac909c4",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "b0e94c7b-fbbf-415c-9c99-0626f86e815c",
                             DepartmentId = 2L,
                             Email = "tim.ford@web.de",
+                            EmailConfirmed = false,
                             FirstName = "Tim",
                             ImageUrl = "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png",
                             JobTitle = "Developer",
                             Location = "Leipzig",
+                            LockoutEnabled = false,
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "c01c497b-147c-4cf6-aa5e-e44b0d422f28",
                             SurName = "Ford",
                             TeamId = 3L,
                             Telephone = "0123548697",
-                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            TwoFactorEnabled = false
                         },
                         new
                         {
-                            Id = 9L,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Id = "5a248924-7e9a-4de5-ad8b-86fc25163458",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "2190ac0b-5111-412b-af83-0e96a9627d88",
                             DepartmentId = 3L,
                             Email = "s.muller@web.de",
+                            EmailConfirmed = false,
                             FirstName = "Susi",
                             ImageUrl = "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png",
                             JobTitle = "Marketing Expert",
                             Location = "Leipzig",
+                            LockoutEnabled = false,
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "3fe7f027-d7ac-4ed9-bd33-7a073c12d7ef",
                             SurName = "Muller",
                             TeamId = 3L,
                             Telephone = "0321456789",
-                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            TwoFactorEnabled = false
                         },
                         new
                         {
-                            Id = 10L,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Id = "85947f68-31e2-441c-983d-5b8df633835f",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "7fabab90-8e99-4cee-8a98-dd6674064c7e",
                             DepartmentId = 3L,
                             Email = "m.meier@web.de",
+                            EmailConfirmed = false,
                             FirstName = "Mary",
                             ImageUrl = "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png",
                             JobTitle = "Marketing Expert",
                             Location = "Leipzig",
+                            LockoutEnabled = false,
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "897c4285-4f07-4743-bfc9-7d78bf2132ce",
                             SurName = "Meier",
                             TeamId = 3L,
                             Telephone = "0213456789",
-                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            TwoFactorEnabled = false
                         });
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.HasOne("SkillMatrix.Domain.Users.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.HasOne("SkillMatrix.Domain.Users.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SkillMatrix.Domain.Users.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.HasOne("SkillMatrix.Domain.Users.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SkillMatrix.Domain.Skills.Models.Skill", b =>

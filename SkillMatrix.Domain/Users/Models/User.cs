@@ -1,15 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Identity;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace SkillMatrix.Domain.Users.Models
 {
-    public class User : BaseEntity
+    public class User : IdentityUser
     {
-        public long Id { get; set; }
         public string SurName { get; set; }
         public string FirstName { get; set; }
         public string Telephone { get; set; }
-        public string Email { get; set; }
         public string ImageUrl { get; set; }
         public string Location { get; set; }
 

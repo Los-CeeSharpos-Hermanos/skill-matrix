@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SkillMatrix.Application.DTOs;
 using SkillMatrix.Application.DTOs.Users;
 using SkillMatrix.Application.Services;
@@ -12,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace SkillMatrix.Application.Controllers.Users
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
@@ -32,16 +34,16 @@ namespace SkillMatrix.Application.Controllers.Users
 
         // GET api/<UsersController>/5
         [HttpGet("{id}")]
-        public async Task<FormUserDTO> GetUserAsync(long id)
+        public async Task<FormUserDTO> GetUserAsync(string id)
         {
             return await _userService.GetUserAsync(id);
         }
 
         // POST api/<UsersController>
         [HttpPost]
-        public async Task PostUserAsync([FromBody] FormUserDTO user)
+        public async Task PostUserAsync([FromBody] FormUserDTO user, string password)
         {
-            await _userService.PostUserAsync(user);
+            await _userService.PostUserAsync(user, password);
         }
 
         // PUT api/<UsersController>/5
@@ -53,7 +55,7 @@ namespace SkillMatrix.Application.Controllers.Users
 
         // DELETE api/<UsersController>/5
         [HttpDelete("{id}")]
-        public async Task DeleteUserAsync(long id)
+        public async Task DeleteUserAsync(string id)
         {
             await _userService.DeleteUserAsync(id);
         }

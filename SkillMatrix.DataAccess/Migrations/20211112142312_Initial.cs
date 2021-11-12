@@ -3,10 +3,24 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SkillMatrix.DataAccess.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "AspNetRoles",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetRoles", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Departments",
                 columns: table => new
@@ -70,6 +84,27 @@ namespace SkillMatrix.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AspNetRoleClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetRoleClaims", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Skills",
                 columns: table => new
                 {
@@ -92,34 +127,44 @@ namespace SkillMatrix.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Users",
+                name: "AspNetUsers",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     SurName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Telephone = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Location = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     JobTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DepartmentId = table.Column<long>(type: "bigint", nullable: true),
                     TeamId = table.Column<long>(type: "bigint", nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
+                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SecurityStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(type: "bit", nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    LockoutEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    AccessFailedCount = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Users_Departments_DepartmentId",
+                        name: "FK_AspNetUsers_Departments_DepartmentId",
                         column: x => x.DepartmentId,
                         principalTable: "Departments",
                         principalColumn: "DepartmentId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Users_Teams_TeamId",
+                        name: "FK_AspNetUsers_Teams_TeamId",
                         column: x => x.TeamId,
                         principalTable: "Teams",
                         principalColumn: "TeamId",
@@ -127,20 +172,105 @@ namespace SkillMatrix.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AspNetUserClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserClaims", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserClaims_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserLogins",
+                columns: table => new
+                {
+                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserLogins", x => new { x.LoginProvider, x.ProviderKey });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserLogins_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserRoles",
+                columns: table => new
+                {
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserRoles", x => new { x.UserId, x.RoleId });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserRoles_AspNetRoles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserRoles_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserTokens",
+                columns: table => new
+                {
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserTokens_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "LanguageRatings",
                 columns: table => new
                 {
                     Language = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    UserId = table.Column<long>(type: "bigint", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Rating = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_LanguageRatings", x => new { x.Language, x.UserId });
                     table.ForeignKey(
-                        name: "FK_LanguageRatings_Users_UserId",
+                        name: "FK_LanguageRatings_AspNetUsers_UserId",
                         column: x => x.UserId,
-                        principalTable: "Users",
+                        principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -150,16 +280,16 @@ namespace SkillMatrix.DataAccess.Migrations
                 columns: table => new
                 {
                     SkillName = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    UserId = table.Column<long>(type: "bigint", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Rating = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_SkillRatings", x => new { x.SkillName, x.UserId });
                     table.ForeignKey(
-                        name: "FK_SkillRatings_Users_UserId",
+                        name: "FK_SkillRatings_AspNetUsers_UserId",
                         column: x => x.UserId,
-                        principalTable: "Users",
+                        principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -413,34 +543,34 @@ namespace SkillMatrix.DataAccess.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "DepartmentId", "Email", "EmailConfirmed", "FirstName", "ImageUrl", "JobTitle", "Location", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "SurName", "TeamId", "Telephone", "TwoFactorEnabled", "UserName" },
+                values: new object[,]
+                {
+                    { "96fa3c64-5640-4ee9-a37a-bdacb8c43005", 0, "2ea428d4-81ad-4b6d-b35f-b161368f4c8a", 1L, "nico.marten@web.de", false, "Nico", "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png", "Software Architect", "Leipzig", false, null, null, null, null, null, false, "cd542203-ed85-4cd9-885b-7dc7b0656982", "Marten", 1L, "0987654321", false, null },
+                    { "9f39b3a5-9e09-465d-a63d-34c1eac909c4", 0, "b0e94c7b-fbbf-415c-9c99-0626f86e815c", 2L, "tim.ford@web.de", false, "Tim", "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png", "Developer", "Leipzig", false, null, null, null, null, null, false, "c01c497b-147c-4cf6-aa5e-e44b0d422f28", "Ford", 3L, "0123548697", false, null },
+                    { "90db1068-f144-4d86-9851-7473ff53d6e4", 0, "13dfdbd5-233b-4ae4-848e-25d1ba3cf068", 2L, "c.burns@web.de", false, "C Montgomery", "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png", "CEO", "Dresden", false, null, null, null, null, null, false, "aa26ce23-932f-429f-9d1e-29c87d30cf73", "Burns", 3L, "0125634789", false, null },
+                    { "03902199-fb13-4f7d-b4d7-138bc849977f", 0, "5aa1aaff-8b9c-4aa6-ab04-e7db6c89c292", 2L, "m.mustermann@gmx.de", false, "Max", "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png", "Sailsman", "Leipzig", false, null, null, null, null, null, false, "30ed039b-616c-4892-a1a3-3ab313e44ea5", "Mustermann", 3L, "017463589", false, null },
+                    { "eb691e66-7037-4827-bf92-561f978acea7", 0, "ffc12b69-b419-4090-bc76-78d63c66ce81", 2L, "n.mustermann@web.de", false, "Nancy", "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png", "Developer", "Dresden", false, null, null, null, null, null, false, "524cb1a1-3d5d-432f-bb91-5a0be7216c48", "Mustermann", 2L, "0125896743", false, null },
+                    { "e78986c7-9c10-4c87-b639-ba38fc64e10b", 0, "576933c6-c61a-4c90-bb3b-f008b5a31266", 1L, "tom.tompson@web.de", false, "Tom", "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png", "Sailsman", "Leipzig", false, null, null, null, null, null, false, "5ff65aa3-bd10-4b11-8007-99961e33220b", "Tompson", 2L, "0123456789", false, null },
+                    { "d26fba96-da21-43ac-8250-6b42374cc529", 0, "f9350fa9-331b-4024-9075-5d9561c05b20", 2L, "mandy.meyer@gmail.com", false, "Mandy", "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png", "Developer", "Munich", false, null, null, null, null, null, false, "cae23323-04de-4ed9-b970-55b901f73422", "Meyer", 1L, "0128764539", false, null },
+                    { "5a248924-7e9a-4de5-ad8b-86fc25163458", 0, "2190ac0b-5111-412b-af83-0e96a9627d88", 3L, "s.muller@web.de", false, "Susi", "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png", "Marketing Expert", "Leipzig", false, null, null, null, null, null, false, "3fe7f027-d7ac-4ed9-bd33-7a073c12d7ef", "Muller", 3L, "0321456789", false, null },
+                    { "85947f68-31e2-441c-983d-5b8df633835f", 0, "7fabab90-8e99-4cee-8a98-dd6674064c7e", 3L, "m.meier@web.de", false, "Mary", "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png", "Marketing Expert", "Leipzig", false, null, null, null, null, null, false, "897c4285-4f07-4743-bfc9-7d78bf2132ce", "Meier", 3L, "0213456789", false, null },
+                    { "2647ef6e-3a78-4f27-8cd0-7e9478e9e8ef", 0, "7b0249d2-92be-42ae-987e-8c57aa515b7b", 2L, "martin.schmidt@web.de", false, "Martin", "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png", "Developer", "Leipzig", false, null, null, null, null, null, false, "46d713cf-0ccc-440f-9031-940f70e8a95f", "Schmidt", 1L, "0845679123", false, null }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Skills",
                 columns: new[] { "SkillId", "SkillCategoryId", "SkillName", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { 1L, 1L, "C#", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 2L, 1L, "Java", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 3L, 1L, "JavaScript", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 4L, 1L, "Python", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 5L, 2L, "Team Play", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 7L, 4L, "Soccer", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 6L, 3L, "Speed", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 7L, 4L, "Soccer", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Users",
-                columns: new[] { "Id", "DepartmentId", "Email", "FirstName", "ImageUrl", "JobTitle", "Location", "SurName", "TeamId", "Telephone", "UpdatedAt" },
-                values: new object[,]
-                {
-                    { 8L, 2L, "tim.ford@web.de", "Tim", "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png", "Developer", "Leipzig", "Ford", 3L, "0123548697", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 7L, 2L, "c.burns@web.de", "C Montgomery", "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png", "CEO", "Dresden", "Burns", 3L, "0125634789", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 6L, 2L, "m.mustermann@gmx.de", "Max", "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png", "Sailsman", "Leipzig", "Mustermann", 3L, "017463589", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 4L, 2L, "n.mustermann@web.de", "Nancy", "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png", "Developer", "Dresden", "Mustermann", 2L, "0125896743", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 2L, 1L, "nico.marten@web.de", "Nico", "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png", "Software Architect", "Leipzig", "Marten", 1L, "0987654321", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 5L, 2L, "mandy.meyer@gmail.com", "Mandy", "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png", "Developer", "Munich", "Meyer", 1L, "0128764539", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 9L, 3L, "s.muller@web.de", "Susi", "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png", "Marketing Expert", "Leipzig", "Muller", 3L, "0321456789", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 1L, 2L, "martin.schmidt@web.de", "Martin", "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png", "Developer", "Leipzig", "Schmidt", 1L, "0845679123", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 3L, 1L, "tom.tompson@web.de", "Tom", "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png", "Sailsman", "Leipzig", "Tompson", 2L, "0123456789", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 10L, 3L, "m.meier@web.de", "Mary", "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png", "Marketing Expert", "Leipzig", "Meier", 3L, "0213456789", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { 5L, 2L, "Team Play", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 4L, 1L, "Python", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 3L, 1L, "JavaScript", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2L, 1L, "Java", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 1L, 1L, "C#", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(
@@ -448,27 +578,25 @@ namespace SkillMatrix.DataAccess.Migrations
                 columns: new[] { "Language", "UserId", "Rating" },
                 values: new object[,]
                 {
-                    { "german", 1L, 3 },
-                    { "german", 10L, 3 },
-                    { "english", 10L, 2 },
-                    { "german", 9L, 3 },
-                    { "english", 9L, 2 },
-                    { "german", 8L, 3 },
-                    { "english", 8L, 2 },
-                    { "german", 7L, 3 },
-                    { "english", 7L, 2 },
-                    { "german", 6L, 3 },
-                    { "english", 6L, 2 },
-                    { "english", 4L, 2 },
-                    { "latin", 3L, 1 },
-                    { "french", 3L, 2 },
-                    { "english", 3L, 3 },
-                    { "german", 4L, 3 },
-                    { "german", 2L, 3 },
-                    { "english", 2L, 2 },
-                    { "english", 5L, 2 },
-                    { "german", 5L, 3 },
-                    { "german", 3L, 3 }
+                    { "german", "2647ef6e-3a78-4f27-8cd0-7e9478e9e8ef", 3 },
+                    { "german", "03902199-fb13-4f7d-b4d7-138bc849977f", 3 },
+                    { "english", "03902199-fb13-4f7d-b4d7-138bc849977f", 2 },
+                    { "latin", "eb691e66-7037-4827-bf92-561f978acea7", 1 },
+                    { "french", "eb691e66-7037-4827-bf92-561f978acea7", 2 },
+                    { "english", "eb691e66-7037-4827-bf92-561f978acea7", 3 },
+                    { "german", "eb691e66-7037-4827-bf92-561f978acea7", 3 },
+                    { "english", "9f39b3a5-9e09-465d-a63d-34c1eac909c4", 2 },
+                    { "german", "9f39b3a5-9e09-465d-a63d-34c1eac909c4", 3 },
+                    { "german", "90db1068-f144-4d86-9851-7473ff53d6e4", 3 },
+                    { "german", "e78986c7-9c10-4c87-b639-ba38fc64e10b", 3 },
+                    { "english", "90db1068-f144-4d86-9851-7473ff53d6e4", 2 },
+                    { "english", "5a248924-7e9a-4de5-ad8b-86fc25163458", 2 },
+                    { "german", "d26fba96-da21-43ac-8250-6b42374cc529", 3 },
+                    { "english", "d26fba96-da21-43ac-8250-6b42374cc529", 2 },
+                    { "german", "5a248924-7e9a-4de5-ad8b-86fc25163458", 3 },
+                    { "english", "85947f68-31e2-441c-983d-5b8df633835f", 2 },
+                    { "german", "85947f68-31e2-441c-983d-5b8df633835f", 3 },
+                    { "english", "2647ef6e-3a78-4f27-8cd0-7e9478e9e8ef", 2 }
                 });
 
             migrationBuilder.InsertData(
@@ -476,27 +604,29 @@ namespace SkillMatrix.DataAccess.Migrations
                 columns: new[] { "SkillName", "UserId", "Rating" },
                 values: new object[,]
                 {
-                    { "C++", 5L, 3 },
-                    { "C", 7L, 2 },
-                    { "Java", 8L, 1 },
-                    { "HTML", 8L, 2 },
-                    { "C", 1L, 1 },
-                    { "Java", 9L, 2 },
-                    { "HTML", 9L, 3 },
-                    { "Java", 1L, 2 },
-                    { "C#", 1L, 3 },
-                    { "Java", 10L, 3 },
-                    { "HTML", 1L, 2 },
-                    { "C++", 7L, 1 },
-                    { "C#", 2L, 3 },
-                    { "HTML", 2L, 1 },
-                    { "HTML", 6L, 1 },
-                    { "C++", 2L, 2 },
-                    { "C++", 4L, 3 },
-                    { "HTML", 4L, 3 },
-                    { "C#", 4L, 3 },
-                    { "HTML", 10L, 1 },
-                    { "C", 3L, 3 }
+                    { "Java", "9f39b3a5-9e09-465d-a63d-34c1eac909c4", 1 },
+                    { "Java", "5a248924-7e9a-4de5-ad8b-86fc25163458", 2 },
+                    { "HTML", "5a248924-7e9a-4de5-ad8b-86fc25163458", 3 },
+                    { "C", "90db1068-f144-4d86-9851-7473ff53d6e4", 2 },
+                    { "HTML", "90db1068-f144-4d86-9851-7473ff53d6e4", 3 },
+                    { "Java", "85947f68-31e2-441c-983d-5b8df633835f", 3 },
+                    { "C++", "9f39b3a5-9e09-465d-a63d-34c1eac909c4", 1 },
+                    { "HTML", "9f39b3a5-9e09-465d-a63d-34c1eac909c4", 2 },
+                    { "HTML", "eb691e66-7037-4827-bf92-561f978acea7", 3 },
+                    { "C++", "03902199-fb13-4f7d-b4d7-138bc849977f", 3 },
+                    { "C#", "2647ef6e-3a78-4f27-8cd0-7e9478e9e8ef", 3 },
+                    { "Java", "2647ef6e-3a78-4f27-8cd0-7e9478e9e8ef", 2 },
+                    { "HTML", "2647ef6e-3a78-4f27-8cd0-7e9478e9e8ef", 2 },
+                    { "C", "2647ef6e-3a78-4f27-8cd0-7e9478e9e8ef", 1 },
+                    { "C#", "96fa3c64-5640-4ee9-a37a-bdacb8c43005", 3 },
+                    { "HTML", "96fa3c64-5640-4ee9-a37a-bdacb8c43005", 1 },
+                    { "HTML", "d26fba96-da21-43ac-8250-6b42374cc529", 2 },
+                    { "C++", "d26fba96-da21-43ac-8250-6b42374cc529", 3 },
+                    { "C#", "e78986c7-9c10-4c87-b639-ba38fc64e10b", 3 },
+                    { "Java", "e78986c7-9c10-4c87-b639-ba38fc64e10b", 2 },
+                    { "HTML", "e78986c7-9c10-4c87-b639-ba38fc64e10b", 2 },
+                    { "C++", "e78986c7-9c10-4c87-b639-ba38fc64e10b", 2 },
+                    { "C#", "eb691e66-7037-4827-bf92-561f978acea7", 3 }
                 });
 
             migrationBuilder.InsertData(
@@ -504,13 +634,60 @@ namespace SkillMatrix.DataAccess.Migrations
                 columns: new[] { "SkillName", "UserId", "Rating" },
                 values: new object[,]
                 {
-                    { "HTML", 3L, 2 },
-                    { "Java", 3L, 2 },
-                    { "C#", 3L, 3 },
-                    { "HTML", 5L, 2 },
-                    { "HTML", 7L, 3 },
-                    { "C", 10L, 3 }
+                    { "HTML", "85947f68-31e2-441c-983d-5b8df633835f", 1 },
+                    { "HTML", "03902199-fb13-4f7d-b4d7-138bc849977f", 1 },
+                    { "C", "03902199-fb13-4f7d-b4d7-138bc849977f", 3 },
+                    { "C", "85947f68-31e2-441c-983d-5b8df633835f", 3 }
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetRoleClaims_RoleId",
+                table: "AspNetRoleClaims",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "RoleNameIndex",
+                table: "AspNetRoles",
+                column: "NormalizedName",
+                unique: true,
+                filter: "[NormalizedName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserClaims_UserId",
+                table: "AspNetUserClaims",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserLogins_UserId",
+                table: "AspNetUserLogins",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserRoles_RoleId",
+                table: "AspNetUserRoles",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "EmailIndex",
+                table: "AspNetUsers",
+                column: "NormalizedEmail");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUsers_DepartmentId",
+                table: "AspNetUsers",
+                column: "DepartmentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUsers_TeamId",
+                table: "AspNetUsers",
+                column: "TeamId");
+
+            migrationBuilder.CreateIndex(
+                name: "UserNameIndex",
+                table: "AspNetUsers",
+                column: "NormalizedUserName",
+                unique: true,
+                filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_LanguageRatings_UserId",
@@ -526,20 +703,25 @@ namespace SkillMatrix.DataAccess.Migrations
                 name: "IX_Skills_SkillCategoryId",
                 table: "Skills",
                 column: "SkillCategoryId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Users_DepartmentId",
-                table: "Users",
-                column: "DepartmentId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Users_TeamId",
-                table: "Users",
-                column: "TeamId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "AspNetRoleClaims");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserClaims");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserLogins");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserRoles");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserTokens");
+
             migrationBuilder.DropTable(
                 name: "LanguageRatings");
 
@@ -553,7 +735,10 @@ namespace SkillMatrix.DataAccess.Migrations
                 name: "Skills");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "SkillCategories");

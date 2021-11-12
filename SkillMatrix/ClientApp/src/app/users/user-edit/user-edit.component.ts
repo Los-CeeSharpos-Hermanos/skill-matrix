@@ -30,7 +30,7 @@ export class UserEditComponent implements OnInit {
   isChanged: boolean;
 
   user: IUser = {
-    id: 0,
+    id: "0",
     firstName: "",
     surName: "",
     department: "",
@@ -97,7 +97,7 @@ export class UserEditComponent implements OnInit {
     }
 
     this.user = user;
-    if (this.user.id === 0) {
+    if (this.user.id === "0") {
       this.pageTitle = 'Add a new User';
       
     

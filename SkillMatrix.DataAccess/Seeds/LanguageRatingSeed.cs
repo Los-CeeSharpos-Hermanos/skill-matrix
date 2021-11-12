@@ -6,134 +6,122 @@ namespace SkillMatrix.DataAccess.Seeds
 {
     public static class LanguageRatingSeed
     {
-        public static void SeedLangugaeRatings(this ModelBuilder modelBuilder)
+        public static void SeedLanguageRatings(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<LanguageRating>()
                .HasData(
                    new LanguageRating
                    {
                        Language = "german",
-                       UserId = 1,
+                       UserId = UsersSeed.defaultUsers[0].Id,
                        Rating = Rating.Advanced
                    },
                    new LanguageRating
                    {
                        Language = "english",
-                       UserId = 2,
+                       UserId = UsersSeed.defaultUsers[0].Id,
                        Rating = Rating.Intermediate
                    },
                    new LanguageRating
                    {
                        Language = "german",
-                       UserId = 2,
+                       UserId = UsersSeed.defaultUsers[2].Id,
                        Rating = Rating.Advanced
                    },
                    new LanguageRating
                    {
                        Language = "german",
-                       UserId = 3,
+                       UserId = UsersSeed.defaultUsers[3].Id,
                        Rating = Rating.Advanced
                    },
                    new LanguageRating
                    {
                        Language = "english",
-                       UserId = 3,
+                       UserId = UsersSeed.defaultUsers[3].Id,
                        Rating = Rating.Advanced
                    },
                    new LanguageRating
                    {
                        Language = "french",
-                       UserId = 3,
+                       UserId = UsersSeed.defaultUsers[3].Id,
                        Rating = Rating.Intermediate
                    },
                    new LanguageRating
                    {
                        Language = "latin",
-                       UserId = 3,
+                       UserId = UsersSeed.defaultUsers[3].Id,
                        Rating = Rating.Begginer
                    },
                    new LanguageRating
                    {
                        Language = "english",
-                       UserId = 4,
+                       UserId = UsersSeed.defaultUsers[4].Id,
                        Rating = Rating.Intermediate
                    },
                    new LanguageRating
                    {
                        Language = "german",
-                       UserId = 4,
+                       UserId = UsersSeed.defaultUsers[4].Id,
                        Rating = Rating.Advanced
                    },
                    new LanguageRating
                    {
                        Language = "english",
-                       UserId = 5,
+                       UserId = UsersSeed.defaultUsers[5].Id,
                        Rating = Rating.Intermediate
                    },
                    new LanguageRating
                    {
                        Language = "german",
-                       UserId = 5,
+                       UserId = UsersSeed.defaultUsers[5].Id,
                        Rating = Rating.Advanced
                    },
                    new LanguageRating
                    {
                        Language = "english",
-                       UserId = 6,
+                       UserId = UsersSeed.defaultUsers[6].Id,
                        Rating = Rating.Intermediate
                    },
                    new LanguageRating
                    {
                        Language = "german",
-                       UserId = 6,
+                       UserId = UsersSeed.defaultUsers[6].Id,
                        Rating = Rating.Advanced
                    },
                    new LanguageRating
                    {
                        Language = "english",
-                       UserId = 7,
+                       UserId = UsersSeed.defaultUsers[7].Id,
                        Rating = Rating.Intermediate
                    },
                    new LanguageRating
                    {
                        Language = "german",
-                       UserId = 7,
+                       UserId = UsersSeed.defaultUsers[7].Id,
                        Rating = Rating.Advanced
                    },
                    new LanguageRating
                    {
                        Language = "english",
-                       UserId = 8,
+                       UserId = UsersSeed.defaultUsers[8].Id,
                        Rating = Rating.Intermediate
                    },
                    new LanguageRating
                    {
                        Language = "german",
-                       UserId = 8,
+                       UserId = UsersSeed.defaultUsers[8].Id,
                        Rating = Rating.Advanced
                    },
                    new LanguageRating
                    {
                        Language = "english",
-                       UserId = 9,
+                       UserId = UsersSeed.defaultUsers[9].Id,
                        Rating = Rating.Intermediate
                    },
                    new LanguageRating
                    {
                        Language = "german",
-                       UserId = 9,
-                       Rating = Rating.Advanced
-                   },
-                   new LanguageRating
-                   {
-                       Language = "english",
-                       UserId = 10,
-                       Rating = Rating.Intermediate
-                   },
-                   new LanguageRating
-                   {
-                       Language = "german",
-                       UserId = 10,
+                       UserId = UsersSeed.defaultUsers[9].Id,
                        Rating = Rating.Advanced
                    }
              );

@@ -3,27 +3,27 @@
     <mat-card>
         <div class="row">
             <div class="col-sm">
-                <img [src]="user.imageUrl" class="rounded-full img-fluid" width="70%">
+                <img [src]="currentUser.imageUrl" class="rounded-full img-fluid" width="70%">
             </div>
             <div class="col-sm">
                 <mat-card class="innerCard">
-                    <h2>{{user.firstName}} {{user.surName}}</h2>
-                    <h3>{{user.jobTitle}}</h3>
+                    <h2>{{currentUser.firstName}} {{currentUser.surName}}</h2>
+                    <h3>{{currentUser.jobTitle}}</h3>
                     <div>
-                        {{user.team}} <br>
-                        {{user.department}} <br>
-                        {{user.location}}
+                        {{currentUser.team}} <br>
+                        {{currentUser.department}} <br>
+                        {{currentUser.location}}
                     </div>
                 </mat-card>
                 <mat-card class="innerCard">
                     <div>
-                        {{user.email}} <br>
-                        {{user.telephone}}
+                        {{currentUser.email}} <br>
+                        {{currentUser.telephone}}
                     </div>
                 </mat-card>
             </div>
             <div class="col-sm">
-                <button mat-icon-button color="default" aria-label="Update User" (click)="goToAddUser(user.id)">
+                <button mat-icon-button color="default" aria-label="Update User" (click)="goToAddUser(currentUser.id)">
                     <mat-icon>edit</mat-icon>
                   </button>
             </div>
@@ -36,7 +36,7 @@
                     <h2>Skills</h2>
                 </mat-card>
                 <mat-card class="innerCard">
-                    <li *ngFor="let skill of user.skills" style="list-style-type: none;">
+                    <li *ngFor="let skill of currentUser.skills" style="list-style-type: none;">
                         <p class="listElement">{{skill.skillName}} : 
                             <a *ngIf="skill.rating == 1; else elseBlock">Beginner</a>
                             <ng-template #elseBlock><a *ngIf="skill.rating == 2; else elseBlock2">Intermediate</a>
@@ -51,7 +51,7 @@
                     <h2>Languages</h2>
                 </mat-card>
                 <mat-card class="innerCard">
-                    <li *ngFor="let language of user.languages" style="list-style-type: none;">
+                    <li *ngFor="let language of currentUser.languages" style="list-style-type: none;">
                         <p class="listElement">{{language.language}} : 
                             <a *ngIf="language.rating == 1; else elseBlock">Beginner</a>
                             <ng-template #elseBlock><a *ngIf="language.rating == 2; else elseBlock2">Intermediate</a>

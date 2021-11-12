@@ -6,6 +6,8 @@ namespace SkillMatrix.DataAccess.Seeds
 {
     public static class SkillRatingSeed
     {
+
+
         public static void SeedSkillRatings(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<SkillRating>()
@@ -13,137 +15,137 @@ namespace SkillMatrix.DataAccess.Seeds
                    new SkillRating
                    {
                        SkillName = "C#",
-                       UserId = 1,
+                       UserId = UsersSeed.defaultUsers[0].Id,
                        Rating = Rating.Advanced
                    }, new SkillRating
                    {
                        SkillName = "C#",
-                       UserId = 2,
+                       UserId = UsersSeed.defaultUsers[1].Id,
                        Rating = Rating.Advanced
                    }, new SkillRating
                    {
                        SkillName = "C#",
-                       UserId = 3,
+                       UserId = UsersSeed.defaultUsers[2].Id,
                        Rating = Rating.Advanced
                    }, new SkillRating
                    {
                        SkillName = "C#",
-                       UserId = 4,
+                       UserId = UsersSeed.defaultUsers[3].Id,
                        Rating = Rating.Advanced
                    }, new SkillRating
                    {
                        SkillName = "Java",
-                       UserId = 1,
+                       UserId = UsersSeed.defaultUsers[0].Id,
                        Rating = Rating.Intermediate
                    }, new SkillRating
                    {
                        SkillName = "Java",
-                       UserId = 3,
+                       UserId = UsersSeed.defaultUsers[2].Id,
                        Rating = Rating.Intermediate
                    }, new SkillRating
                    {
                        SkillName = "Java",
-                       UserId = 8,
+                       UserId = UsersSeed.defaultUsers[7].Id,
                        Rating = Rating.Begginer
                    }, new SkillRating
                    {
                        SkillName = "Java",
-                       UserId = 9,
+                       UserId = UsersSeed.defaultUsers[8].Id,
                        Rating = Rating.Intermediate
                    }, new SkillRating
                    {
                        SkillName = "Java",
-                       UserId = 10,
+                       UserId = UsersSeed.defaultUsers[9].Id,
                        Rating = Rating.Advanced
                    }, new SkillRating
                    {
                        SkillName = "HTML",
-                       UserId = 1,
+                       UserId = UsersSeed.defaultUsers[0].Id,
                        Rating = Rating.Intermediate
                    }, new SkillRating
                    {
                        SkillName = "HTML",
-                       UserId = 2,
+                       UserId = UsersSeed.defaultUsers[1].Id,
                        Rating = Rating.Begginer
                    }, new SkillRating
                    {
                        SkillName = "HTML",
-                       UserId = 3,
+                       UserId = UsersSeed.defaultUsers[2].Id,
                        Rating = Rating.Intermediate
                    }, new SkillRating
                    {
                        SkillName = "HTML",
-                       UserId = 4,
+                       UserId = UsersSeed.defaultUsers[3].Id,
                        Rating = Rating.Advanced
                    }, new SkillRating
                    {
                        SkillName = "HTML",
-                       UserId = 5,
+                       UserId = UsersSeed.defaultUsers[4].Id,
                        Rating = Rating.Intermediate
                    }, new SkillRating
                    {
                        SkillName = "HTML",
-                       UserId = 6,
+                       UserId = UsersSeed.defaultUsers[5].Id,
                        Rating = Rating.Begginer
                    }, new SkillRating
                    {
                        SkillName = "HTML",
-                       UserId = 7,
+                       UserId = UsersSeed.defaultUsers[6].Id,
                        Rating = Rating.Advanced
                    }, new SkillRating
                    {
                        SkillName = "HTML",
-                       UserId = 8,
+                       UserId = UsersSeed.defaultUsers[7].Id,
                        Rating = Rating.Intermediate
                    }, new SkillRating
                    {
                        SkillName = "HTML",
-                       UserId = 9,
+                       UserId = UsersSeed.defaultUsers[8].Id,
                        Rating = Rating.Advanced
                    }, new SkillRating
                    {
                        SkillName = "HTML",
-                       UserId = 10,
+                       UserId = UsersSeed.defaultUsers[9].Id,
                        Rating = Rating.Begginer
                    }, new SkillRating
                    {
                        SkillName = "C++",
-                       UserId = 2,
+                       UserId = UsersSeed.defaultUsers[2].Id,
                        Rating = Rating.Intermediate
                    }, new SkillRating
                    {
                        SkillName = "C++",
-                       UserId = 4,
+                       UserId = UsersSeed.defaultUsers[4].Id,
                        Rating = Rating.Advanced
                    }, new SkillRating
                    {
                        SkillName = "C++",
-                       UserId = 5,
+                       UserId = UsersSeed.defaultUsers[5].Id,
                        Rating = Rating.Advanced
                    }, new SkillRating
                    {
                        SkillName = "C++",
-                       UserId = 7,
+                       UserId = UsersSeed.defaultUsers[7].Id,
                        Rating = Rating.Begginer
                    }, new SkillRating
                    {
                        SkillName = "C",
-                       UserId = 1,
+                       UserId = UsersSeed.defaultUsers[0].Id,
                        Rating = Rating.Begginer
                    }, new SkillRating
                    {
                        SkillName = "C",
-                       UserId = 3,
+                       UserId = UsersSeed.defaultUsers[5].Id,
                        Rating = Rating.Advanced
                    }, new SkillRating
                    {
                        SkillName = "C",
-                       UserId = 7,
+                       UserId = UsersSeed.defaultUsers[6].Id,
                        Rating = Rating.Intermediate
                    }, new SkillRating
                    {
                        SkillName = "C",
-                       UserId = 10,
+                       UserId = UsersSeed.defaultUsers[9].Id,
                        Rating = Rating.Advanced
                    }
              );
