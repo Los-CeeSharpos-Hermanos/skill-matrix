@@ -240,24 +240,37 @@ export class UserListComponent implements OnInit {
 
   abilityFilter() {
     this.usersFiltered = [];
-    for(let k=0;k<this.filteredLanguages.length;k++) {
-      for(let i=0;i<this.users.length;i++) {
-        for(let j=0;j<this.users[i].languages.length;j++) {
-          if(this.users[i].languages[j].language.toLowerCase() === this.filteredLanguages[k].language.toLowerCase() && (this.users[i].languages[j].rating === this.filteredLanguages[k].rating || this.filteredLanguages[k].rating === 0) && !this.usersFiltered.includes(this.users[i])) {
-            this.usersFiltered.push(this.users[i]);
+    var countLanguages = 0;
+    var countSkills = 0;
+ 
+    for(let i=0; i<this.users.length;i++) {
+      for(let j=0; j<this.users[i].languages.length;j++) {
+        for(let k=0;k<this.filteredLanguages.length;k++) {
+          console.log(this.filteredLanguages[k]);
+          console.log(this.users[i].languages[j]);
+          if(this.filteredLanguages[k].language.toLowerCase() === this.users[i].languages[j].language.toLowerCase() && this.users[i].languages[j].rating >= this.filteredLanguages[k].rating) {
+            countLanguages++;
           }
         }
       }
-    }
-    for(let k=0;k<this.filteredSkills.length;k++) {
-      for(let i=0;i<this.users.length;i++) {
-        for(let j=0;j<this.users[i].skills.length;j++) {
-          if(this.users[i].skills[j].skillName.toLowerCase() === this.filteredSkills[k].skillName.toLowerCase() && (this.users[i].skills[j].rating === this.filteredSkills[k].rating || this.filteredSkills[k].rating === 0) && !this.usersFiltered.includes(this.users[i])) {
-            this.usersFiltered.push(this.users[i]);
+
+      for(let j=0; j<this.users[i].skills.length;j++) {
+        for(let k=0;k<this.filteredSkills.length;k++) {
+          console.log(this.filteredSkills[k]);
+          console.log(this.users[i].skills[j]);
+          if(this.filteredSkills[k].skillName.toLowerCase() === this.users[i].skills[j].skillName.toLowerCase() && this.users[i].skills[j].rating >= this.filteredSkills[k].rating) {
+            countSkills++;
           }
         }
       }
+
+      if(countLanguages === this.filteredLanguages.length && countSkills === this.filteredSkills.length) {
+        this.usersFiltered.push(this.users[i]);
+      }
+      countLanguages = 0;
+      countSkills = 0;
     }
+
     this.setupDataSource(this.usersFiltered);
   }
 
