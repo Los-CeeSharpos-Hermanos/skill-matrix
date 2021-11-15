@@ -27,6 +27,9 @@ namespace SkillMatrix.DataAccess
         public DbSet<Department> Departments { get; set; }
         public DbSet<Team> Teams { get; set; }
 
+        public DbSet<LanguageRating> LanguageRatings { get; set; }
+        public DbSet<SkillRating> SkillRatings { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
@@ -42,6 +45,8 @@ namespace SkillMatrix.DataAccess
             modelBuilder.ApplyConfiguration(new SkillConfiguration());
             modelBuilder.ApplyConfiguration(new LanguageConfiguration());
             modelBuilder.ApplyConfiguration(new DepartmentConfiguration());
+            modelBuilder.ApplyConfiguration(new LanguageRatingConfiguration());
+            modelBuilder.ApplyConfiguration(new SkillRatingConfiguration());
 
             modelBuilder.InsertSeeds();
         }

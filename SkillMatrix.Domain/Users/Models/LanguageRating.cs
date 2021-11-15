@@ -4,7 +4,6 @@ namespace SkillMatrix.Domain.Users.Models
 {
     public class LanguageRating
     {
-        public long LanguageRatingId { get; set; }
         public string Language { get; set; }
         public string UserId { get; set; }
         public Rating Rating { get; set; }

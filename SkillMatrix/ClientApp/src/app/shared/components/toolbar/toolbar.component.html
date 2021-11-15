@@ -2,37 +2,28 @@
   <mat-toolbar-row>
     <div class="col-sm">
       <div class='adminOnly' *ngIf="isLoggedIn">
-
         <button mat-button color="basic" aria-label="Example icon button with a home icon"
           (click)="goTo('skillmatrix/skills')">
           Skills
         </button>
-
         <button mat-button color="basic" aria-label="Example icon button with a home icon"
           (click)="goTo('skillmatrix/languages')">
           Languages
         </button>
-
         <button mat-button color="basic" (click)="goTo('skillmatrix/categories')">
           Categories
         </button>
-
       </div>
     </div>
-
     <div class="col-sm d-flex justify-content-center">
       <h1>Skill Matrix</h1>
     </div>
-
     <div class="col-sm d-flex justify-content-end">
-
       <button mat-button color="basic" (click)="goToHomePage()">Home</button>
-
       <button *ngIf="isLoggedIn" mat-icon-button [matMenuTriggerFor]="menu"
         aria-label="Example icon-button with a menu">
         <mat-icon>manage_accounts</mat-icon>
       </button>
-
       <mat-menu #menu="matMenu">
         <button mat-menu-item (click)="goTo('skillmatrix/users/profile')">
           <mat-icon>account_circle</mat-icon>

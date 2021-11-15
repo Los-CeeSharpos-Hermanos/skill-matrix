@@ -1,5 +1,5 @@
 export interface IUser {
-  id: number;
+  id: string;
   surName: string;
   firstName: string;
   telephone: string;
@@ -27,6 +27,7 @@ export interface IUserLanguage extends IUserHability {
 }
 
 export enum Rating {
+  None = 0,
   Begginer = 1,
   Intermediate = 2,
   Advanced = 3

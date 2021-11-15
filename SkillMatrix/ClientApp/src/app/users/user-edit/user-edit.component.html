@@ -105,15 +105,20 @@
                             <mat-form-field appearance="fill">
                                 <mat-label *ngIf="language.rating == 1; else elseBlock">Beginner</mat-label><ng-template #elseBlock><mat-label *ngIf="language.rating == 2; else elseBlock2">Intermediate</mat-label></ng-template><ng-template #elseBlock2><mat-label *ngIf="language.rating == 3; else elseBlock3">Advanced</mat-label>
                                 </ng-template><ng-template #elseBlock3>Error</ng-template>
-                                <mat-select>
-                                  <mat-option value="one">Beginner</mat-option>
-                                  <mat-option value="two">Intermediate</mat-option>
-                                  <mat-option value="two">Advanced</mat-option>
+                                <mat-select matInput formControlName="languageproficiencyChange">
+                                  <mat-option value="beginner">Beginner</mat-option>
+                                  <mat-option value="intermediate">Intermediate</mat-option>
+                                  <mat-option value="advanced">Advanced</mat-option>
                                 </mat-select>
                               </mat-form-field>
                         </div>
                         <div class="col-sm">
-                            <app-remove-button (click)="removeLanguage(language)"></app-remove-button>
+                            <button mat-icon-button color="warn" aria-label="Delete User" (click)="removeLanguage(language)">
+                                <mat-icon>clear</mat-icon>
+                            </button>
+                            <button mat-icon-button color="warn" aria-label="Delete User" (click)="changeLanguage(language)">
+                                <mat-icon>edit</mat-icon>
+                            </button>
                         </div>
                     </div>
                 </mat-card>
@@ -130,7 +135,7 @@
                             <mat-form-field appearance="fill">
                                 <mat-label *ngIf="skill.rating == 1; else elseBlock">Beginner</mat-label><ng-template #elseBlock><mat-label *ngIf="skill.rating == 2; else elseBlock2">Intermediate</mat-label></ng-template><ng-template #elseBlock2><mat-label *ngIf="skill.rating == 3; else elseBlock3">Advanced</mat-label>
                                 </ng-template><ng-template #elseBlock3>Error</ng-template>
-                                <mat-select>
+                                <mat-select matInput formControlName="skillproficiencyChange">
                                   <mat-option value="beginner">Beginner</mat-option>
                                   <mat-option value="intermediate">Intermediate</mat-option>
                                   <mat-option value="advanced">Advanced</mat-option>
@@ -138,7 +143,12 @@
                               </mat-form-field>
                         </div>
                         <div class="col-sm">
-                            <app-remove-button (click)="removeSkill(skill)"></app-remove-button>
+                            <button mat-icon-button color="warn" aria-label="Delete User" (click)="removeSkill(skill)">
+                                <mat-icon>clear</mat-icon>
+                            </button>
+                            <button mat-icon-button color="warn" aria-label="Edit Skill" (click)="changeSkill(skill)">
+                                <mat-icon>edit</mat-icon>
+                            </button>
                         </div>
                     </div>
                     </mat-card>

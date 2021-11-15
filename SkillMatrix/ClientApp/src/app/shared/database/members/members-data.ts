@@ -3,7 +3,7 @@ import { IUser, Rating } from "src/app/users/user";
 
 export const users: IUser[] = [
     {
-        id: 1,
+        id: "1",
         surName: "Schmidt",
         firstName: "Marten",
         telephone: "4901512345678",
@@ -41,7 +41,7 @@ export const users: IUser[] = [
         imageUrl: "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png"
     },
     {
-        id: 2,
+        id: "2",
         surName: "Meier",
         firstName: "Bernd",
         telephone: "4901512345678",
@@ -79,7 +79,7 @@ export const users: IUser[] = [
         imageUrl: "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png"
     },
     {
-        id: 3,
+        id: "3",
         surName: "Seehofer",
         firstName: "Lutz",
         telephone: "4901512345678",
@@ -113,7 +113,7 @@ export const users: IUser[] = [
         imageUrl: "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png"
     },
     {
-        id: 4,
+        id: "4",
         surName: "Motz",
         firstName: "Fritz",
         telephone: "4901512345678",
@@ -151,7 +151,7 @@ export const users: IUser[] = [
         imageUrl: "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png"
     },
     {
-        id: 5,
+        id: "5",
         surName: "Petry",
         firstName: "Frauke",
         telephone: "4901512345678",
@@ -189,7 +189,7 @@ export const users: IUser[] = [
         imageUrl: "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png"
     },
     {
-        id: 6,
+        id: "6",
         surName: "Rauschenbach",
         firstName: "Peter",
         telephone: "4901512345678",
@@ -227,7 +227,7 @@ export const users: IUser[] = [
         imageUrl: "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png"
     },
     {
-        id: 7,
+        id: "7",
         surName: "Ramsauer",
         firstName: "Hans",
         telephone: "4901512345678",
@@ -265,7 +265,7 @@ export const users: IUser[] = [
         imageUrl: "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png"
     },
     {
-        id: 8,
+        id: "8",
         surName: "Fritzl",
         firstName: "Joseph",
         telephone: "4901512345678",
@@ -303,7 +303,7 @@ export const users: IUser[] = [
         imageUrl: "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png"
     },
     {
-        id: 9,
+        id: "9",
         surName: "Janßen",
         firstName: "Stefan",
         telephone: "4901512345678",
@@ -341,7 +341,7 @@ export const users: IUser[] = [
         imageUrl: "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png"
     },
     {
-        id: 10,
+        id: "10",
         surName: "Janßen",
         firstName: "Stefan",
         telephone: "4901512345678",

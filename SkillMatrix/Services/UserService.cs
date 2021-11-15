@@ -1,13 +1,8 @@
 ﻿using AutoMapper;
-using SkillMatrix.Application.DTOs;
 using SkillMatrix.Application.DTOs.Users;
-using SkillMatrix.DataAccess;
-using SkillMatrix.Domain.Languages.Models;
 using SkillMatrix.Domain.Users.Models;
 using SkillMatrix.Domain.Users.Repositories;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace SkillMatrix.Application.Services

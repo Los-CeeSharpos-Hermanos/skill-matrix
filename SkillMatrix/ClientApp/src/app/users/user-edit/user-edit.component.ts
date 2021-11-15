@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ILanguage } from 'src/app/admin/languages/language';
@@ -27,8 +27,10 @@ export class UserEditComponent implements OnInit {
   private sub: Subscription;
   pageTitle: string;
   errorMessage: string;
+  isChanged: boolean;
+
   user: IUser = {
-    id: 0,
+    id: "0",
     firstName: "",
     surName: "",
     department: "",
@@ -53,7 +55,7 @@ export class UserEditComponent implements OnInit {
     ]
   };
 
-  rat: Rating;
+  rating: Rating;
   allLanguages: ILanguage[] = [];
   allSkills: Skill[] = [];
 
@@ -78,6 +80,7 @@ export class UserEditComponent implements OnInit {
         const id = params.get('id')!;
         this.getUser(id);
       });
+    this.isChanged = false;
   }
 
   getUser(id: string): void {
@@ -94,7 +97,7 @@ export class UserEditComponent implements OnInit {
     }
 
     this.user = user;
-    if (this.user.id === 0) {
+    if (this.user.id === "0") {
       this.pageTitle = 'Add a new User';
       
     
@@ -126,8 +129,10 @@ export class UserEditComponent implements OnInit {
       phone: '',
       language: '',
       languageproficiency: '',
+      languageproficiencyChange: '',
       skill: '',
-      skillproficiency: ''
+      skillproficiency: '',
+      skillproficiencyChange: ''
     });
   }
 
@@ -144,19 +149,21 @@ export class UserEditComponent implements OnInit {
       .subscribe({
         error: err => this.errorMessage = err
       });
+    this.goToUser();
   }
 
   addSkill(): void {
     switch(this.profileForm.value.skillproficiency) {
-      case "beginner": this.rat = 1; break;
-      case "intermediate": this.rat = 2; break;
-      case "advanced": this.rat = 3; break;
-      default: this.rat = 0; 
+      case "beginner": this.rating = 1; break;
+      case "intermediate": this.rating = 2; break;
+      case "advanced": this.rating = 3; break;
+      default: this.rating = 0; 
     } 
-    if(!this.rat) {
+    if(!this.rating) {
       console.log("choose profi");
     } else {
-      this.user.skills.push({skillName: this.profileForm.value.skill, rating: this.rat, skillCategory: "skillcategory"});
+      this.user.skills.push({skillName: this.profileForm.value.skill, rating: this.rating, skillCategory: "skillcategory"});
+
       this.profileForm.patchValue({
         skill: "",
         skillproficiency: ""
@@ -168,26 +175,32 @@ export class UserEditComponent implements OnInit {
     this.user.skills = this.user.skills.filter(s => s !== skill);
   }
 
-  changeSkill(skill: IUserSkill, proficiency: number): void {
-
+  changeSkill(skill: IUserSkill): void {
+    if(this.profileForm.value.skillproficiencyChange != "") {
+      var index = this.user.skills.lastIndexOf(skill);
+      switch(this.profileForm.value.skillproficiencyChange) {
+        case "beginner": this.user.skills[index].rating = 1; break;
+        case "intermediate": this.user.skills[index].rating = 2; break;
+        case "advanced": this.user.skills[index].rating = 3; break;
+        default: break; 
+      } 
+    }
   }
 
   addLanguage(): void {
     switch(this.profileForm.value.languageproficiency) {
-      case "beginner": this.rat = 1; break;
-      case "intermediate": this.rat = 2; break;
-      case "advanced": this.rat = 3; break;
-      default: this.rat = 0; 
+      case "beginner": this.rating = 1; break;
+      case "intermediate": this.rating = 2; break;
+      case "advanced": this.rating = 3; break;
+      default: this.rating = 0; 
     } 
-    if(!this.rat) {
+    if(!this.rating) {
       console.log("choose profi");
     } else {
-      var index = this.user.languages.indexOf({language: this.profileForm.value.language, rating: this.rat});
-      console.log(index);
-      console.log(this.user.languages);
+      var index = this.user.languages.indexOf({language: this.profileForm.value.language, rating: this.rating});
       if(index === -1)
       {
-        this.user.languages.push({language: this.profileForm.value.language, rating: this.rat});
+        this.user.languages.push({language: this.profileForm.value.language, rating: this.rating});
       }
       
       this.profileForm.patchValue({
@@ -201,8 +214,16 @@ export class UserEditComponent implements OnInit {
     this.user.languages = this.user.languages.filter(l => l !== language);
   }
 
-  changeLanguage(language: IUserLanguage, proficiency: number): void {
-
+  changeLanguage(language: IUserLanguage): void {
+    if(this.profileForm.value.languageproficiencyChange != "") {
+      var index = this.user.languages.lastIndexOf(language);
+      switch(this.profileForm.value.languageproficiencyChange) {
+        case "beginner": this.user.languages[index].rating = 1; break;
+        case "intermediate": this.user.languages[index].rating = 2; break;
+        case "advanced": this.user.languages[index].rating = 3; break;
+        default: break; 
+      } 
+    }
   }
 
   private loadAll() {
@@ -218,5 +239,9 @@ export class UserEditComponent implements OnInit {
       },
       error: err => { this.errorMessage = err; console.log(err); }
     });
+  }
+
+  goToUser() {
+    this.routingService.goTo(`skillmatrix/users/profile`);
   }
 }

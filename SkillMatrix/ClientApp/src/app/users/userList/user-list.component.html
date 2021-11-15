@@ -1,19 +1,87 @@
 <app-submenu pageTitle="Member List"></app-submenu>
 <div class="container">
   <div class='row align-middle'>
-
-    <div class='col-sm-1'>
-      <app-add-button (click)="goToAddUser(0)"></app-add-button>
-    </div>
     <div class='col-md'>
       <mat-form-field appearance="standard">
-        <mat-label>User Name</mat-label>
+        <mat-label>Search for User</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="John Doe" #input>
       </mat-form-field>
     </div>
   </div>
+  <mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Filter by Skills or Languages
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <form [formGroup]="filterForm">
+        <div class="row align-middle">
+          <div class="col">
+            <mat-form-field appearance="standard">
+              <mat-label>Search for Skill</mat-label>
+              <mat-select matInput formControlName="filterSkill">
+                <mat-option *ngFor="let filterSkill of allSkills" [value]="filterSkill.skillName">{{filterSkill.skillName}}</mat-option>
+            </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <app-add-button (click)="addSkillFilter()">Add Filter</app-add-button>
+          </div>
+            <div class="col-8">
+                <mat-chip-list>
+                  <mat-chip *ngFor="let skill of filteredSkills" [ngClass]="getRatingColor(skill.rating)"  [removable]="removable" (removed)="removeSkillFilter(skill)">
+                    {{skill.skillName}}
+                    <button matChipRemove *ngIf="removable">
+                      <mat-icon>cancel</mat-icon>
+                    </button>
+                    <button mat-button [matMenuTriggerFor]="menu"><mat-icon>edit</mat-icon></button>
+                      <mat-menu #menu="matMenu">
+                        <button mat-menu-item (click)="changeSkillFilter(0, skill)">all</button>
+                        <button mat-menu-item (click)="changeSkillFilter(1, skill)">beginner</button>
+                        <button mat-menu-item (click)="changeSkillFilter(2, skill)">intermediate</button>
+                        <button mat-menu-item (click)="changeSkillFilter(3, skill)">advanced</button>
+                      </mat-menu>
+                  </mat-chip>
+                </mat-chip-list>
+              </div>
+            </div>
+        <div class="row align-middle">
+          <div class="col">
+            <mat-form-field appearance="standard">
+              <mat-label>Search for Language</mat-label>
+              <mat-select matInput formControlName="filterLanguage">
+                <mat-option *ngFor="let filterLanguage of allLanguages" [value]="filterLanguage.name">{{filterLanguage.name}}</mat-option>
+            </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <app-add-button (click)="addLanguageFilter()">Add Filter</app-add-button>
+          </div>
+              <div class="col-8">
+                <mat-chip-list>
+                  <mat-chip *ngFor="let language of filteredLanguages" [ngClass]="getRatingColor(language.rating)"  [removable]="removable" (removed)="removeLanguageFilter(language)">
+                    {{language.language}}
+                    <button matChipRemove *ngIf="removable">
+                      <mat-icon>cancel</mat-icon>
+                    </button>
+                    <button mat-button [matMenuTriggerFor]="menu"><mat-icon>edit</mat-icon></button>
+                      <mat-menu #menu="matMenu">
+                        <button mat-menu-item (click)="changeLanguageFilter(0, language)">all</button>
+                        <button mat-menu-item (click)="changeLanguageFilter(1, language)">beginner</button>
+                        <button mat-menu-item (click)="changeLanguageFilter(2, language)">intermediate</button>
+                        <button mat-menu-item (click)="changeLanguageFilter(3, language)">advanced</button>
+                      </mat-menu>
+                  </mat-chip>
+                </mat-chip-list>
+              </div>
+            </div>
+        </form>
+    </mat-expansion-panel>
+  </mat-accordion>  
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements"
+  <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements"
     class=" dyeableContainer">
   </mat-paginator>
 
@@ -44,9 +112,6 @@
         <ng-template #defaultColumn>{{element[column.id]}}</ng-template>
       </td>
     </ng-container>
-
-
-    <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
     <ng-container matColumnDef="expandedDetail">
       <td class="detail-card" mat-cell *matCellDef="let user" [attr.colspan]="columnsToDisplay.length">
         <div class="example-element-detail" [@detailExpand]="user == expandedElement ? 'expanded' : 'collapsed'">
@@ -77,6 +142,9 @@
 
                 <div class='mt-2 col-sm-2'>
                   <p>Actions</p>
+                  <button mat-icon-button color="default" aria-label="Delete Skill" (click)="sendMail(user.email)">
+                    <mat-icon>mail</mat-icon>
+                  </button>
                   <button mat-icon-button color="default" aria-label="Delete Skill" (click)="hideUser()">
                     <mat-icon>{{isHidden ? 'visibility_off' : 'visibility' }}</mat-icon>
                   </button>

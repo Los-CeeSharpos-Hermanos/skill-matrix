@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SkillMatrix.Domain.Users.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SkillMatrix.DataAccess.Configurations
 {
@@ -13,7 +8,7 @@ namespace SkillMatrix.DataAccess.Configurations
     {
         public void Configure(EntityTypeBuilder<LanguageRating> builder)
         {
-            //builder.HasIndex(u => u.LanguageId).IsUnique();
+            builder.HasKey(u => new { u.Language, u.UserId });
         }
     }
 }

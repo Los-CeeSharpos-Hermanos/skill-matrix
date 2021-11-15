@@ -32,14 +32,13 @@ export class UserService {
     return this.http.put<IUser>(url, user, { headers: this.headers });
   }
 
-
-
-  getUser(id: string): Observable<IUser> {
+  getUser(id: string | null): Observable<IUser> {
     if (id == "0") {
       return of(this.initializeUser());
     }
 
     const url = `${this.baseUri}/${id}`;
+    console.log("UserID should be this: " + id);
     return this.http.get<IUser>(url)
       .pipe(
         catchError(this.handleError)
@@ -48,7 +47,7 @@ export class UserService {
 
   private initializeUser(): IUser {
     return {
-      id: 0,
+      id: "0",
       surName: '',
       firstName: '',
       telephone: '',
